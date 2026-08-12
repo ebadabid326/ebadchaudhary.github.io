@@ -1,534 +1,185 @@
-# Create a complete single-file HTML/CSS/JS E-Commerce Website (index.html)
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meri Apni Online Dukan</title>
-    <style>
-        /* CSS Styling */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* Navigation Bar */
-        header {
-            background-color: #1a252f;
-            color: white;
-            padding: 1rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #2ec4b6;
-        }
-
-        .logo span {
-            color: #fff;
-        }
-
-        .cart-icon-btn {
-            background: #2ec4b6;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-        }
-
-        .cart-icon-btn:hover {
-            background: #20968b;
-        }
-
-        .cart-badge {
-            background: #e71d36;
-            color: white;
-            border-radius: 50%;
-            padding: 2px 8px;
-            font-size: 0.85rem;
-        }
-
-        /* Main Container Layout */
-        .main-container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-            display: flex;
-            gap: 25px;
-        }
-
-        /* Products Grid */
-        .products-section {
-            flex: 3;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #1a252f;
-            border-bottom: 2px solid #2ec4b6;
-            padding-bottom: 5px;
-            display: inline-block;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 20px;
-        }
-
-        .product-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
-        }
-
-        .product-img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            background: #f1f1f1;
-        }
-
-        .product-info {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .product-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .product-desc {
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 12px;
-            flex-grow: 1;
-        }
-
-        .product-price {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #e71d36;
-            margin-bottom: 12px;
-        }
-
-        .add-to-cart-btn {
-            background: #1a252f;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.2s;
-            width: 100%;
-        }
-
-        .add-to-cart-btn:hover {
-            background: #2ec4b6;
-        }
-
-        /* Cart Sidebar Area */
-        .cart-sidebar {
-            flex: 1.3;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            height: fit-content;
-            position: sticky;
-            top: 90px;
-        }
-
-        .cart-items {
-            max-height: 300px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .cart-item-details h4 {
-            font-size: 0.95rem;
-        }
-
-        .cart-item-details p {
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        .remove-btn {
-            background: #ff4d4d;
-            color: white;
-            border: none;
-            padding: 4px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-
-        .cart-summary {
-            border-top: 2px solid #eee;
-            padding-top: 15px;
-        }
-
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        /* Checkout Form */
-        .checkout-form {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .checkout-form input, .checkout-form select {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 0.9rem;
-        }
-
-        .checkout-btn {
-            background: #2ec4b6;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 5px;
-            transition: 0.2s;
-        }
-
-        .checkout-btn:hover {
-            background: #20968b;
-        }
-
-        /* Order Confirmation Popup */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
-        }
-
-        .modal-content h2 {
-            color: #2ec4b6;
-            margin-bottom: 10px;
-        }
-
-        .modal-content p {
-            margin-bottom: 20px;
-            color: #555;
-        }
-
-        .close-btn {
-            background: #1a252f;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        /* Responsive Layout */
-        @media (max-width: 768px) {
-            .main-container {
-                flex-direction: column;
-            }
-            .cart-sidebar {
-                position: static;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ebad Gaming</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:#0b0b14;
+      color:#fff;
+      line-height:1.6;
+    }
+    header{
+      position:sticky;top:0;z-index:10;
+      background:#11111d;
+      border-bottom:1px solid #24243a;
+    }
+    .nav{
+      max-width:1150px;margin:auto;padding:18px 22px;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .logo{font-size:25px;font-weight:800;color:#ff3b3b}
+    .logo span{color:#fff}
+    nav a{
+      color:#fff;text-decoration:none;margin-left:24px;font-weight:600;
+    }
+    nav a:hover{color:#ff3b3b}
+    .hero{
+      min-height:470px;
+      display:flex;align-items:center;justify-content:center;text-align:center;
+      padding:60px 20px;
+      background:
+        radial-gradient(circle at 50% 20%,#25204b 0,#14142a 38%,#0b0b14 75%);
+    }
+    .hero h1{font-size:clamp(42px,7vw,78px);margin-bottom:12px}
+    .hero h1 span{color:#ff3b3b}
+    .hero p{font-size:20px;color:#c8c8d8;margin-bottom:28px}
+    .btn{
+      display:inline-block;border:0;border-radius:10px;
+      padding:13px 24px;background:#ff3b3b;color:#fff;
+      text-decoration:none;font-weight:800;cursor:pointer;
+      box-shadow:0 8px 25px rgba(255,59,59,.2);
+    }
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+    section{max-width:1150px;margin:auto;padding:65px 22px}
+    .title{text-align:center;font-size:34px;margin-bottom:35px}
+    .title span{color:#ff3b3b}
+    .games{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+    }
+    .card{
+      background:#151522;border:1px solid #25253a;border-radius:16px;
+      padding:28px 20px;text-align:center;transition:.2s;
+    }
+    .card:hover{transform:translateY(-6px);border-color:#ff3b3b}
+    .icon{font-size:58px;margin-bottom:12px}
+    .card h3{font-size:21px;margin-bottom:8px}
+    .card p{color:#aaaabd;min-height:50px}
+    .card .btn{margin-top:18px;padding:10px 18px}
+    .controls{
+      background:#11111d;border:1px solid #25253a;border-radius:18px;
+      padding:30px;max-width:760px;margin:auto;
+    }
+    .control-row{
+      display:flex;justify-content:space-between;
+      padding:13px 0;border-bottom:1px solid #29293b;
+    }
+    .control-row:last-child{border-bottom:0}
+    kbd{
+      background:#24243a;border:1px solid #41415a;border-radius:6px;
+      padding:4px 9px;font-weight:bold;
+    }
+    .playbox{
+      margin-top:25px;background:#151522;border-radius:16px;
+      padding:28px;text-align:center;border:1px solid #25253a;
+    }
+    #gameMessage{min-height:28px;margin:15px 0;color:#ddd}
+    footer{text-align:center;padding:30px 20px;color:#888;background:#08080f}
+    @media(max-width:850px){.games{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){
+      .nav{flex-direction:column;gap:12px}
+      nav a{margin:0 7px}
+      .games{grid-template-columns:1fr}
+      .hero{min-height:420px}
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <div class="logo">Meri<span>Dukan</span></div>
-        <button class="cart-icon-btn">
-            🛒 Basket <span class="cart-badge" id="cartBadge">0</span>
-        </button>
-    </header>
+<header>
+  <div class="nav">
+    <div class="logo">🎮 <span>Ebad</span> Gaming</div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#games">Games</a>
+      <a href="#controls">Control</a>
+    </nav>
+  </div>
+</header>
 
-    <!-- Main Content -->
-    <div class="main-container">
-        
-        <!-- Products Grid Section -->
-        <div class="products-section">
-            <h2 class="section-title">Hamari Products</h2>
-            <div class="products-grid" id="productsGrid">
-                <!-- Products Javascript se automatically load hon gi -->
-            </div>
-        </div>
+<main>
+  <section class="hero" id="home">
+    <div>
+      <h1>Welcome to <span>Ebad Gaming</span></h1>
+      <p>Play games, have fun and become the ultimate gamer!</p>
+      <a class="btn" href="#games">Explore Games</a>
+    </div>
+  </section>
 
-        <!-- Cart Sidebar & Order Form -->
-        <div class="cart-sidebar">
-            <h2 class="section-title">Shopping Cart</h2>
-            <div class="cart-items" id="cartItems">
-                <p style="text-align: center; color: #888; margin: 20px 0;">Aapka cart khaali hai.</p>
-            </div>
-
-            <div class="cart-summary">
-                <div class="total-row">
-                    <span>Total Amount:</span>
-                    <span id="cartTotal">PKR 0</span>
-                </div>
-
-                <!-- Checkout Details Form -->
-                <form class="checkout-form" id="checkoutForm" onsubmit="handleCheckout(event)">
-                    <h4>Delivery Details</h4>
-                    <input type="text" id="custName" placeholder="Aapka Naam (Full Name)" required>
-                    <input type="tel" id="custPhone" placeholder="Mobile Number (03xx-xxxxxxx)" required>
-                    <input type="text" id="custAddress" placeholder="Delivery Address (Ghar ka pata)" required>
-                    <select id="payMethod">
-                        <option value="COD">Cash on Delivery</option>
-                        <option value="JazzCash">JazzCash / EasyPaisa</option>
-                    </select>
-                    <button type="submit" class="checkout-btn">Order Place Karein 🚀</button>
-                </form>
-            </div>
-        </div>
-
+  <section id="games">
+    <h2 class="title">🔥 Popular <span>Games</span></h2>
+    <div class="games">
+      <div class="card">
+        <div class="icon">🚀</div>
+        <h3>Space Rocket</h3>
+        <p>Launch your rocket and beat your high score.</p>
+        <button class="btn" onclick="startGame('Space Rocket')">Play Now</button>
+      </div>
+      <div class="card">
+        <div class="icon">🏎️</div>
+        <h3>Speed Racer</h3>
+        <p>Get ready for a fast racing challenge.</p>
+        <button class="btn" onclick="startGame('Speed Racer')">Play Now</button>
+      </div>
+      <div class="card">
+        <div class="icon">🧟</div>
+        <h3>Zombie Attack</h3>
+        <p>Survive the zombie attack and stay alive.</p>
+        <button class="btn" onclick="startGame('Zombie Attack')">Play Now</button>
+      </div>
+      <div class="card">
+        <div class="icon">⚔️</div>
+        <h3>Sword Battle</h3>
+        <p>Enter the battle and become the champion.</p>
+        <button class="btn" onclick="startGame('Sword Battle')">Play Now</button>
+      </div>
     </div>
 
-    <!-- Success Modal Popup -->
-    <div class="modal" id="orderModal">
-        <div class="modal-content">
-            <h2>🎉 Mubarak Ho!</h2>
-            <p id="modalMsg">Aapka order kamyabi se place ho gaya hai.</p>
-            <button class="close-btn" onclick="closeModal()">Shukriya!</button>
-        </div>
+    <div class="playbox">
+      <h2 id="gameTitle">🎮 Choose a game</h2>
+      <p id="gameMessage">Click any "Play Now" button above to start.</p>
+      <button class="btn" onclick="scorePoint()">CLICK TO SCORE</button>
+      <p style="margin-top:12px">Score: <strong id="score">0</strong></p>
     </div>
+  </section>
 
-    <!-- JavaScript Logic -->
-    <script>
-        // Sample Products Data (Aap yahan apni marzi ke items add kar sakte hain)
-        const products = [
-            {
-                id: 1,
-                title: "Wireless Headphones",
-                price: 2500,
-                desc: "Behtareen sound quality aur long battery life.",
-                img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400"
-            },
-            {
-                id: 2,
-                title: "Smart Watch V8",
-                price: 3800,
-                desc: "Fitness tracking, call alerts aur HD display.",
-                img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"
-            },
-            {
-                id: 3,
-                title: "Gaming Mouse",
-                price: 1200,
-                desc: "RGB lightings aur fast DPI sensitivity.",
-                img: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400"
-            },
-            {
-                id: 4,
-                title: "Stylish Sunglasses",
-                price: 990,
-                desc: "UV protection ke sath trendy look.",
-                img: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400"
-            },
-            {
-                id: 5,
-                title: "Leather Wallet",
-                price: 1500,
-                desc: "Asli chamde ka wallet, multiple card slots.",
-                img: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=400"
-            },
-            {
-                id: 6,
-                title: "Bluetooth Speaker",
-                price: 3200,
-                desc: "Powerful bass aur waterproof design.",
-                img: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400"
-            }
-        ];
+  <section id="controls">
+    <h2 class="title">🎛️ Game <span>Controls</span></h2>
+    <div class="controls">
+      <div class="control-row"><span>Move Up</span><kbd>W / ↑</kbd></div>
+      <div class="control-row"><span>Move Down</span><kbd>S / ↓</kbd></div>
+      <div class="control-row"><span>Move Left</span><kbd>A / ←</kbd></div>
+      <div class="control-row"><span>Move Right</span><kbd>D / →</kbd></div>
+      <div class="control-row"><span>Action</span><kbd>SPACE</kbd></div>
+    </div>
+  </section>
+</main>
 
-        let cart = [];
+<footer>
+  © 2026 Ebad Gaming — Made with ❤️ for gamers
+</footer>
 
-        // Products Screen par render karna
-        function renderProducts() {
-            const grid = document.getElementById('productsGrid');
-            grid.innerHTML = '';
-            products.forEach(p => {
-                grid.innerHTML += `
-                    <div class="product-card">
-                        <img src="${p.img}" alt="${p.title}" class="product-img">
-                        <div class="product-info">
-                            <div class="product-title">${p.title}</div>
-                            <div class="product-desc">${p.desc}</div>
-                            <div class="product-price">PKR ${p.price.toLocaleString()}</div>
-                            <button class="add-to-cart-btn" onclick="addToCart(${p.id})">Add to Cart 🛒</button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
+<script>
+  let score = 0;
+  function startGame(name){
+    score = 0;
+    document.getElementById("score").textContent = score;
+    document.getElementById("gameTitle").textContent = "🎮 " + name;
+    document.getElementById("gameMessage").textContent =
+      "Game started! Click the button below as fast as you can.";
+    document.getElementById("games").scrollIntoView({behavior:"smooth"});
+  }
+  function scorePoint(){
+    score++;
+    document.getElementById("score").textContent = score;
+    document.getElementById("gameMessage").textContent =
+      score >= 10 ? "🔥 Great! You reached 10 points!" : "Nice! Keep going!";
+  }
+</script>
 
-        // Cart mein item add karna
-        function addToCart(productId) {
-            const product = products.find(p => p.id === productId);
-            const existingItem = cart.find(item => item.id === productId);
-
-            if (existingItem) {
-                existingItem.qty += 1;
-            } else {
-                cart.push({ ...product, qty: 1 });
-            }
-
-            updateCartUI();
-        }
-
-        // Cart se item remove karna
-        function removeFromCart(productId) {
-            cart = cart.filter(item => item.id !== productId);
-            updateCartUI();
-        }
-
-        // Cart UI Update karna
-        function updateCartUI() {
-            const cartItemsDiv = document.getElementById('cartItems');
-            const cartTotalSpan = document.getElementById('cartTotal');
-            const cartBadge = document.getElementById('cartBadge');
-
-            let totalQty = 0;
-            let totalPrice = 0;
-
-            if (cart.length === 0) {
-                cartItemsDiv.innerHTML = '<p style="text-align: center; color: #888; margin: 20px 0;">Aapka cart khaali hai.</p>';
-            } else {
-                cartItemsDiv.innerHTML = '';
-                cart.forEach(item => {
-                    totalQty += item.qty;
-                    totalPrice += item.price * item.qty;
-
-                    cartItemsDiv.innerHTML += `
-                        <div class="cart-item">
-                            <div class="cart-item-details">
-                                <h4>${item.title}</h4>
-                                <p>PKR ${item.price.toLocaleString()} x ${item.qty}</p>
-                            </div>
-                            <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
-                        </div>
-                    `;
-                });
-            }
-
-            cartBadge.innerText = totalQty;
-            cartTotalSpan.innerText = `PKR ${totalPrice.toLocaleString()}`;
-        }
-
-        // Order Checkout logic
-        function handleCheckout(event) {
-            event.preventDefault();
-
-            if (cart.length === 0) {
-                alert('Aapka cart khaali hai! Pehle items add karein.');
-                return;
-            }
-
-            const name = document.getElementById('custName').value;
-            const phone = document.getElementById('custPhone').value;
-            const address = document.getElementById('custAddress').value;
-            const total = document.getElementById('cartTotal').innerText;
-
-            document.getElementById('modalMsg').innerHTML = `
-                Shukriya <b>${name}</b>!<br>
-                Aapka <b>${total}</b> ka order place ho gaya hai.<br><br>
-                <b>Delivery Address:</b> ${address}<br>
-                <b>Contact:</b> ${phone}
-            `;
-
-            document.getElementById('orderModal').style.display = 'flex';
-
-            // Reset Cart & Form
-            cart = [];
-            updateCartUI();
-            document.getElementById('checkoutForm').reset();
-        }
-
-        function closeModal() {
-            document.getElementById('orderModal').style.display = 'none';
-        }
-
-        // Initial Load
-        renderProducts();
-    </script>
 </body>
 </html>
-"""
-
-# Write to file
-with open("index.html", "w", encoding="utf-8") as f:
-    f.write(html_content)
-
-print("index.html successfully created.")
