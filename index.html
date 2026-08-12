@@ -1028,7 +1028,22 @@ document.getElementById(
 applySettings();
 const ADMIN_PASSWORD = "12345";
 
-function openAdminPanel(){
+function openAdminPanel(){const ADMIN_PASSWORD = "12345";
+
+function openAdminPanel() {
+    const password = prompt("Admin Password:");
+
+    if (password === ADMIN_PASSWORD) {
+        const panel = document.getElementById("control");
+
+        if (panel) {
+            panel.style.display = "block";
+            panel.scrollIntoView({ behavior: "smooth" });
+        }
+    } else if (password !== 123) {
+        alert("❌ Wrong Password");
+    }
+}
 
   const password = prompt("Admin Password:");
 
