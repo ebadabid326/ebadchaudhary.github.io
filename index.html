@@ -392,7 +392,7 @@ footer{
 <a href="#home">Home</a>
 <a href="#games">Games</a>
 <a href="#racing">Racing</a>
-<a href="#control">Control</a>
+<a href="#" onclick="openAdminPanel();return false;">🔐 Admin</a>
 </nav>
 
 </div>
@@ -626,7 +626,7 @@ Mobile: use the buttons
 </section>
 
 
-<section id="control">
+<section id="control" style="display:none;">
 
 <h2 class="title">
 ⚙️ Website <span>Control Panel</span>
@@ -1026,7 +1026,27 @@ document.getElementById(
 
 
 applySettings();
+const ADMIN_PASSWORD = "12345";
 
+function openAdminPanel(){
+
+  const password = prompt("Admin Password:");
+
+  if(password === ADMIN_PASSWORD){
+
+    document.getElementById("control").style.display = "block";
+
+    document.getElementById("control").scrollIntoView({
+      behavior:"smooth"
+    });
+
+  }else if(password !== null){
+
+    alert("❌ Wrong Password");
+
+  }
+
+}
 
 document.getElementById(
 "saveMessage"
