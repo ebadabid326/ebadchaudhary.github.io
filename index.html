@@ -2,56 +2,273 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ebad Gaming</title>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#080812;color:#fff}
-header{background:#11111d;padding:18px 25px;position:sticky;top:0;z-index:10;border-bottom:2px solid #ff3030}
-.nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:26px;font-weight:bold;color:#ff3030}
-.logo span{color:#fff}
-nav a{color:#fff;text-decoration:none;margin-left:22px;font-weight:bold}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#080812;
+  color:white;
+}
+
+header{
+  background:#11111d;
+  padding:18px 25px;
+  border-bottom:2px solid #ff3030;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.nav{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:26px;
+  font-weight:bold;
+  color:#ff3030;
+}
+
+.logo span{color:white}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:22px;
+  font-weight:bold;
+}
+
 nav a:hover{color:#ff3030}
-.hero{min-height:430px;display:flex;justify-content:center;align-items:center;text-align:center;padding:30px;background:radial-gradient(circle at center,#27204d,#10101c 55%,#080812)}
-.hero h1{font-size:clamp(40px,7vw,75px);margin-bottom:15px}
+
+.hero{
+  min-height:430px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:30px;
+  background:radial-gradient(circle,#27204d,#10101c 55%,#080812);
+}
+
+.hero h1{
+  font-size:clamp(40px,7vw,75px);
+  margin-bottom:15px;
+}
+
 .hero h1 span{color:#ff3030}
-.hero p{color:#ccc;font-size:20px;margin-bottom:25px}
-.btn{border:0;background:#ff3030;color:white;padding:12px 22px;border-radius:9px;font-size:16px;font-weight:bold;cursor:pointer}
+
+.hero p{
+  color:#ccc;
+  font-size:20px;
+  margin-bottom:25px;
+}
+
+.btn{
+  border:0;
+  background:#ff3030;
+  color:white;
+  padding:12px 22px;
+  border-radius:9px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
 .btn:hover{background:#ff5050}
-section{max-width:1100px;margin:auto;padding:60px 20px}
-.title{text-align:center;font-size:35px;margin-bottom:35px}
+
+section{
+  max-width:1100px;
+  margin:auto;
+  padding:60px 20px;
+}
+
+.title{
+  text-align:center;
+  font-size:35px;
+  margin-bottom:35px;
+}
+
 .title span{color:#ff3030}
-.games{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.card{background:#151522;border:1px solid #29293d;border-radius:15px;padding:25px 15px;text-align:center;transition:.2s}
-.card:hover{border-color:#ff3030;transform:translateY(-5px)}
-.icon{font-size:55px;margin-bottom:10px}
+
+.games{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.card{
+  background:#151522;
+  border:1px solid #29293d;
+  border-radius:15px;
+  padding:25px 15px;
+  text-align:center;
+}
+
+.card:hover{
+  border-color:#ff3030;
+  transform:translateY(-5px);
+}
+
+.icon{
+  font-size:55px;
+  margin-bottom:10px;
+}
+
 .card h3{margin-bottom:8px}
-.card p{color:#aaa;margin-bottom:18px}
+
+.card p{
+  color:#aaa;
+  margin-bottom:18px;
+}
+
+/* RACING GAME */
 
 .game-area{text-align:center}
-.game-info{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:15px}
-.info-box{background:#151522;border:1px solid #29293d;padding:10px 18px;border-radius:10px;font-weight:bold}
-.game-box{position:relative;width:320px;height:520px;max-width:90vw;margin:auto;overflow:hidden;background:#303030;border:4px solid white;border-radius:12px}
-.road{position:absolute;width:100%;height:100%;background:#303030}
-.road:before,.road:after{content:"";position:absolute;top:-120px;width:8px;height:100px;background:white;box-shadow:0 150px white,0 300px white,0 450px white;animation:roadMove .7s linear infinite}
-.road:before{left:33%}
-.road:after{right:33%}
-@keyframes roadMove{from{transform:translateY(-100px)}to{transform:translateY(100px)}}
-.player{position:absolute;width:50px;height:85px;bottom:25px;left:135px;font-size:50px;z-index:3;transition:left .08s}
-.enemy{position:absolute;width:50px;height:85px;top:-100px;font-size:50px;z-index:3}
-.game-buttons{margin-top:18px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-.mobile-controls{display:flex;justify-content:center;gap:30px;margin-top:15px}
-.control-btn{width:80px;height:55px;font-size:25px;border:none;border-radius:10px;background:#ff3030;color:white;font-weight:bold}
-.message{min-height:30px;margin:12px;font-weight:bold;color:#ffcc00}
-.help{margin-top:15px;color:#aaa}
-footer{background:#050509;text-align:center;padding:30px;color:#888}
 
-@media(max-width:800px){.games{grid-template-columns:repeat(2,1fr)}}
+.game-info{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:15px;
+}
+
+.info-box{
+  background:#151522;
+  border:1px solid #29293d;
+  padding:10px 16px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.game-box{
+  position:relative;
+  width:320px;
+  height:520px;
+  max-width:90vw;
+  margin:auto;
+  overflow:hidden;
+  background:#303030;
+  border:4px solid white;
+  border-radius:12px;
+}
+
+.road{
+  position:absolute;
+  inset:0;
+  background:#303030;
+}
+
+/* Road lines */
+.line{
+  position:absolute;
+  width:8px;
+  height:80px;
+  background:white;
+  left:33%;
+  top:-100px;
+}
+
+.line2{
+  position:absolute;
+  width:8px;
+  height:80px;
+  background:white;
+  right:33%;
+  top:-100px;
+}
+
+/* Player */
+.player{
+  position:absolute;
+  width:55px;
+  height:75px;
+  left:132px;
+  bottom:25px;
+  font-size:50px;
+  z-index:5;
+  transition:left .08s;
+}
+
+/* Enemy cars */
+.enemy{
+  position:absolute;
+  width:55px;
+  height:75px;
+  top:-100px;
+  font-size:50px;
+  z-index:4;
+}
+
+#enemy1{left:30px}
+#enemy2{left:132px}
+#enemy3{left:234px}
+
+.message{
+  min-height:30px;
+  margin:12px;
+  color:#ffcc00;
+  font-weight:bold;
+}
+
+.game-buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.mobile-controls{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin-top:15px;
+}
+
+.control-btn{
+  width:85px;
+  height:55px;
+  border:0;
+  border-radius:10px;
+  background:#ff3030;
+  color:white;
+  font-size:25px;
+  font-weight:bold;
+}
+
+.help{
+  color:#aaa;
+  margin-top:15px;
+}
+
+footer{
+  background:#050509;
+  text-align:center;
+  padding:30px;
+  color:#888;
+}
+
+@media(max-width:800px){
+  .games{grid-template-columns:repeat(2,1fr)}
+}
+
 @media(max-width:550px){
-.nav{flex-direction:column;gap:12px}
-nav a{margin:0 7px}
-.games{grid-template-columns:1fr}
+  .nav{
+    flex-direction:column;
+    gap:12px;
+  }
+
+  nav a{margin:0 7px}
+
+  .games{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -60,25 +277,45 @@ nav a{margin:0 7px}
 
 <header>
 <div class="nav">
-<div class="logo">🎮 <span>Ebad</span> Gaming</div>
+
+<div class="logo">
+🎮 <span>Ebad</span> Gaming
+</div>
+
 <nav>
 <a href="#home">Home</a>
 <a href="#games">Games</a>
 <a href="#racing">Racing</a>
 </nav>
+
 </div>
 </header>
 
 <section class="hero" id="home">
+
 <div>
-<h1>Welcome to <span>Ebad Gaming</span></h1>
-<p>Play games, have fun and become the ultimate gamer!</p>
-<a href="#games" class="btn">Explore Games</a>
+
+<h1>
+Welcome to <span>Ebad Gaming</span>
+</h1>
+
+<p>
+Play games, have fun and become the ultimate gamer!
+</p>
+
+<a href="#games" class="btn">
+Explore Games
+</a>
+
 </div>
+
 </section>
 
 <section id="games">
-<h2 class="title">🔥 Popular <span>Games</span></h2>
+
+<h2 class="title">
+🔥 Popular <span>Games</span>
+</h2>
 
 <div class="games">
 
@@ -86,7 +323,9 @@ nav a{margin:0 7px}
 <div class="icon">🚀</div>
 <h3>Space Rocket</h3>
 <p>Fly your rocket and beat your score.</p>
-<button class="btn" onclick="comingSoon('Space Rocket')">Play</button>
+<button class="btn" onclick="comingSoon('Space Rocket')">
+Play
+</button>
 </div>
 
 <div class="card">
@@ -100,61 +339,112 @@ nav a{margin:0 7px}
 <div class="icon">🧟</div>
 <h3>Zombie Attack</h3>
 <p>Survive the zombie attack.</p>
-<button class="btn" onclick="comingSoon('Zombie Attack')">Play</button>
+<button class="btn" onclick="comingSoon('Zombie Attack')">
+Play
+</button>
 </div>
 
 <div class="card">
 <div class="icon">⚔️</div>
 <h3>Sword Battle</h3>
 <p>Become the ultimate warrior.</p>
-<button class="btn" onclick="comingSoon('Sword Battle')">Play</button>
+<button class="btn" onclick="comingSoon('Sword Battle')">
+Play
+</button>
 </div>
 
 </div>
+
 </section>
 
 <section id="racing">
-<h2 class="title">🏎️ <span>Ultimate Car Racing</span></h2>
+
+<h2 class="title">
+🏎️ <span>Car Racing Game</span>
+</h2>
 
 <div class="game-area">
 
 <div class="game-info">
-<div class="info-box">🏆 Score: <span id="score">0</span></div>
-<div class="info-box">❤️ Lives: <span id="lives">3</span></div>
-<div class="info-box">⚡ Level: <span id="level">1</span></div>
-<div class="info-box">🥇 Best: <span id="best">0</span></div>
+
+<div class="info-box">
+🏆 Score: <span id="score">0</span>
 </div>
 
-<div class="game-box" id="gameBox">
+<div class="info-box">
+❤️ Lives: <span id="lives">3</span>
+</div>
+
+<div class="info-box">
+⚡ Level: <span id="level">1</span>
+</div>
+
+<div class="info-box">
+🥇 Best: <span id="best">0</span>
+</div>
+
+</div>
+
+<div class="game-box">
+
 <div class="road"></div>
 
-<div class="player" id="player">🏎️</div>
+<div class="line" id="line1"></div>
+<div class="line2" id="line2"></div>
 
-<div class="enemy" id="enemy1">🚙</div>
-<div class="enemy" id="enemy2">🚗</div>
-<div class="enemy" id="enemy3">🚕</div>
+<div class="player" id="player">
+🏎️
+</div>
+
+<div class="enemy" id="enemy1">
+🚙
+</div>
+
+<div class="enemy" id="enemy2">
+🚗
+</div>
+
+<div class="enemy" id="enemy3">
+🚕
+</div>
+
 </div>
 
 <div class="message" id="message">
-Press START to begin the race!
+Press START to begin!
 </div>
 
 <div class="game-buttons">
-<button class="btn" onclick="startGame()">START GAME</button>
-<button class="btn" onclick="restartGame()">RESTART</button>
+
+<button class="btn" onclick="startGame()">
+START GAME
+</button>
+
+<button class="btn" onclick="restartGame()">
+RESTART
+</button>
+
 </div>
 
 <div class="mobile-controls">
-<button class="control-btn" onclick="moveLeft()">⬅️</button>
-<button class="control-btn" onclick="moveRight()">➡️</button>
+
+<button class="control-btn" onclick="moveLeft()">
+⬅️
+</button>
+
+<button class="control-btn" onclick="moveRight()">
+➡️
+</button>
+
 </div>
 
 <p class="help">
-Computer: use ← → or A / D<br>
+Computer: ← → or A / D<br>
 Mobile: use the buttons
 </p>
 
 </div>
+
 </section>
 
 <footer>
@@ -163,268 +453,391 @@ Mobile: use the buttons
 
 <script>
 
-let player;
-let enemies=[];
+let playerX = 132;
 
-let playerX=135;
-let score=0;
-let lives=3;
-let level=1;
+let score = 0;
+let lives = 3;
+let level = 1;
 
-let gameRunning=false;
-let gameLoop;
+let speed = 3.5;
 
-let speed=5;
+let gameRunning = false;
+let gameTimer = null;
 
-let bestScore=Number(localStorage.getItem("ebadBestScore"))||0;
+let bestScore =
+Number(localStorage.getItem("ebadBestScore")) || 0;
 
-document.getElementById("best").innerText=bestScore;
+const player =
+document.getElementById("player");
 
-function setup(){
+const enemy1 =
+document.getElementById("enemy1");
 
-player=document.getElementById("player");
+const enemy2 =
+document.getElementById("enemy2");
 
-enemies=[
-document.getElementById("enemy1"),
-document.getElementById("enemy2"),
-document.getElementById("enemy3")
-];
+const enemy3 =
+document.getElementById("enemy3");
 
-enemies[0].style.left="35px";
-enemies[1].style.left="135px";
-enemies[2].style.left="235px";
+const line1 =
+document.getElementById("line1");
 
-enemies[0].style.top="-150px";
-enemies[1].style.top="-350px";
-enemies[2].style.top="-550px";
+const line2 =
+document.getElementById("line2");
 
-}
+const enemies =
+[enemy1,enemy2,enemy3];
 
-setup();
+document.getElementById("best").innerText =
+bestScore;
+
+
+/* START GAME */
 
 function startGame(){
 
-if(gameRunning)return;
+if(gameRunning) return;
 
-gameRunning=true;
+gameRunning = true;
 
-score=0;
-lives=3;
-level=1;
-speed=5;
-playerX=135;
+score = 0;
+lives = 3;
+level = 1;
+speed = 3.5;
 
-document.getElementById("score").innerText=score;
-document.getElementById("lives").innerText=lives;
-document.getElementById("level").innerText=level;
+playerX = 132;
 
-document.getElementById("message").innerText=
-"🔥 GO! Avoid the enemy cars!";
+document.getElementById("score").innerText = 0;
+document.getElementById("lives").innerText = 3;
+document.getElementById("level").innerText = 1;
 
-gameLoop=setInterval(updateGame,30);
+document.getElementById("message").innerText =
+"🔥 GO! Avoid the cars!";
+
+resetEnemies();
+
+gameTimer =
+setInterval(gameUpdate,30);
 
 }
 
-function updateGame(){
+
+/* RESET ENEMIES */
+
+function resetEnemies(){
+
+enemy1.style.left = "30px";
+enemy2.style.left = "132px";
+enemy3.style.left = "234px";
+
+/*
+IMPORTANT:
+Different starting heights make the cars
+come down one after another.
+*/
+
+enemy1.style.top = "-100px";
+enemy2.style.top = "-300px";
+enemy3.style.top = "-500px";
+
+}
+
+
+/* GAME UPDATE */
+
+function gameUpdate(){
+
+/* Move road lines */
+
+moveRoadLine(line1);
+moveRoadLine(line2);
+
+
+/* Move every enemy */
 
 for(let i=0;i<enemies.length;i++){
 
-let enemy=enemies[i];
+let car = enemies[i];
 
-let currentTop=parseFloat(enemy.style.top)||-100;
+let top =
+parseFloat(car.style.top);
 
-currentTop+=speed;
+if(isNaN(top)){
+top = -100;
+}
 
-enemy.style.top=currentTop+"px";
+/* THIS MOVES THE CARS DOWN */
 
-if(currentTop>540){
+top = top + speed;
 
-resetEnemy(enemy);
+car.style.top =
+top + "px";
+
+
+/* Car passed player */
+
+if(top > 540){
 
 score++;
 
-document.getElementById("score").innerText=score;
+document.getElementById("score").innerText =
+score;
+
+resetEnemy(car);
 
 updateLevel();
 
 }
 
-checkCollision(enemy);
 
-}
+/* Collision */
 
-player.style.left=playerX+"px";
+if(checkCollision(car)){
 
-}
-
-function resetEnemy(enemy){
-
-let positions=[35,135,235];
-
-let random=
-positions[Math.floor(Math.random()*positions.length)];
-
-enemy.style.left=random+"px";
-
-enemy.style.top=(-100-Math.random()*300)+"px";
-
-}
-
-function checkCollision(enemy){
-
-let playerRect=player.getBoundingClientRect();
-let enemyRect=enemy.getBoundingClientRect();
-
-if(
-playerRect.left<enemyRect.right &&
-playerRect.right>enemyRect.left &&
-playerRect.top<enemyRect.bottom &&
-playerRect.bottom>enemyRect.top
-){
-
-enemy.style.top="-200px";
+car.style.top = "-150px";
 
 lives--;
 
-document.getElementById("lives").innerText=lives;
+document.getElementById("lives").innerText =
+lives;
 
-if(lives<=0){
+if(lives <= 0){
 
 gameOver();
 
+return;
+
 }else{
 
-document.getElementById("message").innerText=
-"💥 Crash! Be careful!";
+document.getElementById("message").innerText =
+"💥 Crash! Lives left: " + lives;
 
 }
 
 }
 
 }
+
+}
+
+
+/* ROAD ANIMATION */
+
+function moveRoadLine(line){
+
+let top =
+parseFloat(line.style.top);
+
+if(isNaN(top)){
+top = -100;
+}
+
+top += speed * 1.5;
+
+if(top > 520){
+top = -100;
+}
+
+line.style.top =
+top + "px";
+
+}
+
+
+/* COLLISION */
+
+function checkCollision(car){
+
+const p =
+player.getBoundingClientRect();
+
+const e =
+car.getBoundingClientRect();
+
+return (
+p.left < e.right &&
+p.right > e.left &&
+p.top < e.bottom &&
+p.bottom > e.top
+);
+
+}
+
+
+/* LEVEL */
 
 function updateLevel(){
 
-level=Math.floor(score/10)+1;
+level =
+Math.floor(score / 10) + 1;
 
-speed=5+(level-1)*0.8;
+speed =
+3.5 + ((level - 1) * 0.7);
 
-document.getElementById("level").innerText=level;
-
-if(score%10===0){
-
-document.getElementById("message").innerText=
-"⚡ LEVEL "+level+"! Speed increased!";
+document.getElementById("level").innerText =
+level;
 
 }
 
+
+/* RESET ONE CAR */
+
+function resetEnemy(car){
+
+const lanes =
+[30,132,234];
+
+const lane =
+lanes[
+Math.floor(Math.random()*lanes.length)
+];
+
+car.style.left =
+lane + "px";
+
+/*
+Random negative position means
+the next car starts above the screen.
+*/
+
+car.style.top =
+(-100 - Math.random()*250) + "px";
+
 }
+
+
+/* LEFT */
 
 function moveLeft(){
 
-if(!gameRunning)return;
+if(!gameRunning) return;
 
-playerX-=35;
+playerX -= 35;
 
-if(playerX<10)playerX=10;
+if(playerX < 5){
+playerX = 5;
+}
 
-player.style.left=playerX+"px";
+player.style.left =
+playerX + "px";
 
 }
+
+
+/* RIGHT */
 
 function moveRight(){
 
-if(!gameRunning)return;
+if(!gameRunning) return;
 
-playerX+=35;
+playerX += 35;
 
-if(playerX>260)playerX=260;
+if(playerX > 260){
+playerX = 260;
+}
 
-player.style.left=playerX+"px";
+player.style.left =
+playerX + "px";
 
 }
 
-document.addEventListener("keydown",function(e){
+
+/* KEYBOARD */
+
+document.addEventListener(
+"keydown",
+function(event){
 
 if(
-e.key==="ArrowLeft"||
-e.key.toLowerCase()==="a"
+event.key === "ArrowLeft" ||
+event.key.toLowerCase() === "a"
 ){
-
 moveLeft();
-
 }
 
 if(
-e.key==="ArrowRight"||
-e.key.toLowerCase()==="d"
+event.key === "ArrowRight" ||
+event.key.toLowerCase() === "d"
 ){
-
 moveRight();
-
 }
 
-});
+}
+);
+
+
+/* GAME OVER */
 
 function gameOver(){
 
-clearInterval(gameLoop);
+clearInterval(gameTimer);
 
-gameRunning=false;
+gameRunning = false;
 
-if(score>bestScore){
+if(score > bestScore){
 
-bestScore=score;
+bestScore = score;
 
 localStorage.setItem(
 "ebadBestScore",
 bestScore
 );
 
-document.getElementById("best").innerText=bestScore;
+document.getElementById("best").innerText =
+bestScore;
 
-document.getElementById("message").innerText=
-"🏆 NEW HIGH SCORE! "+score+" 🎉";
+document.getElementById("message").innerText =
+"🏆 NEW HIGH SCORE: " + score + "!";
 
 }else{
 
-document.getElementById("message").innerText=
-"💥 GAME OVER! Score: "+score+
-" | Best: "+bestScore;
+document.getElementById("message").innerText =
+"💥 GAME OVER! Score: " +
+score +
+" | Best: " +
+bestScore;
 
 }
 
 }
+
+
+/* RESTART */
 
 function restartGame(){
 
-clearInterval(gameLoop);
+clearInterval(gameTimer);
 
-gameRunning=false;
+gameRunning = false;
 
-score=0;
-lives=3;
-level=1;
-speed=5;
-playerX=135;
+score = 0;
+lives = 3;
+level = 1;
+speed = 3.5;
 
-document.getElementById("score").innerText="0";
-document.getElementById("lives").innerText="3";
-document.getElementById("level").innerText="1";
+playerX = 132;
 
-document.getElementById("message").innerText=
-"Press START to begin the race!";
+document.getElementById("score").innerText = 0;
+document.getElementById("lives").innerText = 3;
+document.getElementById("level").innerText = 1;
 
-player.style.left="135px";
+document.getElementById("message").innerText =
+"Press START to begin!";
 
-setup();
+player.style.left = "132px";
+
+resetEnemies();
 
 }
+
+
+/* OTHER GAMES */
 
 function comingSoon(name){
 
 alert(
-name+" 🎮\n\nThis game is coming soon!"
+name +
+" 🎮\n\nComing soon!"
 );
 
 }
