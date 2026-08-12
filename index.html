@@ -1,184 +1,600 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ebad Gaming</title>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:Arial,Helvetica,sans-serif;
-      background:#0b0b14;
-      color:#fff;
-      line-height:1.6;
-    }
-    header{
-      position:sticky;top:0;z-index:10;
-      background:#11111d;
-      border-bottom:1px solid #24243a;
-    }
-    .nav{
-      max-width:1150px;margin:auto;padding:18px 22px;
-      display:flex;align-items:center;justify-content:space-between;
-    }
-    .logo{font-size:25px;font-weight:800;color:#ff3b3b}
-    .logo span{color:#fff}
-    nav a{
-      color:#fff;text-decoration:none;margin-left:24px;font-weight:600;
-    }
-    nav a:hover{color:#ff3b3b}
-    .hero{
-      min-height:470px;
-      display:flex;align-items:center;justify-content:center;text-align:center;
-      padding:60px 20px;
-      background:
-        radial-gradient(circle at 50% 20%,#25204b 0,#14142a 38%,#0b0b14 75%);
-    }
-    .hero h1{font-size:clamp(42px,7vw,78px);margin-bottom:12px}
-    .hero h1 span{color:#ff3b3b}
-    .hero p{font-size:20px;color:#c8c8d8;margin-bottom:28px}
-    .btn{
-      display:inline-block;border:0;border-radius:10px;
-      padding:13px 24px;background:#ff3b3b;color:#fff;
-      text-decoration:none;font-weight:800;cursor:pointer;
-      box-shadow:0 8px 25px rgba(255,59,59,.2);
-    }
-    .btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
-    section{max-width:1150px;margin:auto;padding:65px 22px}
-    .title{text-align:center;font-size:34px;margin-bottom:35px}
-    .title span{color:#ff3b3b}
-    .games{
-      display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
-    }
-    .card{
-      background:#151522;border:1px solid #25253a;border-radius:16px;
-      padding:28px 20px;text-align:center;transition:.2s;
-    }
-    .card:hover{transform:translateY(-6px);border-color:#ff3b3b}
-    .icon{font-size:58px;margin-bottom:12px}
-    .card h3{font-size:21px;margin-bottom:8px}
-    .card p{color:#aaaabd;min-height:50px}
-    .card .btn{margin-top:18px;padding:10px 18px}
-    .controls{
-      background:#11111d;border:1px solid #25253a;border-radius:18px;
-      padding:30px;max-width:760px;margin:auto;
-    }
-    .control-row{
-      display:flex;justify-content:space-between;
-      padding:13px 0;border-bottom:1px solid #29293b;
-    }
-    .control-row:last-child{border-bottom:0}
-    kbd{
-      background:#24243a;border:1px solid #41415a;border-radius:6px;
-      padding:4px 9px;font-weight:bold;
-    }
-    .playbox{
-      margin-top:25px;background:#151522;border-radius:16px;
-      padding:28px;text-align:center;border:1px solid #25253a;
-    }
-    #gameMessage{min-height:28px;margin:15px 0;color:#ddd}
-    footer{text-align:center;padding:30px 20px;color:#888;background:#08080f}
-    @media(max-width:850px){.games{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:520px){
-      .nav{flex-direction:column;gap:12px}
-      nav a{margin:0 7px}
-      .games{grid-template-columns:1fr}
-      .hero{min-height:420px}
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ebad Gaming</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #080812;
+  color: white;
+}
+
+header {
+  background: #11111d;
+  padding: 18px 25px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 2px solid #ff3030;
+}
+
+.nav {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: bold;
+  color: #ff3030;
+}
+
+.logo span {
+  color: white;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 22px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #ff3030;
+}
+
+.hero {
+  min-height: 430px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30px;
+  background:
+    radial-gradient(circle at center, #27204d, #10101c 55%, #080812);
+}
+
+.hero h1 {
+  font-size: clamp(40px, 7vw, 75px);
+  margin-bottom: 15px;
+}
+
+.hero h1 span {
+  color: #ff3030;
+}
+
+.hero p {
+  color: #ccc;
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.btn {
+  border: none;
+  background: #ff3030;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 9px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #ff5050;
+}
+
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 35px;
+  margin-bottom: 35px;
+}
+
+.title span {
+  color: #ff3030;
+}
+
+.games {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: #151522;
+  border: 1px solid #29293d;
+  border-radius: 15px;
+  padding: 25px 15px;
+  text-align: center;
+}
+
+.card:hover {
+  border-color: #ff3030;
+  transform: translateY(-5px);
+}
+
+.icon {
+  font-size: 55px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+}
+
+.card p {
+  color: #aaa;
+  margin-bottom: 18px;
+}
+
+/* Racing Game */
+
+.game-area {
+  text-align: center;
+}
+
+.game-box {
+  position: relative;
+  width: 320px;
+  height: 520px;
+  max-width: 90vw;
+  margin: auto;
+  overflow: hidden;
+  background: #333;
+  border: 4px solid white;
+  border-radius: 12px;
+}
+
+.road {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #303030;
+}
+
+.road::before,
+.road::after {
+  content: "";
+  position: absolute;
+  top: -100px;
+  width: 8px;
+  height: 100px;
+  background: white;
+  box-shadow:
+    0 150px white,
+    0 300px white,
+    0 450px white;
+  animation: roadMove 0.7s linear infinite;
+}
+
+.road::before {
+  left: 33%;
+}
+
+.road::after {
+  right: 33%;
+}
+
+@keyframes roadMove {
+  from {
+    transform: translateY(-100px);
+  }
+  to {
+    transform: translateY(100px);
+  }
+}
+
+.player {
+  position: absolute;
+  width: 50px;
+  height: 85px;
+  bottom: 25px;
+  left: 135px;
+  font-size: 50px;
+  z-index: 3;
+}
+
+.enemy {
+  position: absolute;
+  width: 50px;
+  height: 85px;
+  top: -100px;
+  font-size: 50px;
+  z-index: 3;
+}
+
+.score-board {
+  margin: 15px;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.game-buttons {
+  margin-top: 15px;
+}
+
+.mobile-controls {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 15px;
+}
+
+.control-btn {
+  width: 80px;
+  height: 55px;
+  font-size: 25px;
+  border: none;
+  border-radius: 10px;
+  background: #ff3030;
+  color: white;
+  font-weight: bold;
+}
+
+.message {
+  min-height: 30px;
+  margin: 12px;
+  font-weight: bold;
+  color: #ffcc00;
+}
+
+footer {
+  background: #050509;
+  text-align: center;
+  padding: 30px;
+  color: #888;
+}
+
+@media (max-width: 800px) {
+  .games {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  .nav {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  nav a {
+    margin: 0 7px;
+  }
+
+  .games {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
+
 <body>
 
 <header>
   <div class="nav">
-    <div class="logo">🎮 <span>Ebad</span> Gaming</div>
+
+    <div class="logo">
+      🎮 <span>Ebad</span> Gaming
+    </div>
+
     <nav>
       <a href="#home">Home</a>
       <a href="#games">Games</a>
-      <a href="#controls">Control</a>
+      <a href="#racing">Racing</a>
     </nav>
+
   </div>
 </header>
 
-<main>
-  <section class="hero" id="home">
-    <div>
-      <h1>Welcome to <span>Ebad Gaming</span></h1>
-      <p>Play games, have fun and become the ultimate gamer!</p>
-      <a class="btn" href="#games">Explore Games</a>
-    </div>
-  </section>
+<section class="hero" id="home">
 
-  <section id="games">
-    <h2 class="title">🔥 Popular <span>Games</span></h2>
-    <div class="games">
-      <div class="card">
-        <div class="icon">🚀</div>
-        <h3>Space Rocket</h3>
-        <p>Launch your rocket and beat your high score.</p>
-        <button class="btn" onclick="startGame('Space Rocket')">Play Now</button>
-      </div>
-      <div class="card">
-        <div class="icon">🏎️</div>
-        <h3>Speed Racer</h3>
-        <p>Get ready for a fast racing challenge.</p>
-        <button class="btn" onclick="startGame('Speed Racer')">Play Now</button>
-      </div>
-      <div class="card">
-        <div class="icon">🧟</div>
-        <h3>Zombie Attack</h3>
-        <p>Survive the zombie attack and stay alive.</p>
-        <button class="btn" onclick="startGame('Zombie Attack')">Play Now</button>
-      </div>
-      <div class="card">
-        <div class="icon">⚔️</div>
-        <h3>Sword Battle</h3>
-        <p>Enter the battle and become the champion.</p>
-        <button class="btn" onclick="startGame('Sword Battle')">Play Now</button>
-      </div>
+  <div>
+    <h1>
+      Welcome to <span>Ebad Gaming</span>
+    </h1>
+
+    <p>
+      Play games, have fun and become the ultimate gamer!
+    </p>
+
+    <a href="#games" class="btn">
+      Explore Games
+    </a>
+  </div>
+
+</section>
+
+<section id="games">
+
+  <h2 class="title">
+    🔥 Popular <span>Games</span>
+  </h2>
+
+  <div class="games">
+
+    <div class="card">
+      <div class="icon">🚀</div>
+      <h3>Space Rocket</h3>
+      <p>Fly your rocket and beat your score.</p>
+      <button class="btn" onclick="selectGame('Space Rocket')">
+        Play
+      </button>
     </div>
 
-    <div class="playbox">
-      <h2 id="gameTitle">🎮 Choose a game</h2>
-      <p id="gameMessage">Click any "Play Now" button above to start.</p>
-      <button class="btn" onclick="scorePoint()">CLICK TO SCORE</button>
-      <p style="margin-top:12px">Score: <strong id="score">0</strong></p>
+    <div class="card">
+      <div class="icon">🏎️</div>
+      <h3>Speed Racer</h3>
+      <p>Drive fast and avoid the traffic.</p>
+      <a href="#racing" class="btn">
+        Play
+      </a>
     </div>
-  </section>
 
-  <section id="controls">
-    <h2 class="title">🎛️ Game <span>Controls</span></h2>
-    <div class="controls">
-      <div class="control-row"><span>Move Up</span><kbd>W / ↑</kbd></div>
-      <div class="control-row"><span>Move Down</span><kbd>S / ↓</kbd></div>
-      <div class="control-row"><span>Move Left</span><kbd>A / ←</kbd></div>
-      <div class="control-row"><span>Move Right</span><kbd>D / →</kbd></div>
-      <div class="control-row"><span>Action</span><kbd>SPACE</kbd></div>
+    <div class="card">
+      <div class="icon">🧟</div>
+      <h3>Zombie Attack</h3>
+      <p>Survive the zombie attack.</p>
+      <button class="btn" onclick="selectGame('Zombie Attack')">
+        Play
+      </button>
     </div>
-  </section>
-</main>
+
+    <div class="card">
+      <div class="icon">⚔️</div>
+      <h3>Sword Battle</h3>
+      <p>Become the ultimate warrior.</p>
+      <button class="btn" onclick="selectGame('Sword Battle')">
+        Play
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="racing">
+
+  <h2 class="title">
+    🏎️ <span>Car Racing</span> Game
+  </h2>
+
+  <div class="game-area">
+
+    <div class="score-board">
+      Score: <span id="score">0</span>
+    </div>
+
+    <div class="game-box" id="gameBox">
+
+      <div class="road"></div>
+
+      <div class="player" id="player">
+        🏎️
+      </div>
+
+      <div class="enemy" id="enemy">
+        🚙
+      </div>
+
+    </div>
+
+    <div class="message" id="message">
+      Press START to begin!
+    </div>
+
+    <div class="game-buttons">
+
+      <button class="btn" onclick="startGame()">
+        START GAME
+      </button>
+
+      <button class="btn" onclick="restartGame()">
+        RESTART
+      </button>
+
+    </div>
+
+    <div class="mobile-controls">
+
+      <button
+        class="control-btn"
+        onclick="moveLeft()">
+        ⬅️
+      </button>
+
+      <button
+        class="control-btn"
+        onclick="moveRight()">
+        ➡️
+      </button>
+
+    </div>
+
+    <p style="margin-top:15px;color:#aaa;">
+      Computer: use ← → keys<br>
+      Mobile: use the buttons
+    </p>
+
+  </div>
+
+</section>
 
 <footer>
-  © 2026 Ebad Gaming — Made with ❤️ for gamers
+  © 2026 Ebad Gaming | Made for gamers 🎮
 </footer>
 
 <script>
-  let score = 0;
-  function startGame(name){
-    score = 0;
-    document.getElementById("score").textContent = score;
-    document.getElementById("gameTitle").textContent = "🎮 " + name;
-    document.getElementById("gameMessage").textContent =
-      "Game started! Click the button below as fast as you can.";
-    document.getElementById("games").scrollIntoView({behavior:"smooth"});
-  }
-  function scorePoint(){
+
+let player;
+let enemy;
+
+let playerX = 135;
+let enemyY = -100;
+
+let score = 0;
+let gameRunning = false;
+
+let gameLoop;
+
+function startGame() {
+
+  if (gameRunning) return;
+
+  gameRunning = true;
+
+  score = 0;
+  playerX = 135;
+  enemyY = -100;
+
+  player = document.getElementById("player");
+  enemy = document.getElementById("enemy");
+
+  document.getElementById("score").innerText = score;
+
+  document.getElementById("message").innerText =
+    "GO! Avoid the cars!";
+
+  gameLoop = setInterval(updateGame, 30);
+}
+
+function updateGame() {
+
+  enemyY += 6;
+
+  enemy.style.top = enemyY + "px";
+  player.style.left = playerX + "px";
+
+  if (enemyY > 540) {
+
+    enemyY = -100;
+
+    let positions = [35, 135, 235];
+
+    let randomPosition =
+      positions[Math.floor(Math.random() * positions.length)];
+
+    enemy.style.left = randomPosition + "px";
+
     score++;
-    document.getElementById("score").textContent = score;
-    document.getElementById("gameMessage").textContent =
-      score >= 10 ? "🔥 Great! You reached 10 points!" : "Nice! Keep going!";
+
+    document.getElementById("score").innerText = score;
   }
+
+  let playerRect =
+    player.getBoundingClientRect();
+
+  let enemyRect =
+    enemy.getBoundingClientRect();
+
+  if (
+    playerRect.left < enemyRect.right &&
+    playerRect.right > enemyRect.left &&
+    playerRect.top < enemyRect.bottom &&
+    playerRect.bottom > enemyRect.top
+  ) {
+
+    gameOver();
+  }
+}
+
+function moveLeft() {
+
+  if (!gameRunning) return;
+
+  playerX -= 30;
+
+  if (playerX < 10) {
+    playerX = 10;
+  }
+
+  player.style.left = playerX + "px";
+}
+
+function moveRight() {
+
+  if (!gameRunning) return;
+
+  playerX += 30;
+
+  if (playerX > 260) {
+    playerX = 260;
+  }
+
+  player.style.left = playerX + "px";
+}
+
+document.addEventListener("keydown", function(event) {
+
+  if (event.key === "ArrowLeft" || event.key === "a") {
+    moveLeft();
+  }
+
+  if (event.key === "ArrowRight" || event.key === "d") {
+    moveRight();
+  }
+
+});
+
+function gameOver() {
+
+  clearInterval(gameLoop);
+
+  gameRunning = false;
+
+  document.getElementById("message").innerText =
+    "💥 GAME OVER! Your score: " + score;
+}
+
+function restartGame() {
+
+  clearInterval(gameLoop);
+
+  gameRunning = false;
+
+  enemyY = -100;
+  playerX = 135;
+  score = 0;
+
+  document.getElementById("score").innerText = "0";
+
+  document.getElementById("player").style.left =
+    playerX + "px";
+
+  document.getElementById("enemy").style.top =
+    enemyY + "px";
+
+  document.getElementById("message").innerText =
+    "Press START to begin!";
+}
+
+function selectGame(name) {
+
+  alert(
+    name +
+    " will be added soon! 🎮"
+  );
+
+}
+
 </script>
 
 </body>
