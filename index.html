@@ -2,51 +2,63 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Ebad Gaming</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 
+html{scroll-behavior:smooth}
+
+:root{
+  --main-color:#ff3030;
+}
+
 body{
   font-family:Arial,sans-serif;
   background:#080812;
-  color:white;
+  color:#fff;
+  line-height:1.6;
 }
 
 header{
   background:#11111d;
   padding:18px 25px;
-  border-bottom:2px solid #ff3030;
+  border-bottom:2px solid var(--main-color);
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:20;
 }
 
 .nav{
-  max-width:1100px;
+  max-width:1150px;
   margin:auto;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:20px;
 }
 
 .logo{
   font-size:26px;
   font-weight:bold;
-  color:#ff3030;
+  color:var(--main-color);
 }
 
-.logo span{color:white}
+.logo span{
+  color:#fff;
+}
 
 nav a{
-  color:white;
+  color:#fff;
   text-decoration:none;
-  margin-left:22px;
+  margin-left:20px;
   font-weight:bold;
 }
 
-nav a:hover{color:#ff3030}
+nav a:hover{
+  color:var(--main-color);
+}
 
 .hero{
   min-height:430px;
@@ -54,16 +66,19 @@ nav a:hover{color:#ff3030}
   justify-content:center;
   align-items:center;
   text-align:center;
-  padding:30px;
-  background:radial-gradient(circle,#27204d,#10101c 55%,#080812);
+  padding:35px 20px;
+  background:
+    radial-gradient(circle,#27204d,#10101c 55%,#080812);
 }
 
 .hero h1{
-  font-size:clamp(40px,7vw,75px);
+  font-size:clamp(40px,7vw,76px);
   margin-bottom:15px;
 }
 
-.hero h1 span{color:#ff3030}
+.hero h1 span{
+  color:var(--main-color);
+}
 
 .hero p{
   color:#ccc;
@@ -73,8 +88,8 @@ nav a:hover{color:#ff3030}
 
 .btn{
   border:0;
-  background:#ff3030;
-  color:white;
+  background:var(--main-color);
+  color:#fff;
   padding:12px 22px;
   border-radius:9px;
   font-size:16px;
@@ -82,10 +97,12 @@ nav a:hover{color:#ff3030}
   cursor:pointer;
 }
 
-.btn:hover{background:#ff5050}
+.btn:hover{
+  filter:brightness(1.12);
+}
 
 section{
-  max-width:1100px;
+  max-width:1150px;
   margin:auto;
   padding:60px 20px;
 }
@@ -96,7 +113,9 @@ section{
   margin-bottom:35px;
 }
 
-.title span{color:#ff3030}
+.title span{
+  color:var(--main-color);
+}
 
 .games{
   display:grid;
@@ -110,10 +129,11 @@ section{
   border-radius:15px;
   padding:25px 15px;
   text-align:center;
+  transition:.2s;
 }
 
 .card:hover{
-  border-color:#ff3030;
+  border-color:var(--main-color);
   transform:translateY(-5px);
 }
 
@@ -122,16 +142,21 @@ section{
   margin-bottom:10px;
 }
 
-.card h3{margin-bottom:8px}
+.card h3{
+  margin-bottom:8px;
+}
 
 .card p{
   color:#aaa;
   margin-bottom:18px;
+  min-height:52px;
 }
 
-/* RACING GAME */
+/* Racing Game */
 
-.game-area{text-align:center}
+.game-area{
+  text-align:center;
+}
 
 .game-info{
   display:flex;
@@ -157,7 +182,7 @@ section{
   margin:auto;
   overflow:hidden;
   background:#303030;
-  border:4px solid white;
+  border:4px solid #fff;
   border-radius:12px;
 }
 
@@ -167,26 +192,23 @@ section{
   background:#303030;
 }
 
-/* Road lines */
-.line{
-  position:absolute;
-  width:8px;
-  height:80px;
-  background:white;
-  left:33%;
-  top:-100px;
-}
-
+.line,
 .line2{
   position:absolute;
   width:8px;
-  height:80px;
-  background:white;
-  right:33%;
+  height:85px;
+  background:#fff;
   top:-100px;
 }
 
-/* Player */
+.line{
+  left:33%;
+}
+
+.line2{
+  right:33%;
+}
+
 .player{
   position:absolute;
   width:55px;
@@ -195,10 +217,9 @@ section{
   bottom:25px;
   font-size:50px;
   z-index:5;
-  transition:left .08s;
+  transition:left .07s;
 }
 
-/* Enemy cars */
 .enemy{
   position:absolute;
   width:55px;
@@ -208,9 +229,17 @@ section{
   z-index:4;
 }
 
-#enemy1{left:30px}
-#enemy2{left:132px}
-#enemy3{left:234px}
+#enemy1{
+  left:30px;
+}
+
+#enemy2{
+  left:132px;
+}
+
+#enemy3{
+  left:234px;
+}
 
 .message{
   min-height:30px;
@@ -238,8 +267,8 @@ section{
   height:55px;
   border:0;
   border-radius:10px;
-  background:#ff3030;
-  color:white;
+  background:var(--main-color);
+  color:#fff;
   font-size:25px;
   font-weight:bold;
 }
@@ -247,6 +276,60 @@ section{
 .help{
   color:#aaa;
   margin-top:15px;
+}
+
+/* Control Panel */
+
+.control-panel{
+  max-width:900px;
+  margin:0 auto 70px;
+  background:#11111d;
+  border:1px solid #29293d;
+  border-radius:18px;
+  padding:30px 22px;
+}
+
+.control-panel h2{
+  text-align:center;
+  margin-bottom:24px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold;
+}
+
+.field input,
+.field select{
+  width:100%;
+  padding:11px;
+  border-radius:8px;
+  border:1px solid #38384e;
+  background:#0d0d16;
+  color:#fff;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+.save-row{
+  text-align:center;
+  margin-top:22px;
+}
+
+.save-message{
+  min-height:25px;
+  margin-top:12px;
+  color:#75ff9b;
+  text-align:center;
 }
 
 footer{
@@ -257,18 +340,40 @@ footer{
 }
 
 @media(max-width:800px){
-  .games{grid-template-columns:repeat(2,1fr)}
+
+  .games{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:700px){
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .field.full{
+    grid-column:auto;
+  }
+
 }
 
 @media(max-width:550px){
+
   .nav{
     flex-direction:column;
     gap:12px;
   }
 
-  nav a{margin:0 7px}
+  nav a{
+    margin:0 7px;
+  }
 
-  .games{grid-template-columns:1fr}
+  .games{
+    grid-template-columns:1fr;
+  }
+
 }
 </style>
 </head>
@@ -276,30 +381,34 @@ footer{
 <body>
 
 <header>
+
 <div class="nav">
 
 <div class="logo">
-🎮 <span>Ebad</span> Gaming
+🎮 <span id="logoName">Ebad</span> Gaming
 </div>
 
 <nav>
 <a href="#home">Home</a>
 <a href="#games">Games</a>
 <a href="#racing">Racing</a>
+<a href="#control">Control</a>
 </nav>
 
 </div>
+
 </header>
+
 
 <section class="hero" id="home">
 
 <div>
 
 <h1>
-Welcome to <span>Ebad Gaming</span>
+Welcome to <span id="heroName">Ebad Gaming</span>
 </h1>
 
-<p>
+<p id="heroDescription">
 Play games, have fun and become the ultimate gamer!
 </p>
 
@@ -311,6 +420,7 @@ Explore Games
 
 </section>
 
+
 <section id="games">
 
 <h2 class="title">
@@ -319,43 +429,93 @@ Explore Games
 
 <div class="games">
 
+
 <div class="card">
+
 <div class="icon">🚀</div>
-<h3>Space Rocket</h3>
-<p>Fly your rocket and beat your score.</p>
-<button class="btn" onclick="comingSoon('Space Rocket')">
+
+<h3 id="game1Name">
+Space Rocket
+</h3>
+
+<p id="game1Desc">
+Fly your rocket and beat your score.
+</p>
+
+<button
+class="btn"
+onclick="comingSoon('Space Rocket')">
 Play
 </button>
+
 </div>
 
+
 <div class="card">
+
 <div class="icon">🏎️</div>
-<h3>Speed Racer</h3>
-<p>Drive fast and avoid enemy cars.</p>
-<a href="#racing" class="btn">Play</a>
+
+<h3 id="game2Name">
+Speed Racer
+</h3>
+
+<p id="game2Desc">
+Drive fast and avoid enemy cars.
+</p>
+
+<a href="#racing" class="btn">
+Play
+</a>
+
 </div>
 
+
 <div class="card">
+
 <div class="icon">🧟</div>
-<h3>Zombie Attack</h3>
-<p>Survive the zombie attack.</p>
-<button class="btn" onclick="comingSoon('Zombie Attack')">
+
+<h3 id="game3Name">
+Zombie Attack
+</h3>
+
+<p id="game3Desc">
+Survive the zombie attack.
+</p>
+
+<button
+class="btn"
+onclick="comingSoon('Zombie Attack')">
 Play
 </button>
+
 </div>
 
+
 <div class="card">
+
 <div class="icon">⚔️</div>
-<h3>Sword Battle</h3>
-<p>Become the ultimate warrior.</p>
-<button class="btn" onclick="comingSoon('Sword Battle')">
+
+<h3 id="game4Name">
+Sword Battle
+</h3>
+
+<p id="game4Desc">
+Become the ultimate warrior.
+</p>
+
+<button
+class="btn"
+onclick="comingSoon('Sword Battle')">
 Play
 </button>
+
 </div>
+
 
 </div>
 
 </section>
+
 
 <section id="racing">
 
@@ -363,7 +523,9 @@ Play
 🏎️ <span>Car Racing Game</span>
 </h2>
 
+
 <div class="game-area">
+
 
 <div class="game-info">
 
@@ -385,16 +547,20 @@ Play
 
 </div>
 
+
 <div class="game-box">
 
 <div class="road"></div>
 
 <div class="line" id="line1"></div>
+
 <div class="line2" id="line2"></div>
+
 
 <div class="player" id="player">
 🏎️
 </div>
+
 
 <div class="enemy" id="enemy1">
 🚙
@@ -410,33 +576,45 @@ Play
 
 </div>
 
+
 <div class="message" id="message">
 Press START to begin!
 </div>
 
+
 <div class="game-buttons">
 
-<button class="btn" onclick="startGame()">
+<button
+class="btn"
+onclick="startGame()">
 START GAME
 </button>
 
-<button class="btn" onclick="restartGame()">
+<button
+class="btn"
+onclick="restartGame()">
 RESTART
 </button>
 
 </div>
 
+
 <div class="mobile-controls">
 
-<button class="control-btn" onclick="moveLeft()">
+<button
+class="control-btn"
+onclick="moveLeft()">
 ⬅️
 </button>
 
-<button class="control-btn" onclick="moveRight()">
+<button
+class="control-btn"
+onclick="moveRight()">
 ➡️
 </button>
 
 </div>
+
 
 <p class="help">
 Computer: ← → or A / D<br>
@@ -447,396 +625,952 @@ Mobile: use the buttons
 
 </section>
 
+
+<section id="control">
+
+<h2 class="title">
+⚙️ Website <span>Control Panel</span>
+</h2>
+
+
+<div class="control-panel">
+
+
+<div class="form-grid">
+
+
+<div class="field full">
+
+<label>
+Website Name
+</label>
+
+<input
+id="siteNameInput"
+type="text">
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Hero Description
+</label>
+
+<input
+id="heroDescriptionInput"
+type="text">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Game 1 Name
+</label>
+
+<input
+id="game1NameInput"
+type="text">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Game 1 Description
+</label>
+
+<input
+id="game1DescInput"
+type="text">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Game 2 Name
+</label>
+
+<input
+id="game2NameInput"
+type="text">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Game 2 Description
+</label>
+
+<input
+id="game2DescInput"
+type="text">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Game 3 Name
+</label>
+
+<input
+id="game3NameInput"
+type="text">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Game 3 Description
+</label>
+
+<input
+id="game3DescInput"
+type="text">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Game 4 Name
+</label>
+
+<input
+id="game4NameInput"
+type="text">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Game 4 Description
+</label>
+
+<input
+id="game4DescInput"
+type="text">
+
+</div>
+
+
+<div class="field full">
+
+<label>
+Website Main Color
+</label>
+
+<select id="colorInput">
+
+<option value="#ff3030">
+Red
+</option>
+
+<option value="#00aaff">
+Blue
+</option>
+
+<option value="#00cc77">
+Green
+</option>
+
+<option value="#aa55ff">
+Purple
+</option>
+
+<option value="#ff8800">
+Orange
+</option>
+
+<option value="#ff33aa">
+Pink
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="save-row">
+
+<button
+class="btn"
+onclick="saveSettings()">
+💾 Save Changes
+</button>
+
+</div>
+
+
+<div
+class="save-message"
+id="saveMessage">
+</div>
+
+</div>
+
+</section>
+
+
 <footer>
-© 2026 Ebad Gaming | Made for gamers 🎮
+
+© 2026
+<span id="footerName">
+Ebad Gaming
+</span>
+| Made for gamers 🎮
+
 </footer>
+
 
 <script>
 
-let playerX = 132;
+/* =========================
+   CONTROL PANEL
+========================= */
 
-let score = 0;
-let lives = 3;
-let level = 1;
+const defaults = {
 
-let speed = 3.5;
+siteName:
+"Ebad Gaming",
 
-let gameRunning = false;
-let gameTimer = null;
+heroDescription:
+"Play games, have fun and become the ultimate gamer!",
 
-let bestScore =
-Number(localStorage.getItem("ebadBestScore")) || 0;
+game1Name:
+"Space Rocket",
 
-const player =
-document.getElementById("player");
+game1Desc:
+"Fly your rocket and beat your score.",
 
-const enemy1 =
-document.getElementById("enemy1");
+game2Name:
+"Speed Racer",
 
-const enemy2 =
-document.getElementById("enemy2");
+game2Desc:
+"Drive fast and avoid enemy cars.",
 
-const enemy3 =
-document.getElementById("enemy3");
+game3Name:
+"Zombie Attack",
 
-const line1 =
-document.getElementById("line1");
+game3Desc:
+"Survive the zombie attack.",
 
-const line2 =
-document.getElementById("line2");
+game4Name:
+"Sword Battle",
 
-const enemies =
-[enemy1,enemy2,enemy3];
+game4Desc:
+"Become the ultimate warrior.",
 
-document.getElementById("best").innerText =
+color:
+"#ff3030"
+
+};
+
+
+function getSetting(key){
+
+return localStorage.getItem("ebad_"+key)
+|| defaults[key];
+
+}
+
+
+function applySettings(){
+
+const siteName =
+getSetting("siteName");
+
+const heroDescription =
+getSetting("heroDescription");
+
+
+document.getElementById("logoName").textContent =
+siteName.replace(/\s+Gaming$/i,"");
+
+
+document.getElementById("heroName").textContent =
+siteName;
+
+
+document.getElementById("footerName").textContent =
+siteName;
+
+
+document.getElementById("heroDescription").textContent =
+heroDescription;
+
+
+for(let i=1;i<=4;i++){
+
+document.getElementById(
+"game"+i+"Name"
+).textContent =
+getSetting("game"+i+"Name");
+
+
+document.getElementById(
+"game"+i+"Desc"
+).textContent =
+getSetting("game"+i+"Desc");
+
+}
+
+
+document.documentElement.style.setProperty(
+"--main-color",
+getSetting("color")
+);
+
+
+document.getElementById(
+"siteNameInput"
+).value =
+siteName;
+
+
+document.getElementById(
+"heroDescriptionInput"
+).value =
+heroDescription;
+
+
+for(let i=1;i<=4;i++){
+
+document.getElementById(
+"game"+i+"NameInput"
+).value =
+getSetting("game"+i+"Name");
+
+
+document.getElementById(
+"game"+i+"DescInput"
+).value =
+getSetting("game"+i+"Desc");
+
+}
+
+
+document.getElementById(
+"colorInput"
+).value =
+getSetting("color");
+
+}
+
+
+function saveSettings(){
+
+localStorage.setItem(
+"ebad_siteName",
+document.getElementById(
+"siteNameInput"
+).value.trim()
+|| defaults.siteName
+);
+
+
+localStorage.setItem(
+"ebad_heroDescription",
+document.getElementById(
+"heroDescriptionInput"
+).value.trim()
+|| defaults.heroDescription
+);
+
+
+for(let i=1;i<=4;i++){
+
+localStorage.setItem(
+"ebad_game"+i+"Name",
+document.getElementById(
+"game"+i+"NameInput"
+).value.trim()
+|| defaults["game"+i+"Name"]
+);
+
+
+localStorage.setItem(
+"ebad_game"+i+"Desc",
+document.getElementById(
+"game"+i+"DescInput"
+).value.trim()
+|| defaults["game"+i+"Desc"]
+);
+
+}
+
+
+localStorage.setItem(
+"ebad_color",
+document.getElementById(
+"colorInput"
+).value
+);
+
+
+applySettings();
+
+
+document.getElementById(
+"saveMessage"
+).textContent =
+"✅ Changes saved successfully!";
+
+
+setTimeout(function(){
+
+document.getElementById(
+"saveMessage"
+).textContent="";
+
+},3000);
+
+}
+
+
+applySettings();
+
+
+/* =========================
+   RACING GAME
+========================= */
+
+let playerX=132;
+
+let score=0;
+let lives=3;
+let level=1;
+
+let speed=3.5;
+
+let gameRunning=false;
+
+let gameTimer=null;
+
+
+let bestScore=
+Number(
+localStorage.getItem(
+"ebadBestScore"
+)
+)||0;
+
+
+document.getElementById(
+"best"
+).textContent=
 bestScore;
 
 
-/* START GAME */
-
-function startGame(){
-
-if(gameRunning) return;
-
-gameRunning = true;
-
-score = 0;
-lives = 3;
-level = 1;
-speed = 3.5;
-
-playerX = 132;
-
-document.getElementById("score").innerText = 0;
-document.getElementById("lives").innerText = 3;
-document.getElementById("level").innerText = 1;
-
-document.getElementById("message").innerText =
-"🔥 GO! Avoid the cars!";
-
-resetEnemies();
-
-gameTimer =
-setInterval(gameUpdate,30);
-
-}
+const player=
+document.getElementById(
+"player"
+);
 
 
-/* RESET ENEMIES */
+const enemies=[
+
+document.getElementById(
+"enemy1"
+),
+
+document.getElementById(
+"enemy2"
+),
+
+document.getElementById(
+"enemy3"
+)
+
+];
+
+
+const lines=[
+
+document.getElementById(
+"line1"
+),
+
+document.getElementById(
+"line2"
+)
+
+];
+
 
 function resetEnemies(){
 
-enemy1.style.left = "30px";
-enemy2.style.left = "132px";
-enemy3.style.left = "234px";
+enemies[0].style.left=
+"30px";
 
-/*
-IMPORTANT:
-Different starting heights make the cars
-come down one after another.
-*/
+enemies[1].style.left=
+"132px";
 
-enemy1.style.top = "-100px";
-enemy2.style.top = "-300px";
-enemy3.style.top = "-500px";
+enemies[2].style.left=
+"234px";
+
+
+enemies[0].style.top=
+"-120px";
+
+enemies[1].style.top=
+"-350px";
+
+enemies[2].style.top=
+"-600px";
 
 }
 
 
-/* GAME UPDATE */
-
-function gameUpdate(){
-
-/* Move road lines */
-
-moveRoadLine(line1);
-moveRoadLine(line2);
+resetEnemies();
 
 
-/* Move every enemy */
+function startGame(){
 
-for(let i=0;i<enemies.length;i++){
+if(gameRunning)
+return;
 
-let car = enemies[i];
 
-let top =
-parseFloat(car.style.top);
+gameRunning=true;
 
-if(isNaN(top)){
-top = -100;
+
+score=0;
+lives=3;
+level=1;
+speed=3.5;
+
+playerX=132;
+
+
+document.getElementById(
+"score"
+).textContent=
+0;
+
+
+document.getElementById(
+"lives"
+).textContent=
+3;
+
+
+document.getElementById(
+"level"
+).textContent=
+1;
+
+
+player.style.left=
+"132px";
+
+
+resetEnemies();
+
+
+document.getElementById(
+"message"
+).textContent=
+"🔥 GO! Avoid the cars!";
+
+
+gameTimer=
+setInterval(
+updateGame,
+30
+);
+
 }
 
-/* THIS MOVES THE CARS DOWN */
 
-top = top + speed;
+function updateGame(){
 
-car.style.top =
-top + "px";
+moveLines();
 
 
-/* Car passed player */
+enemies.forEach(
+function(car){
 
-if(top > 540){
+let top=
+parseFloat(
+car.style.top
+);
+
+
+if(isNaN(top))
+top=-100;
+
+
+top+=speed;
+
+
+car.style.top=
+top+"px";
+
+
+if(top>540){
 
 score++;
 
-document.getElementById("score").innerText =
+
+document.getElementById(
+"score"
+).textContent=
 score;
 
-resetEnemy(car);
+
+resetOneEnemy(car);
+
 
 updateLevel();
 
 }
 
 
-/* Collision */
-
 if(checkCollision(car)){
 
-car.style.top = "-150px";
+resetOneEnemy(car);
+
 
 lives--;
 
-document.getElementById("lives").innerText =
+
+document.getElementById(
+"lives"
+).textContent=
 lives;
 
-if(lives <= 0){
+
+if(lives<=0){
 
 gameOver();
 
-return;
-
 }else{
 
-document.getElementById("message").innerText =
-"💥 Crash! Lives left: " + lives;
+document.getElementById(
+"message"
+).textContent=
+"💥 Crash! Lives left: "
++lives;
 
 }
 
 }
 
 }
+);
 
 }
 
 
-/* ROAD ANIMATION */
+function moveLines(){
 
-function moveRoadLine(line){
+lines.forEach(
+function(line){
 
-let top =
-parseFloat(line.style.top);
+let top=
+parseFloat(
+line.style.top
+);
 
-if(isNaN(top)){
-top = -100;
+
+if(isNaN(top))
+top=-100;
+
+
+top+=speed*1.6;
+
+
+if(top>520)
+top=-100;
+
+
+line.style.top=
+top+"px";
+
+}
+);
+
 }
 
-top += speed * 1.5;
 
-if(top > 520){
-top = -100;
+function resetOneEnemy(car){
+
+const lanes=[
+30,
+132,
+234
+];
+
+
+const lane=
+lanes[
+Math.floor(
+Math.random()*lanes.length
+)
+];
+
+
+car.style.left=
+lane+"px";
+
+
+car.style.top=
+(-150-
+Math.random()*350)
++"px";
+
 }
 
-line.style.top =
-top + "px";
-
-}
-
-
-/* COLLISION */
 
 function checkCollision(car){
 
-const p =
+const p=
 player.getBoundingClientRect();
 
-const e =
+
+const e=
 car.getBoundingClientRect();
 
-return (
-p.left < e.right &&
-p.right > e.left &&
-p.top < e.bottom &&
-p.bottom > e.top
+
+return(
+
+p.left <
+e.right-8 &&
+
+p.right >
+e.left+8 &&
+
+p.top <
+e.bottom-8 &&
+
+p.bottom >
+e.top+8
+
 );
 
 }
 
-
-/* LEVEL */
 
 function updateLevel(){
 
-level =
-Math.floor(score / 10) + 1;
+level=
+Math.floor(
+score/10
+)+1;
 
-speed =
-3.5 + ((level - 1) * 0.7);
 
-document.getElementById("level").innerText =
+speed=
+3.5+
+((level-1)*0.7);
+
+
+document.getElementById(
+"level"
+).textContent=
 level;
 
-}
 
+if(
+score>0 &&
+score%10===0
+){
 
-/* RESET ONE CAR */
-
-function resetEnemy(car){
-
-const lanes =
-[30,132,234];
-
-const lane =
-lanes[
-Math.floor(Math.random()*lanes.length)
-];
-
-car.style.left =
-lane + "px";
-
-/*
-Random negative position means
-the next car starts above the screen.
-*/
-
-car.style.top =
-(-100 - Math.random()*250) + "px";
+document.getElementById(
+"message"
+).textContent=
+"⚡ LEVEL "
++level+
+"! Speed increased!";
 
 }
 
+}
 
-/* LEFT */
 
 function moveLeft(){
 
-if(!gameRunning) return;
+if(!gameRunning)
+return;
 
-playerX -= 35;
 
-if(playerX < 5){
-playerX = 5;
+playerX-=35;
+
+
+if(playerX<5)
+playerX=5;
+
+
+player.style.left=
+playerX+"px";
+
 }
 
-player.style.left =
-playerX + "px";
-
-}
-
-
-/* RIGHT */
 
 function moveRight(){
 
-if(!gameRunning) return;
+if(!gameRunning)
+return;
 
-playerX += 35;
 
-if(playerX > 260){
-playerX = 260;
+playerX+=35;
+
+
+if(playerX>260)
+playerX=260;
+
+
+player.style.left=
+playerX+"px";
+
 }
 
-player.style.left =
-playerX + "px";
-
-}
-
-
-/* KEYBOARD */
 
 document.addEventListener(
 "keydown",
-function(event){
+function(e){
 
 if(
-event.key === "ArrowLeft" ||
-event.key.toLowerCase() === "a"
+e.key==="ArrowLeft" ||
+e.key.toLowerCase()==="a"
 ){
+
 moveLeft();
+
 }
 
+
 if(
-event.key === "ArrowRight" ||
-event.key.toLowerCase() === "d"
+e.key==="ArrowRight" ||
+e.key.toLowerCase()==="d"
 ){
+
 moveRight();
+
 }
 
 }
 );
 
 
-/* GAME OVER */
-
 function gameOver(){
 
-clearInterval(gameTimer);
+clearInterval(
+gameTimer
+);
 
-gameRunning = false;
 
-if(score > bestScore){
+gameRunning=false;
 
-bestScore = score;
+
+if(score>bestScore){
+
+bestScore=score;
+
 
 localStorage.setItem(
 "ebadBestScore",
 bestScore
 );
 
-document.getElementById("best").innerText =
+
+document.getElementById(
+"best"
+).textContent=
 bestScore;
 
-document.getElementById("message").innerText =
-"🏆 NEW HIGH SCORE: " + score + "!";
+
+document.getElementById(
+"message"
+).textContent=
+"🏆 NEW HIGH SCORE: "
++score+"!";
 
 }else{
 
-document.getElementById("message").innerText =
-"💥 GAME OVER! Score: " +
-score +
-" | Best: " +
-bestScore;
+document.getElementById(
+"message"
+).textContent=
+"💥 GAME OVER! Score: "
++score+
+" | Best: "
++bestScore;
 
 }
 
 }
 
-
-/* RESTART */
 
 function restartGame(){
 
-clearInterval(gameTimer);
+clearInterval(
+gameTimer
+);
 
-gameRunning = false;
 
-score = 0;
-lives = 3;
-level = 1;
-speed = 3.5;
+gameRunning=false;
 
-playerX = 132;
 
-document.getElementById("score").innerText = 0;
-document.getElementById("lives").innerText = 3;
-document.getElementById("level").innerText = 1;
+score=0;
+lives=3;
+level=1;
+speed=3.5;
+playerX=132;
 
-document.getElementById("message").innerText =
-"Press START to begin!";
 
-player.style.left = "132px";
+document.getElementById(
+"score"
+).textContent=
+0;
+
+
+document.getElementById(
+"lives"
+).textContent=
+3;
+
+
+document.getElementById(
+"level"
+).textContent=
+1;
+
+
+player.style.left=
+"132px";
+
 
 resetEnemies();
 
+
+document.getElementById(
+"message"
+).textContent=
+"Press START to begin!";
+
 }
 
-
-/* OTHER GAMES */
 
 function comingSoon(name){
 
 alert(
-name +
+name+
 " 🎮\n\nComing soon!"
 );
 
