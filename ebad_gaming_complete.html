@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ebad Gaming</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{--main:#ff3030}
+body{font-family:Arial,Helvetica,sans-serif;background:#080812;color:#fff;line-height:1.6}
+header{position:sticky;top:0;z-index:20;background:#11111d;border-bottom:2px solid var(--main);padding:16px 20px}
+.nav{max-width:1150px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-size:25px;font-weight:800;color:var(--main)}.logo span{color:#fff}
+nav a{color:#fff;text-decoration:none;margin-left:18px;font-weight:700}
+nav a:hover{color:var(--main)}
+.hero{min-height:430px;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px;background:radial-gradient(circle,#29204e,#10101c 55%,#080812)}
+.hero h1{font-size:clamp(42px,7vw,76px)}.hero h1 span{color:var(--main)}
+.hero p{color:#ccc;font-size:20px;margin:12px 0 24px}
+.btn{display:inline-block;border:0;border-radius:9px;background:var(--main);color:#fff;padding:11px 20px;font-weight:800;cursor:pointer;text-decoration:none}
+.btn:hover{filter:brightness(1.12)}
+section{max-width:1150px;margin:auto;padding:55px 20px}
+.title{text-align:center;font-size:34px;margin-bottom:32px}.title span{color:var(--main)}
+.games{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:#151522;border:1px solid #29293d;border-radius:15px;padding:24px 14px;text-align:center;transition:.2s}
+.card:hover{border-color:var(--main);transform:translateY(-5px)}
+.icon{font-size:52px;margin-bottom:8px}.card h3{margin-bottom:7px}.card p{color:#aaa;min-height:50px;margin-bottom:16px}
+.game-area{text-align:center}
+.info{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:15px}
+.info-box{background:#151522;border:1px solid #29293d;padding:9px 14px;border-radius:10px;font-weight:700}
+.game-box{position:relative;width:320px;height:520px;max-width:90vw;margin:auto;overflow:hidden;border:4px solid #fff;border-radius:12px;background:#303030}
+.road{position:absolute;inset:0;background:#303030}
+.line,.line2{position:absolute;width:8px;height:90px;background:#fff;top:-100px}.line{left:33%}.line2{right:33%}
+.player{position:absolute;left:132px;bottom:20px;font-size:48px;z-index:5;transition:left .08s}
+.enemy{position:absolute;top:-100px;font-size:48px;z-index:4}
+#enemy1{left:30px}#enemy2{left:132px}#enemy3{left:234px}
+.message{min-height:28px;margin:12px;color:#ffd43b;font-weight:700}
+.controls{display:flex;justify-content:center;gap:30px;margin-top:14px}
+.control{width:84px;height:54px;border:0;border-radius:10px;background:var(--main);color:#fff;font-size:24px;font-weight:800;cursor:pointer}
+.help{color:#aaa;margin-top:12px}
+#control{display:none}
+.panel{max-width:900px;margin:auto;background:#11111d;border:1px solid #29293d;border-radius:18px;padding:26px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.field.full{grid-column:1/-1}
+label{display:block;font-weight:700;margin-bottom:5px}
+input,select{width:100%;background:#0c0c15;color:#fff;border:1px solid #3a3a50;border-radius:8px;padding:10px}
+.center{text-align:center;margin-top:20px}
+.save{color:#72f3a1;min-height:24px;margin-top:8px}
+footer{padding:28px;text-align:center;background:#050509;color:#888}
+@media(max-width:850px){.games{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.field.full{grid-column:auto}.nav{flex-direction:column}.games{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+<div class="nav">
+  <div class="logo">🎮 <span id="logoText">Ebad</span> Gaming</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#games">Games</a>
+    <a href="#racing">Racing</a>
+    <a href="#" onclick="adminLogin();return false;">🔐 Admin</a>
+  </nav>
+</div>
+</header>
+
+<section class="hero" id="home">
+<div>
+  <h1>Welcome to <span id="siteText">Ebad Gaming</span></h1>
+  <p id="heroText">Play games, have fun and become the ultimate gamer!</p>
+  <a class="btn" href="#games">Explore Games</a>
+</div>
+</section>
+
+<section id="games">
+<h2 class="title">🔥 Popular <span>Games</span></h2>
+<div class="games">
+  <div class="card"><div class="icon">🚀</div><h3 id="g1n">Space Rocket</h3><p id="g1d">Fly your rocket and beat your score.</p><button class="btn" onclick="soon('Space Rocket')">Play</button></div>
+  <div class="card"><div class="icon">🏎️</div><h3 id="g2n">Speed Racer</h3><p id="g2d">Drive fast and avoid enemy cars.</p><a class="btn" href="#racing">Play</a></div>
+  <div class="card"><div class="icon">🧟</div><h3 id="g3n">Zombie Attack</h3><p id="g3d">Survive the zombie attack.</p><button class="btn" onclick="soon('Zombie Attack')">Play</button></div>
+  <div class="card"><div class="icon">⚔️</div><h3 id="g4n">Sword Battle</h3><p id="g4d">Become the ultimate warrior.</p><button class="btn" onclick="soon('Sword Battle')">Play</button></div>
+</div>
+</section>
+
+<section id="racing">
+<h2 class="title">🏎️ <span>Car Racing Game</span></h2>
+<div class="game-area">
+  <div class="info">
+    <div class="info-box">🏆 Score: <span id="score">0</span></div>
+    <div class="info-box">❤️ Lives: <span id="lives">3</span></div>
+    <div class="info-box">⚡ Level: <span id="level">1</span></div>
+    <div class="info-box">🥇 Best: <span id="best">0</span></div>
+  </div>
+
+  <div class="game-box">
+    <div class="road"></div>
+    <div class="line" id="line1"></div>
+    <div class="line2" id="line2"></div>
+    <div class="player" id="player">🏎️</div>
+    <div class="enemy" id="enemy1">🚙</div>
+    <div class="enemy" id="enemy2">🚗</div>
+    <div class="enemy" id="enemy3">🚕</div>
+  </div>
+
+  <div class="message" id="message">Press START to begin!</div>
+  <button class="btn" onclick="startGame()">START GAME</button>
+  <button class="btn" onclick="restartGame()">RESTART</button>
+
+  <div class="controls">
+    <button class="control" onclick="left()">⬅️</button>
+    <button class="control" onclick="right()">➡️</button>
+  </div>
+
+  <p class="help">Computer: ← → or A / D<br>Mobile: use the buttons</p>
+</div>
+</section>
+
+<section id="control">
+<h2 class="title">⚙️ Website <span>Control Panel</span></h2>
+<div class="panel">
+  <div class="grid">
+    <div class="field full"><label>Website Name</label><input id="siteInput"></div>
+    <div class="field full"><label>Hero Description</label><input id="heroInput"></div>
+    <div class="field"><label>Game 1 Name</label><input id="g1nInput"></div>
+    <div class="field"><label>Game 1 Description</label><input id="g1dInput"></div>
+    <div class="field"><label>Game 2 Name</label><input id="g2nInput"></div>
+    <div class="field"><label>Game 2 Description</label><input id="g2dInput"></div>
+    <div class="field"><label>Game 3 Name</label><input id="g3nInput"></div>
+    <div class="field"><label>Game 3 Description</label><input id="g3dInput"></div>
+    <div class="field"><label>Game 4 Name</label><input id="g4nInput"></div>
+    <div class="field"><label>Game 4 Description</label><input id="g4dInput"></div>
+    <div class="field full">
+      <label>Main Color</label>
+      <select id="colorInput">
+        <option value="#ff3030">Red</option>
+        <option value="#00aaff">Blue</option>
+        <option value="#00cc77">Green</option>
+        <option value="#aa55ff">Purple</option>
+        <option value="#ff8800">Orange</option>
+        <option value="#ff33aa">Pink</option>
+      </select>
+    </div>
+  </div>
+  <div class="center">
+    <button class="btn" onclick="saveSettings()">💾 Save Changes</button>
+    <div class="save" id="saveMsg"></div>
+  </div>
+</div>
+</section>
+
+<footer>© 2026 <span id="footText">Ebad Gaming</span> | Made for gamers 🎮</footer>
+
+<script>
+const ADMIN_PASSWORD="12345";
+
+function adminLogin(){
+  const p=prompt("Admin Password:");
+  if(p===ADMIN_PASSWORD){
+    const panel=document.getElementById("control");
+    panel.style.display="block";
+    panel.scrollIntoView({behavior:"smooth"});
+  }else if(p!==null){
+    alert("❌ Wrong Password");
+  }
+}
+
+const defaults={
+ site:"Ebad Gaming",
+ hero:"Play games, have fun and become the ultimate gamer!",
+ g1n:"Space Rocket",g1d:"Fly your rocket and beat your score.",
+ g2n:"Speed Racer",g2d:"Drive fast and avoid enemy cars.",
+ g3n:"Zombie Attack",g3d:"Survive the zombie attack.",
+ g4n:"Sword Battle",g4d:"Become the ultimate warrior.",
+ color:"#ff3030"
+};
+
+function getSetting(k){
+  return localStorage.getItem("ebad_"+k)||defaults[k];
+}
+
+function loadSettings(){
+  document.getElementById("logoText").textContent=getSetting("site").replace(/\s+Gaming$/i,"");
+  document.getElementById("siteText").textContent=getSetting("site");
+  document.getElementById("footText").textContent=getSetting("site");
+  document.getElementById("heroText").textContent=getSetting("hero");
+
+  ["g1n","g1d","g2n","g2d","g3n","g3d","g4n","g4d"].forEach(k=>{
+    document.getElementById(k).textContent=getSetting(k);
+    document.getElementById(k+"Input").value=getSetting(k);
+  });
+
+  document.getElementById("siteInput").value=getSetting("site");
+  document.getElementById("heroInput").value=getSetting("hero");
+  document.getElementById("colorInput").value=getSetting("color");
+  document.documentElement.style.setProperty("--main",getSetting("color"));
+}
+
+function saveSettings(){
+  const fields=["site","hero","g1n","g1d","g2n","g2d","g3n","g3d","g4n","g4d"];
+
+  fields.forEach(k=>{
+    const id=k+"Input";
+    localStorage.setItem(
+      "ebad_"+k,
+      document.getElementById(id).value.trim()||defaults[k]
+    );
+  });
+
+  localStorage.setItem(
+    "ebad_color",
+    document.getElementById("colorInput").value
+  );
+
+  loadSettings();
+  document.getElementById("saveMsg").textContent="✅ Changes saved!";
+
+  setTimeout(()=>{
+    document.getElementById("saveMsg").textContent="";
+  },2500);
+}
+
+loadSettings();
+
+/* Racing */
+let px=132;
+let score=0;
+let lives=3;
+let level=1;
+let speed=3.5;
+let running=false;
+let timer=null;
+
+let best=Number(localStorage.getItem("ebadBestScore"))||0;
+document.getElementById("best").textContent=best;
+
+const player=document.getElementById("player");
+
+const enemies=[
+ document.getElementById("enemy1"),
+ document.getElementById("enemy2"),
+ document.getElementById("enemy3")
+];
+
+const lines=[
+ document.getElementById("line1"),
+ document.getElementById("line2")
+];
+
+function resetAll(){
+  enemies[0].style.left="30px";
+  enemies[0].style.top="-140px";
+  enemies[1].style.left="132px";
+  enemies[1].style.top="-380px";
+  enemies[2].style.left="234px";
+  enemies[2].style.top="-620px";
+}
+
+resetAll();
+
+function startGame(){
+  if(running)return;
+
+  running=true;
+  score=0;
+  lives=3;
+  level=1;
+  speed=3.5;
+  px=132;
+
+  document.getElementById("score").textContent=0;
+  document.getElementById("lives").textContent=3;
+  document.getElementById("level").textContent=1;
+
+  player.style.left="132px";
+  resetAll();
+
+  document.getElementById("message").textContent="🔥 GO! Avoid the cars!";
+  timer=setInterval(tick,30);
+}
+
+function tick(){
+
+  lines.forEach(line=>{
+    let y=parseFloat(line.style.top);
+
+    if(isNaN(y))y=-100;
+
+    y+=speed*1.6;
+
+    if(y>520)y=-100;
+
+    line.style.top=y+"px";
+  });
+
+  enemies.forEach(car=>{
+    let y=parseFloat(car.style.top);
+
+    if(isNaN(y))y=-100;
+
+    y+=speed;
+    car.style.top=y+"px";
+
+    if(y>540){
+      score++;
+      document.getElementById("score").textContent=score;
+      resetEnemy(car);
+      updateLevel();
+    }
+
+    if(hit(car)){
+      resetEnemy(car);
+      lives--;
+      document.getElementById("lives").textContent=lives;
+
+      if(lives<=0){
+        gameOver();
+      }else{
+        document.getElementById("message").textContent=
+          "💥 Crash! Lives left: "+lives;
+      }
+    }
+  });
+}
+
+function resetEnemy(car){
+  const lanes=[30,132,234];
+
+  car.style.left=
+    lanes[Math.floor(Math.random()*lanes.length)]+"px";
+
+  car.style.top=
+    (-160-Math.random()*360)+"px";
+}
+
+function hit(car){
+  const a=player.getBoundingClientRect();
+  const b=car.getBoundingClientRect();
+
+  return(
+    a.left<b.right-8 &&
+    a.right>b.left+8 &&
+    a.top<b.bottom-8 &&
+    a.bottom>b.top+8
+  );
+}
+
+function updateLevel(){
+  level=Math.floor(score/10)+1;
+  speed=3.5+(level-1)*0.7;
+
+  document.getElementById("level").textContent=level;
+
+  if(score>0&&score%10===0){
+    document.getElementById("message").textContent=
+      "⚡ LEVEL "+level+"!";
+  }
+}
+
+function left(){
+  if(!running)return;
+  px=Math.max(5,px-35);
+  player.style.left=px+"px";
+}
+
+function right(){
+  if(!running)return;
+  px=Math.min(260,px+35);
+  player.style.left=px+"px";
+}
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a")left();
+  if(e.key==="ArrowRight"||e.key.toLowerCase()==="d")right();
+});
+
+function gameOver(){
+  clearInterval(timer);
+  running=false;
+
+  if(score>best){
+    best=score;
+
+    localStorage.setItem(
+      "ebadBestScore",
+      best
+    );
+
+    document.getElementById("best").textContent=best;
+
+    document.getElementById("message").textContent=
+      "🏆 NEW HIGH SCORE: "+score+"!";
+  }else{
+    document.getElementById("message").textContent=
+      "💥 GAME OVER! Score: "+score+
+      " | Best: "+best;
+  }
+}
+
+function restartGame(){
+  clearInterval(timer);
+
+  running=false;
+  score=0;
+  lives=3;
+  level=1;
+  speed=3.5;
+  px=132;
+
+  document.getElementById("score").textContent=0;
+  document.getElementById("lives").textContent=3;
+  document.getElementById("level").textContent=1;
+
+  player.style.left="132px";
+  resetAll();
+
+  document.getElementById("message").textContent=
+    "Press START to begin!";
+}
+
+function soon(name){
+  alert(name+" 🎮\n\nComing soon!");
+}
+</script>
+
+</body>
+</html>
