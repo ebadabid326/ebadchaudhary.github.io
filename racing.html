@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Speed Racer - Ebad Gaming</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
@@ -23,25 +21,12 @@ body{
     font-family:Arial,Helvetica,sans-serif;
     color:#fff;
     text-align:center;
-
-    background:
-        radial-gradient(
-            circle at top,
-            #1c1c2b,
-            #08080f 55%,
-            #050508
-        );
+    background:radial-gradient(circle at top,#1d1e2c,#08080f 55%,#050508);
 }
 
 header{
-    position:sticky;
-    top:0;
-    z-index:50;
-
     background:rgba(9,9,15,.96);
-
     border-bottom:2px solid var(--accent);
-
     padding:16px 20px;
 }
 
@@ -65,10 +50,47 @@ h1{
     margin-bottom:15px;
 }
 
+/* NAME */
+.player-name-box{
+    width:min(380px,94vw);
+    margin:0 auto 15px;
+    padding:15px;
+    background:#11131b;
+    border:1px solid #303343;
+    border-radius:14px;
+    text-align:left;
+}
+
+.player-name-box label{
+    display:block;
+    color:#aaa;
+    font-size:14px;
+    margin-bottom:7px;
+}
+
+.player-name-box input{
+    display:block;
+    width:100%;
+    height:50px;
+    padding:10px 14px;
+    border-radius:9px;
+    border:2px solid #3a3d4d;
+    background:#08090f;
+    color:#fff;
+    font-size:18px;
+    font-family:Arial,sans-serif;
+    outline:none;
+}
+
+.player-name-box input:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(255,48,48,.12);
+}
+
+/* INFO */
 .info{
     display:flex;
     justify-content:center;
-    align-items:center;
     gap:10px;
     flex-wrap:wrap;
     margin:15px 0;
@@ -78,225 +100,84 @@ h1{
     background:#12131b;
     border:1px solid #303343;
     border-radius:10px;
-
     padding:9px 14px;
-
     font-weight:800;
 }
-
-
-/* =========================
-   NAME BOX
-========================= */
-
-.player-name-box{
-    width:min(380px,94vw);
-    margin:0 auto 15px;
-
-    padding:15px;
-
-    background:#11131b;
-
-    border:1px solid #303343;
-
-    border-radius:14px;
-
-    text-align:left;
-}
-
-.player-name-box label{
-    display:block;
-
-    color:#aaa;
-
-    font-size:14px;
-
-    margin-bottom:7px;
-}
-
-.player-name-box input{
-    display:block;
-
-    width:100%;
-    height:50px;
-
-    padding:11px 14px;
-
-    border-radius:9px;
-
-    border:2px solid #3a3d4d;
-
-    background:#08090f;
-
-    color:#fff;
-
-    outline:none;
-
-    font-size:18px;
-
-    font-family:Arial,Helvetica,sans-serif;
-
-    direction:ltr;
-
-    text-align:left;
-
-    letter-spacing:0;
-
-    caret-color:#fff;
-
-    appearance:none;
-    -webkit-appearance:none;
-}
-
-.player-name-box input::placeholder{
-    color:#777;
-    opacity:1;
-}
-
-.player-name-box input:focus{
-    border-color:var(--accent);
-
-    box-shadow:
-        0 0 0 3px rgba(255,48,48,.15);
-}
-
-
-/* =========================
-   BEST PLAYER
-========================= */
 
 .best-player{
     margin:8px 0 12px;
-
     color:#ffd84d;
-
     font-weight:800;
 }
 
-
-/* =========================
-   GAME FRAME
-========================= */
-
+/* GAME */
 .game-frame{
     width:min(400px,95vw);
-
     margin:0 auto;
-
     padding:10px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #1c1e27,
-            #0e0f15
-        );
-
+    background:linear-gradient(180deg,#1c1e27,#0e0f15);
     border:1px solid #373948;
-
     border-radius:22px;
 }
 
 .game-box{
     position:relative;
-
     width:100%;
-
     aspect-ratio:320/520;
-
     overflow:hidden;
-
     border:4px solid #f1f1f1;
-
     border-radius:16px;
-
     background:#5b814c;
 }
 
-
-/* grass */
-
 .grass{
     position:absolute;
-
     inset:0;
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            #4f7742 0 24px,
-            #5b8249 24px 48px
-        );
+    background:repeating-linear-gradient(
+        0deg,
+        #4f7742 0 24px,
+        #5b8249 24px 48px
+    );
 }
-
-
-/* road sides */
 
 .side{
     position:absolute;
-
     top:0;
     bottom:0;
-
     width:28px;
-
     z-index:2;
-
-    background:
-        repeating-linear-gradient(
-            180deg,
-            #f4f4f4 0 14px,
-            #d6222f 14px 28px
-        );
+    background:repeating-linear-gradient(
+        180deg,
+        #f4f4f4 0 14px,
+        #d6222f 14px 28px
+    );
 }
 
-.side.left{
-    left:28px;
-}
-
-.side.right{
-    right:28px;
-}
-
-
-/* road */
+.side.left{left:28px}
+.side.right{right:28px}
 
 .road{
     position:absolute;
-
     top:0;
     bottom:0;
-
     left:50%;
-
     width:250px;
-
     transform:translateX(-50%);
-
     z-index:1;
-
-    background:
-        linear-gradient(
-            90deg,
-            #202227 0%,
-            #34373d 50%,
-            #202227 100%
-        );
+    background:linear-gradient(
+        90deg,
+        #202227 0%,
+        #34373d 50%,
+        #202227 100%
+    );
 }
-
-
-/* road shoulders */
 
 .shoulder{
     position:absolute;
-
     top:0;
     bottom:0;
-
     width:5px;
-
     background:#ededed;
-
     z-index:2;
 }
 
@@ -308,21 +189,13 @@ h1{
     left:calc(50% + 122px);
 }
 
-
-/* lane lines */
-
 .lane{
     position:absolute;
-
     top:-90px;
-
     width:7px;
     height:75px;
-
     border-radius:4px;
-
     background:#fff;
-
     z-index:3;
 }
 
@@ -334,24 +207,17 @@ h1{
     left:calc(50% + 69px);
 }
 
-
-/* =========================
-   CARS
-========================= */
-
+/* CARS */
 .car{
     position:absolute;
-
     width:60px;
-
     height:94px;
-
     z-index:8;
+    filter:drop-shadow(0 8px 7px rgba(0,0,0,.5));
 }
 
 .player{
     left:calc(50% - 30px);
-
     bottom:15px;
 }
 
@@ -361,196 +227,108 @@ h1{
 
 .body-car{
     position:absolute;
-
     left:7px;
     right:7px;
-
     top:7px;
     bottom:7px;
-
-    border-radius:
-        17px
-        17px
-        12px
-        12px;
-
+    border-radius:17px 17px 12px 12px;
     box-shadow:
         inset 0 3px 0 rgba(255,255,255,.3),
         inset 0 -5px 0 rgba(0,0,0,.3);
 }
 
 .player .body-car{
-    background:
-        linear-gradient(
-            180deg,
-            #ff5252,
-            #d61818 48%,
-            #901010
-        );
+    background:linear-gradient(180deg,#ff5252,#d61818 48%,#901010);
 }
 
 .enemy.yellow .body-car{
-    background:
-        linear-gradient(
-            180deg,
-            #ffe34d,
-            #c69400
-        );
+    background:linear-gradient(180deg,#ffe34d,#c69400);
 }
 
 .enemy.blue .body-car{
-    background:
-        linear-gradient(
-            180deg,
-            #4cbcff,
-            #1a5e9c
-        );
+    background:linear-gradient(180deg,#4cbcff,#1a5e9c);
 }
 
 .enemy.white .body-car{
-    background:
-        linear-gradient(
-            180deg,
-            #f4f4f4,
-            #929292
-        );
+    background:linear-gradient(180deg,#f4f4f4,#929292);
 }
 
 .roof{
     position:absolute;
-
     left:14px;
     right:14px;
-
     top:19px;
-
     height:30px;
-
     border-radius:11px;
-
     background:#17191e;
 }
 
 .glass{
     position:absolute;
-
     left:18px;
     right:18px;
-
     top:23px;
-
     height:18px;
-
     border-radius:6px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #bfe7ff,
-            #4b7596
-        );
+    background:linear-gradient(180deg,#bfe7ff,#4b7596);
 }
 
 .wheel{
     position:absolute;
-
     width:10px;
     height:23px;
-
     background:#111;
-
     border-radius:6px;
 }
 
-.wheel.left{
-    left:0;
-    top:22px;
-}
-
-.wheel.right{
-    right:0;
-    top:22px;
-}
-
-.wheel.left.back{
-    left:0;
-    top:auto;
-    bottom:10px;
-}
-
-.wheel.right.back{
-    right:0;
-    top:auto;
-    bottom:10px;
-}
+.wheel.left{left:0;top:22px}
+.wheel.right{right:0;top:22px}
+.wheel.left.back{left:0;top:auto;bottom:10px}
+.wheel.right.back{right:0;top:auto;bottom:10px}
 
 .light{
     position:absolute;
-
     width:9px;
     height:5px;
-
     border-radius:3px;
-
     top:11px;
 }
 
-.light.left{
-    left:13px;
-}
-
-.light.right{
-    right:13px;
-}
+.light.left{left:13px}
+.light.right{right:13px}
 
 .player .light{
     background:#fff1a8;
+    box-shadow:0 0 8px rgba(255,240,150,.7);
 }
 
 .enemy .light{
     background:#ff3434;
 }
 
-
-/* =========================
-   BUTTONS
-========================= */
-
+/* BUTTONS */
 .message{
     min-height:30px;
-
     margin:13px 0 7px;
-
     color:#ffd43b;
-
     font-weight:800;
 }
 
 .actions{
     display:flex;
-
     justify-content:center;
-
     gap:8px;
-
     flex-wrap:wrap;
 }
 
 .btn{
     border:0;
-
     border-radius:10px;
-
     background:var(--accent);
-
     color:#fff;
-
     padding:12px 20px;
-
     font-size:16px;
-
     font-weight:800;
-
     cursor:pointer;
 }
 
@@ -560,89 +338,56 @@ h1{
 
 .mobile{
     display:flex;
-
     justify-content:center;
-
     gap:22px;
-
     margin-top:12px;
 }
 
 .control{
     width:88px;
-
     height:56px;
-
     border:1px solid #3c4050;
-
     border-radius:12px;
-
     background:#1b1d26;
-
     color:#fff;
-
     font-size:25px;
-
     font-weight:800;
-
     cursor:pointer;
+}
+
+.control:active{
+    transform:scale(.97);
 }
 
 .help{
     color:#8f93a0;
-
     margin-top:10px;
-
     font-size:14px;
 }
 
 @media(max-width:500px){
-
-    .side.left{
-        left:20px;
-    }
-
-    .side.right{
-        right:20px;
-    }
-
-    .road{
-        width:245px;
-    }
-
+    .side.left{left:20px}
+    .side.right{right:20px}
+    .road{width:245px}
 }
-
 </style>
 </head>
 
-
 <body>
 
-
 <header>
-
-<a href="games.html">
-← Back to Games
-</a>
-
+<a href="games.html">← Back to Games</a>
 </header>
-
 
 <div class="page">
 
-
-<h1>
-🏎️ Speed Racer
-</h1>
-
+<h1>🏎️ Speed Racer</h1>
 
 <p class="subtitle">
 Avoid traffic and beat your best score.
 </p>
 
-
-<!-- PLAYER NAME -->
-
+<!-- NAME -->
 <div class="player-name-box">
 
 <label for="playerName">
@@ -654,51 +399,36 @@ id="playerName"
 name="playerName"
 type="text"
 maxlength="30"
-autocomplete="name"
-autocorrect="off"
-autocapitalize="words"
-spellcheck="false"
 placeholder="Enter your name"
+autocomplete="off"
+spellcheck="false"
 >
 
 </div>
-
 
 <div class="info">
 
 <div class="info-box">
 🏆 Score:
-<span id="score">
-0
-</span>
+<span id="score">0</span>
 </div>
-
 
 <div class="info-box">
 ❤️ Lives:
-<span id="lives">
-3
-</span>
+<span id="lives">3</span>
 </div>
-
 
 <div class="info-box">
 ⚡ Level:
-<span id="level">
-1
-</span>
+<span id="level">1</span>
 </div>
-
 
 <div class="info-box">
 🥇 Best:
-<span id="best">
-0
-</span>
+<span id="best">0</span>
 </div>
 
 </div>
-
 
 <div
 class="best-player"
@@ -707,206 +437,97 @@ id="bestPlayer"
 🥇 Best Player: Nobody yet
 </div>
 
-
 <!-- GAME -->
-
 <div class="game-frame">
 
 <div class="game-box">
 
+<div class="grass"></div>
 
-<div class="grass">
-</div>
+<div class="side left"></div>
+<div class="side right"></div>
 
+<div class="road"></div>
 
-<div class="side left">
-</div>
+<div class="shoulder left"></div>
+<div class="shoulder right"></div>
 
-<div class="side right">
-</div>
-
-
-<div class="road">
-</div>
-
-
-<div class="shoulder left">
-</div>
-
-<div class="shoulder right">
-</div>
-
-
-<div
-class="lane one"
-id="lane1">
-</div>
-
-
-<div
-class="lane two"
-id="lane2">
-</div>
-
+<div class="lane one" id="lane1"></div>
+<div class="lane two" id="lane2"></div>
 
 <!-- PLAYER -->
+<div class="car player" id="player">
 
-<div
-class="car player"
-id="player"
->
+<div class="body-car"></div>
+<div class="roof"></div>
+<div class="glass"></div>
 
-<div class="body-car">
-</div>
+<div class="wheel left"></div>
+<div class="wheel right"></div>
 
-<div class="roof">
-</div>
+<div class="wheel left back"></div>
+<div class="wheel right back"></div>
 
-<div class="glass">
-</div>
-
-
-<div class="wheel left">
-</div>
-
-<div class="wheel right">
-</div>
-
-<div class="wheel left back">
-</div>
-
-<div class="wheel right back">
-</div>
-
-
-<div class="light left">
-</div>
-
-<div class="light right">
-</div>
+<div class="light left"></div>
+<div class="light right"></div>
 
 </div>
-
 
 <!-- ENEMY 1 -->
+<div class="car enemy yellow" id="enemy1">
 
-<div
-class="car enemy yellow"
-id="enemy1"
->
+<div class="body-car"></div>
+<div class="roof"></div>
+<div class="glass"></div>
 
-<div class="body-car">
-</div>
+<div class="wheel left"></div>
+<div class="wheel right"></div>
 
-<div class="roof">
-</div>
+<div class="wheel left back"></div>
+<div class="wheel right back"></div>
 
-<div class="glass">
-</div>
-
-
-<div class="wheel left">
-</div>
-
-<div class="wheel right">
-</div>
-
-<div class="wheel left back">
-</div>
-
-<div class="wheel right back">
-</div>
-
-
-<div class="light left">
-</div>
-
-<div class="light right">
-</div>
+<div class="light left"></div>
+<div class="light right"></div>
 
 </div>
-
 
 <!-- ENEMY 2 -->
+<div class="car enemy blue" id="enemy2">
 
-<div
-class="car enemy blue"
-id="enemy2"
->
+<div class="body-car"></div>
+<div class="roof"></div>
+<div class="glass"></div>
 
-<div class="body-car">
-</div>
+<div class="wheel left"></div>
+<div class="wheel right"></div>
 
-<div class="roof">
-</div>
+<div class="wheel left back"></div>
+<div class="wheel right back"></div>
 
-<div class="glass">
-</div>
-
-
-<div class="wheel left">
-</div>
-
-<div class="wheel right">
-</div>
-
-<div class="wheel left back">
-</div>
-
-<div class="wheel right back">
-</div>
-
-
-<div class="light left">
-</div>
-
-<div class="light right">
-</div>
+<div class="light left"></div>
+<div class="light right"></div>
 
 </div>
-
 
 <!-- ENEMY 3 -->
+<div class="car enemy white" id="enemy3">
 
-<div
-class="car enemy white"
-id="enemy3"
->
+<div class="body-car"></div>
+<div class="roof"></div>
+<div class="glass"></div>
 
-<div class="body-car">
-</div>
+<div class="wheel left"></div>
+<div class="wheel right"></div>
 
-<div class="roof">
-</div>
+<div class="wheel left back"></div>
+<div class="wheel right back"></div>
 
-<div class="glass">
-</div>
-
-
-<div class="wheel left">
-</div>
-
-<div class="wheel right">
-</div>
-
-<div class="wheel left back">
-</div>
-
-<div class="wheel right back">
-</div>
-
-
-<div class="light left">
-</div>
-
-<div class="light right">
-</div>
+<div class="light left"></div>
+<div class="light right"></div>
 
 </div>
 
-
 </div>
-
 
 <div
 class="message"
@@ -914,7 +535,6 @@ id="message"
 >
 Enter your name and press START.
 </div>
-
 
 <div class="actions">
 
@@ -925,7 +545,6 @@ onclick="startGame()"
 START GAME
 </button>
 
-
 <button
 class="btn"
 onclick="restartGame()"
@@ -935,7 +554,7 @@ RESTART
 
 </div>
 
-
+<!-- ONLY BUTTON CONTROLS -->
 <div class="mobile">
 
 <button
@@ -944,7 +563,6 @@ onclick="moveLeft()"
 >
 ⬅️
 </button>
-
 
 <button
 class="control"
@@ -955,147 +573,86 @@ onclick="moveRight()"
 
 </div>
 
-
 <p class="help">
-Computer: ← → to move<br>
-Mobile: use the buttons
+Mobile: use the buttons to move the car.
 </p>
 
-
+</div>
 </div>
 
-
 <script>
-
 
 /* =========================
    NAME
 ========================= */
 
-const playerNameInput=
-document.getElementById(
-"playerName"
-);
+const playerNameInput =
+document.getElementById("playerName");
 
+const oldName =
+localStorage.getItem("ebadPlayerName");
 
-const savedName=
-localStorage.getItem(
-"ebadPlayerName"
-);
-
-
-if(savedName){
-
-playerNameInput.value=
-savedName;
-
+if(oldName){
+    playerNameInput.value = oldName;
 }
 
-
-/*
- IMPORTANT:
- NO keyboard movement with A/D.
- This means every letter can
- be typed normally.
-*/
-
 playerNameInput.addEventListener(
-"input",
-function(){
-
-localStorage.setItem(
-"ebadPlayerName",
-this.value
+    "input",
+    function(){
+        localStorage.setItem(
+            "ebadPlayerName",
+            this.value
+        );
+    }
 );
-
-});
 
 
 /* =========================
    GAME VARIABLES
 ========================= */
 
-let playerX=132;
+let playerX = 132;
 
-let score=0;
+let score = 0;
+let lives = 3;
+let level = 1;
 
-let lives=3;
+let speed = 3.5;
 
-let level=1;
+let running = false;
+let timer = null;
 
-let speed=3.5;
-
-let running=false;
-
-let timer=null;
-
-
-let best=
+let best =
 Number(
-localStorage.getItem(
-"ebadBestScore"
-)
-)||0;
+    localStorage.getItem("ebadBestScore")
+) || 0;
+
+let bestPlayer =
+localStorage.getItem("ebadBestPlayer") || "";
+
+document.getElementById("best").textContent = best;
+
+showBestPlayer();
 
 
-let bestPlayer=
-localStorage.getItem(
-"ebadBestPlayer"
-)
-||"";
+const player =
+document.getElementById("player");
 
-
-document.getElementById(
-"best"
-).textContent=
-best;
-
-
-updateBestPlayer();
-
-
-const player=
-document.getElementById(
-"player"
-);
-
-
-const enemies=[
-
-document.getElementById(
-"enemy1"
-),
-
-document.getElementById(
-"enemy2"
-),
-
-document.getElementById(
-"enemy3"
-)
-
+const enemies = [
+    document.getElementById("enemy1"),
+    document.getElementById("enemy2"),
+    document.getElementById("enemy3")
 ];
 
-
-const laneMarks=[
-
-document.getElementById(
-"lane1"
-),
-
-document.getElementById(
-"lane2"
-)
-
+const laneMarks = [
+    document.getElementById("lane1"),
+    document.getElementById("lane2")
 ];
 
-
-const lanes=[
-
-42,
-132,
-222
-
+const lanes = [
+    42,
+    132,
+    222
 ];
 
 
@@ -1103,312 +660,243 @@ const lanes=[
    BEST PLAYER
 ========================= */
 
-function updateBestPlayer(){
+function showBestPlayer(){
 
-if(
-bestPlayer &&
-best>0
-){
+    if(bestPlayer && best > 0){
 
-document.getElementById(
-"bestPlayer"
-).textContent=
-"🥇 Best Player: "+
-bestPlayer+
-" — "+
-best;
+        document.getElementById(
+            "bestPlayer"
+        ).textContent =
+            "🥇 Best Player: " +
+            bestPlayer +
+            " — " +
+            best;
 
-}else{
+    }else{
 
-document.getElementById(
-"bestPlayer"
-).textContent=
-"🥇 Best Player: Nobody yet";
-
-}
-
+        document.getElementById(
+            "bestPlayer"
+        ).textContent =
+            "🥇 Best Player: Nobody yet";
+    }
 }
 
 
 /* =========================
-   RESET
+   RESET CARS
 ========================= */
 
 function resetEnemies(){
 
-enemies[0].style.left=
-"42px";
+    enemies[0].style.left = "42px";
+    enemies[0].style.top = "-120px";
 
-enemies[0].style.top=
-"-120px";
+    enemies[1].style.left = "132px";
+    enemies[1].style.top = "-360px";
 
-
-enemies[1].style.left=
-"132px";
-
-enemies[1].style.top=
-"-360px";
-
-
-enemies[2].style.left=
-"222px";
-
-enemies[2].style.top=
-"-600px";
-
+    enemies[2].style.left = "222px";
+    enemies[2].style.top = "-600px";
 }
-
 
 resetEnemies();
 
 
 /* =========================
-   START
+   START GAME
 ========================= */
 
 function startGame(){
 
-if(running)
-return;
+    if(running){
+        return;
+    }
 
+    const name =
+        playerNameInput.value.trim();
 
-const name=
-playerNameInput.value.trim();
+    if(!name){
 
+        alert(
+            "Please enter your name first."
+        );
 
-if(!name){
+        playerNameInput.focus();
 
-alert(
-"Please enter your name first."
-);
+        return;
+    }
 
-playerNameInput.focus();
+    localStorage.setItem(
+        "ebadPlayerName",
+        name
+    );
 
-return;
+    running = true;
 
-}
+    score = 0;
+    lives = 3;
+    level = 1;
 
+    speed = 3.5;
 
-localStorage.setItem(
-"ebadPlayerName",
-name
-);
+    playerX = 132;
 
+    document.getElementById(
+        "score"
+    ).textContent = 0;
 
-running=true;
+    document.getElementById(
+        "lives"
+    ).textContent = 3;
 
+    document.getElementById(
+        "level"
+    ).textContent = 1;
 
-score=0;
+    player.style.left =
+        "132px";
 
-lives=3;
+    resetEnemies();
 
-level=1;
+    document.getElementById(
+        "message"
+    ).textContent =
+        "🔥 Good luck, " +
+        name +
+        "!";
 
-speed=3.5;
-
-playerX=132;
-
-
-document.getElementById(
-"score"
-).textContent=
-0;
-
-
-document.getElementById(
-"lives"
-).textContent=
-3;
-
-
-document.getElementById(
-"level"
-).textContent=
-1;
-
-
-player.style.left=
-"132px";
-
-
-resetEnemies();
-
-
-document.getElementById(
-"message"
-).textContent=
-"🔥 Good luck, "+
-name+
-"!";
-
-
-timer=
-setInterval(
-updateGame,
-30
-);
-
+    timer =
+        setInterval(
+            updateGame,
+            30
+        );
 }
 
 
 /* =========================
-   GAME
+   UPDATE
 ========================= */
 
 function updateGame(){
 
+    /* Lane lines */
 
-/* ROAD */
+    laneMarks.forEach(
+        lane => {
 
-laneMarks.forEach(
-lane=>{
+            let y =
+                parseFloat(
+                    lane.style.top
+                );
 
-let y=
-parseFloat(
-lane.style.top
-);
+            if(isNaN(y)){
+                y = -90;
+            }
 
+            y += speed * 1.8;
 
-if(
-isNaN(y)
-)
-y=-90;
+            if(y > 550){
+                y = -100;
+            }
 
-
-y+=
-speed*1.8;
-
-
-if(
-y>550
-)
-y=-100;
+            lane.style.top =
+                y + "px";
+        }
+    );
 
 
-lane.style.top=
-y+"px";
+    /* Enemy cars */
 
-});
+    enemies.forEach(
+        car => {
 
+            let y =
+                parseFloat(
+                    car.style.top
+                );
 
-/* ENEMIES */
+            if(isNaN(y)){
+                y = -120;
+            }
 
-enemies.forEach(
-car=>{
+            y += speed;
 
-let y=
-parseFloat(
-car.style.top
-);
-
-
-if(
-isNaN(y)
-)
-y=-120;
+            car.style.top =
+                y + "px";
 
 
-y+=
-speed;
+            /* Car passed */
+
+            if(y > 550){
+
+                score++;
+
+                document.getElementById(
+                    "score"
+                ).textContent =
+                    score;
+
+                resetEnemy(car);
+
+                updateLevel();
+            }
 
 
-car.style.top=
-y+"px";
+            /* Collision */
+
+            if(
+                checkCollision(car)
+            ){
+
+                resetEnemy(car);
+
+                lives--;
+
+                document.getElementById(
+                    "lives"
+                ).textContent =
+                    lives;
 
 
-if(
-y>550
-){
+                if(lives <= 0){
 
-score++;
+                    gameOver();
 
+                }else{
 
-document.getElementById(
-"score"
-).textContent=
-score;
-
-
-resetEnemy(
-car
-);
-
-
-updateLevel();
-
-}
-
-
-if(
-checkCollision(
-car
-)
-){
-
-resetEnemy(
-car
-);
-
-
-lives--;
-
-
-document.getElementById(
-"lives"
-).textContent=
-lives;
-
-
-if(
-lives<=0
-){
-
-gameOver();
-
-}else{
-
-document.getElementById(
-"message"
-).textContent=
-"💥 CRASH! Lives left: "+
-lives;
-
-}
-
-}
-
-});
-
+                    document.getElementById(
+                        "message"
+                    ).textContent =
+                        "💥 CRASH! Lives left: " +
+                        lives;
+                }
+            }
+        }
+    );
 }
 
 
 /* =========================
-   RESET ENEMY
+   RESET ONE ENEMY
 ========================= */
 
-function resetEnemy(
-car
-){
+function resetEnemy(car){
 
-const lane=
-lanes[
-Math.floor(
-Math.random()*
-lanes.length
-)
-];
+    const lane =
+        lanes[
+            Math.floor(
+                Math.random() *
+                lanes.length
+            )
+        ];
 
+    car.style.left =
+        lane + "px";
 
-car.style.left=
-lane+"px";
-
-
-car.style.top=
-(
--160-
-Math.random()*380
-)+"px";
-
+    car.style.top =
+        (
+            -160 -
+            Math.random() * 380
+        ) + "px";
 }
 
 
@@ -1416,34 +904,20 @@ Math.random()*380
    COLLISION
 ========================= */
 
-function checkCollision(
-car
-){
+function checkCollision(car){
 
-const p=
-player.getBoundingClientRect();
+    const p =
+        player.getBoundingClientRect();
 
+    const e =
+        car.getBoundingClientRect();
 
-const e=
-car.getBoundingClientRect();
-
-
-return(
-
-p.left<
-e.right-10 &&
-
-p.right>
-e.left+10 &&
-
-p.top<
-e.bottom-10 &&
-
-p.bottom>
-e.top+10
-
-);
-
+    return (
+        p.left < e.right - 10 &&
+        p.right > e.left + 10 &&
+        p.top < e.bottom - 10 &&
+        p.bottom > e.top + 10
+    );
 }
 
 
@@ -1453,148 +927,75 @@ e.top+10
 
 function updateLevel(){
 
-level=
-Math.floor(
-score/10
-)+1;
+    level =
+        Math.floor(
+            score / 10
+        ) + 1;
 
+    speed =
+        3.5 +
+        (level - 1) * 0.7;
 
-speed=
-3.5+
-(level-1)*0.7;
+    document.getElementById(
+        "level"
+    ).textContent =
+        level;
 
+    if(
+        score > 0 &&
+        score % 10 === 0
+    ){
 
-document.getElementById(
-"level"
-).textContent=
-level;
-
-
-if(
-score>0 &&
-score%10===0
-){
-
-document.getElementById(
-"message"
-).textContent=
-"⚡ LEVEL "+
-level+
-"! Traffic is faster!";
-
-}
-
+        document.getElementById(
+            "message"
+        ).textContent =
+            "⚡ LEVEL " +
+            level +
+            "! Traffic is faster!";
+    }
 }
 
 
 /* =========================
    MOVE LEFT
-   Arrow key only
 ========================= */
 
 function moveLeft(){
 
-if(!running)
-return;
+    if(!running){
+        return;
+    }
 
+    playerX -= 45;
 
-playerX-=45;
+    if(playerX < 42){
+        playerX = 42;
+    }
 
-
-if(
-playerX<42
-)
-playerX=42;
-
-
-player.style.left=
-playerX+"px";
-
+    player.style.left =
+        playerX + "px";
 }
 
 
 /* =========================
    MOVE RIGHT
-   Arrow key only
 ========================= */
 
 function moveRight(){
 
-if(!running)
-return;
+    if(!running){
+        return;
+    }
 
+    playerX += 45;
 
-playerX+=45;
+    if(playerX > 222){
+        playerX = 222;
+    }
 
-
-if(
-playerX>222
-)
-playerX=222;
-
-
-player.style.left=
-playerX+"px";
-
+    player.style.left =
+        playerX + "px";
 }
-
-
-/* =========================
-   KEYBOARD
-========================= */
-
-/*
- ONLY ARROW KEYS.
- NO A / D.
- So the name box can accept
- every normal keyboard letter.
-*/
-
-document.addEventListener(
-"keydown",
-function(event){
-
-const active=
-document.activeElement;
-
-
-const typing=
-active &&
-(
-active.tagName==="INPUT" ||
-active.tagName==="TEXTAREA"
-);
-
-
-if(typing){
-
-return;
-
-}
-
-
-if(
-event.key==="ArrowLeft"
-){
-
-event.preventDefault();
-
-moveLeft();
-
-}
-
-
-if(
-event.key==="ArrowRight"
-){
-
-event.preventDefault();
-
-moveRight();
-
-}
-
-});
 
 
 /* =========================
@@ -1603,73 +1004,57 @@ moveRight();
 
 function gameOver(){
 
-clearInterval(
-timer
-);
+    clearInterval(timer);
+
+    running = false;
+
+    const name =
+        playerNameInput.value.trim();
 
 
-running=false;
+    if(score > best){
 
+        best = score;
 
-const name=
-playerNameInput.value.trim();
+        bestPlayer = name;
 
+        localStorage.setItem(
+            "ebadBestScore",
+            best
+        );
 
-if(
-score>best
-){
+        localStorage.setItem(
+            "ebadBestPlayer",
+            bestPlayer
+        );
 
-best=
-score;
+        document.getElementById(
+            "best"
+        ).textContent =
+            best;
 
+        showBestPlayer();
 
-bestPlayer=
-name;
+        document.getElementById(
+            "message"
+        ).textContent =
+            "🏆 NEW HIGH SCORE, " +
+            name +
+            "! Score: " +
+            score;
 
+    }else{
 
-localStorage.setItem(
-"ebadBestScore",
-best
-);
-
-
-localStorage.setItem(
-"ebadBestPlayer",
-bestPlayer
-);
-
-
-document.getElementById(
-"best"
-).textContent=
-best;
-
-
-updateBestPlayer();
-
-
-document.getElementById(
-"message"
-).textContent=
-"🏆 NEW HIGH SCORE, "+
-name+
-"! Score: "+
-score;
-
-}else{
-
-document.getElementById(
-"message"
-).textContent=
-"💥 GAME OVER, "+
-name+
-"! Score: "+
-score+
-" | Best: "+
-best;
-
-}
-
+        document.getElementById(
+            "message"
+        ).textContent =
+            "💥 GAME OVER, " +
+            name +
+            "! Score: " +
+            score +
+            " | Best: " +
+            best;
+    }
 }
 
 
@@ -1679,55 +1064,42 @@ best;
 
 function restartGame(){
 
-clearInterval(
-timer
-);
+    clearInterval(timer);
 
+    running = false;
 
-running=false;
+    score = 0;
+    lives = 3;
+    level = 1;
 
+    speed = 3.5;
 
-score=0;
+    playerX = 132;
 
-lives=3;
+    document.getElementById(
+        "score"
+    ).textContent =
+        0;
 
-level=1;
+    document.getElementById(
+        "lives"
+    ).textContent =
+        3;
 
-speed=3.5;
+    document.getElementById(
+        "level"
+    ).textContent =
+        1;
 
-playerX=132;
+    player.style.left =
+        "132px";
 
+    resetEnemies();
 
-document.getElementById(
-"score"
-).textContent=
-0;
-
-
-document.getElementById(
-"lives"
-).textContent=
-3;
-
-
-document.getElementById(
-"level"
-).textContent=
-1;
-
-
-player.style.left=
-"132px";
-
-
-resetEnemies();
-
-
-document.getElementById(
-"message"
-).textContent=
-"Enter your name and press START.";
-
+    document.getElementById(
+        "message"
+    ).textContent =
+        "Enter your name and press START.";
 }
 
 </script>
