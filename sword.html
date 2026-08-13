@@ -3,310 +3,191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sword Battle - Ebad Gaming</title>
+
+<title>Ebad Gaming - Games</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
 }
 
-:root{
-    --main:#b45cff;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#07070d;
+    color:#fff;
+    line-height:1.6;
 }
 
-body{
-    min-height:100vh;
-    font-family:Arial,Helvetica,sans-serif;
-    background:radial-gradient(circle at top,#2b1740,#09070e 60%);
-    color:#fff;
-    text-align:center;
+:root{
+    --main:#ff3030;
 }
 
 header{
-    background:rgba(8,7,13,.96);
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(10,10,18,.97);
     border-bottom:2px solid var(--main);
-    padding:16px;
+    padding:15px 20px;
 }
 
-header a{
-    color:#fff;
-    text-decoration:none;
-    font-weight:800;
-}
-
-h1{
-    margin:20px 0 5px;
-    color:#d88aff;
-    font-size:clamp(30px,6vw,48px);
-}
-
-.subtitle{
-    color:#aaa;
-    margin-bottom:15px;
-}
-
-.info{
-    display:flex;
-    justify-content:center;
-    gap:10px;
-    flex-wrap:wrap;
-    margin:15px;
-}
-
-.info-box{
-    background:#15101d;
-    border:1px solid #49355b;
-    border-radius:10px;
-    padding:9px 15px;
-    font-weight:800;
-}
-
-.game-frame{
-    width:min(420px,95vw);
+.nav{
+    max-width:1200px;
     margin:auto;
-    padding:10px;
-    background:#15111c;
-    border:1px solid #41314f;
-    border-radius:20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:20px;
 }
 
-#game{
-    position:relative;
-    width:100%;
-    aspect-ratio:360/540;
-    overflow:hidden;
-    border:4px solid #eee;
-    border-radius:15px;
+.logo{
+    font-size:26px;
+    font-weight:900;
+    color:var(--main);
+}
+
+.logo span{
+    color:#fff;
+}
+
+nav{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    font-weight:700;
+    padding:8px 12px;
+    border-radius:8px;
+}
+
+nav a:hover{
+    background:#1c1c2a;
+    color:#fff;
+}
+
+.page{
+    max-width:1200px;
+    margin:auto;
+    padding:75px 20px 90px;
+}
+
+.head{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.head .small{
+    color:var(--main);
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:1.5px;
+}
+
+.head h1{
+    font-size:48px;
+    margin-top:5px;
+}
+
+.head h1 span{
+    color:var(--main);
+}
+
+.head p{
+    color:#9f9fad;
+    max-width:680px;
+    margin:8px auto 0;
+}
+
+.games{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
     background:linear-gradient(
         180deg,
-        #2f1d3e 0%,
-        #17111f 55%,
-        #0c0b10 100%
+        #171722,
+        #11111b
     );
+
+    border:1px solid #2b2b40;
+    border-radius:18px;
+
+    padding:25px 16px;
+
+    text-align:center;
+
+    transition:.2s;
 }
 
-.floor{
-    position:absolute;
-    left:0;
-    right:0;
-    bottom:0;
-    height:120px;
-    background:repeating-linear-gradient(
-        0deg,
-        #2b1e35 0 18px,
-        #22162a 18px 36px
-    );
+.card:hover{
+    transform:translateY(-7px);
+    border-color:#4a4a62;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.3);
 }
 
-.floor-line{
-    position:absolute;
-    left:0;
-    right:0;
-    height:2px;
-    background:rgba(255,255,255,.08);
+.icon-wrap{
+    width:90px;
+    height:90px;
+
+    margin:0 auto 15px;
+
+    background:#20202e;
+
+    border-radius:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:48px;
 }
 
-.fl1{bottom:90px}
-.fl2{bottom:55px}
-.fl3{bottom:22px}
-
-/* PLAYER */
-
-.player{
-    position:absolute;
-    left:55px;
-    bottom:78px;
-    width:75px;
-    height:110px;
-    z-index:10;
+.card h2{
+    font-size:22px;
+    margin-bottom:7px;
 }
 
-.player-body{
-    position:absolute;
-    left:18px;
-    top:30px;
-    width:38px;
-    height:58px;
-    border-radius:15px;
-    background:linear-gradient(#55b8ff,#215e91);
-    box-shadow:inset 0 3px 0 rgba(255,255,255,.25);
-}
+.card p{
+    color:#9d9dac;
 
-.player-head{
-    position:absolute;
-    left:25px;
-    top:8px;
-    width:24px;
-    height:24px;
-    border-radius:50%;
-    background:#efc5a5;
-}
+    min-height:60px;
 
-.player-sword{
-    position:absolute;
-    width:8px;
-    height:68px;
-    right:0;
-    top:15px;
-    background:linear-gradient(90deg,#aaa,#fff,#ddd);
-    border-radius:5px;
-    transform:rotate(-35deg);
-    transform-origin:bottom center;
-    box-shadow:0 0 9px rgba(255,255,255,.6);
-}
-
-.player-shield{
-    position:absolute;
-    left:3px;
-    top:45px;
-    width:22px;
-    height:30px;
-    border-radius:10px 10px 14px 14px;
-    background:linear-gradient(#62c4ff,#215a8c);
-    border:2px solid #bce7ff;
-}
-
-/* ENEMY */
-
-.enemy{
-    position:absolute;
-    right:55px;
-    bottom:78px;
-    width:75px;
-    height:110px;
-    z-index:10;
-}
-
-.enemy-body{
-    position:absolute;
-    left:18px;
-    top:30px;
-    width:38px;
-    height:58px;
-    border-radius:15px;
-    background:linear-gradient(#ff5058,#8f1d23);
-    box-shadow:inset 0 3px 0 rgba(255,255,255,.2);
-}
-
-.enemy-head{
-    position:absolute;
-    left:25px;
-    top:8px;
-    width:24px;
-    height:24px;
-    border-radius:50%;
-    background:#efc5a5;
-}
-
-.enemy-sword{
-    position:absolute;
-    width:8px;
-    height:68px;
-    left:0;
-    top:15px;
-    background:linear-gradient(90deg,#aaa,#fff,#ddd);
-    border-radius:5px;
-    transform:rotate(35deg);
-    transform-origin:bottom center;
-    box-shadow:0 0 9px rgba(255,255,255,.5);
-}
-
-.enemy-shield{
-    position:absolute;
-    right:2px;
-    top:45px;
-    width:22px;
-    height:30px;
-    border-radius:10px 10px 14px 14px;
-    background:linear-gradient(#ff6d75,#8d2028);
-    border:2px solid #ffc4c8;
-}
-
-/* HP */
-
-.hp-title{
-    position:absolute;
-    top:7px;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:12px;
-    font-weight:bold;
-    z-index:25;
-}
-
-.hp-bar{
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    top:24px;
-    width:230px;
-    height:18px;
-    border:2px solid #fff;
-    border-radius:10px;
-    overflow:hidden;
-    background:#222;
-    z-index:20;
-}
-
-.hp-fill{
-    width:100%;
-    height:100%;
-    background:linear-gradient(90deg,#34df66,#7cff98);
-    transition:.15s;
-}
-
-/* EFFECT */
-
-.attack-effect{
-    position:absolute;
-    width:110px;
-    height:110px;
-    border:5px solid #f2c0ff;
-    border-radius:50%;
-    opacity:0;
-    pointer-events:none;
-    z-index:15;
-}
-
-.show-hit{
-    animation:hitFlash .22s ease-out;
-}
-
-@keyframes hitFlash{
-    0%{
-        opacity:0;
-        transform:scale(.3);
-    }
-    50%{
-        opacity:1;
-        transform:scale(1);
-    }
-    100%{
-        opacity:0;
-        transform:scale(1.25);
-    }
-}
-
-/* BUTTONS */
-
-.message{
-    min-height:30px;
-    margin:12px 0 7px;
-    color:#ffd84d;
-    font-weight:800;
+    margin-bottom:18px;
 }
 
 .btn{
+    display:inline-block;
+
     border:0;
+
     border-radius:10px;
+
     background:var(--main);
+
     color:#fff;
-    padding:12px 20px;
-    margin:5px;
+
+    padding:12px 22px;
+
     font-size:16px;
+
     font-weight:800;
+
+    text-decoration:none;
+
     cursor:pointer;
 }
 
@@ -314,525 +195,341 @@ h1{
     filter:brightness(1.1);
 }
 
-.controls{
-    display:flex;
-    justify-content:center;
-    gap:18px;
-    margin-top:10px;
+footer{
+    padding:32px 20px;
+
+    text-align:center;
+
+    color:#777;
+
+    background:#050509;
+
+    border-top:1px solid #20202e;
 }
 
-.control{
-    width:88px;
-    height:58px;
-    border-radius:12px;
-    border:1px solid #564465;
-    background:#211829;
-    color:#fff;
-    font-size:25px;
-    font-weight:800;
-    cursor:pointer;
-}
+@media(max-width:950px){
 
-.attack-btn{
-    background:#8f35ff;
-}
-
-.help{
-    color:#999;
-    margin-top:10px;
-    font-size:14px;
-}
-
-@media(max-width:500px){
-    .player{
-        left:38px;
+    .games{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .enemy{
-        right:38px;
-    }
 }
+
+@media(max-width:600px){
+
+    .nav{
+        flex-direction:column;
+    }
+
+    .games{
+        grid-template-columns:1fr;
+    }
+
+    .head h1{
+        font-size:38px;
+    }
+
+}
+
 </style>
 </head>
 
 <body>
 
 <header>
-<a href="games.html">← Back to Games</a>
+
+<div class="nav">
+
+<div class="logo">
+🎮 <span id="logoText">Ebad</span> Gaming
+</div>
+
+<nav>
+
+<a href="index.html">
+Home
+</a>
+
+<a href="games.html">
+Games
+</a>
+
+<a href="admin.html">
+🔐 Admin
+</a>
+
+</nav>
+
+</div>
+
 </header>
 
-<h1>⚔️ Sword Battle</h1>
 
-<p class="subtitle">
-Move closer, attack the enemy and win the battle.
+<main class="page">
+
+
+<div class="head">
+
+<div class="small">
+GAME LIBRARY
+</div>
+
+<h1>
+Choose Your
+<span>Game</span>
+</h1>
+
+<p>
+Pick any game below and start playing.
 </p>
 
-<div class="info">
-
-<div class="info-box">
-🏆 Score:
-<span id="score">0</span>
 </div>
 
-<div class="info-box">
-❤️ Lives:
-<span id="lives">3</span>
+
+<div class="games">
+
+
+<!-- SPACE ROCKET -->
+
+<div class="card">
+
+<div class="icon-wrap">
+🚀
 </div>
 
-<div class="info-box">
-⚡ Level:
-<span id="level">1</span>
-</div>
+<h2 id="g1n">
+Space Rocket
+</h2>
 
-</div>
+<p id="g1d">
+Fly your rocket, destroy asteroids
+and beat your score.
+</p>
 
-<div class="game-frame">
-
-<div id="game">
-
-<div class="hp-title">
-Enemy Health
-</div>
-
-<div class="hp-bar">
-<div class="hp-fill" id="hpFill"></div>
-</div>
-
-<div class="floor"></div>
-
-<div class="floor-line fl1"></div>
-<div class="floor-line fl2"></div>
-<div class="floor-line fl3"></div>
-
-<div class="attack-effect" id="attackEffect"></div>
-
-<!-- PLAYER -->
-
-<div class="player" id="player">
-
-<div class="player-head"></div>
-<div class="player-body"></div>
-<div class="player-sword"></div>
-<div class="player-shield"></div>
-
-</div>
-
-<!-- ENEMY -->
-
-<div class="enemy" id="enemy">
-
-<div class="enemy-head"></div>
-<div class="enemy-body"></div>
-<div class="enemy-sword"></div>
-<div class="enemy-shield"></div>
-
-</div>
-
-</div>
-
-<div
-class="message"
-id="message"
->
-Press START BATTLE.
-</div>
-
-<button
+<a
 class="btn"
-onclick="startGame()"
+href="rocket.html"
 >
-START BATTLE
-</button>
+Play Now
+</a>
 
-<button
+</div>
+
+
+<!-- SPEED RACER -->
+
+<div class="card">
+
+<div class="icon-wrap">
+🏎️
+</div>
+
+<h2 id="g2n">
+Speed Racer
+</h2>
+
+<p id="g2d">
+Avoid the enemy cars and try
+to beat your best score.
+</p>
+
+<a
 class="btn"
-onclick="restartGame()"
+href="racing.html"
 >
-RESTART
-</button>
+Play Now
+</a>
 
-<div class="controls">
+</div>
 
-<button
-class="control"
-onclick="moveLeft()"
+
+<!-- ZOMBIE ATTACK -->
+
+<div class="card">
+
+<div class="icon-wrap">
+🧟
+</div>
+
+<h2 id="g3n">
+Zombie Attack
+</h2>
+
+<p id="g3d">
+Shoot the zombies, survive
+and increase your score.
+</p>
+
+<a
+class="btn"
+href="zombie.html"
 >
-⬅️
-</button>
+Play Now
+</a>
 
-<button
-class="control attack-btn"
-onclick="attack()"
->
+</div>
+
+
+<!-- SWORD BATTLE -->
+
+<div class="card">
+
+<div class="icon-wrap">
 ⚔️
-</button>
-
-<button
-class="control"
-onclick="moveRight()"
->
-➡️
-</button>
-
 </div>
 
-<p class="help">
-Mobile: buttons use karo<br>
-Computer: Arrow keys + SPACE
+<h2 id="g4n">
+Sword Battle
+</h2>
+
+<p id="g4d">
+Move, attack and defeat
+the enemy warrior.
 </p>
 
+<a
+class="btn"
+href="sword.html"
+>
+Play Now
+</a>
+
 </div>
+
+
+</div>
+
+</main>
+
+
+<footer>
+
+<div style="color:#fff;font-weight:800">
+
+🎮
+<span id="footText">
+Ebad Gaming
+</span>
+
+</div>
+
+<div>
+Made for gamers ❤️
+</div>
+
+<div style="margin-top:8px;font-size:13px">
+© 2026 Ebad Gaming
+</div>
+
+</footer>
+
 
 <script>
 
-let playerX=55;
-let enemyX=55;
+const defaults={
 
-let score=0;
-let lives=3;
-let level=1;
+site:"Ebad Gaming",
 
-let enemyHP=100;
+g1n:"Space Rocket",
+g1d:"Fly your rocket, destroy asteroids and beat your score.",
 
-let running=false;
-let enemyTimer=null;
-let attackCooldown=false;
+g2n:"Speed Racer",
+g2d:"Avoid the enemy cars and try to beat your best score.",
 
-const player=
-document.getElementById("player");
+g3n:"Zombie Attack",
+g3d:"Shoot the zombies, survive and increase your score.",
 
-const enemy=
-document.getElementById("enemy");
+g4n:"Sword Battle",
+g4d:"Move, attack and defeat the enemy warrior.",
 
-const hpFill=
-document.getElementById("hpFill");
+color:"#ff3030"
 
-const attackEffect=
-document.getElementById("attackEffect");
+};
 
 
-function startGame(){
+function setting(key){
 
-if(running){
-return;
+return localStorage.getItem(
+"ebad_"+key
+)||defaults[key];
+
 }
 
-score=0;
-lives=3;
-level=1;
-enemyHP=100;
 
-playerX=55;
-enemyX=55;
+function loadSettings(){
 
-running=true;
+document.getElementById(
+"logoText"
+).textContent=
+setting("site").replace(
+/\s+Gaming$/i,
+""
+);
 
-document.getElementById("score").textContent=0;
-document.getElementById("lives").textContent=3;
-document.getElementById("level").textContent=1;
 
-document.getElementById("message").textContent=
-"⚔️ Battle started! Defeat the enemy.";
+document.getElementById(
+"footText"
+).textContent=
+setting("site");
 
-update();
 
-clearInterval(enemyTimer);
+document.getElementById(
+"g1n"
+).textContent=
+setting("g1n");
 
-enemyTimer=
-setInterval(
-enemyAttack,
-1100
+
+document.getElementById(
+"g1d"
+).textContent=
+setting("g1d");
+
+
+document.getElementById(
+"g2n"
+).textContent=
+setting("g2n");
+
+
+document.getElementById(
+"g2d"
+).textContent=
+setting("g2d");
+
+
+document.getElementById(
+"g3n"
+).textContent=
+setting("g3n");
+
+
+document.getElementById(
+"g3d"
+).textContent=
+setting("g3d");
+
+
+document.getElementById(
+"g4n"
+).textContent=
+setting("g4n");
+
+
+document.getElementById(
+"g4d"
+).textContent=
+setting("g4d");
+
+
+document.documentElement.style.setProperty(
+"--main",
+setting("color")
 );
 
 }
 
 
-function update(){
-
-player.style.left=
-playerX+"px";
-
-enemy.style.right=
-enemyX+"px";
-
-hpFill.style.width=
-enemyHP+"%";
-
-}
-
-
-function moveLeft(){
-
-if(!running){
-return;
-}
-
-playerX-=18;
-
-if(playerX<5){
-playerX=5;
-}
-
-update();
-
-}
-
-
-function moveRight(){
-
-if(!running){
-return;
-}
-
-playerX+=18;
-
-if(playerX>245){
-playerX=245;
-}
-
-update();
-
-}
-
-
-function attack(){
-
-if(!running){
-return;
-}
-
-if(attackCooldown){
-return;
-}
-
-attackCooldown=true;
-
-attackEffect.style.left=
-(playerX+25)+"px";
-
-attackEffect.style.bottom=
-"80px";
-
-attackEffect.classList.remove(
-"show-hit"
-);
-
-void attackEffect.offsetWidth;
-
-attackEffect.classList.add(
-"show-hit"
-);
-
-let enemyPosition=
-260-enemyX;
-
-let distance=
-Math.abs(
-playerX-enemyPosition
-);
-
-if(distance<105){
-
-enemyHP-=25;
-
-if(enemyHP<0){
-enemyHP=0;
-}
-
-update();
-
-document.getElementById(
-"message"
-).textContent=
-"⚔️ HIT! Enemy HP: "+
-enemyHP+"%";
-
-if(enemyHP<=0){
-enemyDefeated();
-}
-
-}else{
-
-document.getElementById(
-"message"
-).textContent=
-"🗡️ Move closer to attack!";
-
-}
-
-setTimeout(
-function(){
-attackCooldown=false;
-},
-400
-);
-
-}
-
-
-function enemyAttack(){
-
-if(!running){
-return;
-}
-
-let enemyPosition=
-260-enemyX;
-
-let distance=
-Math.abs(
-playerX-enemyPosition
-);
-
-if(distance<110){
-
-lives--;
-
-document.getElementById(
-"lives"
-).textContent=
-lives;
-
-document.getElementById(
-"message"
-).textContent=
-"💥 Enemy attacked!";
-
-if(lives<=0){
-gameOver();
-}
-
-}
-
-}
-
-
-function enemyDefeated(){
-
-score++;
-
-level=
-Math.floor(
-score/5
-)+1;
-
-enemyHP=100;
-
-enemyX=
-55+
-Math.random()*90;
-
-document.getElementById(
-"score"
-).textContent=
-score;
-
-document.getElementById(
-"level"
-).textContent=
-level;
-
-document.getElementById(
-"message"
-).textContent=
-"🏆 Enemy defeated! Next warrior!";
-
-update();
-
-}
-
-
-function gameOver(){
-
-running=false;
-
-clearInterval(enemyTimer);
-
-document.getElementById(
-"message"
-).textContent=
-"💀 GAME OVER! Score: "+
-score;
-
-}
-
-
-function restartGame(){
-
-running=false;
-
-clearInterval(enemyTimer);
-
-score=0;
-lives=3;
-level=1;
-
-enemyHP=100;
-
-playerX=55;
-enemyX=55;
-
-document.getElementById(
-"score"
-).textContent=0;
-
-document.getElementById(
-"lives"
-).textContent=3;
-
-document.getElementById(
-"level"
-).textContent=1;
-
-document.getElementById(
-"message"
-).textContent=
-"Press START BATTLE.";
-
-update();
-
-}
-
-
-/* Keyboard controls */
-
-document.addEventListener(
-"keydown",
-function(e){
-
-if(
-e.target &&
-(
-e.target.tagName==="INPUT" ||
-e.target.tagName==="TEXTAREA"
-)
-){
-return;
-}
-
-if(
-e.key==="ArrowLeft"
-){
-moveLeft();
-}
-
-if(
-e.key==="ArrowRight"
-){
-moveRight();
-}
-
-if(
-e.code==="Space"
-){
-e.preventDefault();
-attack();
-}
-
-});
-
-
-update();
+loadSettings();
 
 </script>
 
