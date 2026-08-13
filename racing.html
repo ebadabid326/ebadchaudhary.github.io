@@ -50,7 +50,8 @@ h1{
     margin-bottom:15px;
 }
 
-/* NAME */
+/* NAME BOX */
+
 .player-name-box{
     width:min(380px,94vw);
     margin:0 auto 15px;
@@ -80,6 +81,8 @@ h1{
     font-size:18px;
     font-family:Arial,sans-serif;
     outline:none;
+    direction:ltr;
+    text-align:left;
 }
 
 .player-name-box input:focus{
@@ -88,6 +91,7 @@ h1{
 }
 
 /* INFO */
+
 .info{
     display:flex;
     justify-content:center;
@@ -111,6 +115,7 @@ h1{
 }
 
 /* GAME */
+
 .game-frame{
     width:min(400px,95vw);
     margin:0 auto;
@@ -170,6 +175,9 @@ h1{
         #34373d 50%,
         #202227 100%
     );
+    box-shadow:
+        inset 12px 0 18px rgba(0,0,0,.3),
+        inset -12px 0 18px rgba(0,0,0,.3);
 }
 
 .shoulder{
@@ -208,6 +216,7 @@ h1{
 }
 
 /* CARS */
+
 .car{
     position:absolute;
     width:60px;
@@ -307,6 +316,7 @@ h1{
 }
 
 /* BUTTONS */
+
 .message{
     min-height:30px;
     margin:13px 0 7px;
@@ -326,14 +336,19 @@ h1{
     border-radius:10px;
     background:var(--accent);
     color:#fff;
-    padding:12px 20px;
-    font-size:16px;
+    padding:12px 18px;
+    font-size:15px;
     font-weight:800;
     cursor:pointer;
 }
 
 .btn:hover{
     filter:brightness(1.08);
+}
+
+.reset-btn{
+    background:#292c36;
+    border:1px solid #474b5b;
 }
 
 .mobile{
@@ -353,10 +368,6 @@ h1{
     font-size:25px;
     font-weight:800;
     cursor:pointer;
-}
-
-.control:active{
-    transform:scale(.97);
 }
 
 .help{
@@ -387,7 +398,8 @@ h1{
 Avoid traffic and beat your best score.
 </p>
 
-<!-- NAME -->
+<!-- PLAYER NAME -->
+
 <div class="player-name-box">
 
 <label for="playerName">
@@ -399,12 +411,14 @@ id="playerName"
 name="playerName"
 type="text"
 maxlength="30"
-placeholder="Enter your name"
 autocomplete="off"
 spellcheck="false"
+placeholder="Enter your name"
 >
 
 </div>
+
+<!-- INFO -->
 
 <div class="info">
 
@@ -438,6 +452,7 @@ id="bestPlayer"
 </div>
 
 <!-- GAME -->
+
 <div class="game-frame">
 
 <div class="game-box">
@@ -456,7 +471,11 @@ id="bestPlayer"
 <div class="lane two" id="lane2"></div>
 
 <!-- PLAYER -->
-<div class="car player" id="player">
+
+<div
+class="car player"
+id="player"
+>
 
 <div class="body-car"></div>
 <div class="roof"></div>
@@ -474,7 +493,11 @@ id="bestPlayer"
 </div>
 
 <!-- ENEMY 1 -->
-<div class="car enemy yellow" id="enemy1">
+
+<div
+class="car enemy yellow"
+id="enemy1"
+>
 
 <div class="body-car"></div>
 <div class="roof"></div>
@@ -492,7 +515,11 @@ id="bestPlayer"
 </div>
 
 <!-- ENEMY 2 -->
-<div class="car enemy blue" id="enemy2">
+
+<div
+class="car enemy blue"
+id="enemy2"
+>
 
 <div class="body-car"></div>
 <div class="roof"></div>
@@ -510,7 +537,11 @@ id="bestPlayer"
 </div>
 
 <!-- ENEMY 3 -->
-<div class="car enemy white" id="enemy3">
+
+<div
+class="car enemy white"
+id="enemy3"
+>
 
 <div class="body-car"></div>
 <div class="roof"></div>
@@ -552,9 +583,15 @@ onclick="restartGame()"
 RESTART
 </button>
 
+<button
+class="btn reset-btn"
+onclick="resetBestScore()"
+>
+🗑️ RESET BEST SCORE
+</button>
+
 </div>
 
-<!-- ONLY BUTTON CONTROLS -->
 <div class="mobile">
 
 <button
@@ -574,36 +611,46 @@ onclick="moveRight()"
 </div>
 
 <p class="help">
-Mobile: use the buttons to move the car.
+Computer: ← → to move<br>
+Mobile: use the buttons
 </p>
 
 </div>
+
 </div>
+
 
 <script>
 
 /* =========================
-   NAME
+   PLAYER NAME
 ========================= */
 
 const playerNameInput =
-document.getElementById("playerName");
+document.getElementById(
+"playerName"
+);
 
-const oldName =
-localStorage.getItem("ebadPlayerName");
+const savedName =
+localStorage.getItem(
+"ebadPlayerName"
+);
 
-if(oldName){
-    playerNameInput.value = oldName;
+if(savedName){
+    playerNameInput.value =
+        savedName;
 }
 
 playerNameInput.addEventListener(
-    "input",
-    function(){
-        localStorage.setItem(
-            "ebadPlayerName",
-            this.value
-        );
-    }
+"input",
+function(){
+
+    localStorage.setItem(
+        "ebadPlayerName",
+        this.value
+    );
+
+}
 );
 
 
@@ -624,19 +671,29 @@ let timer = null;
 
 let best =
 Number(
-    localStorage.getItem("ebadBestScore")
+    localStorage.getItem(
+        "ebadBestScore"
+    )
 ) || 0;
 
 let bestPlayer =
-localStorage.getItem("ebadBestPlayer") || "";
+localStorage.getItem(
+    "ebadBestPlayer"
+) || "";
 
-document.getElementById("best").textContent = best;
+
+document.getElementById(
+"best"
+).textContent =
+best;
 
 showBestPlayer();
 
 
 const player =
-document.getElementById("player");
+document.getElementById(
+"player"
+);
 
 const enemies = [
     document.getElementById("enemy1"),
@@ -662,7 +719,10 @@ const lanes = [
 
 function showBestPlayer(){
 
-    if(bestPlayer && best > 0){
+    if(
+        bestPlayer &&
+        best > 0
+    ){
 
         document.getElementById(
             "bestPlayer"
@@ -683,19 +743,28 @@ function showBestPlayer(){
 
 
 /* =========================
-   RESET CARS
+   RESET ENEMIES
 ========================= */
 
 function resetEnemies(){
 
-    enemies[0].style.left = "42px";
-    enemies[0].style.top = "-120px";
+    enemies[0].style.left =
+        "42px";
 
-    enemies[1].style.left = "132px";
-    enemies[1].style.top = "-360px";
+    enemies[0].style.top =
+        "-120px";
 
-    enemies[2].style.left = "222px";
-    enemies[2].style.top = "-600px";
+    enemies[1].style.left =
+        "132px";
+
+    enemies[1].style.top =
+        "-360px";
+
+    enemies[2].style.left =
+        "222px";
+
+    enemies[2].style.top =
+        "-600px";
 }
 
 resetEnemies();
@@ -773,12 +842,12 @@ function startGame(){
 
 
 /* =========================
-   UPDATE
+   GAME UPDATE
 ========================= */
 
 function updateGame(){
 
-    /* Lane lines */
+    /* Road lane lines */
 
     laneMarks.forEach(
         lane => {
@@ -824,8 +893,6 @@ function updateGame(){
                 y + "px";
 
 
-            /* Car passed */
-
             if(y > 550){
 
                 score++;
@@ -840,8 +907,6 @@ function updateGame(){
                 updateLevel();
             }
 
-
-            /* Collision */
 
             if(
                 checkCollision(car)
@@ -870,6 +935,7 @@ function updateGame(){
                         lives;
                 }
             }
+
         }
     );
 }
@@ -912,7 +978,7 @@ function checkCollision(car){
     const e =
         car.getBoundingClientRect();
 
-    return (
+    return(
         p.left < e.right - 10 &&
         p.right > e.left + 10 &&
         p.top < e.bottom - 10 &&
@@ -996,6 +1062,57 @@ function moveRight(){
     player.style.left =
         playerX + "px";
 }
+
+
+/* =========================
+   ARROW KEYS
+========================= */
+
+/*
+   Name field mein koi bhi letter
+   type karne mein problem nahi hogi.
+
+   Sirf ArrowLeft aur ArrowRight
+   game ko move karte hain.
+*/
+
+document.addEventListener(
+"keydown",
+function(event){
+
+    const activeElement =
+        document.activeElement;
+
+    const typing =
+        activeElement &&
+        (
+            activeElement.tagName === "INPUT" ||
+            activeElement.tagName === "TEXTAREA"
+        );
+
+    if(typing){
+        return;
+    }
+
+    if(
+        event.key === "ArrowLeft"
+    ){
+
+        event.preventDefault();
+
+        moveLeft();
+    }
+
+    if(
+        event.key === "ArrowRight"
+    ){
+
+        event.preventDefault();
+
+        moveRight();
+    }
+
+});
 
 
 /* =========================
@@ -1100,6 +1217,47 @@ function restartGame(){
         "message"
     ).textContent =
         "Enter your name and press START.";
+}
+
+
+/* =========================
+   RESET BEST SCORE
+========================= */
+
+function resetBestScore(){
+
+    const confirmed =
+        confirm(
+            "Kya aap Best Score aur Best Player delete karna chahte hain?"
+        );
+
+    if(!confirmed){
+        return;
+    }
+
+    localStorage.removeItem(
+        "ebadBestScore"
+    );
+
+    localStorage.removeItem(
+        "ebadBestPlayer"
+    );
+
+    best = 0;
+
+    bestPlayer = "";
+
+    document.getElementById(
+        "best"
+    ).textContent =
+        "0";
+
+    showBestPlayer();
+
+    document.getElementById(
+        "message"
+    ).textContent =
+        "✅ Best Score reset ho gaya!";
 }
 
 </script>
