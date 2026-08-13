@@ -2,479 +2,108 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Zombie Attack - Ebad Gaming</title>
-
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-body{
-  font-family:Arial,sans-serif;
-  background:#070a08;
-  color:#fff;
-  text-align:center;
-}
-
-header{
-  background:#11151a;
-  padding:18px;
-  border-bottom:2px solid #36d64f;
-}
-
-header a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-h1{
-  margin:25px 0 10px;
-  color:#36d64f;
-}
-
-.info{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin:18px;
-}
-
-.box{
-  background:#141a16;
-  border:1px solid #293d2d;
-  padding:10px 18px;
-  border-radius:10px;
-  font-weight:bold;
-}
-
-.game{
-  position:relative;
-  width:360px;
-  height:540px;
-  max-width:92vw;
-  margin:20px auto;
-  overflow:hidden;
-  border:4px solid #36d64f;
-  border-radius:14px;
-  background:
-    radial-gradient(circle at 30% 30%,#28352b,#101511 45%,#060806);
-}
-
-.player{
-  position:absolute;
-  bottom:20px;
-  left:150px;
-  font-size:52px;
-  z-index:5;
-}
-
-.zombie{
-  position:absolute;
-  top:-80px;
-  font-size:48px;
-  z-index:4;
-}
-
-.bullet{
-  position:absolute;
-  width:7px;
-  height:20px;
-  background:#ffe600;
-  border-radius:6px;
-  z-index:6;
-}
-
-.message{
-  min-height:30px;
-  color:#ffd84d;
-  font-weight:bold;
-  margin:10px;
-}
-
-button{
-  border:0;
-  background:#36d64f;
-  color:#071008;
-  padding:12px 20px;
-  border-radius:9px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-  margin:5px;
-}
-
-button:hover{
-  filter:brightness(1.1);
-}
-
-.controls{
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  margin-top:10px;
-}
-
-.control{
-  width:80px;
-  height:55px;
-  font-size:25px;
-}
-
-.help{
-  color:#aaa;
-  margin:12px 0 25px;
-}
-
-@media(max-width:500px){
-  .game{
-    width:320px;
-    height:500px;
-  }
-}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#070a08;color:#fff;text-align:center}
+header{background:#11151a;padding:18px;border-bottom:2px solid #36d64f}
+header a{color:#fff;text-decoration:none;font-weight:bold}
+h1{margin:25px 0 10px;color:#36d64f}
+.info{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:18px}
+.box{background:#141a16;border:1px solid #293d2d;padding:10px 18px;border-radius:10px;font-weight:bold}
+.game{position:relative;width:360px;height:540px;max-width:92vw;margin:20px auto;overflow:hidden;border:4px solid #36d64f;border-radius:14px;background:radial-gradient(circle at 30% 30%,#28352b,#101511 45%,#060806)}
+.player{position:absolute;bottom:20px;left:150px;font-size:52px;z-index:5}
+.zombie{position:absolute;top:-80px;font-size:48px;z-index:4}
+.bullet{position:absolute;width:7px;height:20px;background:#ffe600;border-radius:6px;z-index:6}
+.message{min-height:30px;color:#ffd84d;font-weight:bold;margin:10px}
+button{border:0;background:#36d64f;color:#071008;padding:12px 20px;border-radius:9px;font-size:16px;font-weight:bold;cursor:pointer;margin:5px}
+.controls{display:flex;justify-content:center;gap:30px;margin-top:10px}
+.control{width:80px;height:55px;font-size:25px}
+.help{color:#aaa;margin:12px 0 25px}
+@media(max-width:500px){.game{width:320px;height:500px}}
 </style>
 </head>
-
 <body>
-
-<header>
-<a href="index.html">← Back to Ebad Gaming</a>
-</header>
-
+<header><a href="index.html">← Back to Ebad Gaming</a></header>
 <h1>🧟 Zombie Attack</h1>
-
 <div class="info">
-  <div class="box">🎯 Score: <span id="score">0</span></div>
-  <div class="box">❤️ Lives: <span id="lives">3</span></div>
-  <div class="box">👹 Zombies: <span id="zombies">0</span></div>
+<div class="box">🎯 Score: <span id="score">0</span></div>
+<div class="box">❤️ Lives: <span id="lives">3</span></div>
+<div class="box">👹 Zombies: <span id="zombies">0</span></div>
 </div>
-
-<div class="game" id="game">
-
-  <div class="player" id="player">🔫</div>
-
-</div>
-
-<div class="message" id="message">
-Press START to begin!
-</div>
-
+<div class="game" id="game"><div class="player" id="player">🔫</div></div>
+<div class="message" id="message">Press START to begin!</div>
 <button onclick="startGame()">START GAME</button>
 <button onclick="restartGame()">RESTART</button>
-
 <div class="controls">
-  <button class="control" onclick="moveLeft()">⬅️</button>
-  <button class="control" onclick="shoot()">🔫</button>
-  <button class="control" onclick="moveRight()">➡️</button>
+<button class="control" onclick="moveLeft()">⬅️</button>
+<button class="control" onclick="shoot()">🔫</button>
+<button class="control" onclick="moveRight()">➡️</button>
 </div>
-
-<p class="help">
-Computer: ← → to move, SPACE to shoot<br>
-Mobile: use the buttons
-</p>
-
+<p class="help">Computer: ← → to move, SPACE to shoot<br>Mobile: use the buttons</p>
 <script>
-
-let playerX = 150;
-
-let score = 0;
-let lives = 3;
-let zombieCount = 0;
-
-let running = false;
-
-let moveTimer = null;
-let spawnTimer = null;
-
-let zombies = [];
-let bullets = [];
-
-const game = document.getElementById("game");
-const player = document.getElementById("player");
-
+let playerX=150,score=0,lives=3,running=false,moveTimer=null,spawnTimer=null,zombies=[],bullets=[];
+const game=document.getElementById("game"),player=document.getElementById("player");
 function startGame(){
-
-  if(running) return;
-
-  running = true;
-
-  score = 0;
-  lives = 3;
-  zombieCount = 0;
-
-  playerX = 150;
-
-  updateInfo();
-
-  document.getElementById("message").textContent =
-    "🧟 Shoot the zombies!";
-
-  spawnZombie();
-
-  moveTimer = setInterval(gameLoop,30);
-
-  spawnTimer = setInterval(spawnZombie,1200);
+if(running)return;
+running=true;score=0;lives=3;playerX=150;updateInfo();
+document.getElementById("message").textContent="🧟 Shoot the zombies!";
+spawnZombie();
+moveTimer=setInterval(gameLoop,30);
+spawnTimer=setInterval(spawnZombie,1200);
 }
-
 function spawnZombie(){
-
-  if(!running) return;
-
-  const zombie = document.createElement("div");
-
-  zombie.className = "zombie";
-  zombie.textContent = "🧟";
-
-  const lane =
-    Math.floor(Math.random()*6);
-
-  zombie.style.left =
-    (15 + lane*55) + "px";
-
-  zombie.style.top = "-70px";
-
-  game.appendChild(zombie);
-
-  zombies.push(zombie);
-
-  zombieCount++;
-
-  updateInfo();
+if(!running)return;
+const z=document.createElement("div");z.className="zombie";z.textContent="🧟";
+z.style.left=(15+Math.floor(Math.random()*6)*55)+"px";z.style.top="-70px";
+game.appendChild(z);zombies.push(z);updateInfo();
 }
-
 function shoot(){
-
-  if(!running) return;
-
-  const bullet = document.createElement("div");
-
-  bullet.className = "bullet";
-
-  bullet.style.left =
-    (playerX + 25) + "px";
-
-  bullet.style.top =
-    "445px";
-
-  game.appendChild(bullet);
-
-  bullets.push(bullet);
+if(!running)return;
+const b=document.createElement("div");b.className="bullet";b.style.left=(playerX+25)+"px";b.style.top="445px";
+game.appendChild(b);bullets.push(b);
 }
-
-function gameLoop(){
-
-  moveZombies();
-  moveBullets();
-  checkCollisions();
-
-}
-
+function gameLoop(){moveZombies();moveBullets();checkCollisions()}
 function moveZombies(){
-
-  for(let i=zombies.length-1;i>=0;i--){
-
-    const zombie = zombies[i];
-
-    let y =
-      parseFloat(zombie.style.top);
-
-    y += 3.5;
-
-    zombie.style.top =
-      y + "px";
-
-    if(y > 500){
-
-      zombie.remove();
-
-      zombies.splice(i,1);
-
-      lives--;
-
-      updateInfo();
-
-      if(lives <= 0){
-
-        gameOver();
-
-        return;
-
-      }else{
-
-        document.getElementById("message").textContent =
-          "💥 A zombie got through!";
-
-      }
-
-    }
-  }
+for(let i=zombies.length-1;i>=0;i--){
+const z=zombies[i];let y=parseFloat(z.style.top)||-70;y+=3.5;z.style.top=y+"px";
+if(y>500){
+z.remove();zombies.splice(i,1);lives--;updateInfo();
+if(lives<=0){gameOver();return}
+document.getElementById("message").textContent="💥 A zombie got through!";
 }
-
+}
+}
 function moveBullets(){
-
-  for(let i=bullets.length-1;i>=0;i--){
-
-    const bullet = bullets[i];
-
-    let y =
-      parseFloat(bullet.style.top);
-
-    y -= 10;
-
-    bullet.style.top =
-      y + "px";
-
-    if(y < -30){
-
-      bullet.remove();
-
-      bullets.splice(i,1);
-
-    }
-  }
+for(let i=bullets.length-1;i>=0;i--){
+const b=bullets[i];let y=parseFloat(b.style.top)||445;y-=10;b.style.top=y+"px";
+if(y<-30){b.remove();bullets.splice(i,1)}
 }
-
+}
 function checkCollisions(){
-
-  for(let b=bullets.length-1;b>=0;b--){
-
-    const bullet =
-      bullets[b].getBoundingClientRect();
-
-    for(let z=zombies.length-1;z>=0;z--){
-
-      const zombie =
-        zombies[z].getBoundingClientRect();
-
-      if(
-        bullet.left < zombie.right &&
-        bullet.right > zombie.left &&
-        bullet.top < zombie.bottom &&
-        bullet.bottom > zombie.top
-      ){
-
-        bullets[b].remove();
-        zombies[z].remove();
-
-        bullets.splice(b,1);
-        zombies.splice(z,1);
-
-        score++;
-
-        updateInfo();
-
-        document.getElementById("message").textContent =
-          "💥 Zombie destroyed!";
-
-        break;
-      }
-    }
-  }
+for(let b=bullets.length-1;b>=0;b--){
+const br=bullets[b].getBoundingClientRect();
+for(let z=zombies.length-1;z>=0;z--){
+const zr=zombies[z].getBoundingClientRect();
+if(br.left<zr.right&&br.right>zr.left&&br.top<zr.bottom&&br.bottom>zr.top){
+bullets[b].remove();zombies[z].remove();bullets.splice(b,1);zombies.splice(z,1);score++;updateInfo();
+document.getElementById("message").textContent="💥 Zombie destroyed!";break;
 }
-
-function moveLeft(){
-
-  if(!running) return;
-
-  playerX -= 30;
-
-  if(playerX < 5){
-    playerX = 5;
-  }
-
-  player.style.left =
-    playerX + "px";
 }
-
-function moveRight(){
-
-  if(!running) return;
-
-  playerX += 30;
-
-  if(playerX > 300){
-    playerX = 300;
-  }
-
-  player.style.left =
-    playerX + "px";
 }
-
-document.addEventListener(
-  "keydown",
-  function(e){
-
-    if(e.key === "ArrowLeft"){
-      moveLeft();
-    }
-
-    if(e.key === "ArrowRight"){
-      moveRight();
-    }
-
-    if(e.code === "Space"){
-      e.preventDefault();
-      shoot();
-    }
-
-  }
-);
-
-function updateInfo(){
-
-  document.getElementById("score").textContent =
-    score;
-
-  document.getElementById("lives").textContent =
-    lives;
-
-  document.getElementById("zombies").textContent =
-    zombies.length;
 }
-
-function gameOver(){
-
-  clearInterval(moveTimer);
-  clearInterval(spawnTimer);
-
-  running = false;
-
-  document.getElementById("message").textContent =
-    "💀 GAME OVER! Score: " + score;
-}
-
+function moveLeft(){if(!running)return;playerX=Math.max(5,playerX-30);player.style.left=playerX+"px"}
+function moveRight(){if(!running)return;playerX=Math.min(300,playerX+30);player.style.left=playerX+"px"}
+document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")moveLeft();if(e.key==="ArrowRight")moveRight();if(e.code==="Space"){e.preventDefault();shoot()}});
+function updateInfo(){document.getElementById("score").textContent=score;document.getElementById("lives").textContent=lives;document.getElementById("zombies").textContent=zombies.length}
+function gameOver(){clearInterval(moveTimer);clearInterval(spawnTimer);running=false;document.getElementById("message").textContent="💀 GAME OVER! Score: "+score}
 function restartGame(){
-
-  clearInterval(moveTimer);
-  clearInterval(spawnTimer);
-
-  running = false;
-
-  zombies.forEach(z => z.remove());
-  bullets.forEach(b => b.remove());
-
-  zombies = [];
-  bullets = [];
-
-  score = 0;
-  lives = 3;
-  zombieCount = 0;
-  playerX = 150;
-
-  player.style.left =
-    playerX + "px";
-
-  updateInfo();
-
-  document.getElementById("message").textContent =
-    "Press START to begin!";
+clearInterval(moveTimer);clearInterval(spawnTimer);running=false;
+zombies.forEach(z=>z.remove());bullets.forEach(b=>b.remove());zombies=[];bullets=[];
+score=0;lives=3;playerX=150;player.style.left=playerX+"px";updateInfo();
+document.getElementById("message").textContent="Press START to begin!";
 }
-
 </script>
-
 </body>
 </html>
