@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Ebad Gaming</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 :root{--main:#ff3030}
-body{font-family:Arial,Helvetica,sans-serif;background:#080812;color:#fff;line-height:1.6}
-header{position:sticky;top:0;z-index:20;background:#11111d;border-bottom:2px solid var(--main);padding:16px 20px}
+body{font-family:Arial,sans-serif;background:#080812;color:#fff;line-height:1.6}
+header{background:#11111d;border-bottom:2px solid var(--main);position:sticky;top:0;z-index:20;padding:16px 20px}
 .nav{max-width:1150px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
 .logo{font-size:25px;font-weight:800;color:var(--main)}.logo span{color:#fff}
-nav a{color:#fff;text-decoration:none;margin-left:18px;font-weight:700}nav a:hover{color:var(--main)}
+nav a{color:#fff;text-decoration:none;margin-left:18px;font-weight:700}
+nav a:hover{color:var(--main)}
 .hero{min-height:430px;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px 20px;background:radial-gradient(circle,#29204e,#10101c 55%,#080812)}
 .hero h1{font-size:clamp(42px,7vw,76px)}.hero h1 span{color:var(--main)}
 .hero p{color:#ccc;font-size:20px;margin:12px 0 24px}
@@ -68,8 +69,8 @@ footer{padding:28px;text-align:center;background:#050509;color:#888}
 <div class="games">
 <div class="card"><div class="icon">🚀</div><h3 id="g1n">Space Rocket</h3><p id="g1d">Fly your rocket and beat your score.</p><button class="btn" onclick="soon('Space Rocket')">Play</button></div>
 <div class="card"><div class="icon">🏎️</div><h3 id="g2n">Speed Racer</h3><p id="g2d">Drive fast and avoid enemy cars.</p><a class="btn" href="#racing">Play</a></div>
-<div class="card"><div class="icon">🧟</div><h3 id="g3n">Zombie Attack</h3><p id="g3d">Survive the zombie attack.</p><button class="btn" onclick="soon('Zombie Attack'Play)"></button></div>
-<div class="card"><div class="icon">⚔️</div><h3 id="g4n">Sword Battle</h3><p id="g4d">Become the ultimate warrior.</p><button class="btn" onclick="soon('Sword Battle')">Pl<a class="btn" href="zombie.html">Play</a>ay</button></div>
+<div class="card"><div class="icon">🧟</div><h3 id="g3n">Zombie Attack</h3><p id="g3d">Survive the zombie attack.</p><a class="btn" href="zombie.html">Play</a></div>
+<div class="card"><div class="icon">⚔️</div><h3 id="g4n">Sword Battle</h3><p id="g4d">Become the ultimate warrior.</p><button class="btn" onclick="soon('Sword Battle')">Play</button></div>
 </div>
 </section>
 
@@ -90,7 +91,7 @@ footer{padding:28px;text-align:center;background:#050509;color:#888}
 <div class="message" id="message">Press START to begin!</div>
 <button class="btn" onclick="startGame()">START GAME</button>
 <button class="btn" onclick="restartGame()">RESTART</button>
-<div class="controls"><button class="control" onclick="left()">⬅️</button><button class="control" onclick="right()">➡️</button></div>
+<div class="controls"><button class="control" onclick="moveLeft()">⬅️</button><button class="control" onclick="moveRight()">➡️</button></div>
 <p class="help">Computer: ← → or A / D<br>Mobile: use the buttons</p>
 </div>
 </section>
@@ -116,41 +117,81 @@ document.documentElement.style.setProperty("--main",s("color"));
 }
 loadSettings();
 
-let px=132,score=0,lives=3,level=1,speed=3.5,running=false,timer=null;
-let best=Number(localStorage.getItem("ebadBestScore"))||0;
-document.getElementById("best").textContent=best;
+let playerX=132,score=0,lives=3,level=1,speed=3.5,gameRunning=false,gameTimer=null;
+let bestScore=Number(localStorage.getItem("ebadBestScore"))||0;
+document.getElementById("best").textContent=bestScore;
 const player=document.getElementById("player");
 const enemies=[document.getElementById("enemy1"),document.getElementById("enemy2"),document.getElementById("enemy3")];
 const lines=[document.getElementById("line1"),document.getElementById("line2")];
-function resetAll(){
+
+function resetAllEnemies(){
 enemies[0].style.left="30px";enemies[0].style.top="-140px";
 enemies[1].style.left="132px";enemies[1].style.top="-380px";
 enemies[2].style.left="234px";enemies[2].style.top="-620px";
 }
-resetAll();
+resetAllEnemies();
+
 function startGame(){
-if(running)return;
-running=true;score=0;lives=3;level=1;speed=3.5;px=132;
-document.getElementById("score").textContent=0;document.getElementById("lives").textContent=3;document.getElementById("level").textContent=1;
-player.style.left="132px";resetAll();document.getElementById("message").textContent="🔥 GO! Avoid the cars!";
-timer=setInterval(tick,30);
+if(gameRunning)return;
+gameRunning=true;score=0;lives=3;level=1;speed=3.5;playerX=132;
+document.getElementById("score").textContent=0;
+document.getElementById("lives").textContent=3;
+document.getElementById("level").textContent=1;
+player.style.left="132px";resetAllEnemies();
+document.getElementById("message").textContent="🔥 GO! Avoid the cars!";
+gameTimer=setInterval(updateRacing,30);
 }
-function tick(){
+function updateRacing(){
 lines.forEach(line=>{let y=parseFloat(line.style.top);if(isNaN(y))y=-100;y+=speed*1.6;if(y>520)y=-100;line.style.top=y+"px";});
 enemies.forEach(car=>{
 let y=parseFloat(car.style.top);if(isNaN(y))y=-100;y+=speed;car.style.top=y+"px";
 if(y>540){score++;document.getElementById("score").textContent=score;resetEnemy(car);updateLevel();}
-if(hit(car)){resetEnemy(car);lives--;document.getElementById("lives").textContent=lives;if(lives<=0)gameOver();else document.getElementById("message").textContent="💥 Crash! Lives left: "+lives;}
+if(checkCollision(car)){resetEnemy(car);lives--;document.getElementById("lives").textContent=lives;if(lives<=0)gameOver();else document.getElementById("message").textContent="💥 Crash! Lives left: "+lives;}
 });
 }
-function resetEnemy(car){const lanes=[30,132,234];car.style.left=lanes[Math.floor(Math.random()*lanes.length)]+"px";car.style.top=(-160-Math.random()*360)+"px";}
-function hit(car){const a=player.getBoundingClientRect(),b=car.getBoundingClientRect();return a.left<b.right-8&&a.right>b.left+8&&a.top<b.bottom-8&&a.bottom>b.top+8;}
-function updateLevel(){level=Math.floor(score/10)+1;speed=3.5+(level-1)*0.7;document.getElementById("level").textContent=level;if(score>0&&score%10===0)document.getElementById("message").textContent="⚡ LEVEL "+level+"!";}
-function left(){if(!running)return;px=Math.max(5,px-35);player.style.left=px+"px";}
-function right(){if(!running)return;px=Math.min(260,px+35);player.style.left=px+"px";}
-document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a")left();if(e.key==="ArrowRight"||e.key.toLowerCase()==="d")right();});
-function gameOver(){clearInterval(timer);running=false;if(score>best){best=score;localStorage.setItem("ebadBestScore",best);document.getElementById("best").textContent=best;document.getElementById("message").textContent="🏆 NEW HIGH SCORE: "+score+"!";}else document.getElementById("message").textContent="💥 GAME OVER! Score: "+score+" | Best: "+best;}
-function restartGame(){clearInterval(timer);running=false;score=0;lives=3;level=1;speed=3.5;px=132;document.getElementById("score").textContent=0;document.getElementById("lives").textContent=3;document.getElementById("level").textContent=1;player.style.left="132px";resetAll();document.getElementById("message").textContent="Press START to begin!";}
+function resetEnemy(car){
+const lanes=[30,132,234];
+car.style.left=lanes[Math.floor(Math.random()*lanes.length)]+"px";
+car.style.top=(-160-Math.random()*360)+"px";
+}
+function checkCollision(car){
+const a=player.getBoundingClientRect(),b=car.getBoundingClientRect();
+return a.left<b.right-8&&a.right>b.left+8&&a.top<b.bottom-8&&a.bottom>b.top+8;
+}
+function updateLevel(){
+level=Math.floor(score/10)+1;
+speed=3.5+(level-1)*0.7;
+document.getElementById("level").textContent=level;
+if(score>0&&score%10===0)document.getElementById("message").textContent="⚡ LEVEL "+level+"!";
+}
+function moveLeft(){
+if(!gameRunning)return;
+playerX=Math.max(5,playerX-35);player.style.left=playerX+"px";
+}
+function moveRight(){
+if(!gameRunning)return;
+playerX=Math.min(260,playerX+35);player.style.left=playerX+"px";
+}
+document.addEventListener("keydown",e=>{
+if(e.key==="ArrowLeft"||e.key.toLowerCase()==="a")moveLeft();
+if(e.key==="ArrowRight"||e.key.toLowerCase()==="d")moveRight();
+});
+function gameOver(){
+clearInterval(gameTimer);gameRunning=false;
+if(score>bestScore){
+bestScore=score;localStorage.setItem("ebadBestScore",bestScore);
+document.getElementById("best").textContent=bestScore;
+document.getElementById("message").textContent="🏆 NEW HIGH SCORE: "+score+"!";
+}else{
+document.getElementById("message").textContent="💥 GAME OVER! Score: "+score+" | Best: "+bestScore;
+}
+}
+function restartGame(){
+clearInterval(gameTimer);gameRunning=false;score=0;lives=3;level=1;speed=3.5;playerX=132;
+document.getElementById("score").textContent=0;document.getElementById("lives").textContent=3;document.getElementById("level").textContent=1;
+player.style.left="132px";resetAllEnemies();
+document.getElementById("message").textContent="Press START to begin!";
+}
 function soon(name){alert(name+" 🎮\n\nComing soon!");}
 </script>
 </body>
