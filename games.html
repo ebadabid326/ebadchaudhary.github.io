@@ -3,14 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ebad Gaming - Games</title>
 
 <style>
-
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
+}
+
+:root{
+    --main:#ff3030;
 }
 
 body{
@@ -18,10 +22,6 @@ body{
     background:#07070d;
     color:#fff;
     line-height:1.6;
-}
-
-:root{
-    --main:#ff3030;
 }
 
 header{
@@ -112,44 +112,29 @@ nav a:hover{
 }
 
 .card{
-    background:linear-gradient(
-        180deg,
-        #171722,
-        #11111b
-    );
-
+    background:linear-gradient(180deg,#171722,#11111b);
     border:1px solid #2b2b40;
     border-radius:18px;
-
     padding:25px 16px;
-
     text-align:center;
-
     transition:.2s;
 }
 
 .card:hover{
     transform:translateY(-7px);
     border-color:#4a4a62;
-
-    box-shadow:
-        0 15px 35px rgba(0,0,0,.3);
+    box-shadow:0 15px 35px rgba(0,0,0,.3);
 }
 
 .icon-wrap{
     width:90px;
     height:90px;
-
     margin:0 auto 15px;
-
     background:#20202e;
-
     border-radius:22px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:48px;
 }
 
@@ -166,22 +151,14 @@ nav a:hover{
 
 .btn{
     display:inline-block;
-
     border:0;
     border-radius:10px;
-
     background:var(--main);
-
     color:#fff;
-
     padding:12px 22px;
-
     font-size:16px;
-
     font-weight:800;
-
     text-decoration:none;
-
     cursor:pointer;
 }
 
@@ -192,24 +169,18 @@ nav a:hover{
 footer{
     padding:32px 20px;
     text-align:center;
-
     color:#777;
-
     background:#050509;
-
     border-top:1px solid #20202e;
 }
 
 @media(max-width:950px){
-
     .games{
         grid-template-columns:repeat(2,1fr);
     }
-
 }
 
 @media(max-width:600px){
-
     .nav{
         flex-direction:column;
     }
@@ -221,9 +192,7 @@ footer{
     .head h1{
         font-size:38px;
     }
-
 }
-
 </style>
 </head>
 
@@ -238,25 +207,14 @@ footer{
 </div>
 
 <nav>
-
-<a href="index.html">
-Home
-</a>
-
-<a href="games.html">
-Games
-</a>
-
-<a href="admin.html">
-🔐 Admin
-</a>
-
+<a href="index.html">Home</a>
+<a href="games.html">Games</a>
+<a href="admin.html">🔐 Admin</a>
 </nav>
 
 </div>
 
 </header>
-
 
 <main class="page">
 
@@ -267,8 +225,7 @@ GAME LIBRARY
 </div>
 
 <h1>
-Choose Your
-<span>Game</span>
+Choose Your <span>Game</span>
 </h1>
 
 <p>
@@ -277,9 +234,7 @@ Pick any game below and start playing.
 
 </div>
 
-
 <div class="games">
-
 
 <!-- SPACE ROCKET -->
 
@@ -294,13 +249,12 @@ Space Rocket
 </h2>
 
 <p id="g1d">
-Fly your rocket, destroy asteroids
-and beat your score.
+Fly your rocket, destroy asteroids and beat your score.
 </p>
 
 <a
 class="btn"
-href="rocket.html"
+href="./rocket.html"
 >
 Play Now
 </a>
@@ -321,13 +275,12 @@ Speed Racer
 </h2>
 
 <p id="g2d">
-Avoid the enemy cars and try
-to beat your best score.
+Avoid the enemy cars and try to beat your best score.
 </p>
 
 <a
 class="btn"
-href="racing.html"
+href="./racing.html"
 >
 Play Now
 </a>
@@ -348,13 +301,12 @@ Zombie Attack
 </h2>
 
 <p id="g3d">
-Shoot the zombies, survive
-and increase your score.
+Shoot the zombies, survive and increase your score.
 </p>
 
 <a
 class="btn"
-href="zombie.html"
+href="./zombie.html"
 >
 Play Now
 </a>
@@ -375,34 +327,26 @@ Sword Battle
 </h2>
 
 <p id="g4d">
-Move, attack and defeat
-the enemy warrior.
+Move, attack and defeat the enemy warrior.
 </p>
 
 <a
 class="btn"
-href="sword.html"
+href="./sword.html"
 >
 Play Now
 </a>
 
 </div>
 
-
 </div>
 
 </main>
 
-
 <footer>
 
 <div style="color:#fff;font-weight:800">
-
-🎮
-<span id="footText">
-Ebad Gaming
-</span>
-
+🎮 <span id="footText">Ebad Gaming</span>
 </div>
 
 <div>
@@ -415,115 +359,62 @@ Made for gamers ❤️
 
 </footer>
 
-
 <script>
 
-const defaults={
-
-site:"Ebad Gaming",
-
-g1n:"Space Rocket",
-g1d:"Fly your rocket, destroy asteroids and beat your score.",
-
-g2n:"Speed Racer",
-g2d:"Avoid the enemy cars and try to beat your best score.",
-
-g3n:"Zombie Attack",
-g3d:"Shoot the zombies, survive and increase your score.",
-
-g4n:"Sword Battle",
-g4d:"Move, attack and defeat the enemy warrior.",
-
-color:"#ff3030"
-
+const defaults = {
+    site:"Ebad Gaming",
+    g1n:"Space Rocket",
+    g1d:"Fly your rocket, destroy asteroids and beat your score.",
+    g2n:"Speed Racer",
+    g2d:"Avoid the enemy cars and try to beat your best score.",
+    g3n:"Zombie Attack",
+    g3d:"Shoot the zombies, survive and increase your score.",
+    g4n:"Sword Battle",
+    g4d:"Move, attack and defeat the enemy warrior.",
+    color:"#ff3030"
 };
 
-
 function setting(key){
-
-return (
-    localStorage.getItem(
-        "ebad_"+key
-    )
-    ||
-    defaults[key]
-);
-
+    return localStorage.getItem("ebad_"+key) || defaults[key];
 }
-
 
 function loadSettings(){
 
-document.getElementById(
-"logoText"
-).textContent=
-setting("site").replace(
-    /\s+Gaming$/i,
-    ""
-);
+    document.getElementById("logoText").textContent =
+        setting("site").replace(/\s+Gaming$/i,"");
 
+    document.getElementById("footText").textContent =
+        setting("site");
 
-document.getElementById(
-"footText"
-).textContent=
-setting("site");
+    document.getElementById("g1n").textContent =
+        setting("g1n");
 
+    document.getElementById("g1d").textContent =
+        setting("g1d");
 
-document.getElementById(
-"g1n"
-).textContent=
-setting("g1n");
+    document.getElementById("g2n").textContent =
+        setting("g2n");
 
+    document.getElementById("g2d").textContent =
+        setting("g2d");
 
-document.getElementById(
-"g1d"
-).textContent=
-setting("g1d");
+    document.getElementById("g3n").textContent =
+        setting("g3n");
 
+    document.getElementById("g3d").textContent =
+        setting("g3d");
 
-document.getElementById(
-"g2n"
-).textContent=
-setting("g2n");
+    document.getElementById("g4n").textContent =
+        setting("g4n");
 
+    document.getElementById("g4d").textContent =
+        setting("g4d");
 
-document.getElementById(
-"g2d"
-).textContent=
-setting("g2d");
-
-
-document.getElementById(
-"g3n"
-).textContent=
-setting("g3n");
-
-
-document.getElementById(
-"g3d"
-).textContent=
-setting("g3d");
-
-
-document.getElementById(
-"g4n"
-).textContent=
-setting("g4n");
-
-
-document.getElementById(
-"g4d"
-).textContent=
-setting("g4d");
-
-
-document.documentElement.style.setProperty(
-"--main",
-setting("color")
-);
-
+    document.documentElement.style.setProperty(
+        "--main",
+        setting("color")
+    );
 }
-
 
 loadSettings();
 
