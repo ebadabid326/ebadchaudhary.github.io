@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speed Racer - Ebad Gaming</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#07070d;
+  color:#fff;
+  text-align:center;
+}
+
+header{
+  background:#11111b;
+  border-bottom:2px solid #ff3030;
+  padding:16px;
+}
+
+header a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+h1{
+  margin:20px 0 10px;
+  color:#ff4a4a;
+}
+
+.info{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:15px;
+}
+
+.info-box{
+  background:#151522;
+  border:1px solid #29293d;
+  padding:10px 15px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.game-box{
+  position:relative;
+  width:320px;
+  height:520px;
+  max-width:90vw;
+  margin:15px auto;
+  overflow:hidden;
+  border:4px solid #fff;
+  border-radius:12px;
+  background:#303030;
+}
+
+.road{
+  position:absolute;
+  inset:0;
+  background:#303030;
+}
+
+.line,
+.line2{
+  position:absolute;
+  width:8px;
+  height:90px;
+  background:#fff;
+  top:-100px;
+}
+
+.line{
+  left:33%;
+}
+
+.line2{
+  right:33%;
+}
+
+.player{
+  position:absolute;
+  left:132px;
+  bottom:20px;
+  font-size:48px;
+  z-index:5;
+}
+
+.enemy{
+  position:absolute;
+  top:-100px;
+  font-size:48px;
+  z-index:4;
+}
+
+#enemy1{
+  left:30px;
+}
+
+#enemy2{
+  left:132px;
+}
+
+#enemy3{
+  left:234px;
+}
+
+.message{
+  min-height:30px;
+  margin:12px;
+  color:#ffd43b;
+  font-weight:bold;
+}
+
+.btn{
+  border:0;
+  border-radius:10px;
+  background:#ff3030;
+  color:#fff;
+  padding:12px 20px;
+  margin:5px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.btn:hover{
+  filter:brightness(1.1);
+}
+
+.mobile{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  margin-top:12px;
+}
+
+.control{
+  width:80px;
+  height:54px;
+  border:0;
+  border-radius:10px;
+  background:#ff3030;
+  color:#fff;
+  font-size:24px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.help{
+  color:#aaa;
+  margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<a href="games.html">← Back to Games</a>
+</header>
+
+<h1>🏎️ Speed Racer</h1>
+
+<div class="info">
+
+<div class="info-box">
+🏆 Score:
+<span id="score">0</span>
+</div>
+
+<div class="info-box">
+❤️ Lives:
+<span id="lives">3</span>
+</div>
+
+<div class="info-box">
+⚡ Level:
+<span id="level">1</span>
+</div>
+
+<div class="info-box">
+🥇 Best:
+<span id="best">0</span>
+</div>
+
+</div>
+
+
+<div class="game-box">
+
+<div class="road"></div>
+
+<div class="line" id="line1"></div>
+<div class="line2" id="line2"></div>
+
+<div class="player" id="player">
+🏎️
+</div>
+
+<div class="enemy" id="enemy1">
+🚙
+</div>
+
+<div class="enemy" id="enemy2">
+🚗
+</div>
+
+<div class="enemy" id="enemy3">
+🚕
+</div>
+
+</div>
+
+
+<div class="message" id="message">
+Press START to begin!
+</div>
+
+
+<button class="btn" onclick="startGame()">
+START GAME
+</button>
+
+<button class="btn" onclick="restartGame()">
+RESTART
+</button>
+
+
+<div class="mobile">
+
+<button class="control" onclick="moveLeft()">
+⬅️
+</button>
+
+<button class="control" onclick="moveRight()">
+➡️
+</button>
+
+</div>
+
+
+<p class="help">
+Computer: ← → or A / D<br>
+Mobile: use the buttons
+</p>
+
+
+<script>
+
+let playerX=132;
+
+let score=0;
+let lives=3;
+let level=1;
+
+let speed=3.5;
+
+let running=false;
+let timer=null;
+
+let best=
+Number(
+localStorage.getItem(
+"ebadBestScore"
+)
+)||0;
+
+document.getElementById(
+"best"
+).textContent=
+best;
+
+
+const player=
+document.getElementById(
+"player"
+);
+
+
+const enemies=[
+
+document.getElementById(
+"enemy1"
+),
+
+document.getElementById(
+"enemy2"
+),
+
+document.getElementById(
+"enemy3"
+)
+
+];
+
+
+const lines=[
+
+document.getElementById(
+"line1"
+),
+
+document.getElementById(
+"line2"
+)
+
+];
+
+
+function resetEnemies(){
+
+enemies[0].style.left="30px";
+enemies[0].style.top="-140px";
+
+enemies[1].style.left="132px";
+enemies[1].style.top="-380px";
+
+enemies[2].style.left="234px";
+enemies[2].style.top="-620px";
+
+}
+
+
+resetEnemies();
+
+
+function startGame(){
+
+if(running)return;
+
+running=true;
+
+score=0;
+lives=3;
+level=1;
+speed=3.5;
+
+playerX=132;
+
+
+document.getElementById(
+"score"
+).textContent=0;
+
+
+document.getElementById(
+"lives"
+).textContent=3;
+
+
+document.getElementById(
+"level"
+).textContent=1;
+
+
+player.style.left=
+"132px";
+
+
+resetEnemies();
+
+
+document.getElementById(
+"message"
+).textContent=
+"🔥 GO! Avoid the cars!";
+
+
+timer=
+setInterval(
+updateGame,
+30
+);
+
+}
+
+
+function updateGame(){
+
+/* road */
+
+lines.forEach(
+line=>{
+
+let y=
+parseFloat(
+line.style.top
+);
+
+if(isNaN(y))
+y=-100;
+
+y+=speed*1.6;
+
+if(y>520)
+y=-100;
+
+line.style.top=
+y+"px";
+
+});
+
+
+/* cars */
+
+enemies.forEach(
+car=>{
+
+let y=
+parseFloat(
+car.style.top
+);
+
+if(isNaN(y))
+y=-100;
+
+y+=speed;
+
+car.style.top=
+y+"px";
+
+
+if(y>540){
+
+score++;
+
+document.getElementById(
+"score"
+).textContent=
+score;
+
+resetEnemy(car);
+
+updateLevel();
+
+}
+
+
+/* collision */
+
+if(checkCollision(car)){
+
+resetEnemy(car);
+
+lives--;
+
+document.getElementById(
+"lives"
+).textContent=
+lives;
+
+
+if(lives<=0){
+
+gameOver();
+
+}else{
+
+document.getElementById(
+"message"
+).textContent=
+"💥 Crash! Lives left: "+
+lives;
+
+}
+
+}
+
+});
+
+}
+
+
+function resetEnemy(car){
+
+const lanes=[
+30,
+132,
+234
+];
+
+
+car.style.left=
+lanes[
+Math.floor(
+Math.random()*
+lanes.length
+)
+]+"px";
+
+
+car.style.top=
+(
+-160-
+Math.random()*360
+)+"px";
+
+}
+
+
+function checkCollision(car){
+
+const p=
+player.getBoundingClientRect();
+
+const e=
+car.getBoundingClientRect();
+
+
+return(
+
+p.left <
+e.right-8 &&
+
+p.right >
+e.left+8 &&
+
+p.top <
+e.bottom-8 &&
+
+p.bottom >
+e.top+8
+
+);
+
+}
+
+
+function updateLevel(){
+
+level=
+Math.floor(
+score/10
+)+1;
+
+
+speed=
+3.5+
+(level-1)*0.7;
+
+
+document.getElementById(
+"level"
+).textContent=
+level;
+
+
+if(
+score>0 &&
+score%10===0
+){
+
+document.getElementById(
+"message"
+).textContent=
+"⚡ LEVEL "+
+level+"!";
+
+}
+
+}
+
+
+function moveLeft(){
+
+if(!running)return;
+
+playerX-=35;
+
+if(playerX<5)
+playerX=5;
+
+player.style.left=
+playerX+"px";
+
+}
+
+
+function moveRight(){
+
+if(!running)return;
+
+playerX+=35;
+
+if(playerX>260)
+playerX=260;
+
+player.style.left=
+playerX+"px";
+
+}
+
+
+document.addEventListener(
+"keydown",
+function(e){
+
+if(
+e.key==="ArrowLeft" ||
+e.key.toLowerCase()==="a"
+){
+
+moveLeft();
+
+}
+
+if(
+e.key==="ArrowRight" ||
+e.key.toLowerCase()==="d"
+){
+
+moveRight();
+
+}
+
+});
+
+
+function gameOver(){
+
+clearInterval(timer);
+
+running=false;
+
+
+if(score>best){
+
+best=score;
+
+localStorage.setItem(
+"ebadBestScore",
+best
+);
+
+
+document.getElementById(
+"best"
+).textContent=
+best;
+
+
+document.getElementById(
+"message"
+).textContent=
+"🏆 NEW HIGH SCORE: "+
+score+"!";
+
+}else{
+
+document.getElementById(
+"message"
+).textContent=
+"💥 GAME OVER! Score: "+
+score+
+" | Best: "+
+best;
+
+}
+
+}
+
+
+function restartGame(){
+
+clearInterval(timer);
+
+running=false;
+
+score=0;
+lives=3;
+level=1;
+speed=3.5;
+
+playerX=132;
+
+
+document.getElementById(
+"score"
+).textContent=
+0;
+
+document.getElementById(
+"lives"
+).textContent=
+3;
+
+document.getElementById(
+"level"
+).textContent=
+1;
+
+
+player.style.left=
+"132px";
+
+
+resetEnemies();
+
+
+document.getElementById(
+"message"
+).textContent=
+"Press START to begin!";
+
+}
+
+</script>
+
+</body>
+</html>
