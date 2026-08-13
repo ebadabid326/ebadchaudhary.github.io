@@ -3,556 +3,570 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ebadchaudhary - Gaming Website</title>
+
+<title>Ebad Gaming - Games</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-:root {
-  --main-color: #00ff99;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-  background: #0b0b12;
-  color: white;
+:root{
+    --main:#ff3030;
 }
 
-header {
-  background: #151522;
-  padding: 20px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#07070d;
+    color:#fff;
+    line-height:1.6;
 }
 
-.logo {
-  font-size: 28px;
-  font-weight: bold;
-  color: var(--main-color);
+header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(10,10,18,.97);
+    border-bottom:2px solid var(--main);
+    padding:15px 20px;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin-left: 20px;
+.nav{
+    max-width:1200px;
+    margin:auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:20px;
 }
 
-nav a:hover {
-  color: var(--main-color);
+.logo{
+    font-size:26px;
+    font-weight:900;
+    color:var(--main);
 }
 
-.hero {
-  text-align: center;
-  padding: 80px 20px;
-  background: linear-gradient(135deg, #101020, #171733);
+.logo span{
+    color:#fff;
 }
 
-.hero h1 {
-  font-size: 50px;
-  margin-bottom: 15px;
+nav{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
-.hero h1 span {
-  color: var(--main-color);
+nav a{
+    color:#ddd;
+    text-decoration:none;
+    font-weight:700;
+    padding:8px 12px;
+    border-radius:8px;
 }
 
-.hero p {
-  color: #bbb;
-  font-size: 18px;
-  margin-bottom: 25px;
+nav a:hover{
+    background:#1c1c2a;
+    color:#fff;
 }
 
-.btn {
-  display: inline-block;
-  background: var(--main-color);
-  color: #07110d;
-  padding: 12px 25px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  border: 0;
-  cursor: pointer;
+.page{
+    max-width:1200px;
+    margin:auto;
+    padding:75px 20px 90px;
 }
 
-.games {
-  padding: 50px 8%;
+.head{
+    text-align:center;
+    margin-bottom:40px;
 }
 
-.games h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 32px;
+.head .small{
+    color:var(--main);
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:1.5px;
 }
 
-.game-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
+.head h1{
+    font-size:48px;
+    margin-top:5px;
 }
 
-.game-card {
-  background: #171722;
-  padding: 25px;
-  border-radius: 12px;
-  text-align: center;
-  transition: 0.3s;
+.head h1 span{
+    color:var(--main);
 }
 
-.game-card:hover {
-  transform: translateY(-8px);
+.head p{
+    color:#9f9fad;
+    max-width:680px;
+    margin:8px auto 0;
 }
 
-.game-icon {
-  font-size: 60px;
-  margin-bottom: 15px;
+.games{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
 }
 
-.game-card h3 {
-  margin-bottom: 10px;
+.card{
+    background:
+        linear-gradient(
+            180deg,
+            #171722,
+            #11111b
+        );
+
+    border:1px solid #2b2b40;
+    border-radius:18px;
+
+    padding:25px 16px;
+
+    text-align:center;
+
+    transition:.2s;
 }
 
-.game-card p {
-  color: #aaa;
-  margin-bottom: 18px;
+.card:hover{
+    transform:translateY(-7px);
+
+    border-color:#4a4a62;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.3);
 }
 
-.mini-game {
-  text-align: center;
-  margin: 50px 8%;
-  padding: 30px;
-  background: #151522;
-  border-radius: 15px;
+.icon-wrap{
+    width:90px;
+    height:90px;
+
+    margin:0 auto 15px;
+
+    background:#20202e;
+
+    border-radius:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:48px;
 }
 
-#targetArea {
-  position: relative;
-  height: 300px;
-  margin-top: 20px;
-  background: #0b0b12;
-  border-radius: 12px;
-  overflow: hidden;
+.card h2{
+    font-size:22px;
+    margin-bottom:7px;
 }
 
-#target {
-  display: none;
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 0;
-  background: var(--main-color);
-  cursor: pointer;
-  font-size: 25px;
+.card p{
+    color:#9d9dac;
+
+    min-height:55px;
+
+    margin-bottom:18px;
 }
 
-.control-panel {
-  margin: 40px auto;
-  padding: 30px;
-  max-width: 750px;
-  background: #151522;
-  border-radius: 15px;
+.btn{
+    display:inline-block;
+
+    border:0;
+
+    border-radius:10px;
+
+    background:var(--main);
+
+    color:#fff;
+
+    padding:12px 22px;
+
+    font-size:16px;
+
+    font-weight:800;
+
+    text-decoration:none;
+
+    cursor:pointer;
 }
 
-.control-panel h2 {
-  text-align: center;
-  margin-bottom: 25px;
+.btn:hover{
+    filter:brightness(1.1);
 }
 
-.control-panel label {
-  display: block;
-  margin-top: 12px;
-  margin-bottom: 5px;
+footer{
+    padding:32px 20px;
+
+    text-align:center;
+
+    color:#777;
+
+    background:#050509;
+
+    border-top:1px solid #20202e;
 }
 
-.control-panel input,
-.control-panel select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 6px;
-  border: 0;
-  margin-bottom: 8px;
+@media(max-width:950px){
+
+    .games{
+        grid-template-columns:repeat(2,1fr);
+    }
+
 }
 
-.control-panel button {
-  margin-top: 15px;
+@media(max-width:600px){
+
+    .nav{
+        flex-direction:column;
+    }
+
+    .games{
+        grid-template-columns:1fr;
+    }
+
+    .head h1{
+        font-size:38px;
+    }
+
 }
 
-footer {
-  text-align: center;
-  padding: 25px;
-  background: #151522;
-  color: #aaa;
-  margin-top: 30px;
-}
-
-@media (max-width: 600px) {
-  .hero h1 {
-    font-size: 36px;
-  }
-
-  header {
-    flex-direction: column;
-    gap: 15px;
-  }
-}
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo" id="logo">🎮 ebadchaudhary</div>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#games">Games</a>
-    <a href="#control">Control</a>
-  </nav>
+<header>
+
+<div class="nav">
+
+    <div class="logo">
+        🎮 <span id="logoText">Ebad</span> Gaming
+    </div>
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="games.html">
+            Games
+        </a>
+
+        <a href="admin.html">
+            🔐 Admin
+        </a>
+
+    </nav>
+
+</div>
+
 </header>
 
-<section class="hero" id="home">
-  <h1>Welcome to <span id="mainHeading">ebadchaudhary</span></h1>
-  <p>Play games, have fun and become the ultimate gamer!</p>
-  <a href="#games" class="btn">Explore Games</a>
-</section>
 
-<section class="games" id="games">
-  <h2>🔥 Popular Games</h2>
+<main class="page">
 
-  <div class="game-container">
 
-    <div class="game-card">
-      <div class="game-icon">🚀</div>
-      <h3 id="game1Name">Space Battle</h3>
-      <p id="game1Desc">Defeat enemies and save the galaxy.</p>
-      <a href="#miniGame" class="btn">Play Now</a>
+<div class="head">
+
+    <div class="small">
+        GAME LIBRARY
     </div>
 
-    <div class="game-card">
-      <div class="game-icon">🏎️</div>
-      <h3 id="game2Name">Speed Racer</h3>
-      <p id="game2Desc">Race against your opponents.</p>
-      <a href="#miniGame" class="btn">Play Now</a>
+    <h1>
+        Choose Your
+        <span>
+            Game
+        </span>
+    </h1>
+
+    <p>
+        Pick any game below and start playing.
+    </p>
+
+</div>
+
+
+<div class="games">
+
+
+<!-- SPACE ROCKET -->
+
+<div class="card">
+
+    <div class="icon-wrap">
+        🚀
     </div>
 
-    <div class="game-card">
-      <div class="game-icon">🧟</div>
-      <h3 id="game3Name">Zombie Attack</h3>
-      <p id="game3Desc">Survive the zombie invasion.</p>
-      <a href="#miniGame" class="btn">Play Now</a>
+    <h2 id="g1n">
+        Space Rocket
+    </h2>
+
+    <p id="g1d">
+        Fly your rocket,
+        destroy asteroids
+        and beat your score.
+    </p>
+
+    <a
+        class="btn"
+        href="rocket.html"
+    >
+        Play Now
+    </a>
+
+</div>
+
+
+<!-- SPEED RACER -->
+
+<div class="card">
+
+    <div class="icon-wrap">
+        🏎️
     </div>
 
-    <div class="game-card">
-      <div class="game-icon">⚔️</div>
-      <h3>Warrior Quest</h3>
-      <p>Become the strongest warrior.</p>
-      <a href="#miniGame" class="btn">Play Now</a>
+    <h2 id="g2n">
+        Speed Racer
+    </h2>
+
+    <p id="g2d">
+        Avoid the enemy cars
+        and try to beat your
+        best score.
+    </p>
+
+    <a
+        class="btn"
+        href="index.html#racing"
+    >
+        Play Now
+    </a>
+
+</div>
+
+
+<!-- ZOMBIE ATTACK -->
+
+<div class="card">
+
+    <div class="icon-wrap">
+        🧟
     </div>
 
-  </div>
-</section>
+    <h2 id="g3n">
+        Zombie Attack
+    </h2>
 
-<section class="mini-game" id="miniGame">
+    <p id="g3d">
+        Shoot the zombies,
+        survive and increase
+        your score.
+    </p>
 
-  <h2>🎯 Click the Target</h2>
+    <a
+        class="btn"
+        href="zombie.html"
+    >
+        Play Now
+    </a>
 
-  <p>30 seconds mein jitne targets ho sake click karo!</p>
+</div>
 
-  <h3 style="margin-top:15px;">
-    ⏱️ Time: <span id="time">30</span> seconds
-  </h3>
 
-  <h3 style="margin-top:10px;">
-    🏆 Score: <span id="score">0</span>
-  </h3>
+<!-- SWORD BATTLE -->
 
-  <button class="btn" onclick="startGame()" style="margin-top:15px;">
-    Start Game
-  </button>
+<div class="card">
 
-  <div id="targetArea">
-    <button id="target" onclick="hitTarget()">🎯</button>
-  </div>
+    <div class="icon-wrap">
+        ⚔️
+    </div>
 
-  <h3 id="message" style="margin-top:20px;"></h3>
+    <h2 id="g4n">
+        Sword Battle
+    </h2>
 
-</section>
+    <p id="g4d">
+        Become the ultimate
+        warrior.
+        Coming soon.
+    </p>
 
-<section class="control-panel" id="control">
+    <a
+        class="btn"
+        href="#"
+        onclick="comingSoon();return false;"
+    >
+        Play Now
+    </a>
 
-<h2>⚙️ Website Control Panel</h2>
+</div>
 
-<label>Website Name:</label>
-<input id="siteNameInput" type="text">
 
-<label>Main Heading:</label>
-<input id="headingInput" type="text">
+</div>
 
-<label>Game 1 Name:</label>
-<input id="game1Input" type="text">
+</main>
 
-<label>Game 1 Description:</label>
-<input id="desc1Input" type="text">
-
-<label>Game 2 Name:</label>
-<input id="game2Input" type="text">
-
-<label>Game 2 Description:</label>
-<input id="desc2Input" type="text">
-
-<label>Game 3 Name:</label>
-<input id="game3Input" type="text">
-
-<label>Game 3 Description:</label>
-<input id="desc3Input" type="text">
-
-<label>Website Main Color:</label>
-<select id="colorInput">
-  <option value="#00ff99">Green</option>
-  <option value="#00aaff">Blue</option>
-  <option value="#ff00ff">Pink</option>
-  <option value="#ff9900">Orange</option>
-  <option value="#ff3333">Red</option>
-  <option value="#ffffff">White</option>
-</select>
-
-<br>
-
-<button class="btn" onclick="updateWebsite()">
-💾 Save Changes
-</button>
-
-<p id="saveMessage" style="margin-top:15px;"></p>
-
-</section>
 
 <footer>
 
-<p>
-© 2026 <span id="footerName">ebadchaudhary</span>
-| Made with ❤️ for Gamers
-</p>
+<div style="color:#fff;font-weight:800">
+
+    🎮
+    <span id="footText">
+        Ebad Gaming
+    </span>
+
+</div>
+
+<div>
+    Made for gamers ❤️
+</div>
+
+<div style="margin-top:8px;font-size:13px">
+    © 2026 Ebad Gaming
+</div>
 
 </footer>
 
+
 <script>
 
-let score = 0;
-let time = 30;
-let timer;
+const defaults = {
 
-function startGame() {
+    site:
+        "Ebad Gaming",
 
-score = 0;
-time = 30;
+    g1n:
+        "Space Rocket",
 
-document.getElementById("score").textContent = score;
-document.getElementById("time").textContent = time;
-document.getElementById("message").textContent = "";
+    g1d:
+        "Fly your rocket, destroy asteroids and beat your score.",
 
-document.getElementById("target").style.display = "block";
+    g2n:
+        "Speed Racer",
 
-moveTarget();
+    g2d:
+        "Avoid the enemy cars and try to beat your best score.",
 
-clearInterval(timer);
+    g3n:
+        "Zombie Attack",
 
-timer = setInterval(function() {
+    g3d:
+        "Shoot the zombies, survive and increase your score.",
 
-time--;
+    g4n:
+        "Sword Battle",
 
-document.getElementById("time").textContent = time;
+    g4d:
+        "Become the ultimate warrior. Coming soon.",
 
-if (time <= 0) {
+    color:
+        "#ff3030"
 
-clearInterval(timer);
+};
 
-document.getElementById("target").style.display = "none";
 
-document.getElementById("message").textContent =
-"🎮 Game Over! Your score is " + score;
+function setting(key){
 
-}
-
-}, 1000);
-
-}
-
-function hitTarget() {
-
-if (time > 0) {
-
-score++;
-
-document.getElementById("score").textContent = score;
-
-moveTarget();
+    return localStorage.getItem(
+        "ebad_" + key
+    ) || defaults[key];
 
 }
 
-}
 
-function moveTarget() {
+function loadSettings(){
 
-const area = document.getElementById("targetArea");
-const target = document.getElementById("target");
+    document.getElementById(
+        "logoText"
+    ).textContent =
+        setting("site").replace(
+            /\s+Gaming$/i,
+            ""
+        );
 
-const x = Math.random() * (area.clientWidth - 60);
-const y = Math.random() * (area.clientHeight - 60);
 
-target.style.left = x + "px";
-target.style.top = y + "px";
+    document.getElementById(
+        "footText"
+    ).textContent =
+        setting("site");
 
-}
 
-function updateWebsite() {
+    document.getElementById(
+        "g1n"
+    ).textContent =
+        setting("g1n");
 
-const siteName =
-document.getElementById("siteNameInput").value;
 
-const heading =
-document.getElementById("headingInput").value;
+    document.getElementById(
+        "g1d"
+    ).textContent =
+        setting("g1d");
 
-const game1 =
-document.getElementById("game1Input").value;
 
-const desc1 =
-document.getElementById("desc1Input").value;
+    document.getElementById(
+        "g2n"
+    ).textContent =
+        setting("g2n");
 
-const game2 =
-document.getElementById("game2Input").value;
 
-const desc2 =
-document.getElementById("desc2Input").value;
+    document.getElementById(
+        "g2d"
+    ).textContent =
+        setting("g2d");
 
-const game3 =
-document.getElementById("game3Input").value;
 
-const desc3 =
-document.getElementById("desc3Input").value;
+    document.getElementById(
+        "g3n"
+    ).textContent =
+        setting("g3n");
 
-const color =
-document.getElementById("colorInput").value;
 
-localStorage.setItem("siteName", siteName);
-localStorage.setItem("heading", heading);
+    document.getElementById(
+        "g3d"
+    ).textContent =
+        setting("g3d");
 
-localStorage.setItem("game1", game1);
-localStorage.setItem("desc1", desc1);
 
-localStorage.setItem("game2", game2);
-localStorage.setItem("desc2", desc2);
+    document.getElementById(
+        "g4n"
+    ).textContent =
+        setting("g4n");
 
-localStorage.setItem("game3", game3);
-localStorage.setItem("desc3", desc3);
 
-localStorage.setItem("mainColor", color);
+    document.getElementById(
+        "g4d"
+    ).textContent =
+        setting("g4d");
 
-applySettings();
 
-document.getElementById("saveMessage").textContent =
-"✅ Changes saved permanently!";
-
-}
-
-function applySettings() {
-
-const siteName =
-localStorage.getItem("siteName") || "ebadchaudhary";
-
-const heading =
-localStorage.getItem("heading") || "ebadchaudhary";
-
-const game1 =
-localStorage.getItem("game1") || "Space Battle";
-
-const desc1 =
-localStorage.getItem("desc1") ||
-"Defeat enemies and save the galaxy.";
-
-const game2 =
-localStorage.getItem("game2") || "Speed Racer";
-
-const desc2 =
-localStorage.getItem("desc2") ||
-"Race against your opponents.";
-
-const game3 =
-localStorage.getItem("game3") || "Zombie Attack";
-
-const desc3 =
-localStorage.getItem("desc3") ||
-"Survive the zombie invasion.";
-
-const color =
-localStorage.getItem("mainColor") || "#00ff99";
-
-document.documentElement.style.setProperty(
-"--main-color",
-color
-);
-
-document.getElementById("logo").textContent =
-"🎮 " + siteName;
-
-document.getElementById("mainHeading").textContent =
-heading;
-
-document.getElementById("footerName").textContent =
-siteName;
-
-document.getElementById("game1Name").textContent =
-game1;
-
-document.getElementById("game1Desc").textContent =
-desc1;
-
-document.getElementById("game2Name").textContent =
-game2;
-
-document.getElementById("game2Desc").textContent =
-desc2;
-
-document.getElementById("game3Name").textContent =
-game3;
-
-document.getElementById("game3Desc").textContent =
-desc3;
-
-document.getElementById("siteNameInput").value =
-siteName;
-
-document.getElementById("headingInput").value =
-heading;
-
-document.getElementById("game1Input").value =
-game1;
-
-document.getElementById("desc1Input").value =
-desc1;
-
-document.getElementById("game2Input").value =
-game2;
-
-document.getElementById("desc2Input").value =
-desc2;
-
-document.getElementById("game3Input").value =
-game3;
-
-document.getElementById("desc3Input").value =
-desc3;
-
-document.getElementById("colorInput").value =
-color;
+    document.documentElement.style.setProperty(
+        "--main",
+        setting("color")
+    );
 
 }
 
-applySettings();
+
+function comingSoon(){
+
+    alert(
+        "⚔️ Sword Battle\n\nComing soon!"
+    );
+
+}
+
+
+loadSettings();
 
 </script>
 
