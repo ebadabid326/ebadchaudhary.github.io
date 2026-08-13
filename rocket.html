@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Space Rocket - Ebad Gaming</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#050711;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  text-align:center;
+}
+header{
+  background:#0d1020;
+  padding:16px;
+  border-bottom:2px solid #44aaff;
+}
+header a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:bold;
+}
+h1{
+  color:#55b8ff;
+  margin:20px 0 8px;
+}
+.info{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:14px;
+}
+.box{
+  background:#11172a;
+  border:1px solid #2c4568;
+  border-radius:10px;
+  padding:9px 15px;
+  font-weight:bold;
+}
+#game{
+  display:block;
+  width:360px;
+  height:540px;
+  max-width:92vw;
+  margin:15px auto;
+  border:4px solid #55b8ff;
+  border-radius:14px;
+  background:#02040b;
+  touch-action:none;
+}
+.message{
+  min-height:28px;
+  color:#ffd84d;
+  font-weight:bold;
+  margin:10px;
+}
+button{
+  border:0;
+  border-radius:9px;
+  background:#44aaff;
+  color:#06111d;
+  padding:12px 18px;
+  margin:5px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.controls{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin-top:8px;
+}
+.control{
+  width:82px;
+  height:55px;
+  font-size:24px;
+}
+.help{
+  color:#aaa;
+  margin:10px 0 25px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">← Back to Ebad Gaming</a>
+</header>
+
+<h1>🚀 Space Rocket</h1>
+
+<div class="info">
+  <div class="box">🏆 Score: <span id="score">0</span></div>
+  <div class="box">❤️ Lives: <span id="lives">3</span></div>
+  <div class="box">⚡ Level: <span id="level">1</span></div>
+  <div class="box">🥇 Best: <span id="best">0</span></div>
+</div>
+
+<canvas id="game" width="360" height="540"></canvas>
+
+<div class="message" id="message">Press START to begin!</div>
+
+<button onclick="startGame()">START GAME</button>
+<button onclick="restartGame()">RESTART</button>
+
+<div class="controls">
+  <button class="control" onclick="moveLeft()">⬅️</button>
+  <button class="control" onclick="fire()">🚀</button>
+  <button class="control" onclick="moveRight()">➡️</button>
+</div>
+
+<p class="help">
+Computer: ← → to move, SPACE to fire<br>
+Mobile: ⬅️ ➡️ move, 🚀 fire
+</p>
+
+<script>
+const canvas=document.getElementById("game");
+const ctx=canvas.getContext("2d");
+const W=canvas.width;
+const H=canvas.height;
+
+let rocketX=W/2;
+let score=0;
+let lives=3;
+let level=1;
+let speed=80;
+let enemySpawn=850;
+let spawnTimer=0;
+let running=false;
+let lastTime=0;
+let animationId=null;
+
+let rockets=[];
+let asteroids=[];
+
+/* Stars */
+const stars=[];
+for(let i=0;i<65;i++){
+  stars.push({
+    x:Math.random()*W,
+    y:Math.random()*H,
+    size:Math.random()*2+1,
+    speed:20+Math.random()*55
+  });
+}
+
+let best=Number(localStorage.getItem("ebadRocketBest"))||0;
+document.getElementById("best").textContent=best;
+
+function updateStats(){
+  document.getElementById("score").textContent=score;
+  document.getElementById("lives").textContent=lives;
+  document.getElementById("level").textContent=level;
+}
+
+function drawBackground(dt){
+  ctx.fillStyle="#02040b";
+  ctx.fillRect(0,0,W,H);
+
+  for(const s of stars){
+    s.y+=s.speed*dt;
+    if(s.y>H){
+      s.y=-5;
+      s.x=Math.random()*W;
+    }
+    ctx.fillStyle="#ffffff";
+    ctx.globalAlpha=.7;
+    ctx.fillRect(s.x,s.y,s.size,s.size);
+  }
+  ctx.globalAlpha=1;
+}
+
+function drawRocket(){
+  /* flame */
+  ctx.fillStyle="#ffb000";
+  ctx.beginPath();
+  ctx.moveTo(rocketX-8,500);
+  ctx.lineTo(rocketX,528);
+  ctx.lineTo(rocketX+8,500);
+  ctx.closePath();
+  ctx.fill();
+
+  /* body */
+  ctx.fillStyle="#f4f4f4";
+  ctx.beginPath();
+  ctx.moveTo(rocketX,440);
+  ctx.lineTo(rocketX-16,470);
+  ctx.lineTo(rocketX-13,505);
+  ctx.lineTo(rocketX+13,505);
+  ctx.lineTo(rocketX+16,470);
+  ctx.closePath();
+  ctx.fill();
+
+  /* window */
+  ctx.fillStyle="#44aaff";
+  ctx.beginPath();
+  ctx.arc(rocketX,470,6,0,Math.PI*2);
+  ctx.fill();
+
+  /* fins */
+  ctx.fillStyle="#ff4a4a";
+  ctx.beginPath();
+  ctx.moveTo(rocketX-13,490);
+  ctx.lineTo(rocketX-28,505);
+  ctx.lineTo(rocketX-10,504);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.moveTo(rocketX+13,490);
+  ctx.lineTo(rocketX+28,505);
+  ctx.lineTo(rocketX+10,504);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function drawBullet(b){
+  ctx.fillStyle="#ffe600";
+  ctx.shadowColor="#ffe600";
+  ctx.shadowBlur=10;
+  ctx.fillRect(b.x-2,b.y-10,4,18);
+  ctx.shadowBlur=0;
+}
+
+function drawAsteroid(a){
+  ctx.fillStyle="#9b6b52";
+  ctx.beginPath();
+  ctx.arc(a.x,a.y,a.r,0,Math.PI*2);
+  ctx.fill();
+
+  ctx.fillStyle="#6f4d3d";
+  ctx.beginPath();
+  ctx.arc(a.x-5,a.y-4,a.r*.25,0,Math.PI*2);
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(a.x+6,a.y+5,a.r*.18,0,Math.PI*2);
+  ctx.fill();
+}
+
+function spawnAsteroid(){
+  asteroids.push({
+    x:20+Math.random()*(W-40),
+    y:-30,
+    r:14+Math.random()*9,
+    speed:speed*(.8+Math.random()*.5)
+  });
+}
+
+function fire(){
+  if(!running)return;
+  rockets.push({
+    x:rocketX,
+    y:445,
+    speed:420
+  });
+}
+
+function moveLeft(){
+  if(!running)return;
+  rocketX=Math.max(28,rocketX-32);
+}
+
+function moveRight(){
+  if(!running)return;
+  rocketX=Math.min(W-28,rocketX+32);
+}
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowLeft"){
+    e.preventDefault();
+    moveLeft();
+  }
+  if(e.key==="ArrowRight"){
+    e.preventDefault();
+    moveRight();
+  }
+  if(e.code==="Space"){
+    e.preventDefault();
+    fire();
+  }
+});
+
+function startGame(){
+  if(running)return;
+
+  score=0;
+  lives=3;
+  level=1;
+  speed=80;
+  enemySpawn=850;
+  spawnTimer=0;
+  rockets=[];
+  asteroids=[];
+  rocketX=W/2;
+
+  running=true;
+  updateStats();
+
+  document.getElementById("message").textContent=
+    "🚀 Launch! Destroy the asteroids!";
+
+  lastTime=performance.now();
+  animationId=requestAnimationFrame(loop);
+}
+
+function restartGame(){
+  if(animationId)cancelAnimationFrame(animationId);
+
+  running=false;
+  score=0;
+  lives=3;
+  level=1;
+  speed=80;
+  enemySpawn=850;
+  spawnTimer=0;
+  rockets=[];
+  asteroids=[];
+  rocketX=W/2;
+
+  updateStats();
+  draw(0);
+
+  document.getElementById("message").textContent=
+    "Press START to begin!";
+}
+
+function loop(time){
+  if(!running)return;
+
+  const dt=Math.min((time-lastTime)/1000,.05);
+  lastTime=time;
+
+  update(dt);
+  draw(dt);
+
+  animationId=requestAnimationFrame(loop);
+}
+
+function update(dt){
+
+  /* Move asteroids */
+  for(let i=asteroids.length-1;i>=0;i--){
+    const a=asteroids[i];
+    a.y+=a.speed*dt;
+
+    if(a.y>H+40){
+      asteroids.splice(i,1);
+      score++;
+      updateLevel();
+      updateStats();
+    }
+  }
+
+  /* Spawn */
+  spawnTimer+=dt*1000;
+  if(spawnTimer>=enemySpawn){
+    spawnTimer=0;
+    spawnAsteroid();
+  }
+
+  /* Move bullets */
+  for(let i=rockets.length-1;i>=0;i--){
+    const b=rockets[i];
+    b.y-=b.speed*dt;
+
+    if(b.y<-30){
+      rockets.splice(i,1);
+    }
+  }
+
+  /* Bullet / asteroid collision */
+  for(let bi=rockets.length-1;bi>=0;bi--){
+    const b=rockets[bi];
+
+    for(let ai=asteroids.length-1;ai>=0;ai--){
+      const a=asteroids[ai];
+      const dx=b.x-a.x;
+      const dy=b.y-a.y;
+      const distance=Math.sqrt(dx*dx+dy*dy);
+
+      if(distance<a.r+8){
+        rockets.splice(bi,1);
+        asteroids.splice(ai,1);
+
+        score++;
+        updateLevel();
+        updateStats();
+
+        document.getElementById("message").textContent=
+          "💥 Asteroid destroyed!";
+
+        break;
+      }
+    }
+  }
+
+  /* Rocket / asteroid collision */
+  for(let i=asteroids.length-1;i>=0;i--){
+    const a=asteroids[i];
+    const dx=rocketX-a.x;
+    const dy=475-a.y;
+    const distance=Math.sqrt(dx*dx+dy*dy);
+
+    if(distance<a.r+18){
+      asteroids.splice(i,1);
+      lives--;
+      updateStats();
+
+      if(lives<=0){
+        gameOver();
+        return;
+      }
+
+      document.getElementById("message").textContent=
+        "💥 Hit! Lives left: "+lives;
+    }
+  }
+}
+
+function updateLevel(){
+  const newLevel=Math.floor(score/10)+1;
+
+  if(newLevel!==level){
+    level=newLevel;
+    speed=80+(level-1)*16;
+    enemySpawn=Math.max(350,850-(level-1)*70);
+
+    document.getElementById("message").textContent=
+      "⚡ LEVEL "+level+"! Asteroids are faster!";
+  }
+}
+
+function draw(dt=0){
+  drawBackground(dt);
+
+  asteroids.forEach(drawAsteroid);
+  rockets.forEach(drawBullet);
+
+  drawRocket();
+}
+
+function gameOver(){
+  running=false;
+
+  if(animationId){
+    cancelAnimationFrame(animationId);
+  }
+
+  if(score>best){
+    best=score;
+    localStorage.setItem("ebadRocketBest",best);
+    document.getElementById("best").textContent=best;
+
+    document.getElementById("message").textContent=
+      "🏆 NEW HIGH SCORE: "+score+"!";
+  }else{
+    document.getElementById("message").textContent=
+      "💀 GAME OVER! Score: "+score;
+  }
+}
+
+updateStats();
+draw(0);
+</script>
+
+</body>
+</html>
