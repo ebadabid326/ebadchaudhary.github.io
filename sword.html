@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Sword Battle - Ebad Gaming</title>
 
 <style>
@@ -15,14 +14,12 @@
 
 :root{
     --main:#b45cff;
-    --dark:#08060d;
 }
 
 body{
     min-height:100vh;
     font-family:Arial,Helvetica,sans-serif;
-    background:
-        radial-gradient(circle at top,#2b1740,#09070e 60%);
+    background:radial-gradient(circle at top,#2b1740,#09070e 60%);
     color:#fff;
     text-align:center;
 }
@@ -42,6 +39,7 @@ header a{
 h1{
     margin:20px 0 5px;
     color:#d88aff;
+    font-size:clamp(30px,6vw,48px);
 }
 
 .subtitle{
@@ -81,14 +79,12 @@ h1{
     overflow:hidden;
     border:4px solid #eee;
     border-radius:15px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #2f1d3e 0%,
-            #17111f 55%,
-            #0c0b10 100%
-        );
+    background:linear-gradient(
+        180deg,
+        #2f1d3e 0%,
+        #17111f 55%,
+        #0c0b10 100%
+    );
 }
 
 .floor{
@@ -97,39 +93,53 @@ h1{
     right:0;
     bottom:0;
     height:120px;
-    background:
-        repeating-linear-gradient(
-            0deg,
-            #2b1e35 0 18px,
-            #22162a 18px 36px
-        );
+    background:repeating-linear-gradient(
+        0deg,
+        #2b1e35 0 18px,
+        #22162a 18px 36px
+    );
 }
+
+.floor-line{
+    position:absolute;
+    left:0;
+    right:0;
+    height:2px;
+    background:rgba(255,255,255,.08);
+}
+
+.fl1{bottom:90px}
+.fl2{bottom:55px}
+.fl3{bottom:22px}
+
+/* PLAYER */
 
 .player{
     position:absolute;
-    left:70px;
-    bottom:80px;
-    width:70px;
-    height:105px;
+    left:55px;
+    bottom:78px;
+    width:75px;
+    height:110px;
     z-index:10;
 }
 
 .player-body{
     position:absolute;
     left:18px;
-    top:28px;
-    width:34px;
-    height:55px;
+    top:30px;
+    width:38px;
+    height:58px;
     border-radius:15px;
     background:linear-gradient(#55b8ff,#215e91);
+    box-shadow:inset 0 3px 0 rgba(255,255,255,.25);
 }
 
 .player-head{
     position:absolute;
-    left:24px;
+    left:25px;
     top:8px;
-    width:22px;
-    height:22px;
+    width:24px;
+    height:24px;
     border-radius:50%;
     background:#efc5a5;
 }
@@ -137,46 +147,55 @@ h1{
 .player-sword{
     position:absolute;
     width:8px;
-    height:62px;
+    height:68px;
     right:0;
-    top:18px;
-    background:linear-gradient(
-        90deg,
-        #eee,
-        #fff,
-        #aaa
-    );
-    border-radius:4px;
+    top:15px;
+    background:linear-gradient(90deg,#aaa,#fff,#ddd);
+    border-radius:5px;
     transform:rotate(-35deg);
     transform-origin:bottom center;
-    box-shadow:0 0 7px rgba(255,255,255,.5);
+    box-shadow:0 0 9px rgba(255,255,255,.6);
 }
+
+.player-shield{
+    position:absolute;
+    left:3px;
+    top:45px;
+    width:22px;
+    height:30px;
+    border-radius:10px 10px 14px 14px;
+    background:linear-gradient(#62c4ff,#215a8c);
+    border:2px solid #bce7ff;
+}
+
+/* ENEMY */
 
 .enemy{
     position:absolute;
-    right:70px;
-    bottom:80px;
-    width:70px;
-    height:105px;
+    right:55px;
+    bottom:78px;
+    width:75px;
+    height:110px;
     z-index:10;
 }
 
 .enemy-body{
     position:absolute;
     left:18px;
-    top:28px;
-    width:34px;
-    height:55px;
+    top:30px;
+    width:38px;
+    height:58px;
     border-radius:15px;
-    background:linear-gradient(#ff4c55,#921b22);
+    background:linear-gradient(#ff5058,#8f1d23);
+    box-shadow:inset 0 3px 0 rgba(255,255,255,.2);
 }
 
 .enemy-head{
     position:absolute;
-    left:24px;
+    left:25px;
     top:8px;
-    width:22px;
-    height:22px;
+    width:24px;
+    height:24px;
     border-radius:50%;
     background:#efc5a5;
 }
@@ -184,25 +203,44 @@ h1{
 .enemy-sword{
     position:absolute;
     width:8px;
-    height:62px;
+    height:68px;
     left:0;
-    top:18px;
-    background:linear-gradient(
-        90deg,
-        #eee,
-        #fff,
-        #aaa
-    );
-    border-radius:4px;
+    top:15px;
+    background:linear-gradient(90deg,#aaa,#fff,#ddd);
+    border-radius:5px;
     transform:rotate(35deg);
     transform-origin:bottom center;
+    box-shadow:0 0 9px rgba(255,255,255,.5);
+}
+
+.enemy-shield{
+    position:absolute;
+    right:2px;
+    top:45px;
+    width:22px;
+    height:30px;
+    border-radius:10px 10px 14px 14px;
+    background:linear-gradient(#ff6d75,#8d2028);
+    border:2px solid #ffc4c8;
+}
+
+/* HP */
+
+.hp-title{
+    position:absolute;
+    top:7px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:12px;
+    font-weight:bold;
+    z-index:25;
 }
 
 .hp-bar{
     position:absolute;
     left:50%;
     transform:translateX(-50%);
-    top:15px;
+    top:24px;
     width:230px;
     height:18px;
     border:2px solid #fff;
@@ -215,13 +253,43 @@ h1{
 .hp-fill{
     width:100%;
     height:100%;
-    background:linear-gradient(
-        90deg,
-        #34df66,
-        #7cff98
-    );
+    background:linear-gradient(90deg,#34df66,#7cff98);
     transition:.15s;
 }
+
+/* EFFECT */
+
+.attack-effect{
+    position:absolute;
+    width:110px;
+    height:110px;
+    border:5px solid #f2c0ff;
+    border-radius:50%;
+    opacity:0;
+    pointer-events:none;
+    z-index:15;
+}
+
+.show-hit{
+    animation:hitFlash .22s ease-out;
+}
+
+@keyframes hitFlash{
+    0%{
+        opacity:0;
+        transform:scale(.3);
+    }
+    50%{
+        opacity:1;
+        transform:scale(1);
+    }
+    100%{
+        opacity:0;
+        transform:scale(1.25);
+    }
+}
+
+/* BUTTONS */
 
 .message{
     min-height:30px;
@@ -240,6 +308,10 @@ h1{
     font-size:16px;
     font-weight:800;
     cursor:pointer;
+}
+
+.btn:hover{
+    filter:brightness(1.1);
 }
 
 .controls{
@@ -261,7 +333,7 @@ h1{
     cursor:pointer;
 }
 
-.attack{
+.attack-btn{
     background:#8f35ff;
 }
 
@@ -271,23 +343,13 @@ h1{
     font-size:14px;
 }
 
-.hit{
-    animation:hit .18s;
-}
-
-@keyframes hit{
-    0%{transform:translateX(0)}
-    50%{transform:translateX(-8px)}
-    100%{transform:translateX(0)}
-}
-
 @media(max-width:500px){
     .player{
-        left:45px;
+        left:38px;
     }
 
     .enemy{
-        right:45px;
+        right:38px;
     }
 }
 </style>
@@ -302,7 +364,7 @@ h1{
 <h1>⚔️ Sword Battle</h1>
 
 <p class="subtitle">
-Defeat the enemy warrior and survive the battle.
+Move closer, attack the enemy and win the battle.
 </p>
 
 <div class="info">
@@ -328,58 +390,52 @@ Defeat the enemy warrior and survive the battle.
 
 <div id="game">
 
+<div class="hp-title">
+Enemy Health
+</div>
+
 <div class="hp-bar">
-<div
-class="hp-fill"
-id="hpFill"
-></div>
+<div class="hp-fill" id="hpFill"></div>
 </div>
 
 <div class="floor"></div>
 
+<div class="floor-line fl1"></div>
+<div class="floor-line fl2"></div>
+<div class="floor-line fl3"></div>
+
+<div class="attack-effect" id="attackEffect"></div>
 
 <!-- PLAYER -->
 
-<div
-class="player"
-id="player"
->
+<div class="player" id="player">
 
 <div class="player-head"></div>
-
 <div class="player-body"></div>
-
 <div class="player-sword"></div>
+<div class="player-shield"></div>
 
 </div>
-
 
 <!-- ENEMY -->
 
-<div
-class="enemy"
-id="enemy"
->
+<div class="enemy" id="enemy">
 
 <div class="enemy-head"></div>
-
 <div class="enemy-body"></div>
-
 <div class="enemy-sword"></div>
+<div class="enemy-shield"></div>
 
 </div>
 
-
 </div>
-
 
 <div
 class="message"
 id="message"
 >
-Press START to begin!
+Press START BATTLE.
 </div>
-
 
 <button
 class="btn"
@@ -395,7 +451,6 @@ onclick="restartGame()"
 RESTART
 </button>
 
-
 <div class="controls">
 
 <button
@@ -406,7 +461,7 @@ onclick="moveLeft()"
 </button>
 
 <button
-class="control attack"
+class="control attack-btn"
 onclick="attack()"
 >
 ⚔️
@@ -421,85 +476,65 @@ onclick="moveRight()"
 
 </div>
 
-
 <p class="help">
-Mobile: use the buttons<br>
-Computer: Arrow keys + SPACE to attack
+Mobile: buttons use karo<br>
+Computer: Arrow keys + SPACE
 </p>
 
 </div>
 
-
 <script>
 
-let playerX=70;
-
-let enemyX=70;
+let playerX=55;
+let enemyX=55;
 
 let score=0;
-
 let lives=3;
-
 let level=1;
 
 let enemyHP=100;
 
 let running=false;
-
 let enemyTimer=null;
-
 let attackCooldown=false;
 
-
 const player=
-document.getElementById(
-"player"
-);
+document.getElementById("player");
 
 const enemy=
-document.getElementById(
-"enemy"
-);
+document.getElementById("enemy");
 
 const hpFill=
-document.getElementById(
-"hpFill"
-);
+document.getElementById("hpFill");
+
+const attackEffect=
+document.getElementById("attackEffect");
 
 
 function startGame(){
 
-if(running)
+if(running){
 return;
+}
 
 score=0;
 lives=3;
 level=1;
 enemyHP=100;
 
-playerX=70;
-enemyX=70;
+playerX=55;
+enemyX=55;
 
 running=true;
 
+document.getElementById("score").textContent=0;
+document.getElementById("lives").textContent=3;
+document.getElementById("level").textContent=1;
+
+document.getElementById("message").textContent=
+"⚔️ Battle started! Defeat the enemy.";
+
 update();
-
-document.getElementById(
-"score"
-).textContent=0;
-
-document.getElementById(
-"lives"
-).textContent=3;
-
-document.getElementById(
-"level"
-).textContent=1;
-
-document.getElementById(
-"message"
-).textContent=
-"⚔️ Fight! Defeat the enemy!";
 
 clearInterval(enemyTimer);
 
@@ -528,13 +563,15 @@ enemyHP+"%";
 
 function moveLeft(){
 
-if(!running)
+if(!running){
 return;
+}
 
 playerX-=18;
 
-if(playerX<5)
+if(playerX<5){
 playerX=5;
+}
 
 update();
 
@@ -543,13 +580,15 @@ update();
 
 function moveRight(){
 
-if(!running)
+if(!running){
 return;
+}
 
 playerX+=18;
 
-if(playerX>245)
+if(playerX>245){
 playerX=245;
+}
 
 update();
 
@@ -558,44 +597,47 @@ update();
 
 function attack(){
 
-if(!running)
+if(!running){
 return;
+}
 
-if(attackCooldown)
+if(attackCooldown){
 return;
+}
 
 attackCooldown=true;
 
+attackEffect.style.left=
+(playerX+25)+"px";
 
-player.style.transform=
-"translateX(8px)";
+attackEffect.style.bottom=
+"80px";
 
-setTimeout(
-function(){
-player.style.transform=
-"translateX(0)";
-},
-120
+attackEffect.classList.remove(
+"show-hit"
 );
 
+void attackEffect.offsetWidth;
 
-/* attack only works when close */
+attackEffect.classList.add(
+"show-hit"
+);
+
+let enemyPosition=
+260-enemyX;
 
 let distance=
 Math.abs(
-playerX-
-(
-260-enemyX
-)
+playerX-enemyPosition
 );
 
-
-if(distance<95){
+if(distance<105){
 
 enemyHP-=25;
 
-if(enemyHP<0)
+if(enemyHP<0){
 enemyHP=0;
+}
 
 update();
 
@@ -605,11 +647,8 @@ document.getElementById(
 "⚔️ HIT! Enemy HP: "+
 enemyHP+"%";
 
-
 if(enemyHP<=0){
-
 enemyDefeated();
-
 }
 
 }else{
@@ -618,8 +657,8 @@ document.getElementById(
 "message"
 ).textContent=
 "🗡️ Move closer to attack!";
-}
 
+}
 
 setTimeout(
 function(){
@@ -633,19 +672,19 @@ attackCooldown=false;
 
 function enemyAttack(){
 
-if(!running)
+if(!running){
 return;
+}
+
+let enemyPosition=
+260-enemyX;
 
 let distance=
 Math.abs(
-playerX-
-(
-260-enemyX
-)
+playerX-enemyPosition
 );
 
-
-if(distance<100){
+if(distance<110){
 
 lives--;
 
@@ -660,9 +699,7 @@ document.getElementById(
 "💥 Enemy attacked!";
 
 if(lives<=0){
-
 gameOver();
-
 }
 
 }
@@ -674,34 +711,33 @@ function enemyDefeated(){
 
 score++;
 
-document.getElementById(
-"score"
-).textContent=
-score;
-
 level=
 Math.floor(
 score/5
 )+1;
+
+enemyHP=100;
+
+enemyX=
+55+
+Math.random()*90;
+
+document.getElementById(
+"score"
+).textContent=
+score;
 
 document.getElementById(
 "level"
 ).textContent=
 level;
 
-enemyHP=
-100;
-
-enemyX=
-70+
-Math.random()*90;
-
-update();
-
 document.getElementById(
 "message"
 ).textContent=
 "🏆 Enemy defeated! Next warrior!";
+
+update();
 
 }
 
@@ -728,16 +764,13 @@ running=false;
 clearInterval(enemyTimer);
 
 score=0;
-
 lives=3;
-
 level=1;
 
 enemyHP=100;
 
-playerX=70;
-
-enemyX=70;
+playerX=55;
+enemyX=55;
 
 document.getElementById(
 "score"
@@ -754,20 +787,18 @@ document.getElementById(
 document.getElementById(
 "message"
 ).textContent=
-"Press START to begin!";
+"Press START BATTLE.";
 
 update();
 
 }
 
 
-/* keyboard */
+/* Keyboard controls */
 
 document.addEventListener(
 "keydown",
 function(e){
-
-/* ignore keyboard while typing */
 
 if(
 e.target &&
