@@ -3,533 +3,496 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Ebad Gaming - Games</title>
+<title>Sword Battle - Ebad Gaming</title>
 
 <style>
-
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+  box-sizing:border-box;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#07070d;
-    color:#fff;
-    line-height:1.6;
-}
-
-:root{
-    --main:#ff3030;
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#08060d;
+  color:white;
+  text-align:center;
 }
 
 header{
-    position:sticky;
-    top:0;
-    z-index:50;
-    background:rgba(10,10,18,.97);
-    border-bottom:2px solid var(--main);
-    padding:15px 20px;
+  padding:16px;
+  background:#11101a;
+  border-bottom:2px solid #b45cff;
 }
 
-.nav{
-    max-width:1200px;
-    margin:auto;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    gap:20px;
+header a{
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
 }
 
-.logo{
-    font-size:26px;
-    font-weight:900;
-    color:var(--main);
+h1{
+  color:#d88aff;
+  margin:20px 0 8px;
 }
 
-.logo span{
-    color:#fff;
+.info{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:15px;
 }
 
-nav{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    justify-content:center;
+.box{
+  background:#17121f;
+  border:1px solid #49355b;
+  border-radius:10px;
+  padding:10px 15px;
+  font-weight:bold;
 }
 
-nav a{
-    color:#ddd;
-    text-decoration:none;
-    font-weight:700;
-    padding:8px 12px;
-    border-radius:8px;
+#game{
+  position:relative;
+  width:360px;
+  height:540px;
+  max-width:92vw;
+  margin:20px auto;
+  overflow:hidden;
+  border:4px solid #fff;
+  border-radius:15px;
+  background:linear-gradient(#2d1b3d,#100c15);
 }
 
-nav a:hover{
-    background:#1c1c2a;
-    color:#fff;
+.ground{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:130px;
+  background:#201626;
 }
 
-.page{
-    max-width:1200px;
-    margin:auto;
-    padding:75px 20px 90px;
+.player,
+.enemy{
+  position:absolute;
+  bottom:75px;
+  width:70px;
+  height:100px;
+}
+
+.player{
+  left:35px;
+}
+
+.enemy{
+  right:35px;
+}
+
+.body{
+  position:absolute;
+  left:18px;
+  top:28px;
+  width:35px;
+  height:55px;
+  border-radius:12px;
+}
+
+.player .body{
+  background:#2689d8;
+}
+
+.enemy .body{
+  background:#d8333d;
 }
 
 .head{
-    text-align:center;
-    margin-bottom:40px;
+  position:absolute;
+  left:24px;
+  top:5px;
+  width:23px;
+  height:23px;
+  border-radius:50%;
+  background:#eec4a4;
 }
 
-.head .small{
-    color:var(--main);
-    font-size:13px;
-    font-weight:900;
-    letter-spacing:1.5px;
+.sword{
+  position:absolute;
+  width:8px;
+  height:65px;
+  top:14px;
+  background:#eee;
+  border-radius:5px;
 }
 
-.head h1{
-    font-size:48px;
-    margin-top:5px;
+.player .sword{
+  right:0;
+  transform:rotate(-35deg);
 }
 
-.head h1 span{
-    color:var(--main);
+.enemy .sword{
+  left:0;
+  transform:rotate(35deg);
 }
 
-.head p{
-    color:#9f9fad;
-    max-width:680px;
-    margin:8px auto 0;
+.health{
+  width:240px;
+  height:18px;
+  margin:15px auto 10px;
+  background:#222;
+  border:2px solid #fff;
+  border-radius:10px;
+  overflow:hidden;
 }
 
-.games{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
+.health-bar{
+  width:100%;
+  height:100%;
+  background:#35df65;
 }
 
-.card{
-    background:linear-gradient(
-        180deg,
-        #171722,
-        #11111b
-    );
-
-    border:1px solid #2b2b40;
-    border-radius:18px;
-
-    padding:25px 16px;
-
-    text-align:center;
-
-    transition:.2s;
+.message{
+  min-height:28px;
+  color:#ffd84d;
+  font-weight:bold;
+  margin:10px;
 }
 
-.card:hover{
-    transform:translateY(-7px);
-    border-color:#4a4a62;
-
-    box-shadow:
-        0 15px 35px rgba(0,0,0,.3);
+button{
+  border:0;
+  border-radius:10px;
+  background:#b45cff;
+  color:white;
+  padding:12px 18px;
+  margin:5px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.icon-wrap{
-    width:90px;
-    height:90px;
-
-    margin:0 auto 15px;
-
-    background:#20202e;
-
-    border-radius:22px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:48px;
+.controls{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-top:10px;
 }
 
-.card h2{
-    font-size:22px;
-    margin-bottom:7px;
+.control{
+  width:80px;
+  height:55px;
+  font-size:24px;
 }
 
-.card p{
-    color:#9d9dac;
-
-    min-height:60px;
-
-    margin-bottom:18px;
+.help{
+  color:#999;
 }
-
-.btn{
-    display:inline-block;
-
-    border:0;
-
-    border-radius:10px;
-
-    background:var(--main);
-
-    color:#fff;
-
-    padding:12px 22px;
-
-    font-size:16px;
-
-    font-weight:800;
-
-    text-decoration:none;
-
-    cursor:pointer;
-}
-
-.btn:hover{
-    filter:brightness(1.1);
-}
-
-footer{
-    padding:32px 20px;
-
-    text-align:center;
-
-    color:#777;
-
-    background:#050509;
-
-    border-top:1px solid #20202e;
-}
-
-@media(max-width:950px){
-
-    .games{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-}
-
-@media(max-width:600px){
-
-    .nav{
-        flex-direction:column;
-    }
-
-    .games{
-        grid-template-columns:1fr;
-    }
-
-    .head h1{
-        font-size:38px;
-    }
-
-}
-
 </style>
 </head>
 
 <body>
 
 <header>
-
-<div class="nav">
-
-<div class="logo">
-🎮 <span id="logoText">Ebad</span> Gaming
-</div>
-
-<nav>
-
-<a href="index.html">
-Home
-</a>
-
-<a href="games.html">
-Games
-</a>
-
-<a href="admin.html">
-🔐 Admin
-</a>
-
-</nav>
-
-</div>
-
+<a href="games.html">← Back to Games</a>
 </header>
 
+<h1>⚔️ Sword Battle</h1>
 
-<main class="page">
-
-
-<div class="head">
-
-<div class="small">
-GAME LIBRARY
+<div class="info">
+  <div class="box">🏆 Score: <span id="score">0</span></div>
+  <div class="box">❤️ Lives: <span id="lives">3</span></div>
+  <div class="box">⚡ Level: <span id="level">1</span></div>
 </div>
 
-<h1>
-Choose Your
-<span>Game</span>
-</h1>
-
-<p>
-Pick any game below and start playing.
-</p>
-
+<div class="health">
+  <div class="health-bar" id="health"></div>
 </div>
 
+<div id="game">
 
-<div class="games">
+  <div class="ground"></div>
 
+  <div class="player" id="player">
+    <div class="head"></div>
+    <div class="body"></div>
+    <div class="sword"></div>
+  </div>
 
-<!-- SPACE ROCKET -->
-
-<div class="card">
-
-<div class="icon-wrap">
-🚀
-</div>
-
-<h2 id="g1n">
-Space Rocket
-</h2>
-
-<p id="g1d">
-Fly your rocket, destroy asteroids
-and beat your score.
-</p>
-
-<a
-class="btn"
-href="rocket.html"
->
-Play Now
-</a>
+  <div class="enemy" id="enemy">
+    <div class="head"></div>
+    <div class="body"></div>
+    <div class="sword"></div>
+  </div>
 
 </div>
 
-
-<!-- SPEED RACER -->
-
-<div class="card">
-
-<div class="icon-wrap">
-🏎️
+<div class="message" id="message">
+Press START BATTLE
 </div>
 
-<h2 id="g2n">
-Speed Racer
-</h2>
+<button onclick="startGame()">
+START BATTLE
+</button>
 
-<p id="g2d">
-Avoid the enemy cars and try
-to beat your best score.
-</p>
+<button onclick="restartGame()">
+RESTART
+</button>
 
-<a
-class="btn"
-href="racing.html"
->
-Play Now
-</a>
+<div class="controls">
 
-</div>
+<button class="control" onclick="moveLeft()">
+⬅️
+</button>
 
-
-<!-- ZOMBIE ATTACK -->
-
-<div class="card">
-
-<div class="icon-wrap">
-🧟
-</div>
-
-<h2 id="g3n">
-Zombie Attack
-</h2>
-
-<p id="g3d">
-Shoot the zombies, survive
-and increase your score.
-</p>
-
-<a
-class="btn"
-href="zombie.html"
->
-Play Now
-</a>
-
-</div>
-
-
-<!-- SWORD BATTLE -->
-
-<div class="card">
-
-<div class="icon-wrap">
+<button class="control" onclick="attack()">
 ⚔️
+</button>
+
+<button class="control" onclick="moveRight()">
+➡️
+</button>
+
 </div>
 
-<h2 id="g4n">
-Sword Battle
-</h2>
-
-<p id="g4d">
-Move, attack and defeat
-the enemy warrior.
+<p class="help">
+Arrow keys: move<br>
+SPACE: attack
 </p>
-
-<a
-class="btn"
-href="sword.html"
->
-Play Now
-</a>
-
-</div>
-
-
-</div>
-
-</main>
-
-
-<footer>
-
-<div style="color:#fff;font-weight:800">
-
-🎮
-<span id="footText">
-Ebad Gaming
-</span>
-
-</div>
-
-<div>
-Made for gamers ❤️
-</div>
-
-<div style="margin-top:8px;font-size:13px">
-© 2026 Ebad Gaming
-</div>
-
-</footer>
-
 
 <script>
 
-const defaults={
+let running=false;
 
-site:"Ebad Gaming",
+let score=0;
+let lives=3;
+let level=1;
 
-g1n:"Space Rocket",
-g1d:"Fly your rocket, destroy asteroids and beat your score.",
+let enemyHealth=100;
 
-g2n:"Speed Racer",
-g2d:"Avoid the enemy cars and try to beat your best score.",
+let playerX=35;
+let enemyX=35;
 
-g3n:"Zombie Attack",
-g3d:"Shoot the zombies, survive and increase your score.",
+let enemyTimer=null;
 
-g4n:"Sword Battle",
-g4d:"Move, attack and defeat the enemy warrior.",
+const player=
+document.getElementById("player");
 
-color:"#ff3030"
+const enemy=
+document.getElementById("enemy");
 
-};
+const health=
+document.getElementById("health");
 
+function update(){
 
-function setting(key){
+  player.style.left=playerX+"px";
 
-return localStorage.getItem(
-"ebad_"+key
-)||defaults[key];
+  enemy.style.right=enemyX+"px";
 
+  health.style.width=enemyHealth+"%";
 }
 
+function startGame(){
 
-function loadSettings(){
+  if(running)return;
 
-document.getElementById(
-"logoText"
-).textContent=
-setting("site").replace(
-/\s+Gaming$/i,
-""
-);
+  running=true;
 
+  score=0;
+  lives=3;
+  level=1;
 
-document.getElementById(
-"footText"
-).textContent=
-setting("site");
+  enemyHealth=100;
 
+  playerX=35;
+  enemyX=35;
 
-document.getElementById(
-"g1n"
-).textContent=
-setting("g1n");
+  update();
 
+  document.getElementById("score").textContent=0;
+  document.getElementById("lives").textContent=3;
+  document.getElementById("level").textContent=1;
 
-document.getElementById(
-"g1d"
-).textContent=
-setting("g1d");
+  document.getElementById("message").textContent=
+    "⚔️ Fight! Move closer and attack.";
 
+  clearInterval(enemyTimer);
 
-document.getElementById(
-"g2n"
-).textContent=
-setting("g2n");
-
-
-document.getElementById(
-"g2d"
-).textContent=
-setting("g2d");
-
-
-document.getElementById(
-"g3n"
-).textContent=
-setting("g3n");
-
-
-document.getElementById(
-"g3d"
-).textContent=
-setting("g3d");
-
-
-document.getElementById(
-"g4n"
-).textContent=
-setting("g4n");
-
-
-document.getElementById(
-"g4d"
-).textContent=
-setting("g4d");
-
-
-document.documentElement.style.setProperty(
-"--main",
-setting("color")
-);
-
+  enemyTimer=
+    setInterval(enemyAttack,1200);
 }
 
+function moveLeft(){
 
-loadSettings();
+  if(!running)return;
+
+  playerX-=20;
+
+  if(playerX<5){
+    playerX=5;
+  }
+
+  update();
+}
+
+function moveRight(){
+
+  if(!running)return;
+
+  playerX+=20;
+
+  if(playerX>250){
+    playerX=250;
+  }
+
+  update();
+}
+
+function attack(){
+
+  if(!running)return;
+
+  const enemyPosition=
+    250-enemyX;
+
+  const distance=
+    Math.abs(playerX-enemyPosition);
+
+  if(distance>100){
+
+    document.getElementById("message").textContent=
+      "🗡️ Move closer to the enemy!";
+
+    return;
+  }
+
+  enemyHealth-=25;
+
+  if(enemyHealth<0){
+    enemyHealth=0;
+  }
+
+  update();
+
+  document.getElementById("message").textContent=
+    "⚔️ HIT! Enemy health: "+
+    enemyHealth+"%";
+
+  if(enemyHealth<=0){
+
+    score++;
+
+    level=
+      Math.floor(score/5)+1;
+
+    enemyHealth=100;
+
+    enemyX=
+      35+Math.random()*90;
+
+    document.getElementById("score").textContent=
+      score;
+
+    document.getElementById("level").textContent=
+      level;
+
+    document.getElementById("message").textContent=
+      "🏆 Enemy defeated!";
+
+    update();
+  }
+}
+
+function enemyAttack(){
+
+  if(!running)return;
+
+  const enemyPosition=
+    250-enemyX;
+
+  const distance=
+    Math.abs(playerX-enemyPosition);
+
+  if(distance<110){
+
+    lives--;
+
+    document.getElementById("lives").textContent=
+      lives;
+
+    document.getElementById("message").textContent=
+      "💥 Enemy attacked!";
+
+    if(lives<=0){
+
+      gameOver();
+    }
+  }
+}
+
+function gameOver(){
+
+  running=false;
+
+  clearInterval(enemyTimer);
+
+  document.getElementById("message").textContent=
+    "💀 GAME OVER! Score: "+score;
+}
+
+function restartGame(){
+
+  running=false;
+
+  clearInterval(enemyTimer);
+
+  score=0;
+  lives=3;
+  level=1;
+
+  enemyHealth=100;
+
+  playerX=35;
+  enemyX=35;
+
+  document.getElementById("score").textContent=0;
+  document.getElementById("lives").textContent=3;
+  document.getElementById("level").textContent=1;
+
+  document.getElementById("message").textContent=
+    "Press START BATTLE";
+
+  update();
+}
+
+document.addEventListener("keydown",function(e){
+
+  if(
+    e.target &&
+    (
+      e.target.tagName==="INPUT" ||
+      e.target.tagName==="TEXTAREA"
+    )
+  ){
+    return;
+  }
+
+  if(e.key==="ArrowLeft"){
+    e.preventDefault();
+    moveLeft();
+  }
+
+  if(e.key==="ArrowRight"){
+    e.preventDefault();
+    moveRight();
+  }
+
+  if(e.code==="Space"){
+    e.preventDefault();
+    attack();
+  }
+
+});
+
+update();
 
 </script>
 
