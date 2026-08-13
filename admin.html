@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Ebad Gaming - Admin</title>
 <style>
 *{box-sizing:border-box}
 body{font-family:Arial,sans-serif;background:#080812;color:#fff;margin:0;padding:20px}
-.container{max-width:900px;margin:30px auto}
+.container{max-width:900px;margin:35px auto}
 .box{background:#11111d;border:1px solid #29293d;border-radius:18px;padding:28px}
 h1{text-align:center;margin-bottom:22px}
 input,select{width:100%;padding:12px;margin:7px 0 16px;background:#0c0c15;color:#fff;border:1px solid #3a3a50;border-radius:8px}
@@ -22,12 +22,12 @@ button,a{display:inline-block;background:#ff3030;color:#fff;border:0;border-radi
 </head>
 <body>
 <div class="container">
-
 <div class="box" id="loginBox">
 <h1>🔐 Ebad Gaming Admin</h1>
-<p class="note">Enter your admin password to access website settings.</p>
-<input id="password" type="password" placeholder="Admin password">
+<p class="note">Enter the admin password to open the control panel.</p>
+<input id="password" type="password" placeholder="Admin Password">
 <button onclick="login()">Login</button>
+<a href="index.html" style="margin-left:8px">← Website</a>
 <div class="message" id="loginMsg"></div>
 </div>
 
@@ -46,12 +46,8 @@ button,a{display:inline-block;background:#ff3030;color:#fff;border:0;border-radi
 <div><label>Game 4 Description</label><input id="g4dInput"></div>
 <div class="full"><label>Main Color</label>
 <select id="colorInput">
-<option value="#ff3030">Red</option>
-<option value="#00aaff">Blue</option>
-<option value="#00cc77">Green</option>
-<option value="#aa55ff">Purple</option>
-<option value="#ff8800">Orange</option>
-<option value="#ff33aa">Pink</option>
+<option value="#ff3030">Red</option><option value="#00aaff">Blue</option><option value="#00cc77">Green</option>
+<option value="#aa55ff">Purple</option><option value="#ff8800">Orange</option><option value="#ff33aa">Pink</option>
 </select>
 </div>
 </div>
@@ -60,7 +56,6 @@ button,a{display:inline-block;background:#ff3030;color:#fff;border:0;border-radi
 <div class="message" id="saveMsg"></div>
 </div>
 </div>
-
 <script>
 const PASSWORD="12345";
 const defaults={
@@ -70,33 +65,27 @@ g2n:"Speed Racer",g2d:"Drive fast and avoid enemy cars.",
 g3n:"Zombie Attack",g3d:"Survive the zombie attack.",
 g4n:"Sword Battle",g4d:"Become the ultimate warrior.",color:"#ff3030"
 };
-
 function get(k){return localStorage.getItem("ebad_"+k)||defaults[k]}
-
 function login(){
 const p=document.getElementById("password").value;
 if(p===PASSWORD){
 document.getElementById("loginBox").style.display="none";
 document.getElementById("panel").style.display="block";
 load();
-}else{
-document.getElementById("loginMsg").textContent="❌ Wrong password";
+}else{document.getElementById("loginMsg").textContent="❌ Wrong password";}
 }
-}
-
 function load(){
 document.getElementById("siteInput").value=get("site");
 document.getElementById("heroInput").value=get("hero");
 ["g1n","g1d","g2n","g2d","g3n","g3d","g4n","g4d"].forEach(k=>document.getElementById(k+"Input").value=get(k));
 document.getElementById("colorInput").value=get("color");
 }
-
 function save(){
 ["site","hero","g1n","g1d","g2n","g2d","g3n","g3d","g4n","g4d"].forEach(k=>{
 localStorage.setItem("ebad_"+k,document.getElementById(k+"Input").value.trim()||defaults[k]);
 });
 localStorage.setItem("ebad_color",document.getElementById("colorInput").value);
-document.getElementById("saveMsg").textContent="✅ Saved on this browser";
+document.getElementById("saveMsg").textContent="✅ Changes saved on this browser";
 }
 </script>
 </body>
