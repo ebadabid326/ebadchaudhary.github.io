@@ -6,6 +6,7 @@
 <title>Ebad Gaming - Games</title>
 
 <style>
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -111,29 +112,44 @@ nav a:hover{
 }
 
 .card{
-    background:linear-gradient(180deg,#171722,#11111b);
+    background:linear-gradient(
+        180deg,
+        #171722,
+        #11111b
+    );
+
     border:1px solid #2b2b40;
     border-radius:18px;
+
     padding:25px 16px;
+
     text-align:center;
+
     transition:.2s;
 }
 
 .card:hover{
     transform:translateY(-7px);
     border-color:#4a4a62;
-    box-shadow:0 15px 35px rgba(0,0,0,.3);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.3);
 }
 
 .icon-wrap{
     width:90px;
     height:90px;
+
     margin:0 auto 15px;
+
     background:#20202e;
+
     border-radius:22px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     font-size:48px;
 }
 
@@ -144,20 +160,28 @@ nav a:hover{
 
 .card p{
     color:#9d9dac;
-    min-height:55px;
+    min-height:60px;
     margin-bottom:18px;
 }
 
 .btn{
     display:inline-block;
+
     border:0;
     border-radius:10px;
+
     background:var(--main);
+
     color:#fff;
+
     padding:12px 22px;
+
     font-size:16px;
+
     font-weight:800;
+
     text-decoration:none;
+
     cursor:pointer;
 }
 
@@ -168,18 +192,24 @@ nav a:hover{
 footer{
     padding:32px 20px;
     text-align:center;
+
     color:#777;
+
     background:#050509;
+
     border-top:1px solid #20202e;
 }
 
 @media(max-width:950px){
+
     .games{
         grid-template-columns:repeat(2,1fr);
     }
+
 }
 
 @media(max-width:600px){
+
     .nav{
         flex-direction:column;
     }
@@ -191,7 +221,9 @@ footer{
     .head h1{
         font-size:38px;
     }
+
 }
+
 </style>
 </head>
 
@@ -293,10 +325,9 @@ Avoid the enemy cars and try
 to beat your best score.
 </p>
 
-<!-- IMPORTANT: DIRECT RACING PAGE -->
 <a
 class="btn"
-href="./racing.html"
+href="racing.html"
 >
 Play Now
 </a>
@@ -323,7 +354,7 @@ and increase your score.
 
 <a
 class="btn"
-href="./zombie.html"
+href="zombie.html"
 >
 Play Now
 </a>
@@ -344,14 +375,13 @@ Sword Battle
 </h2>
 
 <p id="g4d">
-Become the ultimate warrior.
-Coming soon.
+Move, attack and defeat
+the enemy warrior.
 </p>
 
 <a
 class="btn"
-href="#"
-onclick="comingSoon();return false;"
+href="sword.html"
 >
 Play Now
 </a>
@@ -368,7 +398,8 @@ Play Now
 
 <div style="color:#fff;font-weight:800">
 
-🎮 <span id="footText">
+🎮
+<span id="footText">
 Ebad Gaming
 </span>
 
@@ -387,7 +418,7 @@ Made for gamers ❤️
 
 <script>
 
-const defaults = {
+const defaults={
 
 site:"Ebad Gaming",
 
@@ -401,7 +432,7 @@ g3n:"Zombie Attack",
 g3d:"Shoot the zombies, survive and increase your score.",
 
 g4n:"Sword Battle",
-g4d:"Become the ultimate warrior. Coming soon.",
+g4d:"Move, attack and defeat the enemy warrior.",
 
 color:"#ff3030"
 
@@ -410,9 +441,13 @@ color:"#ff3030"
 
 function setting(key){
 
-return localStorage.getItem(
-"ebad_"+key
-) || defaults[key];
+return (
+    localStorage.getItem(
+        "ebad_"+key
+    )
+    ||
+    defaults[key]
+);
 
 }
 
@@ -421,79 +456,70 @@ function loadSettings(){
 
 document.getElementById(
 "logoText"
-).textContent =
+).textContent=
 setting("site").replace(
-/\s+Gaming$/i,
-""
+    /\s+Gaming$/i,
+    ""
 );
 
 
 document.getElementById(
 "footText"
-).textContent =
+).textContent=
 setting("site");
 
 
 document.getElementById(
 "g1n"
-).textContent =
+).textContent=
 setting("g1n");
 
 
 document.getElementById(
 "g1d"
-).textContent =
+).textContent=
 setting("g1d");
 
 
 document.getElementById(
 "g2n"
-).textContent =
+).textContent=
 setting("g2n");
 
 
 document.getElementById(
 "g2d"
-).textContent =
+).textContent=
 setting("g2d");
 
 
 document.getElementById(
 "g3n"
-).textContent =
+).textContent=
 setting("g3n");
 
 
 document.getElementById(
 "g3d"
-).textContent =
+).textContent=
 setting("g3d");
 
 
 document.getElementById(
 "g4n"
-).textContent =
+).textContent=
 setting("g4n");
 
 
 document.getElementById(
 "g4d"
-).textContent =
+).textContent=
 setting("g4d");
 
 
 document.documentElement.style.setProperty(
 "--main",
 setting("color")
-);
-
-}
-
-
-function comingSoon(){
-
-alert(
-"⚔️ Sword Battle\n\nComing soon!"
 );
 
 }
