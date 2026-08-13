@@ -6,500 +6,61 @@
 <title>Ebad Gaming</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{--main:#ff3030}
+body{font-family:Arial,Helvetica,sans-serif;background:#07070d;color:#fff;line-height:1.6}
+header{position:sticky;top:0;z-index:50;background:rgba(10,10,18,.97);border-bottom:2px solid var(--main);padding:15px 20px}
+.nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-size:26px;font-weight:900;color:var(--main)}
+.logo span{color:#fff}
+nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+nav a{color:#ddd;text-decoration:none;font-weight:700;padding:8px 12px;border-radius:8px}
+nav a:hover{background:#1c1c2a;color:#fff}
+.hero{min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;padding:70px 20px;background:radial-gradient(circle at 50% 20%,#342253 0,#19152e 35%,#090912 75%)}
+.hero-inner{max-width:900px}
+.badge{display:inline-block;background:#141420;border:1px solid #44445c;border-radius:999px;padding:7px 14px;color:#ff9292;font-weight:800;font-size:13px;margin-bottom:18px}
+.hero h1{font-size:clamp(46px,8vw,86px);line-height:1.03;margin-bottom:16px}
+.hero h1 span{color:var(--main)}
+.hero p{font-size:20px;color:#c8c8d4;max-width:720px;margin:0 auto 26px}
+.buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;border:0;border-radius:10px;background:var(--main);color:#fff;padding:12px 22px;font-size:16px;font-weight:800;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+.btn-secondary{background:#181825;border:1px solid #3b3b52}
+.stats{max-width:1000px;margin:-40px auto 0;position:relative;z-index:5;display:grid;grid-template-columns:repeat(3,1fr);gap:15px;padding:0 20px}
+.stat{background:#11111b;border:1px solid #2b2b40;border-radius:16px;padding:20px;text-align:center}
+.stat .icon{font-size:30px}
+.stat p{color:#9999aa;font-size:14px}
+section{max-width:1200px;margin:auto;padding:78px 20px}
+.head{text-align:center;margin-bottom:35px}
+.head .small{color:var(--main);font-size:13px;font-weight:900;letter-spacing:1.5px}
+.head h2{font-size:40px;margin-top:5px}
+.head h2 span{color:var(--main)}
+.head p{color:#9f9fad;max-width:680px;margin:8px auto 0}
+.featured{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
+.feature,.side{border:1px solid #2b2b40;border-radius:20px;padding:32px}
+.feature{background:radial-gradient(circle at top right,#3a214c,#171722 48%,#11111b)}
+.feature .big{font-size:70px}
+.feature h3{font-size:34px;margin:8px 0}
+.feature p{color:#b2b2bf;margin-bottom:18px}
+.side{background:#11111b}
+.side h3{font-size:24px}
+.item{display:flex;gap:12px;padding:13px;border-radius:12px;background:#181824;border:1px solid #29293b;margin-top:11px}
+.item span{color:#9696a6;font-size:13px;display:block}
+.cta{max-width:1050px;margin:0 auto 70px;padding:40px 22px;text-align:center;border-radius:22px;background:linear-gradient(135deg,#27183a,#141424);border:1px solid #36364d}
+.cta h2{font-size:34px}
+.cta p{color:#aaa;margin:6px 0 18px}
+footer{padding:32px 20px;text-align:center;color:#777;background:#050509;border-top:1px solid #20202e}
+
+@media(max-width:900px){
+  .featured{grid-template-columns:1fr}
 }
-
-html{
-  scroll-behavior:smooth;
-}
-
-:root{
-  --main:#ff3030;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#07070d;
-  color:#fff;
-  line-height:1.6;
-}
-
-header{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:rgba(10,10,18,.97);
-  border-bottom:2px solid var(--main);
-  padding:15px 20px;
-}
-
-.nav{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-}
-
-.logo{
-  font-size:26px;
-  font-weight:900;
-  color:var(--main);
-}
-
-.logo span{
-  color:#fff;
-}
-
-nav{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-
-nav a{
-  color:#ddd;
-  text-decoration:none;
-  font-weight:700;
-  padding:8px 11px;
-  border-radius:8px;
-}
-
-nav a:hover{
-  background:#1c1c2a;
-  color:#fff;
-}
-
-.hero{
-  min-height:570px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:70px 20px;
-  background:
-    radial-gradient(
-      circle at 50% 20%,
-      #342253 0,
-      #19152e 35%,
-      #090912 75%
-    );
-}
-
-.hero-inner{
-  max-width:900px;
-}
-
-.badge{
-  display:inline-block;
-  background:#141420;
-  border:1px solid #44445c;
-  border-radius:999px;
-  padding:7px 14px;
-  color:#ff9292;
-  font-weight:800;
-  font-size:13px;
-  margin-bottom:18px;
-}
-
-.hero h1{
-  font-size:clamp(46px,8vw,86px);
-  line-height:1.03;
-  margin-bottom:16px;
-}
-
-.hero h1 span{
-  color:var(--main);
-}
-
-.hero p{
-  font-size:20px;
-  color:#c8c8d4;
-  max-width:720px;
-  margin:0 auto 26px;
-}
-
-.buttons{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.btn{
-  display:inline-block;
-  border:0;
-  border-radius:10px;
-  background:var(--main);
-  color:#fff;
-  padding:12px 22px;
-  font-size:16px;
-  font-weight:800;
-  text-decoration:none;
-  cursor:pointer;
-}
-
-.btn:hover{
-  filter:brightness(1.1);
-}
-
-.btn-secondary{
-  background:#181825;
-  border:1px solid #3b3b52;
-}
-
-.stats{
-  max-width:1000px;
-  margin:-40px auto 0;
-  position:relative;
-  z-index:5;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-  padding:0 20px;
-}
-
-.stat{
-  background:#11111b;
-  border:1px solid #2b2b40;
-  border-radius:16px;
-  padding:20px;
-  text-align:center;
-}
-
-.stat .icon{
-  font-size:30px;
-}
-
-.stat p{
-  color:#9999aa;
-  font-size:14px;
-}
-
-section{
-  max-width:1200px;
-  margin:auto;
-  padding:78px 20px;
-}
-
-.head{
-  text-align:center;
-  margin-bottom:35px;
-}
-
-.head .small{
-  color:var(--main);
-  font-size:13px;
-  font-weight:900;
-  letter-spacing:1.5px;
-}
-
-.head h2{
-  font-size:40px;
-  margin-top:5px;
-}
-
-.head h2 span{
-  color:var(--main);
-}
-
-.head p{
-  color:#9f9fad;
-  max-width:680px;
-  margin:8px auto 0;
-}
-
-.games{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-
-.card{
-  background:linear-gradient(180deg,#171722,#11111b);
-  border:1px solid #2b2b40;
-  border-radius:18px;
-  padding:24px 16px;
-  text-align:center;
-  transition:.2s;
-}
-
-.card:hover{
-  transform:translateY(-7px);
-  border-color:#4a4a62;
-}
-
-.icon-wrap{
-  width:82px;
-  height:82px;
-  margin:0 auto 14px;
-  background:#20202e;
-  border-radius:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:44px;
-}
-
-.card h3{
-  font-size:20px;
-  margin-bottom:6px;
-}
-
-.card p{
-  color:#9d9dac;
-  min-height:52px;
-  margin-bottom:17px;
-}
-
-.featured{
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  gap:24px;
-}
-
-.feature{
-  border:1px solid #2b2b40;
-  border-radius:20px;
-  padding:32px;
-  background:
-    radial-gradient(
-      circle at top right,
-      #3a214c,
-      #171722 48%,
-      #11111b
-    );
-}
-
-.feature .big{
-  font-size:70px;
-}
-
-.feature h3{
-  font-size:34px;
-  margin:8px 0;
-}
-
-.feature p{
-  color:#b2b2bf;
-  margin-bottom:18px;
-}
-
-.side{
-  border:1px solid #2b2b40;
-  border-radius:20px;
-  background:#11111b;
-  padding:28px;
-}
-
-.side h3{
-  font-size:24px;
-}
-
-.item{
-  display:flex;
-  gap:12px;
-  padding:13px;
-  border-radius:12px;
-  background:#181824;
-  border:1px solid #29293b;
-  margin-top:11px;
-}
-
-.item span{
-  color:#9696a6;
-  font-size:13px;
-  display:block;
-}
-
-/* Racing */
-
-.racing{
-  background:#0d0d15;
-  border:1px solid #2b2b40;
-  border-radius:22px;
-  padding:35px;
-  text-align:center;
-}
-
-.race-info{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:15px;
-}
-
-.info{
-  background:#151522;
-  border:1px solid #29293d;
-  padding:9px 14px;
-  border-radius:10px;
-  font-weight:700;
-}
-
-.game-box{
-  position:relative;
-  width:320px;
-  height:520px;
-  max-width:90vw;
-  margin:auto;
-  overflow:hidden;
-  border:4px solid #fff;
-  border-radius:12px;
-  background:#303030;
-}
-
-.road{
-  position:absolute;
-  inset:0;
-  background:#303030;
-}
-
-.line,
-.line2{
-  position:absolute;
-  width:8px;
-  height:90px;
-  background:#fff;
-  top:-100px;
-}
-
-.line{
-  left:33%;
-}
-
-.line2{
-  right:33%;
-}
-
-.player{
-  position:absolute;
-  left:132px;
-  bottom:20px;
-  font-size:48px;
-  z-index:5;
-  transition:left .08s;
-}
-
-.enemy{
-  position:absolute;
-  top:-100px;
-  font-size:48px;
-  z-index:4;
-}
-
-#enemy1{
-  left:30px;
-}
-
-#enemy2{
-  left:132px;
-}
-
-#enemy3{
-  left:234px;
-}
-
-.message{
-  min-height:28px;
-  margin:12px;
-  color:#ffd43b;
-  font-weight:700;
-}
-
-.mobile{
-  display:flex;
-  justify-content:center;
-  gap:25px;
-  margin-top:12px;
-}
-
-.control{
-  width:80px;
-  height:54px;
-  border:0;
-  border-radius:10px;
-  background:var(--main);
-  color:#fff;
-  font-size:24px;
-  font-weight:800;
-  cursor:pointer;
-}
-
-.help{
-  color:#aaa;
-  margin-top:10px;
-}
-
-.cta{
-  max-width:1050px;
-  margin:0 auto 70px;
-  padding:40px 22px;
-  text-align:center;
-  border-radius:22px;
-  background:linear-gradient(135deg,#27183a,#141424);
-  border:1px solid #36364d;
-}
-
-.cta h2{
-  font-size:34px;
-}
-
-.cta p{
-  color:#aaa;
-  margin:6px 0 18px;
-}
-
-footer{
-  padding:32px 20px;
-  text-align:center;
-  color:#777;
-  background:#050509;
-  border-top:1px solid #20202e;
-}
-
-@media(max-width:950px){
-  .games{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .featured{
-    grid-template-columns:1fr;
-  }
-}
-
 @media(max-width:650px){
-
-  .nav{
-    flex-direction:column;
-  }
-
-  .stats{
-    grid-template-columns:1fr;
-    margin-top:-25px;
-  }
-
-  .games{
-    grid-template-columns:1fr;
-  }
-
-  .hero{
-    min-height:500px;
-  }
-
-  .hero p{
-    font-size:17px;
-  }
-
-  .head h2{
-    font-size:32px;
-  }
+  .nav{flex-direction:column}
+  .stats{grid-template-columns:1fr;margin-top:-25px}
+  .hero{min-height:520px}
+  .hero p{font-size:17px}
+  .head h2{font-size:32px}
 }
 </style>
 </head>
@@ -507,1079 +68,155 @@ footer{
 <body>
 
 <header>
-
 <div class="nav">
+  <div class="logo">🎮 <span id="logoText">Ebad</span> Gaming</div>
 
-<div class="logo">
-🎮 <span id="logoText">Ebad</span> Gaming
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="games.html">Games</a>
+    <a href="admin.html">🔐 Admin</a>
+  </nav>
 </div>
-
-<nav>
-
-<a href="#home">
-Home
-</a>
-
-<a href="#games">
-Games
-</a>
-
-<a href="#racing">
-Racing
-</a>
-
-<a href="rocket.html">
-🚀 Rocket
-</a>
-
-<a href="zombie.html">
-🧟 Zombie
-</a>
-
-<a href="admin.html">
-🔐 Admin
-</a>
-
-</nav>
-
-</div>
-
 </header>
 
-
-<section class="hero" id="home">
-
+<section class="hero">
 <div class="hero-inner">
+  <div class="badge">🎮 THE GAMING ZONE</div>
 
-<div class="badge">
-🎮 THE GAMING ZONE
+  <h1>
+    Welcome to <span id="siteText">Ebad Gaming</span>
+  </h1>
+
+  <p id="heroText">
+    Play exciting games, beat your high scores,
+    and become the ultimate gamer.
+  </p>
+
+  <div class="buttons">
+    <a class="btn" href="games.html">🎮 Explore Games</a>
+    <a class="btn btn-secondary" href="admin.html">🔐 Admin</a>
+  </div>
 </div>
-
-<h1>
-Welcome to
-<span id="siteText">
-Ebad Gaming
-</span>
-</h1>
-
-<p id="heroText">
-Play exciting games, beat your high scores,
-and become the ultimate gamer.
-</p>
-
-<div class="buttons">
-
-<a class="btn" href="#games">
-🎮 Explore Games
-</a>
-
-<a class="btn btn-secondary" href="zombie.html">
-🧟 Play Zombie Attack
-</a>
-
-</div>
-
-</div>
-
 </section>
-
 
 <div class="stats">
+  <div class="stat">
+    <div class="icon">🎮</div>
+    <h3>Fun Games</h3>
+    <p>Play and enjoy</p>
+  </div>
 
-<div class="stat">
-<div class="icon">🎮</div>
-<h3>Fun Games</h3>
-<p>Play and enjoy</p>
+  <div class="stat">
+    <div class="icon">🏆</div>
+    <h3>High Scores</h3>
+    <p>Beat your record</p>
+  </div>
+
+  <div class="stat">
+    <div class="icon">⚡</div>
+    <h3>Fast Action</h3>
+    <p>Non-stop gaming</p>
+  </div>
 </div>
-
-<div class="stat">
-<div class="icon">🏆</div>
-<h3>High Scores</h3>
-<p>Beat your record</p>
-</div>
-
-<div class="stat">
-<div class="icon">⚡</div>
-<h3>Fast Action</h3>
-<p>Non-stop gaming</p>
-</div>
-
-</div>
-
-
-<section id="games">
-
-<div class="head">
-
-<div class="small">
-GAME LIBRARY
-</div>
-
-<h2>
-Popular
-<span>Games</span>
-</h2>
-
-<p>
-Pick a game and start playing.
-</p>
-
-</div>
-
-
-<div class="games">
-
-
-<div class="card">
-
-<div class="icon-wrap">
-🚀
-</div>
-
-<h3 id="g1n">
-Space Rocket
-</h3>
-
-<p id="g1d">
-Fly your rocket and beat your score.
-</p>
-
-<a
-class="btn"
-href="rocket.html"
->
-Play Now
-</a>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon-wrap">
-🏎️
-</div>
-
-<h3 id="g2n">
-Speed Racer
-</h3>
-
-<p id="g2d">
-Drive fast and avoid enemy cars.
-</p>
-
-<a
-class="btn"
-href="#racing"
->
-Play Now
-</a>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon-wrap">
-🧟
-</div>
-
-<h3 id="g3n">
-Zombie Attack
-</h3>
-
-<p id="g3d">
-Survive the zombie attack.
-</p>
-
-<a
-class="btn"
-href="zombie.html"
->
-Play Now
-</a>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon-wrap">
-⚔️
-</div>
-
-<h3 id="g4n">
-Sword Battle
-</h3>
-
-<p id="g4d">
-Become the ultimate warrior.
-</p>
-
-<button
-class="btn"
-onclick="comingSoon('Sword Battle')"
->
-Play Now
-</button>
-
-</div>
-
-
-</div>
-
-</section>
-
 
 <section>
-
 <div class="head">
-
-<div class="small">
-FEATURED
+  <div class="small">WELCOME</div>
+  <h2>Enter the <span>Gaming Zone</span></h2>
+  <p>
+    Your games are all in one place.
+    Click Games above to see the full game library.
+  </p>
 </div>
-
-<h2>
-Ready for
-<span>Action?</span>
-</h2>
-
-</div>
-
 
 <div class="featured">
 
-<div class="feature">
+  <div class="feature">
+    <div class="big">🎮</div>
+    <h3>Ready to Play?</h3>
+    <p>
+      Choose from racing, zombie, rocket and
+      more games from the Games page.
+    </p>
+    <a class="btn" href="games.html">Open Games</a>
+  </div>
 
-<div class="big">
-🧟
-</div>
+  <div class="side">
+    <h3>What you can do</h3>
 
-<h3>
-Zombie Attack
-</h3>
+    <div class="item">
+      🎯
+      <div>
+        <strong>Play Games</strong>
+        <span>Start a game with one click.</span>
+      </div>
+    </div>
 
-<p>
-Grab your weapon, survive the incoming
-zombies and try to beat your score.
-</p>
+    <div class="item">
+      🏆
+      <div>
+        <strong>Beat Scores</strong>
+        <span>Try to improve your records.</span>
+      </div>
+    </div>
 
-<a
-class="btn"
-href="zombie.html"
->
-Start Game
-</a>
-
-</div>
-
-
-<div class="side">
-
-<h3>
-Why play Ebad Gaming?
-</h3>
-
-<div class="item">
-🎯
-<div>
-<strong>Challenge Yourself</strong>
-<span>Keep improving your score.</span>
-</div>
-</div>
-
-<div class="item">
-🏆
-<div>
-<strong>Beat Records</strong>
-<span>Try to reach a new high score.</span>
-</div>
-</div>
-
-<div class="item">
-🔥
-<div>
-<strong>More Games Coming</strong>
-<span>New games will be added soon.</span>
-</div>
-</div>
+    <div class="item">
+      ⚙️
+      <div>
+        <strong>Admin Controls</strong>
+        <span>Manage your website from Admin.</span>
+      </div>
+    </div>
+  </div>
 
 </div>
-
-</div>
-
 </section>
-
-
-<section id="racing">
-
-<div class="head">
-
-<div class="small">
-PLAY NOW
-</div>
-
-<h2>
-🏎️ Speed
-<span>Racer</span>
-</h2>
-
-<p>
-Avoid the enemy cars and beat your best score.
-</p>
-
-</div>
-
-
-<div class="racing">
-
-
-<div class="race-info">
-
-<div class="info">
-🏆 Score:
-<span id="score">0</span>
-</div>
-
-<div class="info">
-❤️ Lives:
-<span id="lives">3</span>
-</div>
-
-<div class="info">
-⚡ Level:
-<span id="level">1</span>
-</div>
-
-<div class="info">
-🥇 Best:
-<span id="best">0</span>
-</div>
-
-</div>
-
-
-<div class="game-box">
-
-<div class="road"></div>
-
-<div class="line" id="line1"></div>
-
-<div class="line2" id="line2"></div>
-
-<div class="player" id="player">
-🏎️
-</div>
-
-<div class="enemy" id="enemy1">
-🚙
-</div>
-
-<div class="enemy" id="enemy2">
-🚗
-</div>
-
-<div class="enemy" id="enemy3">
-🚕
-</div>
-
-</div>
-
-
-<div
-class="message"
-id="message"
->
-Press START to begin!
-</div>
-
-
-<button
-class="btn"
-onclick="startGame()"
->
-START GAME
-</button>
-
-<button
-class="btn"
-onclick="restartGame()"
->
-RESTART
-</button>
-
-
-<div class="mobile">
-
-<button
-class="control"
-onclick="moveLeft()"
->
-⬅️
-</button>
-
-<button
-class="control"
-onclick="moveRight()"
->
-➡️
-</button>
-
-</div>
-
-
-<p class="help">
-Computer: ← → or A / D |
-Mobile: use the buttons
-</p>
-
-</div>
-
-</section>
-
 
 <div class="cta">
-
-<h2>
-🎮 More games are coming
-</h2>
-
-<p>
-Zombie Attack, Space Rocket and Speed Racer are live.
-</p>
-
-<a
-class="btn"
-href="rocket.html"
->
-🚀 Play Space Rocket
-</a>
-
+  <h2>🎮 Let's Play</h2>
+  <p>Open the Games page and choose your game.</p>
+  <a class="btn" href="games.html">View All Games</a>
 </div>
-
 
 <footer>
-
-<div style="color:#fff;font-weight:800">
-🎮 <span id="footText">
-Ebad Gaming
-</span>
-</div>
-
-<div>
-Made for gamers ❤️
-</div>
-
-<div style="margin-top:8px;font-size:13px">
-© 2026 Ebad Gaming
-</div>
-
+  <div style="color:#fff;font-weight:800">
+    🎮 <span id="footText">Ebad Gaming</span>
+  </div>
+  <div>Made for gamers ❤️</div>
+  <div style="margin-top:8px;font-size:13px">© 2026 Ebad Gaming</div>
 </footer>
 
-
 <script>
-
 const defaults={
-
-site:"Ebad Gaming",
-
-hero:
-"Play exciting games, beat your high scores, and become the ultimate gamer.",
-
-g1n:"Space Rocket",
-g1d:"Fly your rocket and beat your score.",
-
-g2n:"Speed Racer",
-g2d:"Drive fast and avoid enemy cars.",
-
-g3n:"Zombie Attack",
-g3d:"Survive the zombie attack.",
-
-g4n:"Sword Battle",
-g4d:"Become the ultimate warrior.",
-
-color:"#ff3030"
-
+  site:"Ebad Gaming",
+  hero:"Play exciting games, beat your high scores, and become the ultimate gamer.",
+  color:"#ff3030"
 };
 
-
 function setting(k){
-
-return localStorage.getItem(
-"ebad_"+k
-)
-||
-defaults[k];
-
+  return localStorage.getItem("ebad_"+k)||defaults[k];
 }
-
 
 function loadSettings(){
+  document.getElementById("logoText").textContent =
+    setting("site").replace(/\s+Gaming$/i,"");
 
-document.getElementById(
-"logoText"
-).textContent=
-setting("site").replace(
-/\s+Gaming$/i,
-""
-);
+  document.getElementById("siteText").textContent =
+    setting("site");
 
+  document.getElementById("footText").textContent =
+    setting("site");
 
-document.getElementById(
-"siteText"
-).textContent=
-setting("site");
+  document.getElementById("heroText").textContent =
+    setting("hero");
 
-
-document.getElementById(
-"footText"
-).textContent=
-setting("site");
-
-
-document.getElementById(
-"heroText"
-).textContent=
-setting("hero");
-
-
-[
-"g1n","g1d",
-"g2n","g2d",
-"g3n","g3d",
-"g4n","g4d"
-].forEach(
-k=>{
-document.getElementById(
-k
-).textContent=
-setting(k);
+  document.documentElement.style.setProperty(
+    "--main",
+    setting("color")
+  );
 }
-);
-
-
-document.documentElement.style.setProperty(
-"--main",
-setting("color")
-);
-
-}
-
 
 loadSettings();
-
-
-function comingSoon(name){
-
-alert(
-name+
-" 🎮\n\nComing soon!"
-);
-
-}
-
-
-/* =========================
-   RACING GAME
-========================= */
-
-let playerX=132;
-
-let score=0;
-let lives=3;
-let level=1;
-
-let speed=3.5;
-
-let gameRunning=false;
-let gameTimer=null;
-
-let bestScore=
-Number(
-localStorage.getItem(
-"ebadBestScore"
-)
-)||0;
-
-
-document.getElementById(
-"best"
-).textContent=
-bestScore;
-
-
-const player=
-document.getElementById(
-"player"
-);
-
-
-const enemies=[
-
-document.getElementById(
-"enemy1"
-),
-
-document.getElementById(
-"enemy2"
-),
-
-document.getElementById(
-"enemy3"
-)
-
-];
-
-
-const lines=[
-
-document.getElementById(
-"line1"
-),
-
-document.getElementById(
-"line2"
-)
-
-];
-
-
-function resetAllEnemies(){
-
-enemies[0].style.left=
-"30px";
-
-enemies[0].style.top=
-"-140px";
-
-
-enemies[1].style.left=
-"132px";
-
-enemies[1].style.top=
-"-380px";
-
-
-enemies[2].style.left=
-"234px";
-
-enemies[2].style.top=
-"-620px";
-
-}
-
-
-resetAllEnemies();
-
-
-function startGame(){
-
-if(gameRunning)
-return;
-
-
-gameRunning=true;
-
-score=0;
-lives=3;
-level=1;
-speed=3.5;
-playerX=132;
-
-
-document.getElementById(
-"score"
-).textContent=0;
-
-
-document.getElementById(
-"lives"
-).textContent=3;
-
-
-document.getElementById(
-"level"
-).textContent=1;
-
-
-player.style.left=
-"132px";
-
-
-resetAllEnemies();
-
-
-document.getElementById(
-"message"
-).textContent=
-"🔥 GO! Avoid the cars!";
-
-
-gameTimer=
-setInterval(
-updateRacing,
-30
-);
-
-}
-
-
-function updateRacing(){
-
-lines.forEach(
-line=>{
-
-let y=
-parseFloat(
-line.style.top
-);
-
-
-if(isNaN(y))
-y=-100;
-
-
-y+=speed*1.6;
-
-
-if(y>520)
-y=-100;
-
-
-line.style.top=
-y+"px";
-
-});
-
-
-enemies.forEach(
-car=>{
-
-let y=
-parseFloat(
-car.style.top
-);
-
-
-if(isNaN(y))
-y=-100;
-
-
-y+=speed;
-
-
-car.style.top=
-y+"px";
-
-
-if(y>540){
-
-score++;
-
-
-document.getElementById(
-"score"
-).textContent=
-score;
-
-
-resetEnemy(car);
-
-
-updateLevel();
-
-}
-
-
-if(checkCollision(car)){
-
-resetEnemy(car);
-
-lives--;
-
-
-document.getElementById(
-"lives"
-).textContent=
-lives;
-
-
-if(lives<=0){
-
-gameOver();
-
-}else{
-
-document.getElementById(
-"message"
-).textContent=
-"💥 Crash! Lives left: "+
-lives;
-
-}
-
-}
-
-});
-
-}
-
-
-function resetEnemy(car){
-
-const lanes=
-[
-30,
-132,
-234
-];
-
-
-car.style.left=
-lanes[
-Math.floor(
-Math.random()*
-lanes.length
-)
-]+"px";
-
-
-car.style.top=
-(
--160-
-Math.random()*360
-)+"px";
-
-}
-
-
-function checkCollision(car){
-
-const a=
-player.getBoundingClientRect();
-
-const b=
-car.getBoundingClientRect();
-
-
-return(
-a.left<
-b.right-8
-&&
-a.right>
-b.left+8
-&&
-a.top<
-b.bottom-8
-&&
-a.bottom>
-b.top+8
-);
-
-}
-
-
-function updateLevel(){
-
-level=
-Math.floor(
-score/10
-)+1;
-
-
-speed=
-3.5+
-(level-1)*0.7;
-
-
-document.getElementById(
-"level"
-).textContent=
-level;
-
-
-if(
-score>0 &&
-score%10===0
-){
-
-document.getElementById(
-"message"
-).textContent=
-"⚡ LEVEL "+
-level+"!";
-
-}
-
-}
-
-
-function moveLeft(){
-
-if(!gameRunning)
-return;
-
-
-playerX=
-Math.max(
-5,
-playerX-35
-);
-
-
-player.style.left=
-playerX+"px";
-
-}
-
-
-function moveRight(){
-
-if(!gameRunning)
-return;
-
-
-playerX=
-Math.min(
-260,
-playerX+35
-);
-
-
-player.style.left=
-playerX+"px";
-
-}
-
-
-document.addEventListener(
-"keydown",
-e=>{
-
-if(
-e.key==="ArrowLeft" ||
-e.key.toLowerCase()==="a"
-){
-
-moveLeft();
-
-}
-
-
-if(
-e.key==="ArrowRight" ||
-e.key.toLowerCase()==="d"
-){
-
-moveRight();
-
-}
-
-});
-
-
-function gameOver(){
-
-clearInterval(
-gameTimer
-);
-
-
-gameRunning=false;
-
-
-if(
-score>
-bestScore
-){
-
-bestScore=
-score;
-
-
-localStorage.setItem(
-"ebadBestScore",
-bestScore
-);
-
-
-document.getElementById(
-"best"
-).textContent=
-bestScore;
-
-
-document.getElementById(
-"message"
-).textContent=
-"🏆 NEW HIGH SCORE: "+
-score+"!";
-
-}else{
-
-document.getElementById(
-"message"
-).textContent=
-"💥 GAME OVER! Score: "+
-score+
-" | Best: "+
-bestScore;
-
-}
-
-}
-
-
-function restartGame(){
-
-clearInterval(
-gameTimer
-);
-
-
-gameRunning=false;
-
-score=0;
-lives=3;
-level=1;
-
-speed=3.5;
-
-playerX=132;
-
-
-document.getElementById(
-"score"
-).textContent=
-0;
-
-
-document.getElementById(
-"lives"
-).textContent=
-3;
-
-
-document.getElementById(
-"level"
-).textContent=
-1;
-
-
-player.style.left=
-"132px";
-
-
-resetAllEnemies();
-
-
-document.getElementById(
-"message"
-).textContent=
-"Press START to begin!";
-
-}
-
 </script>
 
 </body>
