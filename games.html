@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ebad Gaming - Games</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{--main:#ff3030}
+body{font-family:Arial,Helvetica,sans-serif;background:#07070d;color:#fff;line-height:1.6}
+header{position:sticky;top:0;z-index:50;background:rgba(10,10,18,.97);border-bottom:2px solid var(--main);padding:15px 20px}
+.nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-size:26px;font-weight:900;color:var(--main)}
+.logo span{color:#fff}
+nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+nav a{color:#ddd;text-decoration:none;font-weight:700;padding:8px 12px;border-radius:8px}
+nav a:hover{background:#1c1c2a;color:#fff}
+.page{max-width:1200px;margin:auto;padding:70px 20px 90px}
+.head{text-align:center;margin-bottom:38px}
+.head .small{color:var(--main);font-size:13px;font-weight:900;letter-spacing:1.5px}
+.head h1{font-size:48px;margin-top:5px}
+.head h1 span{color:var(--main)}
+.head p{color:#9f9fad;max-width:680px;margin:8px auto 0}
+.games{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:linear-gradient(180deg,#171722,#11111b);border:1px solid #2b2b40;border-radius:18px;padding:25px 16px;text-align:center;transition:.2s}
+.card:hover{transform:translateY(-7px);border-color:#4a4a62;box-shadow:0 15px 35px rgba(0,0,0,.3)}
+.icon-wrap{width:90px;height:90px;margin:0 auto 15px;background:#20202e;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:48px}
+.card h2{font-size:22px;margin-bottom:7px}
+.card p{color:#9d9dac;min-height:55px;margin-bottom:18px}
+.btn{display:inline-block;border:0;border-radius:10px;background:var(--main);color:#fff;padding:12px 22px;font-size:16px;font-weight:800;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+footer{padding:32px 20px;text-align:center;color:#777;background:#050509;border-top:1px solid #20202e}
+@media(max-width:950px){.games{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.nav{flex-direction:column}.games{grid-template-columns:1fr}.head h1{font-size:38px}}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="nav">
+  <div class="logo">🎮 <span id="logoText">Ebad</span> Gaming</div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="games.html">Games</a>
+    <a href="admin.html">🔐 Admin</a>
+  </nav>
+</div>
+</header>
+
+<main class="page">
+
+<div class="head">
+  <div class="small">GAME LIBRARY</div>
+  <h1>Choose Your <span>Game</span></h1>
+  <p>Pick any game below and start playing.</p>
+</div>
+
+<div class="games">
+
+  <div class="card">
+    <div class="icon-wrap">🚀</div>
+    <h2 id="g1n">Space Rocket</h2>
+    <p id="g1d">Fly your rocket, destroy asteroids and beat your score.</p>
+    <a class="btn" href="rocket.html">Play Now</a>
+  </div>
+
+  <div class="card">
+    <div class="icon-wrap">🏎️</div>
+    <h2 id="g2n">Speed Racer</h2>
+    <p id="g2d">Avoid the enemy cars and try to beat your best score.</p>
+    <a class="btn" href="index.html#racing">Play Now</a>
+  </div>
+
+  <div class="card">
+    <div class="icon-wrap">🧟</div>
+    <h2 id="g3n">Zombie Attack</h2>
+    <p id="g3d">Shoot the zombies, survive and increase your score.</p>
+    <a class="btn" href="zombie.html">Play Now</a>
+  </div>
+
+  <div class="card">
+    <div class="icon-wrap">⚔️</div>
+    <h2 id="g4n">Sword Battle</h2>
+    <p id="g4d">Become the ultimate warrior. Coming soon.</p>
+    <a class="btn" href="#" onclick="comingSoon();return false;">Play Now</a>
+  </div>
+
+</div>
+</main>
+
+<footer>
+  <div style="color:#fff;font-weight:800">🎮 <span id="footText">Ebad Gaming</span></div>
+  <div>Made for gamers ❤️</div>
+  <div style="margin-top:8px;font-size:13px">© 2026 Ebad Gaming</div>
+</footer>
+
+<script>
+const defaults={
+  site:"Ebad Gaming",
+  g1n:"Space Rocket",
+  g1d:"Fly your rocket, destroy asteroids and beat your score.",
+  g2n:"Speed Racer",
+  g2d:"Avoid the enemy cars and try to beat your best score.",
+  g3n:"Zombie Attack",
+  g3d:"Shoot the zombies, survive and increase your score.",
+  g4n:"Sword Battle",
+  g4d:"Become the ultimate warrior. Coming soon.",
+  color:"#ff3030"
+};
+
+function setting(k){
+  return localStorage.getItem("ebad_"+k)||defaults[k];
+}
+
+function loadSettings(){
+  document.getElementById("logoText").textContent =
+    setting("site").replace(/\s+Gaming$/i,"");
+
+  document.getElementById("footText").textContent =
+    setting("site");
+
+  ["g1n","g1d","g2n","g2d","g3n","g3d","g4n","g4d"].forEach(k=>{
+    document.getElementById(k).textContent=setting(k);
+  });
+
+  document.documentElement.style.setProperty(
+    "--main",
+    setting("color")
+  );
+}
+
+function comingSoon(){
+  alert("⚔️ Sword Battle\n\nComing soon!");
+}
+
+loadSettings();
+</script>
+
+</body>
+</html>
