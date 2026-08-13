@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sword Battle - Ebad Gaming</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --main:#b45cff;
+    --dark:#08060d;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+        radial-gradient(circle at top,#2b1740,#09070e 60%);
+    color:#fff;
+    text-align:center;
+}
+
+header{
+    background:rgba(8,7,13,.96);
+    border-bottom:2px solid var(--main);
+    padding:16px;
+}
+
+header a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:800;
+}
+
+h1{
+    margin:20px 0 5px;
+    color:#d88aff;
+}
+
+.subtitle{
+    color:#aaa;
+    margin-bottom:15px;
+}
+
+.info{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:15px;
+}
+
+.info-box{
+    background:#15101d;
+    border:1px solid #49355b;
+    border-radius:10px;
+    padding:9px 15px;
+    font-weight:800;
+}
+
+.game-frame{
+    width:min(420px,95vw);
+    margin:auto;
+    padding:10px;
+    background:#15111c;
+    border:1px solid #41314f;
+    border-radius:20px;
+}
+
+#game{
+    position:relative;
+    width:100%;
+    aspect-ratio:360/540;
+    overflow:hidden;
+    border:4px solid #eee;
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #2f1d3e 0%,
+            #17111f 55%,
+            #0c0b10 100%
+        );
+}
+
+.floor{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:120px;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #2b1e35 0 18px,
+            #22162a 18px 36px
+        );
+}
+
+.player{
+    position:absolute;
+    left:70px;
+    bottom:80px;
+    width:70px;
+    height:105px;
+    z-index:10;
+}
+
+.player-body{
+    position:absolute;
+    left:18px;
+    top:28px;
+    width:34px;
+    height:55px;
+    border-radius:15px;
+    background:linear-gradient(#55b8ff,#215e91);
+}
+
+.player-head{
+    position:absolute;
+    left:24px;
+    top:8px;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:#efc5a5;
+}
+
+.player-sword{
+    position:absolute;
+    width:8px;
+    height:62px;
+    right:0;
+    top:18px;
+    background:linear-gradient(
+        90deg,
+        #eee,
+        #fff,
+        #aaa
+    );
+    border-radius:4px;
+    transform:rotate(-35deg);
+    transform-origin:bottom center;
+    box-shadow:0 0 7px rgba(255,255,255,.5);
+}
+
+.enemy{
+    position:absolute;
+    right:70px;
+    bottom:80px;
+    width:70px;
+    height:105px;
+    z-index:10;
+}
+
+.enemy-body{
+    position:absolute;
+    left:18px;
+    top:28px;
+    width:34px;
+    height:55px;
+    border-radius:15px;
+    background:linear-gradient(#ff4c55,#921b22);
+}
+
+.enemy-head{
+    position:absolute;
+    left:24px;
+    top:8px;
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:#efc5a5;
+}
+
+.enemy-sword{
+    position:absolute;
+    width:8px;
+    height:62px;
+    left:0;
+    top:18px;
+    background:linear-gradient(
+        90deg,
+        #eee,
+        #fff,
+        #aaa
+    );
+    border-radius:4px;
+    transform:rotate(35deg);
+    transform-origin:bottom center;
+}
+
+.hp-bar{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    top:15px;
+    width:230px;
+    height:18px;
+    border:2px solid #fff;
+    border-radius:10px;
+    overflow:hidden;
+    background:#222;
+    z-index:20;
+}
+
+.hp-fill{
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        #34df66,
+        #7cff98
+    );
+    transition:.15s;
+}
+
+.message{
+    min-height:30px;
+    margin:12px 0 7px;
+    color:#ffd84d;
+    font-weight:800;
+}
+
+.btn{
+    border:0;
+    border-radius:10px;
+    background:var(--main);
+    color:#fff;
+    padding:12px 20px;
+    margin:5px;
+    font-size:16px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.controls{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-top:10px;
+}
+
+.control{
+    width:88px;
+    height:58px;
+    border-radius:12px;
+    border:1px solid #564465;
+    background:#211829;
+    color:#fff;
+    font-size:25px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.attack{
+    background:#8f35ff;
+}
+
+.help{
+    color:#999;
+    margin-top:10px;
+    font-size:14px;
+}
+
+.hit{
+    animation:hit .18s;
+}
+
+@keyframes hit{
+    0%{transform:translateX(0)}
+    50%{transform:translateX(-8px)}
+    100%{transform:translateX(0)}
+}
+
+@media(max-width:500px){
+    .player{
+        left:45px;
+    }
+
+    .enemy{
+        right:45px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<a href="games.html">← Back to Games</a>
+</header>
+
+<h1>⚔️ Sword Battle</h1>
+
+<p class="subtitle">
+Defeat the enemy warrior and survive the battle.
+</p>
+
+<div class="info">
+
+<div class="info-box">
+🏆 Score:
+<span id="score">0</span>
+</div>
+
+<div class="info-box">
+❤️ Lives:
+<span id="lives">3</span>
+</div>
+
+<div class="info-box">
+⚡ Level:
+<span id="level">1</span>
+</div>
+
+</div>
+
+<div class="game-frame">
+
+<div id="game">
+
+<div class="hp-bar">
+<div
+class="hp-fill"
+id="hpFill"
+></div>
+</div>
+
+<div class="floor"></div>
+
+
+<!-- PLAYER -->
+
+<div
+class="player"
+id="player"
+>
+
+<div class="player-head"></div>
+
+<div class="player-body"></div>
+
+<div class="player-sword"></div>
+
+</div>
+
+
+<!-- ENEMY -->
+
+<div
+class="enemy"
+id="enemy"
+>
+
+<div class="enemy-head"></div>
+
+<div class="enemy-body"></div>
+
+<div class="enemy-sword"></div>
+
+</div>
+
+
+</div>
+
+
+<div
+class="message"
+id="message"
+>
+Press START to begin!
+</div>
+
+
+<button
+class="btn"
+onclick="startGame()"
+>
+START BATTLE
+</button>
+
+<button
+class="btn"
+onclick="restartGame()"
+>
+RESTART
+</button>
+
+
+<div class="controls">
+
+<button
+class="control"
+onclick="moveLeft()"
+>
+⬅️
+</button>
+
+<button
+class="control attack"
+onclick="attack()"
+>
+⚔️
+</button>
+
+<button
+class="control"
+onclick="moveRight()"
+>
+➡️
+</button>
+
+</div>
+
+
+<p class="help">
+Mobile: use the buttons<br>
+Computer: Arrow keys + SPACE to attack
+</p>
+
+</div>
+
+
+<script>
+
+let playerX=70;
+
+let enemyX=70;
+
+let score=0;
+
+let lives=3;
+
+let level=1;
+
+let enemyHP=100;
+
+let running=false;
+
+let enemyTimer=null;
+
+let attackCooldown=false;
+
+
+const player=
+document.getElementById(
+"player"
+);
+
+const enemy=
+document.getElementById(
+"enemy"
+);
+
+const hpFill=
+document.getElementById(
+"hpFill"
+);
+
+
+function startGame(){
+
+if(running)
+return;
+
+score=0;
+lives=3;
+level=1;
+enemyHP=100;
+
+playerX=70;
+enemyX=70;
+
+running=true;
+
+update();
+
+document.getElementById(
+"score"
+).textContent=0;
+
+document.getElementById(
+"lives"
+).textContent=3;
+
+document.getElementById(
+"level"
+).textContent=1;
+
+document.getElementById(
+"message"
+).textContent=
+"⚔️ Fight! Defeat the enemy!";
+
+clearInterval(enemyTimer);
+
+enemyTimer=
+setInterval(
+enemyAttack,
+1100
+);
+
+}
+
+
+function update(){
+
+player.style.left=
+playerX+"px";
+
+enemy.style.right=
+enemyX+"px";
+
+hpFill.style.width=
+enemyHP+"%";
+
+}
+
+
+function moveLeft(){
+
+if(!running)
+return;
+
+playerX-=18;
+
+if(playerX<5)
+playerX=5;
+
+update();
+
+}
+
+
+function moveRight(){
+
+if(!running)
+return;
+
+playerX+=18;
+
+if(playerX>245)
+playerX=245;
+
+update();
+
+}
+
+
+function attack(){
+
+if(!running)
+return;
+
+if(attackCooldown)
+return;
+
+attackCooldown=true;
+
+
+player.style.transform=
+"translateX(8px)";
+
+setTimeout(
+function(){
+player.style.transform=
+"translateX(0)";
+},
+120
+);
+
+
+/* attack only works when close */
+
+let distance=
+Math.abs(
+playerX-
+(
+260-enemyX
+)
+);
+
+
+if(distance<95){
+
+enemyHP-=25;
+
+if(enemyHP<0)
+enemyHP=0;
+
+update();
+
+document.getElementById(
+"message"
+).textContent=
+"⚔️ HIT! Enemy HP: "+
+enemyHP+"%";
+
+
+if(enemyHP<=0){
+
+enemyDefeated();
+
+}
+
+}else{
+
+document.getElementById(
+"message"
+).textContent=
+"🗡️ Move closer to attack!";
+}
+
+
+setTimeout(
+function(){
+attackCooldown=false;
+},
+400
+);
+
+}
+
+
+function enemyAttack(){
+
+if(!running)
+return;
+
+let distance=
+Math.abs(
+playerX-
+(
+260-enemyX
+)
+);
+
+
+if(distance<100){
+
+lives--;
+
+document.getElementById(
+"lives"
+).textContent=
+lives;
+
+document.getElementById(
+"message"
+).textContent=
+"💥 Enemy attacked!";
+
+if(lives<=0){
+
+gameOver();
+
+}
+
+}
+
+}
+
+
+function enemyDefeated(){
+
+score++;
+
+document.getElementById(
+"score"
+).textContent=
+score;
+
+level=
+Math.floor(
+score/5
+)+1;
+
+document.getElementById(
+"level"
+).textContent=
+level;
+
+enemyHP=
+100;
+
+enemyX=
+70+
+Math.random()*90;
+
+update();
+
+document.getElementById(
+"message"
+).textContent=
+"🏆 Enemy defeated! Next warrior!";
+
+}
+
+
+function gameOver(){
+
+running=false;
+
+clearInterval(enemyTimer);
+
+document.getElementById(
+"message"
+).textContent=
+"💀 GAME OVER! Score: "+
+score;
+
+}
+
+
+function restartGame(){
+
+running=false;
+
+clearInterval(enemyTimer);
+
+score=0;
+
+lives=3;
+
+level=1;
+
+enemyHP=100;
+
+playerX=70;
+
+enemyX=70;
+
+document.getElementById(
+"score"
+).textContent=0;
+
+document.getElementById(
+"lives"
+).textContent=3;
+
+document.getElementById(
+"level"
+).textContent=1;
+
+document.getElementById(
+"message"
+).textContent=
+"Press START to begin!";
+
+update();
+
+}
+
+
+/* keyboard */
+
+document.addEventListener(
+"keydown",
+function(e){
+
+/* ignore keyboard while typing */
+
+if(
+e.target &&
+(
+e.target.tagName==="INPUT" ||
+e.target.tagName==="TEXTAREA"
+)
+){
+return;
+}
+
+if(
+e.key==="ArrowLeft"
+){
+moveLeft();
+}
+
+if(
+e.key==="ArrowRight"
+){
+moveRight();
+}
+
+if(
+e.code==="Space"
+){
+e.preventDefault();
+attack();
+}
+
+});
+
+
+update();
+
+</script>
+
+</body>
+</html>
