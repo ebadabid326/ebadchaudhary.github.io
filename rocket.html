@@ -6,12 +6,10 @@
 
 <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
 >
 
-<title>
-Space Rocket - Ebad Gaming
-</title>
+<title>Space Rocket - Ebad Gaming</title>
 
 <style>
 
@@ -23,11 +21,16 @@ Space Rocket - Ebad Gaming
 
 :root{
     --accent:#ff4b5c;
-    --space:#070816;
+    --blue:#6fdcff;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
 }
 
 body{
-
     min-height:100vh;
 
     font-family:
@@ -36,7 +39,6 @@ body{
         sans-serif;
 
     color:#fff;
-
     text-align:center;
 
     background:
@@ -46,54 +48,45 @@ body{
             #080913 55%,
             #03040a
         );
+
+    overflow-x:hidden;
 }
 
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
-
     background:
-        rgba(
-            5,
-            6,
-            15,
-            .96
-        );
+        rgba(5,6,15,.97);
 
     border-bottom:
         2px solid
         #7f72ff;
 
-    padding:
-        16px 20px;
-
+    padding:16px 20px;
 }
 
 header a{
-
     color:#fff;
-
     text-decoration:none;
-
     font-weight:800;
-
 }
 
 
-/* PAGE */
+/* =========================
+   PAGE
+========================= */
 
 .page{
-
     padding:
-        18px
+        16px
         12px
-        50px;
-
+        45px;
 }
 
 h1{
-
     margin:
         8px
         0
@@ -105,25 +98,24 @@ h1{
             6vw,
             50px
         );
-
 }
 
 .subtitle{
-
     color:#a9a9b7;
-
     margin-bottom:15px;
-
 }
 
 
-/* STATS */
+/* =========================
+   STATS
+========================= */
 
 .stats{
-
     display:flex;
 
     justify-content:center;
+
+    align-items:center;
 
     gap:10px;
 
@@ -132,11 +124,9 @@ h1{
     margin:
         15px
         0;
-
 }
 
 .stat{
-
     background:#111322;
 
     border:
@@ -150,32 +140,27 @@ h1{
         14px;
 
     font-weight:800;
-
 }
 
 .best{
-
     color:#ffd84d;
-
     font-weight:800;
-
     margin-bottom:12px;
-
 }
 
 
-/* GAME FRAME */
+/* =========================
+   GAME FRAME
+========================= */
 
 .game-frame{
-
     width:
         min(
             410px,
             95vw
         );
 
-    margin:
-        0 auto;
+    margin:0 auto;
 
     padding:10px;
 
@@ -192,13 +177,17 @@ h1{
 
     border-radius:22px;
 
+    box-shadow:
+        0 20px 55px
+        rgba(0,0,0,.4);
 }
 
 
-/* GAME */
+/* =========================
+   GAME AREA
+========================= */
 
 .game-box{
-
     position:relative;
 
     width:100%;
@@ -226,18 +215,19 @@ h1{
 
     user-select:none;
 
+    -webkit-user-select:none;
 }
 
 
-/* STARS */
+/* =========================
+   STARS
+========================= */
 
 .star{
-
     position:absolute;
 
-    width:3px;
-
-    height:3px;
+    width:2px;
+    height:2px;
 
     border-radius:50%;
 
@@ -245,27 +235,27 @@ h1{
 
     opacity:.8;
 
+    pointer-events:none;
 }
 
 
-/* PLANETS */
+/* =========================
+   PLANETS
+========================= */
 
 .planet{
-
     position:absolute;
 
     border-radius:50%;
 
+    pointer-events:none;
 }
 
 .planet.one{
-
     width:54px;
-
     height:54px;
 
     top:55px;
-
     left:30px;
 
     background:
@@ -284,17 +274,13 @@ h1{
             200,
             .16
         );
-
 }
 
 .planet.two{
-
     width:38px;
-
     height:38px;
 
     top:160px;
-
     right:24px;
 
     background:
@@ -304,41 +290,37 @@ h1{
             #2a76c5 50%,
             #102f69
         );
-
 }
 
 
-/* PLAYER ROCKET */
+/* =========================
+   ROCKET
+========================= */
 
 .rocket{
-
     position:absolute;
 
     left:50%;
-
     bottom:30px;
 
     width:58px;
-
     height:90px;
-
-    transform:
-        translateX(-50%);
 
     z-index:10;
 
+    will-change:transform;
+
+    transform:
+        translate3d(-50%,0,0);
 }
 
 .rocket-body{
-
     position:absolute;
 
     left:13px;
-
     top:14px;
 
     width:32px;
-
     height:58px;
 
     border-radius:
@@ -363,19 +345,15 @@ h1{
             255,
             .4
         );
-
 }
 
 .rocket-window{
-
     position:absolute;
 
     left:19px;
-
     top:27px;
 
     width:20px;
-
     height:20px;
 
     border-radius:50%;
@@ -390,19 +368,15 @@ h1{
     border:
         2px solid
         #d9ffff;
-
 }
 
 .rocket-fin.left{
-
     position:absolute;
 
     left:5px;
-
     top:52px;
 
     width:16px;
-
     height:30px;
 
     background:#f04a58;
@@ -413,19 +387,15 @@ h1{
             0 100%,
             100% 100%
         );
-
 }
 
 .rocket-fin.right{
-
     position:absolute;
 
     right:5px;
-
     top:52px;
 
     width:16px;
-
     height:30px;
 
     background:#f04a58;
@@ -436,19 +406,15 @@ h1{
             100% 100%,
             0 100%
         );
-
 }
 
 .flame{
-
     position:absolute;
 
     left:20px;
-
     bottom:0;
 
     width:18px;
-
     height:32px;
 
     border-radius:
@@ -482,18 +448,34 @@ h1{
             )
         );
 
+    animation:
+        flamePulse
+        .12s
+        infinite
+        alternate;
+}
+
+@keyframes flamePulse{
+
+    from{
+        transform:scaleY(.92);
+    }
+
+    to{
+        transform:scaleY(1.08);
+    }
 }
 
 
-/* METEOR */
+/* =========================
+   METEOR
+========================= */
 
 .meteor{
-
     position:absolute;
 
-    width:26px;
-
-    height:26px;
+    width:28px;
+    height:28px;
 
     border-radius:50%;
 
@@ -516,18 +498,19 @@ h1{
             .25
         );
 
+    will-change:transform;
 }
 
 
-/* BULLET */
+/* =========================
+   BULLET
+========================= */
 
 .bullet{
-
     position:absolute;
 
     width:5px;
-
-    height:18px;
+    height:20px;
 
     border-radius:5px;
 
@@ -549,18 +532,19 @@ h1{
 
     z-index:9;
 
+    will-change:transform;
 }
 
 
-/* EXPLOSION */
+/* =========================
+   EXPLOSION
+========================= */
 
 .explosion{
-
     position:absolute;
 
-    width:45px;
-
-    height:45px;
+    width:46px;
+    height:46px;
 
     border-radius:50%;
 
@@ -574,39 +558,30 @@ h1{
 
     animation:
         explode
-        .3s
+        .28s
         ease-out
         forwards;
-
 }
 
 @keyframes explode{
 
     0%{
-
         opacity:1;
-
-        transform:
-            scale(.2);
-
+        transform:scale(.2);
     }
 
     100%{
-
         opacity:0;
-
-        transform:
-            scale(1.5);
-
+        transform:scale(1.5);
     }
-
 }
 
 
-/* MESSAGE */
+/* =========================
+   MESSAGE
+========================= */
 
 .message{
-
     min-height:30px;
 
     margin:
@@ -617,14 +592,14 @@ h1{
     color:#ffd84d;
 
     font-weight:800;
-
 }
 
 
-/* BUTTONS */
+/* =========================
+   BUTTONS
+========================= */
 
 .actions{
-
     display:flex;
 
     justify-content:center;
@@ -632,11 +607,9 @@ h1{
     gap:8px;
 
     flex-wrap:wrap;
-
 }
 
 .btn{
-
     border:0;
 
     border-radius:10px;
@@ -657,24 +630,22 @@ h1{
     font-weight:900;
 
     cursor:pointer;
-
 }
 
 .btn.secondary{
-
     background:#292d42;
 
     border:
         1px solid
         #474d6a;
-
 }
 
 
-/* MOBILE */
+/* =========================
+   HELP
+========================= */
 
 .help{
-
     color:#8f93a0;
 
     margin-top:10px;
@@ -687,11 +658,9 @@ h1{
 @media(max-width:450px){
 
     .btn{
-
         width:100%;
 
         max-width:180px;
-
     }
 
 }
@@ -722,7 +691,7 @@ h1{
 
 
 <p class="subtitle">
-Swipe left/right to move • Tap to fire
+Swipe left or right — rocket fires automatically!
 </p>
 
 
@@ -781,19 +750,10 @@ id="gameBox"
 >
 
 
-<div
-class="planet one"
->
-</div>
+<div class="planet one"></div>
 
+<div class="planet two"></div>
 
-<div
-class="planet two"
->
-</div>
-
-
-<!-- ROCKET -->
 
 <div
 class="rocket"
@@ -802,32 +762,23 @@ id="rocket"
 
 <div
 class="rocket-body"
->
-</div>
-
+></div>
 
 <div
 class="rocket-window"
->
-</div>
-
+></div>
 
 <div
 class="rocket-fin left"
->
-</div>
-
+></div>
 
 <div
 class="rocket-fin right"
->
-</div>
-
+></div>
 
 <div
 class="flame"
->
-</div>
+></div>
 
 </div>
 
@@ -864,9 +815,9 @@ onclick="restartGame()"
 
 
 <p class="help">
-Mobile: swipe left/right • tap to fire
+📱 Mobile: swipe left/right = move + fire
 <br>
-PC: ← → move • SPACE fire
+💻 PC: ← → move • SPACE fire
 </p>
 
 
@@ -878,9 +829,8 @@ PC: ← → move • SPACE fire
 
 <script>
 
-
 /* =========================
-   GAME
+   ELEMENTS
 ========================= */
 
 const gameBox =
@@ -888,15 +838,19 @@ document.getElementById(
     "gameBox"
 );
 
-
 const rocket =
 document.getElementById(
     "rocket"
 );
 
 
+/* =========================
+   GAME STATE
+========================= */
+
 let rocketX=180;
 
+let targetX=180;
 
 let score=0;
 
@@ -904,25 +858,40 @@ let lives=3;
 
 let level=1;
 
-
-let speed=1.8;
-
+let meteorSpeed=2;
 
 let running=false;
 
+let animationId=null;
 
-let timer=null;
+let meteorTimer=null;
 
-let spawnTimer=null;
+let lastTime=0;
 
+let lastShot=0;
+
+
+/* =========================
+   ARRAYS
+========================= */
 
 let meteors=[];
 
 let bullets=[];
 
 
-let lastShot=0;
+/* =========================
+   TOUCH
+========================= */
 
+let touchStartX=0;
+
+let touchStartY=0;
+
+
+/* =========================
+   BEST SCORE
+========================= */
 
 let best=
 Number(
@@ -931,22 +900,20 @@ Number(
     )
 )||0;
 
-
 let bestPlayer=
 localStorage.getItem(
     "ebadRocketBestPlayer"
 )||"";
 
 
-let touchStartX=0;
-
-let touchStartY=0;
-
+/* =========================
+   LANES
+========================= */
 
 const lanes=[
-60,
-180,
-300
+    60,
+    180,
+    300
 ];
 
 
@@ -958,7 +925,7 @@ function createStars(){
 
     for(
         let i=0;
-        i<70;
+        i<75;
         i++
     ){
 
@@ -967,42 +934,38 @@ function createStars(){
                 "div"
             );
 
-
         star.className=
             "star";
 
-
         star.style.left=
-            Math.random()*100+
-            "%";
-
+            (
+                Math.random()*
+                100
+            )+"%";
 
         star.style.top=
-            Math.random()*100+
-            "%";
-
+            (
+                Math.random()*
+                100
+            )+"%";
 
         star.style.opacity=
-            (
-                .25+
-                Math.random()*.75
-            );
-
+            .25+
+            Math.random()*
+            .75;
 
         gameBox.appendChild(
             star
         );
 
     }
-
 }
-
 
 createStars();
 
 
 /* =========================
-   BEST
+   BEST DISPLAY
 ========================= */
 
 function updateBest(){
@@ -1028,7 +991,6 @@ function updateBest(){
 
 }
 
-
 updateBest();
 
 
@@ -1043,17 +1005,57 @@ function updateStats(){
     ).textContent=
         score;
 
-
     document.getElementById(
         "lives"
     ).textContent=
         lives;
 
-
     document.getElementById(
         "level"
     ).textContent=
         level;
+
+}
+
+
+/* =========================
+   ROCKET POSITION
+========================= */
+
+function updateRocket(){
+
+    rocket.style.transform=
+        "translate3d("+
+        (
+            targetX-
+            180
+        )+
+        "px,0,0) translateX(-50%)";
+
+}
+
+
+/* =========================
+   SMOOTH MOVEMENT
+========================= */
+
+function smoothRocket(){
+
+    const difference=
+        targetX-
+        rocketX;
+
+    rocketX +=
+        difference*
+        0.18;
+
+    rocket.style.transform=
+        "translate3d("+
+        (
+            rocketX-
+            180
+        )+
+        "px,0,0) translateX(-50%)";
 
 }
 
@@ -1075,10 +1077,11 @@ function startGame(){
 
     level=1;
 
-    speed=1.8;
+    meteorSpeed=2;
 
     rocketX=180;
 
+    targetX=180;
 
     meteors=[];
 
@@ -1088,51 +1091,42 @@ function startGame(){
     removeObjects();
 
 
-    running=true;
-
-
     updateStats();
 
-
     updateRocket();
+
+
+    running=true;
 
 
     document.getElementById(
         "message"
     ).textContent=
-        "🚀 Launch! Survive the meteors!";
+        "🚀 Launch! Swipe and destroy meteors!";
 
 
-    timer=
-        setInterval(
-            gameLoop,
-            30
+    lastTime=
+        performance.now();
+
+
+    animationId=
+        requestAnimationFrame(
+            gameLoop
         );
 
 
-    spawnTimer=
+    meteorTimer=
         setInterval(
             spawnMeteor,
-            750
+            700
         );
 
 }
 
 
 /* =========================
-   ROCKET MOVE
+   MOVE LEFT
 ========================= */
-
-function updateRocket(){
-
-    rocket.style.left=
-        (
-            rocketX-29
-        )+
-        "px";
-
-}
-
 
 function moveLeft(){
 
@@ -1141,22 +1135,25 @@ function moveLeft(){
     }
 
 
-    rocketX-=35;
+    targetX-=
+        55;
 
 
     if(
-        rocketX<45
+        targetX<45
     ){
-
-        rocketX=45;
-
+        targetX=45;
     }
 
 
-    updateRocket();
+    fire();
 
 }
 
+
+/* =========================
+   MOVE RIGHT
+========================= */
 
 function moveRight(){
 
@@ -1165,19 +1162,18 @@ function moveRight(){
     }
 
 
-    rocketX+=35;
+    targetX+=
+        55;
 
 
     if(
-        rocketX>315
+        targetX>315
     ){
-
-        rocketX=315;
-
+        targetX=315;
     }
 
 
-    updateRocket();
+    fire();
 
 }
 
@@ -1194,19 +1190,20 @@ function fire(){
 
 
     const now=
-        Date.now();
+        performance.now();
 
 
     if(
-        now-lastShot<180
+        now-lastShot<
+        120
     ){
 
         return;
-
     }
 
 
-    lastShot=now;
+    lastShot=
+        now;
 
 
     const bullet=
@@ -1227,7 +1224,7 @@ function fire(){
 
 
     bullet.style.top=
-        "410px";
+        "415px";
 
 
     gameBox.appendChild(
@@ -1241,7 +1238,7 @@ function fire(){
 
         x:rocketX,
 
-        y:410
+        y:415
 
     });
 
@@ -1249,7 +1246,7 @@ function fire(){
 
 
 /* =========================
-   SPAWN METEOR
+   METEOR SPAWN
 ========================= */
 
 function spawnMeteor(){
@@ -1280,7 +1277,7 @@ function spawnMeteor(){
 
     meteor.style.left=
         (
-            x-13
+            x-14
         )+
         "px";
 
@@ -1303,8 +1300,9 @@ function spawnMeteor(){
         y:-35,
 
         speed:
-            speed+
-            Math.random()*1.5
+            meteorSpeed+
+            Math.random()*
+            1.2
 
     });
 
@@ -1312,21 +1310,48 @@ function spawnMeteor(){
 
 
 /* =========================
-   LOOP
+   MAIN GAME LOOP
 ========================= */
 
-function gameLoop(){
+function gameLoop(time){
 
     if(!running){
         return;
     }
 
 
-    moveBullets();
+    const delta=
+        Math.min(
+            (
+                time-
+                lastTime
+            )/
+            16.67,
+            2
+        );
 
-    moveMeteors();
+
+    lastTime=
+        time;
+
+
+    smoothRocket();
+
+    moveBullets(
+        delta
+    );
+
+    moveMeteors(
+        delta
+    );
 
     checkHits();
+
+
+    animationId=
+        requestAnimationFrame(
+            gameLoop
+        );
 
 }
 
@@ -1335,10 +1360,11 @@ function gameLoop(){
    BULLETS
 ========================= */
 
-function moveBullets(){
+function moveBullets(delta){
 
     for(
-        let i=bullets.length-1;
+        let i=
+            bullets.length-1;
         i>=0;
         i--
     ){
@@ -1347,15 +1373,20 @@ function moveBullets(){
             bullets[i];
 
 
-        b.y-=14;
+        b.y-=
+            10*
+            delta;
 
 
-        b.element.style.top=
-            b.y+"px";
+        b.element.style.transform=
+            "translate3d(0,"+
+            b.y+
+            "px,0)";
 
 
         if(
-            b.y<-30
+            b.y<
+            -40
         ){
 
             removeBullet(i);
@@ -1371,10 +1402,11 @@ function moveBullets(){
    METEORS
 ========================= */
 
-function moveMeteors(){
+function moveMeteors(delta){
 
     for(
-        let i=meteors.length-1;
+        let i=
+            meteors.length-1;
         i>=0;
         i--
     ){
@@ -1383,15 +1415,20 @@ function moveMeteors(){
             meteors[i];
 
 
-        m.y+=m.speed;
+        m.y +=
+            m.speed*
+            delta;
 
 
-        m.element.style.top=
-            m.y+"px";
+        m.element.style.transform=
+            "translate3d(0,"+
+            m.y+
+            "px,0)";
 
 
         if(
-            m.y>445
+            m.y>
+            430
         ){
 
             const distance=
@@ -1402,14 +1439,13 @@ function moveMeteors(){
 
 
             if(
-                distance<42
+                distance<
+                42
             ){
 
                 removeMeteor(i);
 
-
                 lives--;
-
 
                 updateStats();
 
@@ -1417,7 +1453,7 @@ function moveMeteors(){
                 document.getElementById(
                     "message"
                 ).textContent=
-                    "💥 METEOR HIT!";
+                    "💥 Meteor hit!";
 
 
                 if(
@@ -1427,7 +1463,6 @@ function moveMeteors(){
                     gameOver();
 
                     return;
-
                 }
 
             }
@@ -1436,7 +1471,8 @@ function moveMeteors(){
 
 
         if(
-            m.y>570
+            m.y>
+            570
         ){
 
             removeMeteor(i);
@@ -1449,13 +1485,14 @@ function moveMeteors(){
 
 
 /* =========================
-   HIT DETECTION
+   COLLISION
 ========================= */
 
 function checkHits(){
 
     for(
-        let bi=bullets.length-1;
+        let bi=
+            bullets.length-1;
         bi>=0;
         bi--
     ){
@@ -1465,7 +1502,8 @@ function checkHits(){
 
 
         for(
-            let mi=meteors.length-1;
+            let mi=
+                meteors.length-1;
             mi>=0;
             mi--
         ){
@@ -1483,11 +1521,11 @@ function checkHits(){
                 b.y-
                 (
                     m.y+
-                    12
+                    14
                 );
 
 
-            const dist=
+            const distance=
                 Math.sqrt(
                     dx*dx+
                     dy*dy
@@ -1495,7 +1533,8 @@ function checkHits(){
 
 
             if(
-                dist<28
+                distance<
+                28
             ){
 
                 createExplosion(
@@ -1518,7 +1557,6 @@ function checkHits(){
 
 
                 updateLevel();
-
 
                 updateStats();
 
@@ -1548,23 +1586,28 @@ function updateLevel(){
 
     const newLevel=
         Math.floor(
-            score/10
-        )+1;
+            score/
+            10
+        )+
+        1;
 
 
     if(
-        newLevel!==level
+        newLevel !==
+        level
     ){
 
         level=
             newLevel;
 
 
-        speed=
-            1.8+
+        meteorSpeed=
+            2+
             (
-                level-1
-            )*.35;
+                level-
+                1
+            )*
+            .35;
 
 
         document.getElementById(
@@ -1600,14 +1643,16 @@ function createExplosion(
 
     effect.style.left=
         (
-            x-22
+            x-
+            23
         )+
         "px";
 
 
     effect.style.top=
         (
-            y-22
+            y-
+            23
         )+
         "px";
 
@@ -1623,14 +1668,14 @@ function createExplosion(
             effect.remove();
 
         },
-        320
+        300
     );
 
 }
 
 
 /* =========================
-   REMOVE
+   REMOVE BULLET
 ========================= */
 
 function removeBullet(
@@ -1640,9 +1685,7 @@ function removeBullet(
     if(
         !bullets[index]
     ){
-
         return;
-
     }
 
 
@@ -1659,6 +1702,10 @@ function removeBullet(
 }
 
 
+/* =========================
+   REMOVE METEOR
+========================= */
+
 function removeMeteor(
     index
 ){
@@ -1666,9 +1713,7 @@ function removeMeteor(
     if(
         !meteors[index]
     ){
-
         return;
-
     }
 
 
@@ -1685,17 +1730,27 @@ function removeMeteor(
 }
 
 
+/* =========================
+   CLEAR OBJECTS
+========================= */
+
 function removeObjects(){
 
     meteors.forEach(
-        m=>
-            m.element.remove()
+        function(m){
+
+            m.element.remove();
+
+        }
     );
 
 
     bullets.forEach(
-        b=>
-            b.element.remove()
+        function(b){
+
+            b.element.remove();
+
+        }
     );
 
 
@@ -1715,11 +1770,25 @@ function gameOver(){
     running=false;
 
 
-    clearTimers();
+    clearInterval(
+        meteorTimer
+    );
 
 
     if(
-        score>best
+        animationId
+    ){
+
+        cancelAnimationFrame(
+            animationId
+        );
+
+    }
+
+
+    if(
+        score>
+        best
     ){
 
         best=
@@ -1773,7 +1842,20 @@ function restartGame(){
     running=false;
 
 
-    clearTimers();
+    clearInterval(
+        meteorTimer
+    );
+
+
+    if(
+        animationId
+    ){
+
+        cancelAnimationFrame(
+            animationId
+        );
+
+    }
 
 
     score=0;
@@ -1782,13 +1864,14 @@ function restartGame(){
 
     level=1;
 
-    speed=1.8;
+    meteorSpeed=2;
 
     rocketX=180;
 
+    targetX=180;
+
 
     removeObjects();
-
 
     updateRocket();
 
@@ -1799,23 +1882,6 @@ function restartGame(){
         "message"
     ).textContent=
         "Press START GAME to begin!";
-
-}
-
-
-/* =========================
-   TIMERS
-========================= */
-
-function clearTimers(){
-
-    clearInterval(
-        timer
-    );
-
-    clearInterval(
-        spawnTimer
-    );
 
 }
 
@@ -1874,11 +1940,16 @@ gameBox.addEventListener(
             touchStartY;
 
 
-        /* SWIPE */
+        /*
+          IMPORTANT:
+          Only a swipe fires.
+          Simple tap does nothing.
+        */
 
         if(
-            Math.abs(dx)>35 &&
-            Math.abs(dx)>Math.abs(dy)
+            Math.abs(dx)>30 &&
+            Math.abs(dx)>
+            Math.abs(dy)
         ){
 
             if(
@@ -1892,21 +1963,6 @@ gameBox.addEventListener(
                 moveRight();
 
             }
-
-
-            return;
-
-        }
-
-
-        /* TAP */
-
-        if(
-            Math.abs(dx)<20 &&
-            Math.abs(dy)<20
-        ){
-
-            fire();
 
         }
 
@@ -1930,7 +1986,6 @@ document.addEventListener(
             (
                 document.activeElement.tagName===
                 "INPUT" ||
-
                 document.activeElement.tagName===
                 "TEXTAREA"
             );
@@ -1939,9 +1994,7 @@ document.addEventListener(
         if(
             typing
         ){
-
             return;
-
         }
 
 
@@ -1984,15 +2037,16 @@ document.addEventListener(
 );
 
 
-/* INITIAL */
+/* =========================
+   INITIAL
+========================= */
 
 updateRocket();
 
 updateStats();
 
-updateBest();
-
 </script>
+
 
 </body>
 </html>
