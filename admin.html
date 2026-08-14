@@ -32,8 +32,7 @@ body{
     border:1px solid #29293d;
     border-radius:18px;
     padding:28px;
-    box-shadow:
-        0 18px 45px rgba(0,0,0,.3);
+    box-shadow:0 18px 45px rgba(0,0,0,.3);
 }
 
 h1{
@@ -47,20 +46,23 @@ h1{
     margin-bottom:20px;
 }
 
+label{
+    display:block;
+    margin-bottom:6px;
+    color:#ccc;
+    font-weight:700;
+}
+
 input,
 select{
     width:100%;
     padding:13px 14px;
     margin:7px 0 16px;
-
     background:#0c0c15;
     color:#fff;
-
     border:1px solid #3a3a50;
     border-radius:8px;
-
     outline:none;
-
     font-size:16px;
 }
 
@@ -72,18 +74,13 @@ select:focus{
 button,
 a{
     display:inline-block;
-
     background:#ff3030;
     color:#fff;
-
     border:0;
     border-radius:9px;
-
     padding:12px 20px;
-
     font-weight:bold;
     text-decoration:none;
-
     cursor:pointer;
 }
 
@@ -119,17 +116,8 @@ a:hover{
 
 .section-title{
     font-size:20px;
-    margin:
-        5px
-        0
-        15px;
-    color:#ff6a6a;
-}
-
-.note{
-    color:#aaa;
-    font-size:14px;
-    margin-bottom:18px;
+    margin:5px 0 15px;
+    color:#ff6666;
 }
 
 .actions{
@@ -157,7 +145,6 @@ a:hover{
     .container{
         margin:10px auto;
     }
-
 }
 
 </style>
@@ -166,7 +153,6 @@ a:hover{
 <body>
 
 <div class="container">
-
 
 <!-- LOGIN -->
 
@@ -177,7 +163,7 @@ a:hover{
 </h1>
 
 <p class="subtitle">
-Enter your admin password to open the control panel.
+Enter your admin password.
 </p>
 
 <label for="password">
@@ -185,17 +171,17 @@ Admin Password
 </label>
 
 <input
-id="password"
-type="password"
-placeholder="Enter password"
-autocomplete="current-password"
+    id="password"
+    type="password"
+    placeholder="Enter password"
+    autocomplete="off"
 >
 
 <div class="actions">
 
 <button
-type="button"
-onclick="login()"
+    type="button"
+    onclick="login()"
 >
 Login
 </button>
@@ -207,15 +193,15 @@ Login
 </div>
 
 <div
-class="message"
-id="loginMsg"
+    class="message"
+    id="loginMsg"
 >
 </div>
 
 </div>
 
 
-<!-- ADMIN PANEL -->
+<!-- PANEL -->
 
 <div class="box" id="panel">
 
@@ -224,7 +210,7 @@ id="loginMsg"
 </h1>
 
 <p class="subtitle">
-Website settings
+Manage your website settings.
 </p>
 
 
@@ -232,9 +218,7 @@ Website settings
 🌐 Website
 </div>
 
-
 <div class="grid">
-
 
 <div class="full">
 
@@ -243,12 +227,11 @@ Website Name
 </label>
 
 <input
-id="siteInput"
-type="text"
+    id="siteInput"
+    type="text"
 >
 
 </div>
-
 
 <div class="full">
 
@@ -257,123 +240,102 @@ Hero Description
 </label>
 
 <input
-id="heroInput"
-type="text"
+    id="heroInput"
+    type="text"
 >
 
 </div>
-
 
 </div>
 
 
 <div class="section-title">
-🎮 Game Settings
+🎮 Games
 </div>
-
 
 <div class="grid">
 
-
 <div>
-
 <label>
 Space Rocket Name
 </label>
 
 <input
-id="g1nInput"
-type="text"
+    id="g1nInput"
+    type="text"
 >
-
 </div>
 
 
 <div>
-
 <label>
 Space Rocket Description
 </label>
 
 <input
-id="g1dInput"
-type="text"
+    id="g1dInput"
+    type="text"
 >
-
 </div>
 
 
 <div>
-
 <label>
 Speed Racer Name
 </label>
 
 <input
-id="g2nInput"
-type="text"
+    id="g2nInput"
+    type="text"
 >
-
 </div>
 
 
 <div>
-
 <label>
 Speed Racer Description
 </label>
 
 <input
-id="g2dInput"
-type="text"
+    id="g2dInput"
+    type="text"
 >
-
 </div>
 
 
 <div>
-
 <label>
 Zombie Attack Name
 </label>
 
 <input
-id="g3nInput"
-type="text"
+    id="g3nInput"
+    type="text"
 >
-
 </div>
 
 
 <div>
-
 <label>
 Zombie Attack Description
 </label>
 
 <input
-id="g3dInput"
-type="text"
+    id="g3dInput"
+    type="text"
 >
-
 </div>
-
 
 </div>
 
 
 <div class="section-title">
-🎨 Website Color
+🎨 Main Color
 </div>
-
 
 <div class="grid">
 
 <div class="full">
-
-<label>
-Main Color
-</label>
 
 <select id="colorInput">
 
@@ -411,20 +373,20 @@ Pink
 <div class="actions">
 
 <button
-type="button"
-onclick="save()"
+    type="button"
+    onclick="saveSettings()"
 >
 💾 Save Changes
 </button>
 
 <a href="index.html">
-← Back to Website
+← Website
 </a>
 
 <button
-type="button"
-class="logout"
-onclick="logout()"
+    type="button"
+    class="logout"
+    onclick="logout()"
 >
 🚪 Logout
 </button>
@@ -433,8 +395,8 @@ onclick="logout()"
 
 
 <div
-class="message"
-id="saveMsg"
+    class="message"
+    id="saveMsg"
 >
 </div>
 
@@ -445,121 +407,142 @@ id="saveMsg"
 
 <script>
 
-/* =========================
-   ADMIN PASSWORD
-========================= */
+/* =================================
+   NEW ADMIN PASSWORD
+================================= */
 
-const PASSWORD =
-"09876";
+const ADMIN_PASSWORD = "09876";
 
 
-/* =========================
+/* =================================
    DEFAULT SETTINGS
-========================= */
+================================= */
 
-const defaults={
+const defaults = {
 
-site:
-"Ebad Gaming",
+    site:
+    "Ebad Gaming",
 
-hero:
-"Play exciting games, beat your high scores, and become the ultimate gamer.",
+    hero:
+    "Play exciting games, beat your high scores, and become the ultimate gamer.",
 
-g1n:
-"Space Rocket",
+    g1n:
+    "Space Rocket",
 
-g1d:
-"Fly your rocket and beat your score.",
+    g1d:
+    "Fly your rocket and beat your score.",
 
-g2n:
-"Speed Racer",
+    g2n:
+    "Speed Racer",
 
-g2d:
-"Avoid enemy cars and beat your best score.",
+    g2d:
+    "Avoid enemy cars and beat your best score.",
 
-g3n:
-"Zombie Attack",
+    g3n:
+    "Zombie Attack",
 
-g3d:
-"Survive the zombie attack.",
+    g3d:
+    "Survive the zombie attack.",
 
-color:
-"#ff3030"
+    color:
+    "#ff3030"
 
 };
 
 
-/* =========================
-   GET SETTING
-========================= */
+/* =================================
+   READ SETTINGS
+================================= */
 
 function getSetting(key){
 
-    return (
+    const value =
         localStorage.getItem(
-            "ebad_"+key
-        )
-        ||
-        defaults[key]
-    );
+            "ebad_" + key
+        );
+
+    return value || defaults[key];
 
 }
 
 
-/* =========================
+/* =================================
    LOGIN
-========================= */
+================================= */
 
 function login(){
 
-    const password =
+    const entered =
         document.getElementById(
             "password"
         ).value;
 
+    const message =
+        document.getElementById(
+            "loginMsg"
+        );
+
 
     if(
-        password === PASSWORD
+        entered === ADMIN_PASSWORD
     ){
 
         document.getElementById(
             "loginBox"
-        ).style.display=
+        ).style.display =
             "none";
 
 
         document.getElementById(
             "panel"
-        ).style.display=
+        ).style.display =
             "block";
 
 
-        loadSettings();
+        message.textContent = "";
 
+        loadSettings();
 
     }else{
 
-        const msg =
-            document.getElementById(
-                "loginMsg"
-            );
-
-
-        msg.className =
+        message.className =
             "message error";
 
-
-        msg.textContent =
-            "❌ Wrong password.";
+        message.textContent =
+            "❌ Wrong password";
 
     }
 
 }
 
 
-/* =========================
+/* =================================
+   ENTER KEY LOGIN
+================================= */
+
+document.getElementById(
+    "password"
+).addEventListener(
+    "keydown",
+    function(event){
+
+        if(
+            event.key === "Enter"
+        ){
+
+            event.preventDefault();
+
+            login();
+
+        }
+
+    }
+);
+
+
+/* =================================
    LOAD SETTINGS
-========================= */
+================================= */
 
 function loadSettings(){
 
@@ -619,119 +602,134 @@ function loadSettings(){
 }
 
 
-/* =========================
+/* =================================
    SAVE
-========================= */
+================================= */
 
-function save(){
+function saveSettings(){
 
-    const settings = {
-
-        site:
-            document.getElementById(
-                "siteInput"
-            ).value.trim(),
-
-        hero:
-            document.getElementById(
-                "heroInput"
-            ).value.trim(),
-
-        g1n:
-            document.getElementById(
-                "g1nInput"
-            ).value.trim(),
-
-        g1d:
-            document.getElementById(
-                "g1dInput"
-            ).value.trim(),
-
-        g2n:
-            document.getElementById(
-                "g2nInput"
-            ).value.trim(),
-
-        g2d:
-            document.getElementById(
-                "g2dInput"
-            ).value.trim(),
-
-        g3n:
-            document.getElementById(
-                "g3nInput"
-            ).value.trim(),
-
-        g3d:
-            document.getElementById(
-                "g3dInput"
-            ).value.trim(),
-
-        color:
-            document.getElementById(
-                "colorInput"
-            ).value
-
-    };
-
-
-    Object.keys(
-        settings
-    ).forEach(
-        key => {
-
-            localStorage.setItem(
-                "ebad_"+key,
-                settings[key] ||
-                defaults[key]
-            );
-
-        }
+    localStorage.setItem(
+        "ebad_site",
+        document.getElementById(
+            "siteInput"
+        ).value.trim()
+        ||
+        defaults.site
     );
 
 
-    const msg =
+    localStorage.setItem(
+        "ebad_hero",
         document.getElementById(
-            "saveMsg"
-        );
+            "heroInput"
+        ).value.trim()
+        ||
+        defaults.hero
+    );
 
 
-    msg.className =
-        "message";
+    localStorage.setItem(
+        "ebad_g1n",
+        document.getElementById(
+            "g1nInput"
+        ).value.trim()
+        ||
+        defaults.g1n
+    );
 
 
-    msg.textContent =
+    localStorage.setItem(
+        "ebad_g1d",
+        document.getElementById(
+            "g1dInput"
+        ).value.trim()
+        ||
+        defaults.g1d
+    );
+
+
+    localStorage.setItem(
+        "ebad_g2n",
+        document.getElementById(
+            "g2nInput"
+        ).value.trim()
+        ||
+        defaults.g2n
+    );
+
+
+    localStorage.setItem(
+        "ebad_g2d",
+        document.getElementById(
+            "g2dInput"
+        ).value.trim()
+        ||
+        defaults.g2d
+    );
+
+
+    localStorage.setItem(
+        "ebad_g3n",
+        document.getElementById(
+            "g3nInput"
+        ).value.trim()
+        ||
+        defaults.g3n
+    );
+
+
+    localStorage.setItem(
+        "ebad_g3d",
+        document.getElementById(
+            "g3dInput"
+        ).value.trim()
+        ||
+        defaults.g3d
+    );
+
+
+    localStorage.setItem(
+        "ebad_color",
+        document.getElementById(
+            "colorInput"
+        ).value
+    );
+
+
+    document.getElementById(
+        "saveMsg"
+    ).textContent =
         "✅ Changes saved successfully.";
 
 }
 
 
-/* =========================
+/* =================================
    LOGOUT
-========================= */
+================================= */
 
 function logout(){
 
     document.getElementById(
         "panel"
-    ).style.display=
+    ).style.display =
         "none";
 
 
     document.getElementById(
         "loginBox"
-    ).style.display=
+    ).style.display =
         "block";
 
 
     document.getElementById(
         "password"
-    ).value="";
+    ).value = "";
 
 
     document.getElementById(
         "loginMsg"
-    ).textContent="";
+    ).textContent = "";
 
 }
 
