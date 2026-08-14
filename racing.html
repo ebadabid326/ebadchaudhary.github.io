@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Speed Racer - Ebad Gaming</title>
 
@@ -80,8 +80,6 @@ h1{
     font-size:18px;
     font-family:Arial,sans-serif;
     outline:none;
-    direction:ltr;
-    text-align:left;
 }
 
 .player-name-box input:focus{
@@ -128,10 +126,8 @@ h1{
     border-radius:16px;
     background:#5b814c;
 
-    /* IMPORTANT FOR MOBILE SWIPE */
     touch-action:none;
     user-select:none;
-    -webkit-user-select:none;
 }
 
 .grass{
@@ -150,7 +146,6 @@ h1{
     bottom:0;
     width:28px;
     z-index:2;
-
     background:repeating-linear-gradient(
         180deg,
         #f4f4f4 0 14px,
@@ -158,13 +153,8 @@ h1{
     );
 }
 
-.side.left{
-    left:28px;
-}
-
-.side.right{
-    right:28px;
-}
+.side.left{left:28px}
+.side.right{right:28px}
 
 .road{
     position:absolute;
@@ -174,17 +164,12 @@ h1{
     width:250px;
     transform:translateX(-50%);
     z-index:1;
-
     background:linear-gradient(
         90deg,
         #202227 0%,
         #34373d 50%,
         #202227 100%
     );
-
-    box-shadow:
-        inset 12px 0 18px rgba(0,0,0,.3),
-        inset -12px 0 18px rgba(0,0,0,.3);
 }
 
 .shoulder{
@@ -222,17 +207,12 @@ h1{
     left:calc(50% + 69px);
 }
 
-/* CARS */
-
 .car{
     position:absolute;
     width:60px;
     height:94px;
     z-index:8;
-
     filter:drop-shadow(0 8px 7px rgba(0,0,0,.5));
-
-    pointer-events:none;
 }
 
 .player{
@@ -250,45 +230,26 @@ h1{
     right:7px;
     top:7px;
     bottom:7px;
-
     border-radius:17px 17px 12px 12px;
-
     box-shadow:
         inset 0 3px 0 rgba(255,255,255,.3),
         inset 0 -5px 0 rgba(0,0,0,.3);
 }
 
 .player .body-car{
-    background:linear-gradient(
-        180deg,
-        #ff5252,
-        #d61818 48%,
-        #901010
-    );
+    background:linear-gradient(180deg,#ff5252,#d61818 48%,#901010);
 }
 
 .enemy.yellow .body-car{
-    background:linear-gradient(
-        180deg,
-        #ffe34d,
-        #c69400
-    );
+    background:linear-gradient(180deg,#ffe34d,#c69400);
 }
 
 .enemy.blue .body-car{
-    background:linear-gradient(
-        180deg,
-        #4cbcff,
-        #1a5e9c
-    );
+    background:linear-gradient(180deg,#4cbcff,#1a5e9c);
 }
 
 .enemy.white .body-car{
-    background:linear-gradient(
-        180deg,
-        #f4f4f4,
-        #929292
-    );
+    background:linear-gradient(180deg,#f4f4f4,#929292);
 }
 
 .roof{
@@ -308,11 +269,7 @@ h1{
     top:23px;
     height:18px;
     border-radius:6px;
-    background:linear-gradient(
-        180deg,
-        #bfe7ff,
-        #4b7596
-    );
+    background:linear-gradient(180deg,#bfe7ff,#4b7596);
 }
 
 .wheel{
@@ -323,27 +280,10 @@ h1{
     border-radius:6px;
 }
 
-.wheel.left{
-    left:0;
-    top:22px;
-}
-
-.wheel.right{
-    right:0;
-    top:22px;
-}
-
-.wheel.left.back{
-    left:0;
-    top:auto;
-    bottom:10px;
-}
-
-.wheel.right.back{
-    right:0;
-    top:auto;
-    bottom:10px;
-}
+.wheel.left{left:0;top:22px}
+.wheel.right{right:0;top:22px}
+.wheel.left.back{left:0;top:auto;bottom:10px}
+.wheel.right.back{right:0;top:auto;bottom:10px}
 
 .light{
     position:absolute;
@@ -353,13 +293,8 @@ h1{
     top:11px;
 }
 
-.light.left{
-    left:13px;
-}
-
-.light.right{
-    right:13px;
-}
+.light.left{left:13px}
+.light.right{right:13px}
 
 .player .light{
     background:#fff1a8;
@@ -369,8 +304,6 @@ h1{
 .enemy .light{
     background:#ff3434;
 }
-
-/* BUTTONS */
 
 .message{
     min-height:30px;
@@ -397,34 +330,15 @@ h1{
     cursor:pointer;
 }
 
-.btn:hover{
-    filter:brightness(1.08);
-}
-
 .reset-btn{
     background:#292c36;
-    border:1px solid #474b5b;
+    border:1px solid #464a59;
 }
 
-.mobile{
-    display:none;
-}
-
-.help{
-    color:#8f93a0;
-    margin-top:10px;
-    font-size:14px;
-}
-
-@media(max-width:600px){
-
-    .game-frame{
-        width:min(390px,96vw);
-    }
-
-    .help{
-        font-size:13px;
-    }
+@media(max-width:500px){
+    .side.left{left:20px}
+    .side.right{right:20px}
+    .road{width:245px}
 }
 </style>
 </head>
@@ -432,9 +346,7 @@ h1{
 <body>
 
 <header>
-<a href="games.html">
-← Back to Games
-</a>
+<a href="games.html">← Back to Games</a>
 </header>
 
 <div class="page">
@@ -442,7 +354,7 @@ h1{
 <h1>🏎️ Speed Racer</h1>
 
 <p class="subtitle">
-Swipe left or right to control your car.
+Swipe left or right on mobile to move the car.
 </p>
 
 <div class="player-name-box">
@@ -453,12 +365,11 @@ Swipe left or right to control your car.
 
 <input
 id="playerName"
-name="playerName"
 type="text"
 maxlength="30"
+placeholder="Enter your name"
 autocomplete="off"
 spellcheck="false"
-placeholder="Enter your name"
 >
 
 </div>
@@ -496,10 +407,7 @@ id="bestPlayer"
 
 <div class="game-frame">
 
-<div
-class="game-box"
-id="gameBox"
->
+<div class="game-box" id="gameBox">
 
 <div class="grass"></div>
 
@@ -514,12 +422,7 @@ id="gameBox"
 <div class="lane one" id="lane1"></div>
 <div class="lane two" id="lane2"></div>
 
-<!-- PLAYER -->
-
-<div
-class="car player"
-id="player"
->
+<div class="car player" id="player">
 
 <div class="body-car"></div>
 <div class="roof"></div>
@@ -536,12 +439,7 @@ id="player"
 
 </div>
 
-<!-- ENEMY 1 -->
-
-<div
-class="car enemy yellow"
-id="enemy1"
->
+<div class="car enemy yellow" id="enemy1">
 
 <div class="body-car"></div>
 <div class="roof"></div>
@@ -558,12 +456,7 @@ id="enemy1"
 
 </div>
 
-<!-- ENEMY 2 -->
-
-<div
-class="car enemy blue"
-id="enemy2"
->
+<div class="car enemy blue" id="enemy2">
 
 <div class="body-car"></div>
 <div class="roof"></div>
@@ -580,12 +473,7 @@ id="enemy2"
 
 </div>
 
-<!-- ENEMY 3 -->
-
-<div
-class="car enemy white"
-id="enemy3"
->
+<div class="car enemy white" id="enemy3">
 
 <div class="body-car"></div>
 <div class="roof"></div>
@@ -631,15 +519,10 @@ RESTART
 class="btn reset-btn"
 onclick="resetBestScore()"
 >
-🗑️ RESET BEST SCORE
+RESET BEST
 </button>
 
 </div>
-
-<p class="help">
-💻 Computer: ← → arrows<br>
-📱 Mobile: swipe or drag your finger left/right on the road
-</p>
 
 </div>
 
@@ -647,816 +530,467 @@ onclick="resetBestScore()"
 
 <script>
 
-/* =========================
-   PLAYER NAME
-========================= */
-
-const playerNameInput =
-document.getElementById(
-    "playerName"
-);
-
-const savedName =
-localStorage.getItem(
-    "ebadPlayerName"
-);
-
-if(savedName){
-
-    playerNameInput.value =
-        savedName;
-}
-
-playerNameInput.addEventListener(
-    "input",
-    function(){
-
-        localStorage.setItem(
-            "ebadPlayerName",
-            this.value
-        );
-    }
-);
-
-
-/* =========================
-   GAME VARIABLES
-========================= */
-
-let playerX=132;
-
-let score=0;
-let lives=3;
-let level=1;
-
-let speed=3.5;
-
-let running=false;
-let timer=null;
-
-let best=
-Number(
-    localStorage.getItem(
-        "ebadBestScore"
-    )
-)||0;
-
-let bestPlayer=
-localStorage.getItem(
-    "ebadBestPlayer"
-)||"";
-
-document.getElementById(
-    "best"
-).textContent=
-best;
-
-showBestPlayer();
-
+const gameBox =
+document.getElementById("gameBox");
 
 const player =
-document.getElementById(
-    "player"
+document.getElementById("player");
+
+const playerNameInput =
+document.getElementById("playerName");
+
+let playerX = 132;
+
+let score = 0;
+let lives = 3;
+let level = 1;
+let speed = 3.5;
+
+let running = false;
+let timer = null;
+
+let best =
+Number(
+localStorage.getItem("ebadBestScore")
+) || 0;
+
+let bestPlayer =
+localStorage.getItem("ebadBestPlayer")
+|| "";
+
+let touchStartX = 0;
+let touchStartY = 0;
+
+const enemies = [
+document.getElementById("enemy1"),
+document.getElementById("enemy2"),
+document.getElementById("enemy3")
+];
+
+const laneMarks = [
+document.getElementById("lane1"),
+document.getElementById("lane2")
+];
+
+const lanes = [42,132,222];
+
+playerNameInput.value =
+localStorage.getItem("ebadPlayerName")
+|| "";
+
+playerNameInput.addEventListener(
+"input",
+function(){
+localStorage.setItem(
+"ebadPlayerName",
+this.value
+);
+}
 );
 
-const gameBox =
-document.getElementById(
-    "gameBox"
-);
+function showBest(){
 
-const enemies=[
-    document.getElementById("enemy1"),
-    document.getElementById("enemy2"),
-    document.getElementById("enemy3")
-];
+document.getElementById("best")
+.textContent = best;
 
-const laneMarks=[
-    document.getElementById("lane1"),
-    document.getElementById("lane2")
-];
-
-const lanes=[
-    42,
-    132,
-    222
-];
-
-
-/* =========================
-   BEST PLAYER
-========================= */
-
-function showBestPlayer(){
-
-    if(
-        bestPlayer &&
-        best>0
-    ){
-
-        document.getElementById(
-            "bestPlayer"
-        ).textContent=
-            "🥇 Best Player: "+
-            bestPlayer+
-            " — "+
-            best;
-
-    }else{
-
-        document.getElementById(
-            "bestPlayer"
-        ).textContent=
-            "🥇 Best Player: Nobody yet";
-    }
+document.getElementById("bestPlayer")
+.textContent =
+best > 0 && bestPlayer
+?
+"🥇 Best Player: "+bestPlayer+" — "+best
+:
+"🥇 Best Player: Nobody yet";
 }
 
-
-/* =========================
-   RESET ENEMIES
-========================= */
+showBest();
 
 function resetEnemies(){
 
-    enemies[0].style.left="42px";
-    enemies[0].style.top="-120px";
+enemies[0].style.left="42px";
+enemies[0].style.top="-120px";
 
-    enemies[1].style.left="132px";
-    enemies[1].style.top="-360px";
+enemies[1].style.left="132px";
+enemies[1].style.top="-360px";
 
-    enemies[2].style.left="222px";
-    enemies[2].style.top="-600px";
+enemies[2].style.left="222px";
+enemies[2].style.top="-600px";
 }
 
 resetEnemies();
 
-
-/* =========================
-   START GAME
-========================= */
-
 function startGame(){
 
-    if(running){
-        return;
-    }
+if(running)return;
 
-    const name=
-        playerNameInput.value.trim();
+const name =
+playerNameInput.value.trim();
 
-    if(!name){
+if(!name){
 
-        alert(
-            "Please enter your name first."
-        );
+alert("Please enter your name first.");
+playerNameInput.focus();
+return;
 
-        playerNameInput.focus();
-
-        return;
-    }
-
-    localStorage.setItem(
-        "ebadPlayerName",
-        name
-    );
-
-    running=true;
-
-    score=0;
-    lives=3;
-    level=1;
-
-    speed=3.5;
-
-    playerX=132;
-
-    document.getElementById(
-        "score"
-    ).textContent=0;
-
-    document.getElementById(
-        "lives"
-    ).textContent=3;
-
-    document.getElementById(
-        "level"
-    ).textContent=1;
-
-    player.style.left=
-        "132px";
-
-    resetEnemies();
-
-    document.getElementById(
-        "message"
-    ).textContent=
-        "🔥 Good luck, "+
-        name+"!";
-
-    timer=
-        setInterval(
-            updateGame,
-            30
-        );
 }
 
+localStorage.setItem(
+"ebadPlayerName",
+name
+);
 
-/* =========================
-   GAME UPDATE
-========================= */
+running=true;
+
+score=0;
+lives=3;
+level=1;
+speed=3.5;
+playerX=132;
+
+document.getElementById("score")
+.textContent=0;
+
+document.getElementById("lives")
+.textContent=3;
+
+document.getElementById("level")
+.textContent=1;
+
+player.style.left="132px";
+
+resetEnemies();
+
+document.getElementById("message")
+.textContent=
+"🔥 Good luck, "+name+"!";
+
+timer =
+setInterval(updateGame,30);
+
+}
 
 function updateGame(){
 
-    laneMarks.forEach(
-        lane=>{
+laneMarks.forEach(lane=>{
 
-            let y=
-                parseFloat(
-                    lane.style.top
-                );
+let y =
+parseFloat(lane.style.top);
 
-            if(isNaN(y)){
-                y=-90;
-            }
+if(isNaN(y)) y=-90;
 
-            y+=
-                speed*1.8;
+y += speed*1.8;
 
-            if(y>550){
-                y=-100;
-            }
+if(y>550)y=-100;
 
-            lane.style.top=
-                y+"px";
-        }
-    );
+lane.style.top=y+"px";
 
+});
 
-    enemies.forEach(
-        car=>{
+enemies.forEach(car=>{
 
-            let y=
-                parseFloat(
-                    car.style.top
-                );
+let y =
+parseFloat(car.style.top);
 
-            if(isNaN(y)){
-                y=-120;
-            }
+if(isNaN(y))y=-120;
 
-            y+=speed;
+y += speed;
 
-            car.style.top=
-                y+"px";
+car.style.top=y+"px";
 
+if(y>550){
 
-            if(y>550){
+score++;
 
-                score++;
+document.getElementById("score")
+.textContent=score;
 
-                document.getElementById(
-                    "score"
-                ).textContent=
-                    score;
+resetEnemy(car);
 
-                resetEnemy(car);
+updateLevel();
 
-                updateLevel();
-            }
-
-
-            if(
-                checkCollision(car)
-            ){
-
-                resetEnemy(car);
-
-                lives--;
-
-                document.getElementById(
-                    "lives"
-                ).textContent=
-                    lives;
-
-
-                if(lives<=0){
-
-                    gameOver();
-
-                }else{
-
-                    document.getElementById(
-                        "message"
-                    ).textContent=
-                        "💥 CRASH! Lives left: "+
-                        lives;
-                }
-            }
-
-        }
-    );
 }
 
+if(checkCollision(car)){
 
-/* =========================
-   RESET ENEMY
-========================= */
+resetEnemy(car);
+
+lives--;
+
+document.getElementById("lives")
+.textContent=lives;
+
+if(lives<=0){
+
+gameOver();
+
+}else{
+
+document.getElementById("message")
+.textContent=
+"💥 CRASH! Lives left: "+lives;
+
+}
+
+}
+
+});
+
+}
 
 function resetEnemy(car){
 
-    const lane=
-        lanes[
-            Math.floor(
-                Math.random()*
-                lanes.length
-            )
-        ];
+const lane =
+lanes[
+Math.floor(
+Math.random()*lanes.length
+)
+];
 
-    car.style.left=
-        lane+"px";
+car.style.left=lane+"px";
 
-    car.style.top=
-        (
-            -160-
-            Math.random()*380
-        )+"px";
+car.style.top=
+(-160-Math.random()*380)+"px";
+
 }
-
-
-/* =========================
-   COLLISION
-========================= */
 
 function checkCollision(car){
 
-    const p=
-        player.getBoundingClientRect();
+const a =
+player.getBoundingClientRect();
 
-    const e=
-        car.getBoundingClientRect();
+const b =
+car.getBoundingClientRect();
 
-    return(
-        p.left<e.right-10 &&
-        p.right>e.left+10 &&
-        p.top<e.bottom-10 &&
-        p.bottom>e.top+10
-    );
+return(
+a.left < b.right-10 &&
+a.right > b.left+10 &&
+a.top < b.bottom-10 &&
+a.bottom > b.top+10
+);
+
 }
-
-
-/* =========================
-   LEVEL
-========================= */
 
 function updateLevel(){
 
-    level=
-        Math.floor(
-            score/10
-        )+1;
+level =
+Math.floor(score/10)+1;
 
-    speed=
-        3.5+
-        (level-1)*0.7;
+speed =
+3.5+(level-1)*0.7;
 
-    document.getElementById(
-        "level"
-    ).textContent=
-        level;
+document.getElementById("level")
+.textContent=level;
 
-    if(
-        score>0 &&
-        score%10===0
-    ){
-
-        document.getElementById(
-            "message"
-        ).textContent=
-            "⚡ LEVEL "+
-            level+
-            "! Traffic is faster!";
-    }
 }
-
-
-/* =========================
-   MOVE
-========================= */
 
 function moveLeft(){
 
-    if(!running){
-        return;
-    }
+if(!running)return;
 
-    playerX-=45;
+playerX-=45;
 
-    if(playerX<42){
-        playerX=42;
-    }
+if(playerX<42)
+playerX=42;
 
-    player.style.left=
-        playerX+"px";
+player.style.left=playerX+"px";
+
 }
-
 
 function moveRight(){
 
-    if(!running){
-        return;
-    }
+if(!running)return;
 
-    playerX+=45;
+playerX+=45;
 
-    if(playerX>222){
-        playerX=222;
-    }
+if(playerX>222)
+playerX=222;
 
-    player.style.left=
-        playerX+"px";
+player.style.left=playerX+"px";
+
 }
 
 
-/* =========================
-   COMPUTER ARROWS
-========================= */
+/* MOBILE SWIPE */
+
+gameBox.addEventListener(
+"touchstart",
+function(e){
+
+if(!running)return;
+
+const touch =
+e.touches[0];
+
+touchStartX =
+touch.clientX;
+
+touchStartY =
+touch.clientY;
+
+},
+{passive:true}
+);
+
+gameBox.addEventListener(
+"touchend",
+function(e){
+
+if(!running)return;
+
+const touch =
+e.changedTouches[0];
+
+const dx =
+touch.clientX-touchStartX;
+
+const dy =
+touch.clientY-touchStartY;
+
+if(
+Math.abs(dx)>35 &&
+Math.abs(dx)>Math.abs(dy)
+){
+
+if(dx<0){
+moveLeft();
+}else{
+moveRight();
+}
+
+}
+
+},
+{passive:true}
+);
+
+
+/* PC ARROWS ONLY */
 
 document.addEventListener(
-    "keydown",
-    function(event){
+"keydown",
+function(e){
 
-        const active=
-            document.activeElement;
+if(
+e.target &&
+(
+e.target.tagName==="INPUT" ||
+e.target.tagName==="TEXTAREA"
+)
+){
+return;
+}
 
-        if(
-            active &&
-            (
-                active.tagName==="INPUT" ||
-                active.tagName==="TEXTAREA"
-            )
-        ){
-            return;
-        }
+if(e.key==="ArrowLeft"){
+e.preventDefault();
+moveLeft();
+}
 
-        if(
-            event.key==="ArrowLeft"
-        ){
+if(e.key==="ArrowRight"){
+e.preventDefault();
+moveRight();
+}
 
-            event.preventDefault();
-
-            moveLeft();
-        }
-
-        if(
-            event.key==="ArrowRight"
-        ){
-
-            event.preventDefault();
-
-            moveRight();
-        }
-    }
+}
 );
 
-
-/* =========================
-   MOBILE SWIPE / DRAG
-========================= */
-
-let touchStartX=0;
-let touchStartY=0;
-
-let lastTouchX=0;
-
-let dragging=false;
-
-
-gameBox.addEventListener(
-    "touchstart",
-    function(event){
-
-        if(
-            !running
-        ){
-            return;
-        }
-
-        if(
-            !event.touches ||
-            !event.touches.length
-        ){
-            return;
-        }
-
-        touchStartX=
-            event.touches[0].clientX;
-
-        touchStartY=
-            event.touches[0].clientY;
-
-        lastTouchX=
-            touchStartX;
-
-        dragging=true;
-
-        event.preventDefault();
-    },
-    {passive:false}
-);
-
-
-gameBox.addEventListener(
-    "touchmove",
-    function(event){
-
-        if(
-            !running ||
-            !dragging
-        ){
-            return;
-        }
-
-        if(
-            !event.touches ||
-            !event.touches.length
-        ){
-            return;
-        }
-
-        const currentX=
-            event.touches[0].clientX;
-
-        const currentY=
-            event.touches[0].clientY;
-
-
-        const moveX=
-            currentX-lastTouchX;
-
-
-        const totalY=
-            Math.abs(
-                currentY-touchStartY
-            );
-
-
-        /*
-           Horizontal drag only.
-        */
-
-        if(
-            Math.abs(moveX)>4 &&
-            totalY<
-            Math.abs(
-                currentX-touchStartX
-            )+80
-        ){
-
-            if(
-                moveX<0
-            ){
-
-                playerX-=
-                    Math.min(
-                        18,
-                        Math.abs(moveX)
-                    );
-
-            }else{
-
-                playerX+=
-                    Math.min(
-                        18,
-                        Math.abs(moveX)
-                    );
-            }
-
-
-            if(playerX<42){
-                playerX=42;
-            }
-
-            if(playerX>222){
-                playerX=222;
-            }
-
-            player.style.left=
-                playerX+"px";
-
-
-            lastTouchX=
-                currentX;
-        }
-
-        event.preventDefault();
-    },
-    {passive:false}
-);
-
-
-gameBox.addEventListener(
-    "touchend",
-    function(event){
-
-        if(
-            !running
-        ){
-            return;
-        }
-
-        const endX=
-            event.changedTouches &&
-            event.changedTouches.length
-            ? event.changedTouches[0].clientX
-            : lastTouchX;
-
-        const distanceX=
-            endX-touchStartX;
-
-
-        /*
-           A clear swipe gives
-           an extra lane movement.
-        */
-
-        if(
-            Math.abs(distanceX)>=55
-        ){
-
-            if(
-                distanceX<0
-            ){
-
-                moveLeft();
-
-            }else{
-
-                moveRight();
-            }
-        }
-
-        dragging=false;
-
-        event.preventDefault();
-    },
-    {passive:false}
-);
-
-
-gameBox.addEventListener(
-    "touchcancel",
-    function(){
-
-        dragging=false;
-
-    }
-);
-
-
-/* =========================
-   GAME OVER
-========================= */
 
 function gameOver(){
 
-    clearInterval(timer);
+clearInterval(timer);
 
-    running=false;
+running=false;
 
-    const name=
-        playerNameInput.value.trim();
+const name =
+playerNameInput.value.trim();
 
+if(score>best){
 
-    if(
-        score>best
-    ){
+best=score;
+bestPlayer=name;
 
-        best=score;
+localStorage.setItem(
+"ebadBestScore",
+best
+);
 
-        bestPlayer=name;
+localStorage.setItem(
+"ebadBestPlayer",
+bestPlayer
+);
 
+showBest();
 
-        localStorage.setItem(
-            "ebadBestScore",
-            best
-        );
+document.getElementById("message")
+.textContent=
+"🏆 NEW HIGH SCORE! "+name+" — "+score;
 
-        localStorage.setItem(
-            "ebadBestPlayer",
-            bestPlayer
-        );
+}else{
 
+document.getElementById("message")
+.textContent=
+"💥 GAME OVER! Score: "+score;
 
-        document.getElementById(
-            "best"
-        ).textContent=
-            best;
-
-
-        showBestPlayer();
-
-
-        document.getElementById(
-            "message"
-        ).textContent=
-            "🏆 NEW HIGH SCORE, "+
-            name+
-            "! Score: "+
-            score;
-
-    }else{
-
-        document.getElementById(
-            "message"
-        ).textContent=
-            "💥 GAME OVER, "+
-            name+
-            "! Score: "+
-            score+
-            " | Best: "+
-            best;
-    }
 }
 
-
-/* =========================
-   RESTART
-========================= */
+}
 
 function restartGame(){
 
-    clearInterval(timer);
+clearInterval(timer);
 
-    running=false;
+running=false;
 
-    score=0;
-    lives=3;
-    level=1;
+score=0;
+lives=3;
+level=1;
+speed=3.5;
+playerX=132;
 
-    speed=3.5;
+document.getElementById("score")
+.textContent=0;
 
-    playerX=132;
+document.getElementById("lives")
+.textContent=3;
 
-    document.getElementById(
-        "score"
-    ).textContent=0;
+document.getElementById("level")
+.textContent=1;
 
-    document.getElementById(
-        "lives"
-    ).textContent=3;
+player.style.left="132px";
 
-    document.getElementById(
-        "level"
-    ).textContent=1;
+resetEnemies();
 
-    player.style.left=
-        "132px";
+document.getElementById("message")
+.textContent=
+"Enter your name and press START.";
 
-    resetEnemies();
-
-    document.getElementById(
-        "message"
-    ).textContent=
-        "Enter your name and press START.";
 }
-
-
-/* =========================
-   RESET BEST SCORE
-========================= */
 
 function resetBestScore(){
 
-    const ok=
-        confirm(
-            "Kya aap Best Score aur Best Player delete karna chahte hain?"
-        );
+if(
+!confirm(
+"Reset Best Score aur Best Player?"
+)
+){
+return;
+}
 
-    if(!ok){
-        return;
-    }
+localStorage.removeItem(
+"ebadBestScore"
+);
 
-    localStorage.removeItem(
-        "ebadBestScore"
-    );
+localStorage.removeItem(
+"ebadBestPlayer"
+);
 
-    localStorage.removeItem(
-        "ebadBestPlayer"
-    );
+best=0;
+bestPlayer="";
 
-    best=0;
+showBest();
 
-    bestPlayer="";
+document.getElementById("message")
+.textContent=
+"✅ Best score reset ho gaya.";
 
-    document.getElementById(
-        "best"
-    ).textContent="0";
-
-    showBestPlayer();
-
-    document.getElementById(
-        "message"
-    ).textContent=
-        "✅ Best Score reset ho gaya!";
 }
 
 </script>
