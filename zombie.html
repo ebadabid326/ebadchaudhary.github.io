@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>Zombie Attack - Ebad Gaming</title>
 
 <style>
+
+/* =========================
+   BASIC
+========================= */
 
 *{
     box-sizing:border-box;
@@ -14,181 +23,1022 @@
     padding:0;
 }
 
-body{
-    margin:0;
-    background:#070a08;
-    color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
-    text-align:center;
+:root{
+    --green:#35e05a;
+    --dark:#050906;
 }
 
+body{
+    min-height:100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:#fff;
+
+    text-align:center;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #17251a,
+            #070a08 55%,
+            #030504
+        );
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
 header{
-    background:#11151a;
-    padding:16px;
-    border-bottom:2px solid #35e05a;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:50;
+
+    background:
+        rgba(7,12,8,.96);
+
+    border-bottom:
+        2px solid var(--green);
+
+    padding:16px 20px;
 }
 
 header a{
+
     color:#fff;
+
     text-decoration:none;
-    font-weight:bold;
+
+    font-weight:800;
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.page{
+
+    padding:
+        18px
+        12px
+        50px;
 }
 
 h1{
-    color:#35e05a;
-    margin:20px 0 8px;
-    font-size:clamp(30px,6vw,48px);
+
+    margin:
+        8px
+        0
+        4px;
+
+    font-size:
+        clamp(
+            30px,
+            6vw,
+            50px
+        );
+
+    color:#65f67a;
 }
 
 .subtitle{
-    color:#aaa;
-    margin-bottom:12px;
+
+    color:#a3aaa4;
+
+    margin-bottom:15px;
 }
 
+
+/* =========================
+   STATS
+========================= */
+
 .stats{
+
     display:flex;
+
     justify-content:center;
+
+    align-items:center;
+
     gap:10px;
+
     flex-wrap:wrap;
-    margin:15px;
+
+    margin:15px 0;
 }
 
 .stat{
-    background:#151c16;
-    border:1px solid #29452f;
+
+    background:#111812;
+
+    border:
+        1px solid
+        #2d4731;
+
     border-radius:10px;
-    padding:9px 15px;
-    font-weight:bold;
+
+    padding:
+        9px
+        14px;
+
+    font-weight:800;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0,0,0,.25);
 }
 
-.game-wrap{
-    width:min(390px,94vw);
-    margin:0 auto;
+
+/* =========================
+   GAME FRAME
+========================= */
+
+.game-frame{
+
+    width:
+        min(
+            410px,
+            95vw
+        );
+
+    margin:
+        0 auto;
+
     padding:10px;
-    background:#111811;
-    border:1px solid #2d4030;
-    border-radius:18px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #172018,
+            #0d120e
+        );
+
+    border:
+        1px solid
+        #344b38;
+
+    border-radius:22px;
+
+    box-shadow:
+        0 20px 55px
+        rgba(0,0,0,.45);
 }
 
-#gameCanvas{
-    display:block;
+
+/* =========================
+   GAME AREA
+========================= */
+
+.game-box{
+
+    position:relative;
+
     width:100%;
-    height:auto;
-    border:4px solid #35e05a;
-    border-radius:14px;
-    background:#101810;
-    touch-action:none;
+
+    aspect-ratio:
+        360 / 540;
+
+    overflow:hidden;
+
+    border:
+        4px solid
+        #dfffe4;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #071008 0%,
+            #0d170f 45%,
+            #172018 100%
+        );
 }
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.sky{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 50% 12%,
+            rgba(70,130,80,.18),
+            transparent 24%
+        );
+}
+
+.moon{
+
+    position:absolute;
+
+    top:28px;
+
+    right:28px;
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    background:#d9f1d5;
+
+    box-shadow:
+        0 0 30px
+        rgba(220,255,210,.2);
+}
+
+.moon::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:45px;
+
+    height:45px;
+
+    left:-9px;
+
+    top:-4px;
+
+    border-radius:50%;
+
+    background:#081008;
+}
+
+.ground{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    height:105px;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #182219 0 18px,
+            #101710 18px 36px
+        );
+}
+
+.grass-line{
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    height:2px;
+
+    background:
+        rgba(
+            90,
+            130,
+            90,
+            .2
+        );
+}
+
+.gl1{
+    bottom:80px;
+}
+
+.gl2{
+    bottom:48px;
+}
+
+.gl3{
+    bottom:20px;
+}
+
+
+/* =========================
+   PLAYER
+========================= */
+
+.player{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:42px;
+
+    width:74px;
+
+    height:120px;
+
+    transform:
+        translateX(-50%);
+
+    z-index:10;
+}
+
+.player-head{
+
+    position:absolute;
+
+    left:25px;
+
+    top:0;
+
+    width:25px;
+
+    height:25px;
+
+    border-radius:50%;
+
+    background:#f1c6a6;
+}
+
+.player-body{
+
+    position:absolute;
+
+    left:15px;
+
+    top:25px;
+
+    width:44px;
+
+    height:65px;
+
+    border-radius:
+        14px
+        14px
+        10px
+        10px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #46e76a,
+            #1b8034
+        );
+
+    box-shadow:
+        inset
+        0 4px 0
+        rgba(
+            255,
+            255,
+            255,
+            .16
+        );
+}
+
+.player-shoulder{
+
+    position:absolute;
+
+    left:8px;
+
+    top:36px;
+
+    width:58px;
+
+    height:20px;
+
+    border-radius:10px;
+
+    background:#23582f;
+}
+
+.player-gun{
+
+    position:absolute;
+
+    left:50%;
+
+    top:14px;
+
+    width:10px;
+
+    height:72px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius:6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #555,
+            #d7d7d7,
+            #555
+        );
+
+    box-shadow:
+        0 0 10px
+        rgba(
+            255,
+            255,
+            255,
+            .15
+        );
+
+    z-index:8;
+}
+
+.player-gun-tip{
+
+    position:absolute;
+
+    top:-7px;
+
+    left:1px;
+
+    width:8px;
+
+    height:10px;
+
+    border-radius:3px;
+
+    background:#222;
+}
+
+.player-hand{
+
+    position:absolute;
+
+    top:58px;
+
+    left:7px;
+
+    width:17px;
+
+    height:17px;
+
+    border-radius:50%;
+
+    background:#efc4a3;
+
+    z-index:9;
+}
+
+.player-hand.right{
+
+    left:auto;
+
+    right:7px;
+}
+
+
+/* =========================
+   ZOMBIES
+========================= */
+
+.zombie{
+
+    position:absolute;
+
+    width:62px;
+
+    height:84px;
+
+    z-index:8;
+
+    filter:
+        drop-shadow(
+            0 8px 6px
+            rgba(0,0,0,.45)
+        );
+}
+
+.zombie-body{
+
+    position:absolute;
+
+    left:12px;
+
+    top:25px;
+
+    width:38px;
+
+    height:52px;
+
+    border-radius:
+        13px
+        13px
+        8px
+        8px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #6bc66d,
+            #2a6e37
+        );
+
+    border:
+        2px solid
+        #1d4924;
+}
+
+.zombie-head{
+
+    position:absolute;
+
+    left:15px;
+
+    top:0;
+
+    width:32px;
+
+    height:32px;
+
+    border-radius:
+        48% 52%
+        45% 55%;
+
+    background:
+        linear-gradient(
+            180deg,
+            #7ed67d,
+            #3a8b45
+        );
+
+    border:
+        2px solid
+        #1d4924;
+
+    z-index:3;
+}
+
+.eye{
+
+    position:absolute;
+
+    top:11px;
+
+    width:7px;
+
+    height:7px;
+
+    border-radius:50%;
+
+    background:
+        #ff5555;
+
+    box-shadow:
+        0 0 6px
+        rgba(
+            255,
+            60,
+            60,
+            .6
+        );
+}
+
+.eye.left{
+    left:7px;
+}
+
+.eye.right{
+    right:7px;
+}
+
+.zombie-arm{
+
+    position:absolute;
+
+    top:34px;
+
+    width:10px;
+
+    height:40px;
+
+    border-radius:8px;
+
+    background:#4eaa55;
+
+    transform-origin:top;
+}
+
+.zombie-arm.left{
+
+    left:3px;
+
+    transform:
+        rotate(28deg);
+}
+
+.zombie-arm.right{
+
+    right:3px;
+
+    transform:
+        rotate(-28deg);
+}
+
+
+/* =========================
+   BULLETS
+========================= */
+
+.bullet{
+
+    position:absolute;
+
+    width:6px;
+
+    height:20px;
+
+    border-radius:5px;
+
+    background:#ffe600;
+
+    box-shadow:
+        0 0 12px
+        rgba(
+            255,
+            230,
+            0,
+            .8
+        );
+
+    z-index:20;
+}
+
+
+/* =========================
+   FLASH
+========================= */
+
+.muzzle{
+
+    position:absolute;
+
+    width:25px;
+
+    height:25px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff,
+            #ffe600 35%,
+            rgba(255,0,0,0)
+        );
+
+    opacity:0;
+
+    z-index:30;
+
+    pointer-events:none;
+}
+
+.muzzle.flash{
+
+    animation:
+        muzzleFlash
+        .12s
+        linear;
+}
+
+@keyframes muzzleFlash{
+
+    0%{
+        opacity:0;
+        transform:scale(.4);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    100%{
+        opacity:0;
+        transform:scale(1.5);
+    }
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
 
 .message{
+
     min-height:30px;
+
+    margin:
+        13px
+        0
+        7px;
+
     color:#ffd84d;
-    font-weight:bold;
-    margin:12px 0 7px;
+
+    font-weight:800;
 }
 
-/* START / RESTART */
-
 .actions{
+
     display:flex;
+
     justify-content:center;
+
     gap:8px;
+
     flex-wrap:wrap;
 }
 
 .btn{
-    display:inline-block;
+
     border:0;
+
     border-radius:10px;
-    background:#35e05a;
+
+    background:var(--green);
+
     color:#071008;
-    padding:13px 20px;
-    margin:5px;
-    font-size:17px;
-    font-weight:900;
-    cursor:pointer;
+
+    padding:
+        13px
+        20px;
+
     min-width:145px;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    cursor:pointer;
 }
 
 .btn:hover{
-    filter:brightness(1.08);
+
+    filter:
+        brightness(1.08);
 }
 
+.secondary{
+
+    background:
+        #263229;
+
+    color:#fff;
+
+    border:
+        1px solid
+        #405644;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
 .controls{
+
     display:flex;
+
     justify-content:center;
+
     gap:18px;
-    margin-top:10px;
+
+    margin-top:11px;
 }
 
 .control{
-    width:85px;
+
+    width:88px;
+
     height:56px;
-    border:0;
-    border-radius:11px;
-    background:#1b241c;
-    border:1px solid #38533c;
+
+    border:
+        1px solid
+        #3c5140;
+
+    border-radius:12px;
+
+    background:#1a241c;
+
     color:#fff;
+
     font-size:24px;
-    font-weight:bold;
+
+    font-weight:900;
+
     cursor:pointer;
 }
 
+.shoot{
+
+    background:
+        #2e7f3d;
+
+    border-color:
+        #54b869;
+}
+
 .help{
-    color:#999;
-    margin:10px 0 25px;
+
+    color:#8f9891;
+
+    margin-top:10px;
+
     font-size:14px;
 }
 
+.best{
+
+    margin-top:8px;
+
+    color:#ffd84d;
+
+    font-weight:800;
+}
+
 @media(max-width:450px){
+
+    .game-frame{
+        padding:7px;
+    }
+
     .btn{
         width:100%;
         max-width:180px;
     }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
+
 <header>
-<a href="games.html">← Back to Games</a>
+
+<a href="games.html">
+← Back to Games
+</a>
+
 </header>
 
-<h1>🧟 Zombie Attack</h1>
+
+<div class="page">
+
+
+<h1>
+🧟 Zombie Attack
+</h1>
+
 
 <p class="subtitle">
-Survive the zombies and beat your score.
+Survive the zombies and beat your best score.
 </p>
+
 
 <div class="stats">
 
+
 <div class="stat">
 🎯 Score:
-<span id="score">0</span>
+<span id="score">
+0
+</span>
 </div>
+
 
 <div class="stat">
 ❤️ Lives:
-<span id="lives">3</span>
+<span id="lives">
+3
+</span>
 </div>
+
 
 <div class="stat">
 ⚡ Wave:
-<span id="wave">1</span>
+<span id="wave">
+1
+</span>
+</div>
+
+
+<div class="stat">
+🥇 Best:
+<span id="best">
+0
+</span>
+</div>
+
+
+</div>
+
+
+<div
+class="best"
+id="bestText"
+>
+Best Player: Nobody yet
+</div>
+
+
+<div class="game-frame">
+
+
+<div
+class="game-box"
+id="gameBox"
+>
+
+
+<div class="sky">
+</div>
+
+
+<div class="moon">
+</div>
+
+
+<div class="ground">
+</div>
+
+
+<div class="grass-line gl1">
+</div>
+
+<div class="grass-line gl2">
+</div>
+
+<div class="grass-line gl3">
+</div>
+
+
+<!-- PLAYER -->
+
+<div
+class="player"
+id="player"
+>
+
+<div class="player-head">
+</div>
+
+<div class="player-shoulder">
+</div>
+
+<div class="player-body">
+</div>
+
+<div class="player-gun">
+
+<div class="player-gun-tip">
+</div>
+
+</div>
+
+<div class="player-hand">
+</div>
+
+<div
+class="player-hand right"
+>
 </div>
 
 </div>
 
 
-<div class="game-wrap">
+<div
+class="muzzle"
+id="muzzle"
+>
+</div>
 
-<canvas
-id="gameCanvas"
-width="360"
-height="540"
-></canvas>
+
+</div>
 
 
 <div
@@ -209,9 +1059,10 @@ onclick="startGame()"
 ▶ START GAME
 </button>
 
+
 <button
 type="button"
-class="btn"
+class="btn secondary"
 onclick="restartGame()"
 >
 ↻ RESTART
@@ -230,13 +1081,15 @@ onclick="moveLeft()"
 ⬅️
 </button>
 
+
 <button
 type="button"
-class="control"
+class="control shoot"
 onclick="shoot()"
 >
 🔫
 </button>
+
 
 <button
 type="button"
@@ -248,300 +1101,204 @@ onclick="moveRight()"
 
 </div>
 
+
 <p class="help">
-Mobile: ⬅️ ➡️ move &nbsp; | &nbsp; 🔫 shoot
+Mobile: ⬅️ ➡️ move | 🔫 shoot
 <br>
-Computer: ← → move &nbsp; | &nbsp; SPACE shoot
+Computer: ← → move | SPACE shoot
 </p>
+
+
+</div>
+
 
 </div>
 
 
 <script>
 
-const canvas=
+/* =========================
+   GAME VARIABLES
+========================= */
+
+const gameBox=
 document.getElementById(
-"gameCanvas"
+    "gameBox"
 );
 
-const ctx=
-canvas.getContext("2d");
+const player=
+document.getElementById(
+    "player"
+);
 
-const W=360;
-const H=540;
+const muzzle=
+document.getElementById(
+    "muzzle"
+);
 
 
 let playerX=180;
 
+
 let score=0;
+
 let lives=3;
+
 let wave=1;
+
+
+let best=
+Number(
+    localStorage.getItem(
+        "ebadZombieBest"
+    )
+)||0;
+
+
+let bestPlayer=
+localStorage.getItem(
+    "ebadZombieBestPlayer"
+)||"";
+
 
 let running=false;
 
-let bullets=[];
+let timer=null;
+
+let spawnTimer=null;
+
+let enemyId=0;
+
+
 let zombies=[];
 
-let lastTime=0;
-let spawnTimer=0;
+let bullets=[];
 
-let spawnInterval=800;
-let zombieSpeed=75;
 
-let animationId=null;
+const LANES=[
+    70,
+    180,
+    290
+];
 
 
 /* =========================
-   STARS / BACKGROUND
+   SHOW BEST
 ========================= */
 
-const stars=[];
+function updateBest(){
 
-for(
-    let i=0;
-    i<70;
-    i++
-){
+    document.getElementById(
+        "best"
+    ).textContent=
+        best;
 
-    stars.push({
 
-        x:Math.random()*W,
+    if(
+        bestPlayer &&
+        best>0
+    ){
 
-        y:Math.random()*H,
+        document.getElementById(
+            "bestText"
+        ).textContent=
+            "🥇 Best Player: "+
+            bestPlayer+
+            " — "+
+            best;
 
-        size:Math.random()*2+1
+    }else{
 
-    });
+        document.getElementById(
+            "bestText"
+        ).textContent=
+            "🥇 Best Player: Nobody yet";
+    }
 
 }
 
 
+updateBest();
+
+
 /* =========================
-   UPDATE INFO
+   STATS
 ========================= */
 
 function updateStats(){
 
     document.getElementById(
         "score"
-    ).textContent=score;
+    ).textContent=
+        score;
+
 
     document.getElementById(
         "lives"
-    ).textContent=lives;
+    ).textContent=
+        lives;
+
 
     document.getElementById(
         "wave"
-    ).textContent=wave;
+    ).textContent=
+        wave;
 
 }
 
 
 /* =========================
-   BACKGROUND
+   START
 ========================= */
 
-function drawBackground(dt){
+function startGame(){
 
-    ctx.fillStyle="#101810";
-
-    ctx.fillRect(
-        0,
-        0,
-        W,
-        H
-    );
-
-
-    /* night sky */
-
-    ctx.fillStyle="#0a110b";
-
-    ctx.fillRect(
-        0,
-        0,
-        W,
-        H
-    );
-
-
-    /* stars */
-
-    for(
-        const s of stars
-    ){
-
-        s.y+=
-            25*dt;
-
-        if(
-            s.y>H
-        ){
-            s.y=-5;
-            s.x=Math.random()*W;
-        }
-
-        ctx.fillStyle="#d8ffd8";
-
-        ctx.fillRect(
-            s.x,
-            s.y,
-            s.size,
-            s.size
-        );
-
+    if(running){
+        return;
     }
 
 
-    /* ground */
+    score=0;
 
-    ctx.fillStyle="#162216";
+    lives=3;
 
-    ctx.fillRect(
-        0,
-        500,
-        W,
-        40
-    );
+    wave=1;
 
 
-    /* ground lines */
+    playerX=180;
 
-    ctx.strokeStyle="#233523";
 
-    for(
-        let y=505;
-        y<540;
-        y+=12
-    ){
+    zombies=[];
 
-        ctx.beginPath();
+    bullets=[];
 
-        ctx.moveTo(
-            0,
-            y
+
+    clearTimers();
+
+
+    removeObjects();
+
+
+    running=true;
+
+
+    updateStats();
+
+
+    document.getElementById(
+        "message"
+    ).textContent=
+        "🧟 ZOMBIES ARE COMING!";
+
+
+    startSpawning();
+
+
+    timer=
+        setInterval(
+            gameLoop,
+            30
         );
-
-        ctx.lineTo(
-            W,
-            y
-        );
-
-        ctx.stroke();
-
-    }
-
-}
-
-
-/* =========================
-   PLAYER
-========================= */
-
-function drawPlayer(){
-
-    /* body */
-
-    ctx.fillStyle="#35e05a";
-
-    ctx.fillRect(
-        playerX-22,
-        470,
-        44,
-        38
-    );
-
-
-    /* head */
-
-    ctx.fillStyle="#f3c8a8";
-
-    ctx.beginPath();
-
-    ctx.arc(
-        playerX,
-        451,
-        13,
-        0,
-        Math.PI*2
-    );
-
-    ctx.fill();
-
-
-    /* gun */
-
-    ctx.fillStyle="#bdbdbd";
-
-    ctx.fillRect(
-        playerX-4,
-        395,
-        8,
-        45
-    );
-
-
-    ctx.fillStyle="#444";
-
-    ctx.fillRect(
-        playerX-8,
-        388,
-        16,
-        10
-    );
-
-
-    ctx.fillStyle="#222";
-
-    ctx.fillRect(
-        playerX-8,
-        430,
-        16,
-        22
-    );
-
-}
-
-
-/* =========================
-   ZOMBIE
-========================= */
-
-function drawZombie(z){
-
-    ctx.font="42px Arial";
-
-    ctx.textAlign="center";
-    ctx.textBaseline="middle";
-
-    ctx.fillText(
-        "🧟",
-        z.x,
-        z.y
-    );
-
-}
-
-
-/* =========================
-   BULLET
-========================= */
-
-function drawBullet(b){
-
-    ctx.fillStyle="#ffe600";
-
-    ctx.shadowColor="#ffe600";
-    ctx.shadowBlur=12;
-
-    ctx.fillRect(
-        b.x-3,
-        b.y-10,
-        6,
-        20
-    );
-
-    ctx.shadowBlur=0;
 
 }
 
@@ -550,16 +1307,113 @@ function drawBullet(b){
    SPAWN
 ========================= */
 
+function startSpawning(){
+
+    spawnTimer=
+        setInterval(
+            spawnZombie,
+            getSpawnSpeed()
+        );
+
+}
+
+function getSpawnSpeed(){
+
+    return Math.max(
+        420,
+        900-
+        (wave-1)*70
+    );
+
+}
+
+function restartSpawning(){
+
+    clearInterval(
+        spawnTimer
+    );
+
+    startSpawning();
+
+}
+
+
+/* =========================
+   SPAWN ZOMBIE
+========================= */
+
 function spawnZombie(){
+
+    if(!running){
+        return;
+    }
+
+
+    const lane=
+        LANES[
+            Math.floor(
+                Math.random()*
+                LANES.length
+            )
+        ];
+
+
+    const zombie=
+        document.createElement(
+            "div"
+        );
+
+
+    zombie.className=
+        "zombie";
+
+
+    zombie.dataset.id=
+        enemyId++;
+
+
+    zombie.innerHTML=
+        `
+        <div class="zombie-head">
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+        </div>
+
+        <div class="zombie-body"></div>
+
+        <div class="zombie-arm left"></div>
+
+        <div class="zombie-arm right"></div>
+        `;
+
+
+    zombie.style.left=
+        (
+            lane-31
+        )+
+        "px";
+
+
+    zombie.style.top=
+        "-95px";
+
+
+    gameBox.appendChild(
+        zombie
+    );
+
 
     zombies.push({
 
-        x:
-            25+
-            Math.random()*
-            310,
+        element:zombie,
 
-        y:-35
+        x:lane,
+
+        y:-95,
+
+        speed:
+            1.4+
+            wave*.16
 
     });
 
@@ -572,20 +1426,72 @@ function spawnZombie(){
 
 function shoot(){
 
-    if(
-        !running
-    ){
+    if(!running){
         return;
     }
 
 
+    const bullet=
+        document.createElement(
+            "div"
+        );
+
+
+    bullet.className=
+        "bullet";
+
+
+    bullet.style.left=
+        (
+            playerX-3
+        )+
+        "px";
+
+
+    bullet.style.top=
+        "380px";
+
+
+    gameBox.appendChild(
+        bullet
+    );
+
+
     bullets.push({
+
+        element:bullet,
 
         x:playerX,
 
-        y:425
+        y:380
 
     });
+
+
+    /* muzzle effect */
+
+    muzzle.style.left=
+        (
+            playerX-12
+        )+
+        "px";
+
+
+    muzzle.style.top=
+        "355px";
+
+
+    muzzle.classList.remove(
+        "flash"
+    );
+
+
+    void muzzle.offsetWidth;
+
+
+    muzzle.classList.add(
+        "flash"
+    );
 
 }
 
@@ -596,44 +1502,117 @@ function shoot(){
 
 function moveLeft(){
 
-    if(
-        !running
-    ){
+    if(!running){
         return;
     }
 
 
-    playerX-=30;
+    playerX-=35;
 
 
     if(
-        playerX<25
+        playerX<55
     ){
 
-        playerX=25;
-
+        playerX=55;
     }
+
+
+    updatePlayer();
 
 }
 
 
 function moveRight(){
 
-    if(
-        !running
-    ){
+    if(!running){
         return;
     }
 
 
-    playerX+=30;
+    playerX+=35;
 
 
     if(
-        playerX>335
+        playerX>305
     ){
 
-        playerX=335;
+        playerX=305;
+    }
+
+
+    updatePlayer();
+
+}
+
+
+function updatePlayer(){
+
+    player.style.left=
+        (
+            playerX-37
+        )+
+        "px";
+
+}
+
+
+/* =========================
+   MAIN LOOP
+========================= */
+
+function gameLoop(){
+
+    if(!running){
+        return;
+    }
+
+
+    moveBullets();
+
+    moveZombies();
+
+    checkHits();
+
+}
+
+
+/* =========================
+   BULLETS
+========================= */
+
+function moveBullets(){
+
+    for(
+        let i=bullets.length-1;
+        i>=0;
+        i--
+    ){
+
+        const b=
+            bullets[i];
+
+
+        b.y-=12;
+
+
+        b.element.style.top=
+            b.y+"px";
+
+
+        if(
+            b.y<
+            -30
+        ){
+
+            b.element.remove();
+
+            bullets.splice(
+                i,
+                1
+            );
+
+        }
 
     }
 
@@ -641,117 +1620,10 @@ function moveRight(){
 
 
 /* =========================
-   START GAME
+   ZOMBIES
 ========================= */
 
-function startGame(){
-
-    if(
-        running
-    ){
-        return;
-    }
-
-
-    score=0;
-    lives=3;
-    wave=1;
-
-    playerX=180;
-
-    bullets=[];
-    zombies=[];
-
-    spawnTimer=0;
-
-    spawnInterval=800;
-
-    zombieSpeed=75;
-
-    running=true;
-
-
-    updateStats();
-
-
-    document.getElementById(
-        "message"
-    ).textContent=
-        "🧟 Zombies are coming!";
-
-
-    lastTime=
-        performance.now();
-
-
-    animationId=
-        requestAnimationFrame(
-            gameLoop
-        );
-
-}
-
-
-/* =========================
-   GAME LOOP
-========================= */
-
-function gameLoop(time){
-
-    if(
-        !running
-    ){
-        return;
-    }
-
-
-    const dt=
-        Math.min(
-            (time-lastTime)/1000,
-            .05
-        );
-
-
-    lastTime=time;
-
-
-    update(dt);
-
-    draw(dt);
-
-
-    animationId=
-        requestAnimationFrame(
-            gameLoop
-        );
-
-}
-
-
-/* =========================
-   UPDATE GAME
-========================= */
-
-function update(dt){
-
-    /* Spawn */
-
-    spawnTimer+=
-        dt*1000;
-
-
-    if(
-        spawnTimer>=spawnInterval
-    ){
-
-        spawnTimer=0;
-
-        spawnZombie();
-
-    }
-
-
-    /* Zombies */
+function moveZombies(){
 
     for(
         let i=zombies.length-1;
@@ -764,77 +1636,86 @@ function update(dt){
 
 
         z.y+=
-            zombieSpeed*dt;
+            z.speed;
 
+
+        z.element.style.top=
+            z.y+"px";
+
+
+        /* zombie reached player */
 
         if(
-            z.y>=445
+            z.y>
+            365
         ){
 
-            zombies.splice(
-                i,
-                1
-            );
-
-
-            lives--;
-
-
-            updateStats();
+            const distance=
+                Math.abs(
+                    z.x-
+                    playerX
+                );
 
 
             if(
-                lives<=0
+                distance<
+                55
             ){
 
-                gameOver();
+                removeZombie(
+                    i
+                );
 
-                return;
+
+                lives--;
+
+                updateStats();
+
+
+                document.getElementById(
+                    "message"
+                ).textContent=
+                    "💥 ZOMBIE HIT YOU!";
+
+
+                if(
+                    lives<=0
+                ){
+
+                    gameOver();
+
+                    return;
+                }
+
 
             }
 
-
-            document.getElementById(
-                "message"
-            ).textContent=
-                "💥 A zombie reached you!";
-
         }
 
-    }
 
-
-    /* Bullets */
-
-    for(
-        let i=bullets.length-1;
-        i>=0;
-        i--
-    ){
-
-        const b=
-            bullets[i];
-
-
-        b.y-=
-            450*dt;
-
+        /* zombie escaped */
 
         if(
-            b.y<-20
+            z.y>
+            560
         ){
 
-            bullets.splice(
-                i,
-                1
+            removeZombie(
+                i
             );
 
         }
 
     }
 
+}
 
-    /* Hit detection */
+
+/* =========================
+   HIT DETECTION
+========================= */
+
+function checkHits(){
 
     for(
         let bi=bullets.length-1;
@@ -857,10 +1738,16 @@ function update(dt){
 
 
             const dx=
-                b.x-z.x;
+                b.x-
+                z.x;
+
 
             const dy=
-                b.y-z.y;
+                b.y-
+                (
+                    z.y+
+                    35
+                );
 
 
             const distance=
@@ -871,17 +1758,17 @@ function update(dt){
 
 
             if(
-                distance<28
+                distance<
+                42
             ){
 
-                bullets.splice(
-                    bi,
-                    1
+                removeBullet(
+                    bi
                 );
 
-                zombies.splice(
-                    zi,
-                    1
+
+                removeZombie(
+                    zi
                 );
 
 
@@ -897,7 +1784,8 @@ function update(dt){
                 document.getElementById(
                     "message"
                 ).textContent=
-                    "💥 Zombie destroyed!";
+                    "💥 ZOMBIE DESTROYED!";
+
 
                 break;
 
@@ -918,8 +1806,10 @@ function updateWave(){
 
     const newWave=
         Math.floor(
-            score/10
-        )+1;
+            score/
+            10
+        )+
+        1;
 
 
     if(
@@ -930,17 +1820,7 @@ function updateWave(){
             newWave;
 
 
-        zombieSpeed=
-            75+
-            (wave-1)*18;
-
-
-        spawnInterval=
-            Math.max(
-                350,
-                800-
-                (wave-1)*70
-            );
+        restartSpawning();
 
 
         document.getElementById(
@@ -949,32 +1829,80 @@ function updateWave(){
             "⚡ WAVE "+
             wave+
             "!";
-
     }
 
 }
 
 
 /* =========================
-   DRAW
+   REMOVE
 ========================= */
 
-function draw(dt){
+function removeZombie(
+    index
+){
 
-    drawBackground(dt);
+    if(
+        !zombies[index]
+    ){
+        return;
+    }
 
+
+    zombies[index]
+        .element
+        .remove();
+
+
+    zombies.splice(
+        index,
+        1
+    );
+
+}
+
+
+function removeBullet(
+    index
+){
+
+    if(
+        !bullets[index]
+    ){
+        return;
+    }
+
+
+    bullets[index]
+        .element
+        .remove();
+
+
+    bullets.splice(
+        index,
+        1
+    );
+
+}
+
+
+function removeObjects(){
 
     zombies.forEach(
-        drawZombie
+        z=>
+            z.element.remove()
     );
 
 
     bullets.forEach(
-        drawBullet
+        b=>
+            b.element.remove()
     );
 
 
-    drawPlayer();
+    zombies=[];
+
+    bullets=[];
 
 }
 
@@ -988,22 +1916,55 @@ function gameOver(){
     running=false;
 
 
+    clearTimers();
+
+
+    const finalScore=
+        score;
+
+
     if(
-        animationId
+        finalScore>
+        best
     ){
 
-        cancelAnimationFrame(
-            animationId
+        best=
+            finalScore;
+
+
+        bestPlayer=
+            "Player";
+
+
+        localStorage.setItem(
+            "ebadZombieBest",
+            best
         );
 
+
+        localStorage.setItem(
+            "ebadZombieBestPlayer",
+            bestPlayer
+        );
+
+
+        updateBest();
+
+
+        document.getElementById(
+            "message"
+        ).textContent=
+            "🏆 NEW HIGH SCORE! "+
+            finalScore;
+
+    }else{
+
+        document.getElementById(
+            "message"
+        ).textContent=
+            "💀 GAME OVER! Score: "+
+            finalScore;
     }
-
-
-    document.getElementById(
-        "message"
-    ).textContent=
-        "💀 GAME OVER! Score: "+
-        score;
 
 }
 
@@ -1014,46 +1975,50 @@ function gameOver(){
 
 function restartGame(){
 
-    if(
-        animationId
-    ){
-
-        cancelAnimationFrame(
-            animationId
-        );
-
-    }
-
-
     running=false;
 
 
+    clearTimers();
+
+
     score=0;
+
     lives=3;
+
     wave=1;
 
     playerX=180;
 
-    bullets=[];
-    zombies=[];
 
-    spawnTimer=0;
+    removeObjects();
 
-    spawnInterval=800;
 
-    zombieSpeed=75;
-
+    updatePlayer();
 
     updateStats();
-
-
-    draw(0);
 
 
     document.getElementById(
         "message"
     ).textContent=
         "Press START GAME to begin!";
+
+}
+
+
+/* =========================
+   TIMERS
+========================= */
+
+function clearTimers(){
+
+    clearInterval(
+        timer
+    );
+
+    clearInterval(
+        spawnTimer
+    );
 
 }
 
@@ -1067,7 +2032,22 @@ document.addEventListener(
     function(e){
 
         if(
-            e.key==="ArrowLeft"
+            e.target &&
+            (
+                e.target.tagName===
+                "INPUT" ||
+                e.target.tagName===
+                "TEXTAREA"
+            )
+        ){
+
+            return;
+        }
+
+
+        if(
+            e.key===
+            "ArrowLeft"
         ){
 
             e.preventDefault();
@@ -1078,7 +2058,8 @@ document.addEventListener(
 
 
         if(
-            e.key==="ArrowRight"
+            e.key===
+            "ArrowRight"
         ){
 
             e.preventDefault();
@@ -1089,7 +2070,8 @@ document.addEventListener(
 
 
         if(
-            e.code==="Space"
+            e.code===
+            "Space"
         ){
 
             e.preventDefault();
@@ -1102,9 +2084,15 @@ document.addEventListener(
 );
 
 
+/* =========================
+   INITIAL
+========================= */
+
+updatePlayer();
+
 updateStats();
 
-draw(0);
+updateBest();
 
 </script>
 
