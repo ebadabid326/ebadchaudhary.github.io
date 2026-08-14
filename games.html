@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ebad Gaming - Games</title>
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+Ebad Gaming - Games
+</title>
 
 <style>
 
@@ -15,9 +22,15 @@
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     background:#07070d;
+
     color:#fff;
+
     line-height:1.6;
 }
 
@@ -29,24 +42,46 @@ header{
     position:sticky;
     top:0;
     z-index:50;
-    background:rgba(10,10,18,.97);
-    border-bottom:2px solid var(--main);
-    padding:15px 20px;
+
+    background:
+        rgba(
+            10,
+            10,
+            18,
+            .97
+        );
+
+    border-bottom:
+        2px solid
+        var(--main);
+
+    padding:
+        15px
+        20px;
 }
 
 .nav{
-    max-width:1200px;
+    max-width:1100px;
+
     margin:auto;
+
     display:flex;
-    justify-content:space-between;
+
+    justify-content:
+        space-between;
+
     align-items:center;
+
     gap:20px;
 }
 
 .logo{
     font-size:26px;
+
     font-weight:900;
-    color:var(--main);
+
+    color:
+        var(--main);
 }
 
 .logo span{
@@ -55,74 +90,110 @@ header{
 
 nav{
     display:flex;
+
     gap:8px;
+
     flex-wrap:wrap;
+
     justify-content:center;
 }
 
 nav a{
     color:#ddd;
+
     text-decoration:none;
+
     font-weight:700;
-    padding:8px 12px;
+
+    padding:
+        8px
+        12px;
+
     border-radius:8px;
 }
 
 nav a:hover{
     background:#1c1c2a;
+
     color:#fff;
 }
 
 .page{
     max-width:1100px;
+
     margin:auto;
-    padding:75px 20px 90px;
+
+    padding:
+        75px
+        20px
+        90px;
 }
 
 .head{
     text-align:center;
+
     margin-bottom:40px;
 }
 
 .head .small{
-    color:var(--main);
+    color:
+        var(--main);
+
     font-size:13px;
+
     font-weight:900;
+
     letter-spacing:1.5px;
 }
 
 .head h1{
     font-size:48px;
+
     margin-top:5px;
 }
 
 .head h1 span{
-    color:var(--main);
+    color:
+        var(--main);
 }
 
 .head p{
     color:#9f9fad;
+
     max-width:680px;
-    margin:8px auto 0;
+
+    margin:
+        8px
+        auto
+        0;
 }
 
 .games{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+
+    grid-template-columns:
+        repeat(3,1fr);
+
     gap:22px;
 }
 
 .card{
-    background:linear-gradient(
-        180deg,
-        #171722,
-        #11111b
-    );
+    background:
+        linear-gradient(
+            180deg,
+            #171722,
+            #11111b
+        );
 
-    border:1px solid #2b2b40;
+    border:
+        1px solid
+        #2b2b40;
+
     border-radius:18px;
 
-    padding:28px 18px;
+    padding:
+        28px
+        18px;
 
     text-align:center;
 
@@ -130,26 +201,41 @@ nav a:hover{
 }
 
 .card:hover{
-    transform:translateY(-7px);
+    transform:
+        translateY(-7px);
 
-    border-color:#4a4a62;
+    border-color:
+        #4a4a62;
 
     box-shadow:
-        0 15px 35px rgba(0,0,0,.3);
+        0
+        15px
+        35px
+        rgba(
+            0,
+            0,
+            0,
+            .3
+        );
 }
 
 .icon-wrap{
     width:95px;
     height:95px;
 
-    margin:0 auto 16px;
+    margin:
+        0
+        auto
+        16px;
 
     background:#20202e;
 
     border-radius:23px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     font-size:50px;
@@ -157,12 +243,15 @@ nav a:hover{
 
 .card h2{
     font-size:23px;
+
     margin-bottom:8px;
 }
 
 .card p{
     color:#9d9dac;
+
     min-height:58px;
+
     margin-bottom:19px;
 }
 
@@ -170,15 +259,20 @@ nav a:hover{
     display:inline-block;
 
     border:0;
+
     border-radius:10px;
 
-    background:var(--main);
+    background:
+        var(--main);
 
     color:#fff;
 
-    padding:12px 24px;
+    padding:
+        12px
+        24px;
 
     font-size:16px;
+
     font-weight:800;
 
     text-decoration:none;
@@ -187,11 +281,14 @@ nav a:hover{
 }
 
 .btn:hover{
-    filter:brightness(1.1);
+    filter:
+        brightness(1.1);
 }
 
 footer{
-    padding:32px 20px;
+    padding:
+        32px
+        20px;
 
     text-align:center;
 
@@ -199,13 +296,16 @@ footer{
 
     background:#050509;
 
-    border-top:1px solid #20202e;
+    border-top:
+        1px solid
+        #20202e;
 }
 
 @media(max-width:850px){
 
     .games{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
 
 }
@@ -213,11 +313,13 @@ footer{
 @media(max-width:600px){
 
     .nav{
-        flex-direction:column;
+        flex-direction:
+            column;
     }
 
     .games{
-        grid-template-columns:1fr;
+        grid-template-columns:
+            1fr;
     }
 
     .head h1{
@@ -227,6 +329,7 @@ footer{
 }
 
 </style>
+
 </head>
 
 <body>
@@ -257,10 +360,6 @@ Home
 Games
 </a>
 
-<a href="admin.html">
-🔐 Admin
-</a>
-
 </nav>
 
 </div>
@@ -278,10 +377,13 @@ GAME LIBRARY
 </div>
 
 <h1>
+
 Choose Your
+
 <span>
 Game
 </span>
+
 </h1>
 
 <p>
@@ -334,8 +436,8 @@ Speed Racer
 </h2>
 
 <p id="g2d">
-Avoid the enemy cars and try
-to beat your best score.
+Avoid the enemy cars and try to
+beat your best score.
 </p>
 
 <a
@@ -348,7 +450,7 @@ Play Now
 </div>
 
 
-<!-- ZOMBIE ATTACK -->
+<!-- ZOMBIE -->
 
 <div class="card">
 
@@ -361,8 +463,8 @@ Zombie Attack
 </h2>
 
 <p id="g3d">
-Shoot the zombies, survive
-and increase your score.
+Shoot the zombies, survive and
+increase your score.
 </p>
 
 <a
@@ -411,24 +513,29 @@ style="margin-top:8px;font-size:13px"
 
 const defaults={
 
-site:"Ebad Gaming",
+site:
+"Ebad Gaming",
 
-g1n:"Space Rocket",
+g1n:
+"Space Rocket",
 
 g1d:
 "Fly your rocket, destroy asteroids and beat your score.",
 
-g2n:"Speed Racer",
+g2n:
+"Speed Racer",
 
 g2d:
 "Avoid the enemy cars and try to beat your best score.",
 
-g3n:"Zombie Attack",
+g3n:
+"Zombie Attack",
 
 g3d:
 "Shoot the zombies, survive and increase your score.",
 
-color:"#ff3030"
+color:
+"#ff3030"
 
 };
 
@@ -436,11 +543,15 @@ color:"#ff3030"
 function setting(key){
 
 return (
-    localStorage.getItem(
-        "ebad_"+key
-    )
-    ||
-    defaults[key]
+
+localStorage.getItem(
+"ebad_"+key
+)
+
+||
+
+defaults[key]
+
 );
 
 }
@@ -451,57 +562,83 @@ function loadSettings(){
 document.getElementById(
 "logoText"
 ).textContent=
-setting("site").replace(
-    /\s+Gaming$/i,
-    ""
+
+setting(
+"site"
+).replace(
+/\s+Gaming$/i,
+""
 );
 
 
 document.getElementById(
 "footText"
 ).textContent=
-setting("site");
+
+setting(
+"site"
+);
 
 
 document.getElementById(
 "g1n"
 ).textContent=
-setting("g1n");
+
+setting(
+"g1n"
+);
 
 
 document.getElementById(
 "g1d"
 ).textContent=
-setting("g1d");
+
+setting(
+"g1d"
+);
 
 
 document.getElementById(
 "g2n"
 ).textContent=
-setting("g2n");
+
+setting(
+"g2n"
+);
 
 
 document.getElementById(
 "g2d"
 ).textContent=
-setting("g2d");
+
+setting(
+"g2d"
+);
 
 
 document.getElementById(
 "g3n"
 ).textContent=
-setting("g3n");
+
+setting(
+"g3n"
+);
 
 
 document.getElementById(
 "g3d"
 ).textContent=
-setting("g3d");
+
+setting(
+"g3d"
+);
 
 
 document.documentElement.style.setProperty(
 "--main",
-setting("color")
+setting(
+"color"
+)
 );
 
 }
@@ -512,4 +649,5 @@ loadSettings();
 </script>
 
 </body>
+
 </html>
