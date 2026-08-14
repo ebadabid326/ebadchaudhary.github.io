@@ -1,475 +1,1997 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Space Rocket - Ebad Gaming</title>
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+Space Rocket - Ebad Gaming
+</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --accent:#ff4b5c;
+    --space:#070816;
+}
+
 body{
-  margin:0;
-  background:#050711;
-  color:#fff;
-  font-family:Arial,Helvetica,sans-serif;
-  text-align:center;
+
+    min-height:100vh;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color:#fff;
+
+    text-align:center;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #202450,
+            #080913 55%,
+            #03040a
+        );
 }
+
+
+/* HEADER */
+
 header{
-  background:#0d1020;
-  padding:16px;
-  border-bottom:2px solid #44aaff;
+
+    background:
+        rgba(
+            5,
+            6,
+            15,
+            .96
+        );
+
+    border-bottom:
+        2px solid
+        #7f72ff;
+
+    padding:
+        16px 20px;
+
 }
+
 header a{
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-weight:800;
+
 }
+
+
+/* PAGE */
+
+.page{
+
+    padding:
+        18px
+        12px
+        50px;
+
+}
+
 h1{
-  color:#55b8ff;
-  margin:20px 0 8px;
+
+    margin:
+        8px
+        0
+        4px;
+
+    font-size:
+        clamp(
+            30px,
+            6vw,
+            50px
+        );
+
 }
-.info{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:14px;
+
+.subtitle{
+
+    color:#a9a9b7;
+
+    margin-bottom:15px;
+
 }
-.box{
-  background:#11172a;
-  border:1px solid #2c4568;
-  border-radius:10px;
-  padding:9px 15px;
-  font-weight:bold;
+
+
+/* STATS */
+
+.stats{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    flex-wrap:wrap;
+
+    margin:
+        15px
+        0;
+
 }
-#game{
-  display:block;
-  width:360px;
-  height:540px;
-  max-width:92vw;
-  margin:15px auto;
-  border:4px solid #55b8ff;
-  border-radius:14px;
-  background:#02040b;
-  touch-action:none;
+
+.stat{
+
+    background:#111322;
+
+    border:
+        1px solid
+        #353957;
+
+    border-radius:10px;
+
+    padding:
+        9px
+        14px;
+
+    font-weight:800;
+
 }
+
+.best{
+
+    color:#ffd84d;
+
+    font-weight:800;
+
+    margin-bottom:12px;
+
+}
+
+
+/* GAME FRAME */
+
+.game-frame{
+
+    width:
+        min(
+            410px,
+            95vw
+        );
+
+    margin:
+        0 auto;
+
+    padding:10px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #171a2c,
+            #0d0f1b
+        );
+
+    border:
+        1px solid
+        #383d63;
+
+    border-radius:22px;
+
+}
+
+
+/* GAME */
+
+.game-box{
+
+    position:relative;
+
+    width:100%;
+
+    aspect-ratio:
+        360 / 540;
+
+    overflow:hidden;
+
+    border:
+        4px solid
+        #e9ebff;
+
+    border-radius:16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #070a1c,
+            #101637 60%,
+            #151a36 100%
+        );
+
+    touch-action:none;
+
+    user-select:none;
+
+}
+
+
+/* STARS */
+
+.star{
+
+    position:absolute;
+
+    width:3px;
+
+    height:3px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    opacity:.8;
+
+}
+
+
+/* PLANETS */
+
+.planet{
+
+    position:absolute;
+
+    border-radius:50%;
+
+}
+
+.planet.one{
+
+    width:54px;
+
+    height:54px;
+
+    top:55px;
+
+    left:30px;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #ffb4d0,
+            #bd4f89 48%,
+            #5a224e
+        );
+
+    box-shadow:
+        0 0 25px
+        rgba(
+            255,
+            120,
+            200,
+            .16
+        );
+
+}
+
+.planet.two{
+
+    width:38px;
+
+    height:38px;
+
+    top:160px;
+
+    right:24px;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #8fe9ff,
+            #2a76c5 50%,
+            #102f69
+        );
+
+}
+
+
+/* PLAYER ROCKET */
+
+.rocket{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:30px;
+
+    width:58px;
+
+    height:90px;
+
+    transform:
+        translateX(-50%);
+
+    z-index:10;
+
+}
+
+.rocket-body{
+
+    position:absolute;
+
+    left:13px;
+
+    top:14px;
+
+    width:32px;
+
+    height:58px;
+
+    border-radius:
+        18px
+        18px
+        10px
+        10px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f3f5ff,
+            #aeb6d9
+        );
+
+    box-shadow:
+        inset
+        0 4px 0
+        rgba(
+            255,
+            255,
+            255,
+            .4
+        );
+
+}
+
+.rocket-window{
+
+    position:absolute;
+
+    left:19px;
+
+    top:27px;
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #c8f7ff,
+            #2471ad
+        );
+
+    border:
+        2px solid
+        #d9ffff;
+
+}
+
+.rocket-fin.left{
+
+    position:absolute;
+
+    left:5px;
+
+    top:52px;
+
+    width:16px;
+
+    height:30px;
+
+    background:#f04a58;
+
+    clip-path:
+        polygon(
+            100% 0,
+            0 100%,
+            100% 100%
+        );
+
+}
+
+.rocket-fin.right{
+
+    position:absolute;
+
+    right:5px;
+
+    top:52px;
+
+    width:16px;
+
+    height:30px;
+
+    background:#f04a58;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 100%,
+            0 100%
+        );
+
+}
+
+.flame{
+
+    position:absolute;
+
+    left:20px;
+
+    bottom:0;
+
+    width:18px;
+
+    height:32px;
+
+    border-radius:
+        0
+        0
+        12px
+        12px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff,
+            #ffe35a 30%,
+            #ff6a00 70%,
+            rgba(
+                255,
+                60,
+                0,
+                0
+            )
+        );
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(
+                255,
+                150,
+                0,
+                .7
+            )
+        );
+
+}
+
+
+/* METEOR */
+
+.meteor{
+
+    position:absolute;
+
+    width:26px;
+
+    height:26px;
+
+    border-radius:50%;
+
+    z-index:6;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #ffd5b0,
+            #bc6743 45%,
+            #462017
+        );
+
+    box-shadow:
+        0 0 10px
+        rgba(
+            255,
+            125,
+            50,
+            .25
+        );
+
+}
+
+
+/* BULLET */
+
+.bullet{
+
+    position:absolute;
+
+    width:5px;
+
+    height:18px;
+
+    border-radius:5px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff,
+            #78ecff
+        );
+
+    box-shadow:
+        0 0 10px
+        rgba(
+            90,
+            230,
+            255,
+            .9
+        );
+
+    z-index:9;
+
+}
+
+
+/* EXPLOSION */
+
+.explosion{
+
+    position:absolute;
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:50%;
+
+    border:
+        4px solid
+        #ffd45a;
+
+    pointer-events:none;
+
+    z-index:20;
+
+    animation:
+        explode
+        .3s
+        ease-out
+        forwards;
+
+}
+
+@keyframes explode{
+
+    0%{
+
+        opacity:1;
+
+        transform:
+            scale(.2);
+
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+            scale(1.5);
+
+    }
+
+}
+
+
+/* MESSAGE */
+
 .message{
-  min-height:28px;
-  color:#ffd84d;
-  font-weight:bold;
-  margin:10px;
+
+    min-height:30px;
+
+    margin:
+        13px
+        0
+        7px;
+
+    color:#ffd84d;
+
+    font-weight:800;
+
 }
-button{
-  border:0;
-  border-radius:9px;
-  background:#44aaff;
-  color:#06111d;
-  padding:12px 18px;
-  margin:5px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
+
+
+/* BUTTONS */
+
+.actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
 }
-.controls{
-  display:flex;
-  justify-content:center;
-  gap:18px;
-  margin-top:8px;
+
+.btn{
+
+    border:0;
+
+    border-radius:10px;
+
+    background:
+        var(--accent);
+
+    color:#fff;
+
+    padding:
+        13px
+        20px;
+
+    min-width:145px;
+
+    font-size:16px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
 }
-.control{
-  width:82px;
-  height:55px;
-  font-size:24px;
+
+.btn.secondary{
+
+    background:#292d42;
+
+    border:
+        1px solid
+        #474d6a;
+
 }
+
+
+/* MOBILE */
+
 .help{
-  color:#aaa;
-  margin:10px 0 25px;
+
+    color:#8f93a0;
+
+    margin-top:10px;
+
+    font-size:14px;
+
 }
+
+
+@media(max-width:450px){
+
+    .btn{
+
+        width:100%;
+
+        max-width:180px;
+
+    }
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <header>
-  <a href="index.html">← Back to Ebad Gaming</a>
+
+<a href="games.html">
+← Back to Games
+</a>
+
 </header>
 
-<h1>🚀 Space Rocket</h1>
 
-<div class="info">
-  <div class="box">🏆 Score: <span id="score">0</span></div>
-  <div class="box">❤️ Lives: <span id="lives">3</span></div>
-  <div class="box">⚡ Level: <span id="level">1</span></div>
-  <div class="box">🥇 Best: <span id="best">0</span></div>
-</div>
+<div class="page">
 
-<canvas id="game" width="360" height="540"></canvas>
 
-<div class="message" id="message">Press START to begin!</div>
+<h1>
+🚀 Space Rocket
+</h1>
 
-<button onclick="startGame()">START GAME</button>
-<button onclick="restartGame()">RESTART</button>
 
-<div class="controls">
-  <button class="control" onclick="moveLeft()">⬅️</button>
-  <button class="control" onclick="fire()">🚀</button>
-  <button class="control" onclick="moveRight()">➡️</button>
-</div>
-
-<p class="help">
-Computer: ← → to move, SPACE to fire<br>
-Mobile: ⬅️ ➡️ move, 🚀 fire
+<p class="subtitle">
+Swipe left/right to move • Tap to fire
 </p>
 
+
+<div class="stats">
+
+
+<div class="stat">
+🏆 Score:
+<span id="score">
+0
+</span>
+</div>
+
+
+<div class="stat">
+❤️ Lives:
+<span id="lives">
+3
+</span>
+</div>
+
+
+<div class="stat">
+⚡ Level:
+<span id="level">
+1
+</span>
+</div>
+
+
+<div class="stat">
+🥇 Best:
+<span id="best">
+0
+</span>
+</div>
+
+
+</div>
+
+
+<div
+class="best"
+id="bestText"
+>
+🥇 Best Player: Nobody yet
+</div>
+
+
+<div class="game-frame">
+
+
+<div
+class="game-box"
+id="gameBox"
+>
+
+
+<div
+class="planet one"
+>
+</div>
+
+
+<div
+class="planet two"
+>
+</div>
+
+
+<!-- ROCKET -->
+
+<div
+class="rocket"
+id="rocket"
+>
+
+<div
+class="rocket-body"
+>
+</div>
+
+
+<div
+class="rocket-window"
+>
+</div>
+
+
+<div
+class="rocket-fin left"
+>
+</div>
+
+
+<div
+class="rocket-fin right"
+>
+</div>
+
+
+<div
+class="flame"
+>
+</div>
+
+</div>
+
+
+</div>
+
+
+<div
+class="message"
+id="message"
+>
+Press START GAME to begin!
+</div>
+
+
+<div class="actions">
+
+<button
+class="btn"
+onclick="startGame()"
+>
+▶ START GAME
+</button>
+
+
+<button
+class="btn secondary"
+onclick="restartGame()"
+>
+↻ RESTART
+</button>
+
+</div>
+
+
+<p class="help">
+Mobile: swipe left/right • tap to fire
+<br>
+PC: ← → move • SPACE fire
+</p>
+
+
+</div>
+
+
+</div>
+
+
 <script>
-const canvas=document.getElementById("game");
-const ctx=canvas.getContext("2d");
-const W=canvas.width;
-const H=canvas.height;
 
-let rocketX=W/2;
+
+/* =========================
+   GAME
+========================= */
+
+const gameBox =
+document.getElementById(
+    "gameBox"
+);
+
+
+const rocket =
+document.getElementById(
+    "rocket"
+);
+
+
+let rocketX=180;
+
+
 let score=0;
+
 let lives=3;
+
 let level=1;
-let speed=80;
-let enemySpawn=850;
-let spawnTimer=0;
+
+
+let speed=1.8;
+
+
 let running=false;
-let lastTime=0;
-let animationId=null;
 
-let rockets=[];
-let asteroids=[];
 
-/* Stars */
-const stars=[];
-for(let i=0;i<65;i++){
-  stars.push({
-    x:Math.random()*W,
-    y:Math.random()*H,
-    size:Math.random()*2+1,
-    speed:20+Math.random()*55
-  });
+let timer=null;
+
+let spawnTimer=null;
+
+
+let meteors=[];
+
+let bullets=[];
+
+
+let lastShot=0;
+
+
+let best=
+Number(
+    localStorage.getItem(
+        "ebadRocketBest"
+    )
+)||0;
+
+
+let bestPlayer=
+localStorage.getItem(
+    "ebadRocketBestPlayer"
+)||"";
+
+
+let touchStartX=0;
+
+let touchStartY=0;
+
+
+const lanes=[
+60,
+180,
+300
+];
+
+
+/* =========================
+   STARS
+========================= */
+
+function createStars(){
+
+    for(
+        let i=0;
+        i<70;
+        i++
+    ){
+
+        const star=
+            document.createElement(
+                "div"
+            );
+
+
+        star.className=
+            "star";
+
+
+        star.style.left=
+            Math.random()*100+
+            "%";
+
+
+        star.style.top=
+            Math.random()*100+
+            "%";
+
+
+        star.style.opacity=
+            (
+                .25+
+                Math.random()*.75
+            );
+
+
+        gameBox.appendChild(
+            star
+        );
+
+    }
+
 }
 
-let best=Number(localStorage.getItem("ebadRocketBest"))||0;
-document.getElementById("best").textContent=best;
+
+createStars();
+
+
+/* =========================
+   BEST
+========================= */
+
+function updateBest(){
+
+    document.getElementById(
+        "best"
+    ).textContent=
+        best;
+
+
+    document.getElementById(
+        "bestText"
+    ).textContent=
+        best>0 &&
+        bestPlayer
+        ?
+        "🥇 Best Player: "+
+        bestPlayer+
+        " — "+
+        best
+        :
+        "🥇 Best Player: Nobody yet";
+
+}
+
+
+updateBest();
+
+
+/* =========================
+   STATS
+========================= */
 
 function updateStats(){
-  document.getElementById("score").textContent=score;
-  document.getElementById("lives").textContent=lives;
-  document.getElementById("level").textContent=level;
+
+    document.getElementById(
+        "score"
+    ).textContent=
+        score;
+
+
+    document.getElementById(
+        "lives"
+    ).textContent=
+        lives;
+
+
+    document.getElementById(
+        "level"
+    ).textContent=
+        level;
+
 }
 
-function drawBackground(dt){
-  ctx.fillStyle="#02040b";
-  ctx.fillRect(0,0,W,H);
 
-  for(const s of stars){
-    s.y+=s.speed*dt;
-    if(s.y>H){
-      s.y=-5;
-      s.x=Math.random()*W;
-    }
-    ctx.fillStyle="#ffffff";
-    ctx.globalAlpha=.7;
-    ctx.fillRect(s.x,s.y,s.size,s.size);
-  }
-  ctx.globalAlpha=1;
-}
-
-function drawRocket(){
-  /* flame */
-  ctx.fillStyle="#ffb000";
-  ctx.beginPath();
-  ctx.moveTo(rocketX-8,500);
-  ctx.lineTo(rocketX,528);
-  ctx.lineTo(rocketX+8,500);
-  ctx.closePath();
-  ctx.fill();
-
-  /* body */
-  ctx.fillStyle="#f4f4f4";
-  ctx.beginPath();
-  ctx.moveTo(rocketX,440);
-  ctx.lineTo(rocketX-16,470);
-  ctx.lineTo(rocketX-13,505);
-  ctx.lineTo(rocketX+13,505);
-  ctx.lineTo(rocketX+16,470);
-  ctx.closePath();
-  ctx.fill();
-
-  /* window */
-  ctx.fillStyle="#44aaff";
-  ctx.beginPath();
-  ctx.arc(rocketX,470,6,0,Math.PI*2);
-  ctx.fill();
-
-  /* fins */
-  ctx.fillStyle="#ff4a4a";
-  ctx.beginPath();
-  ctx.moveTo(rocketX-13,490);
-  ctx.lineTo(rocketX-28,505);
-  ctx.lineTo(rocketX-10,504);
-  ctx.closePath();
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.moveTo(rocketX+13,490);
-  ctx.lineTo(rocketX+28,505);
-  ctx.lineTo(rocketX+10,504);
-  ctx.closePath();
-  ctx.fill();
-}
-
-function drawBullet(b){
-  ctx.fillStyle="#ffe600";
-  ctx.shadowColor="#ffe600";
-  ctx.shadowBlur=10;
-  ctx.fillRect(b.x-2,b.y-10,4,18);
-  ctx.shadowBlur=0;
-}
-
-function drawAsteroid(a){
-  ctx.fillStyle="#9b6b52";
-  ctx.beginPath();
-  ctx.arc(a.x,a.y,a.r,0,Math.PI*2);
-  ctx.fill();
-
-  ctx.fillStyle="#6f4d3d";
-  ctx.beginPath();
-  ctx.arc(a.x-5,a.y-4,a.r*.25,0,Math.PI*2);
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(a.x+6,a.y+5,a.r*.18,0,Math.PI*2);
-  ctx.fill();
-}
-
-function spawnAsteroid(){
-  asteroids.push({
-    x:20+Math.random()*(W-40),
-    y:-30,
-    r:14+Math.random()*9,
-    speed:speed*(.8+Math.random()*.5)
-  });
-}
-
-function fire(){
-  if(!running)return;
-  rockets.push({
-    x:rocketX,
-    y:445,
-    speed:420
-  });
-}
-
-function moveLeft(){
-  if(!running)return;
-  rocketX=Math.max(28,rocketX-32);
-}
-
-function moveRight(){
-  if(!running)return;
-  rocketX=Math.min(W-28,rocketX+32);
-}
-
-document.addEventListener("keydown",e=>{
-  if(e.key==="ArrowLeft"){
-    e.preventDefault();
-    moveLeft();
-  }
-  if(e.key==="ArrowRight"){
-    e.preventDefault();
-    moveRight();
-  }
-  if(e.code==="Space"){
-    e.preventDefault();
-    fire();
-  }
-});
+/* =========================
+   START
+========================= */
 
 function startGame(){
-  if(running)return;
 
-  score=0;
-  lives=3;
-  level=1;
-  speed=80;
-  enemySpawn=850;
-  spawnTimer=0;
-  rockets=[];
-  asteroids=[];
-  rocketX=W/2;
-
-  running=true;
-  updateStats();
-
-  document.getElementById("message").textContent=
-    "🚀 Launch! Destroy the asteroids!";
-
-  lastTime=performance.now();
-  animationId=requestAnimationFrame(loop);
-}
-
-function restartGame(){
-  if(animationId)cancelAnimationFrame(animationId);
-
-  running=false;
-  score=0;
-  lives=3;
-  level=1;
-  speed=80;
-  enemySpawn=850;
-  spawnTimer=0;
-  rockets=[];
-  asteroids=[];
-  rocketX=W/2;
-
-  updateStats();
-  draw(0);
-
-  document.getElementById("message").textContent=
-    "Press START to begin!";
-}
-
-function loop(time){
-  if(!running)return;
-
-  const dt=Math.min((time-lastTime)/1000,.05);
-  lastTime=time;
-
-  update(dt);
-  draw(dt);
-
-  animationId=requestAnimationFrame(loop);
-}
-
-function update(dt){
-
-  /* Move asteroids */
-  for(let i=asteroids.length-1;i>=0;i--){
-    const a=asteroids[i];
-    a.y+=a.speed*dt;
-
-    if(a.y>H+40){
-      asteroids.splice(i,1);
-      score++;
-      updateLevel();
-      updateStats();
-    }
-  }
-
-  /* Spawn */
-  spawnTimer+=dt*1000;
-  if(spawnTimer>=enemySpawn){
-    spawnTimer=0;
-    spawnAsteroid();
-  }
-
-  /* Move bullets */
-  for(let i=rockets.length-1;i>=0;i--){
-    const b=rockets[i];
-    b.y-=b.speed*dt;
-
-    if(b.y<-30){
-      rockets.splice(i,1);
-    }
-  }
-
-  /* Bullet / asteroid collision */
-  for(let bi=rockets.length-1;bi>=0;bi--){
-    const b=rockets[bi];
-
-    for(let ai=asteroids.length-1;ai>=0;ai--){
-      const a=asteroids[ai];
-      const dx=b.x-a.x;
-      const dy=b.y-a.y;
-      const distance=Math.sqrt(dx*dx+dy*dy);
-
-      if(distance<a.r+8){
-        rockets.splice(bi,1);
-        asteroids.splice(ai,1);
-
-        score++;
-        updateLevel();
-        updateStats();
-
-        document.getElementById("message").textContent=
-          "💥 Asteroid destroyed!";
-
-        break;
-      }
-    }
-  }
-
-  /* Rocket / asteroid collision */
-  for(let i=asteroids.length-1;i>=0;i--){
-    const a=asteroids[i];
-    const dx=rocketX-a.x;
-    const dy=475-a.y;
-    const distance=Math.sqrt(dx*dx+dy*dy);
-
-    if(distance<a.r+18){
-      asteroids.splice(i,1);
-      lives--;
-      updateStats();
-
-      if(lives<=0){
-        gameOver();
+    if(running){
         return;
-      }
-
-      document.getElementById("message").textContent=
-        "💥 Hit! Lives left: "+lives;
     }
-  }
+
+
+    score=0;
+
+    lives=3;
+
+    level=1;
+
+    speed=1.8;
+
+    rocketX=180;
+
+
+    meteors=[];
+
+    bullets=[];
+
+
+    removeObjects();
+
+
+    running=true;
+
+
+    updateStats();
+
+
+    updateRocket();
+
+
+    document.getElementById(
+        "message"
+    ).textContent=
+        "🚀 Launch! Survive the meteors!";
+
+
+    timer=
+        setInterval(
+            gameLoop,
+            30
+        );
+
+
+    spawnTimer=
+        setInterval(
+            spawnMeteor,
+            750
+        );
+
 }
+
+
+/* =========================
+   ROCKET MOVE
+========================= */
+
+function updateRocket(){
+
+    rocket.style.left=
+        (
+            rocketX-29
+        )+
+        "px";
+
+}
+
+
+function moveLeft(){
+
+    if(!running){
+        return;
+    }
+
+
+    rocketX-=35;
+
+
+    if(
+        rocketX<45
+    ){
+
+        rocketX=45;
+
+    }
+
+
+    updateRocket();
+
+}
+
+
+function moveRight(){
+
+    if(!running){
+        return;
+    }
+
+
+    rocketX+=35;
+
+
+    if(
+        rocketX>315
+    ){
+
+        rocketX=315;
+
+    }
+
+
+    updateRocket();
+
+}
+
+
+/* =========================
+   FIRE
+========================= */
+
+function fire(){
+
+    if(!running){
+        return;
+    }
+
+
+    const now=
+        Date.now();
+
+
+    if(
+        now-lastShot<180
+    ){
+
+        return;
+
+    }
+
+
+    lastShot=now;
+
+
+    const bullet=
+        document.createElement(
+            "div"
+        );
+
+
+    bullet.className=
+        "bullet";
+
+
+    bullet.style.left=
+        (
+            rocketX-2
+        )+
+        "px";
+
+
+    bullet.style.top=
+        "410px";
+
+
+    gameBox.appendChild(
+        bullet
+    );
+
+
+    bullets.push({
+
+        element:bullet,
+
+        x:rocketX,
+
+        y:410
+
+    });
+
+}
+
+
+/* =========================
+   SPAWN METEOR
+========================= */
+
+function spawnMeteor(){
+
+    if(!running){
+        return;
+    }
+
+
+    const x=
+        lanes[
+            Math.floor(
+                Math.random()*
+                lanes.length
+            )
+        ];
+
+
+    const meteor=
+        document.createElement(
+            "div"
+        );
+
+
+    meteor.className=
+        "meteor";
+
+
+    meteor.style.left=
+        (
+            x-13
+        )+
+        "px";
+
+
+    meteor.style.top=
+        "-35px";
+
+
+    gameBox.appendChild(
+        meteor
+    );
+
+
+    meteors.push({
+
+        element:meteor,
+
+        x:x,
+
+        y:-35,
+
+        speed:
+            speed+
+            Math.random()*1.5
+
+    });
+
+}
+
+
+/* =========================
+   LOOP
+========================= */
+
+function gameLoop(){
+
+    if(!running){
+        return;
+    }
+
+
+    moveBullets();
+
+    moveMeteors();
+
+    checkHits();
+
+}
+
+
+/* =========================
+   BULLETS
+========================= */
+
+function moveBullets(){
+
+    for(
+        let i=bullets.length-1;
+        i>=0;
+        i--
+    ){
+
+        const b=
+            bullets[i];
+
+
+        b.y-=14;
+
+
+        b.element.style.top=
+            b.y+"px";
+
+
+        if(
+            b.y<-30
+        ){
+
+            removeBullet(i);
+
+        }
+
+    }
+
+}
+
+
+/* =========================
+   METEORS
+========================= */
+
+function moveMeteors(){
+
+    for(
+        let i=meteors.length-1;
+        i>=0;
+        i--
+    ){
+
+        const m=
+            meteors[i];
+
+
+        m.y+=m.speed;
+
+
+        m.element.style.top=
+            m.y+"px";
+
+
+        if(
+            m.y>445
+        ){
+
+            const distance=
+                Math.abs(
+                    m.x-
+                    rocketX
+                );
+
+
+            if(
+                distance<42
+            ){
+
+                removeMeteor(i);
+
+
+                lives--;
+
+
+                updateStats();
+
+
+                document.getElementById(
+                    "message"
+                ).textContent=
+                    "💥 METEOR HIT!";
+
+
+                if(
+                    lives<=0
+                ){
+
+                    gameOver();
+
+                    return;
+
+                }
+
+            }
+
+        }
+
+
+        if(
+            m.y>570
+        ){
+
+            removeMeteor(i);
+
+        }
+
+    }
+
+}
+
+
+/* =========================
+   HIT DETECTION
+========================= */
+
+function checkHits(){
+
+    for(
+        let bi=bullets.length-1;
+        bi>=0;
+        bi--
+    ){
+
+        const b=
+            bullets[bi];
+
+
+        for(
+            let mi=meteors.length-1;
+            mi>=0;
+            mi--
+        ){
+
+            const m=
+                meteors[mi];
+
+
+            const dx=
+                b.x-
+                m.x;
+
+
+            const dy=
+                b.y-
+                (
+                    m.y+
+                    12
+                );
+
+
+            const dist=
+                Math.sqrt(
+                    dx*dx+
+                    dy*dy
+                );
+
+
+            if(
+                dist<28
+            ){
+
+                createExplosion(
+                    m.x,
+                    m.y
+                );
+
+
+                removeBullet(
+                    bi
+                );
+
+
+                removeMeteor(
+                    mi
+                );
+
+
+                score++;
+
+
+                updateLevel();
+
+
+                updateStats();
+
+
+                document.getElementById(
+                    "message"
+                ).textContent=
+                    "💥 Meteor destroyed!";
+
+
+                break;
+
+            }
+
+        }
+
+    }
+
+}
+
+
+/* =========================
+   LEVEL
+========================= */
 
 function updateLevel(){
-  const newLevel=Math.floor(score/10)+1;
 
-  if(newLevel!==level){
-    level=newLevel;
-    speed=80+(level-1)*16;
-    enemySpawn=Math.max(350,850-(level-1)*70);
+    const newLevel=
+        Math.floor(
+            score/10
+        )+1;
 
-    document.getElementById("message").textContent=
-      "⚡ LEVEL "+level+"! Asteroids are faster!";
-  }
+
+    if(
+        newLevel!==level
+    ){
+
+        level=
+            newLevel;
+
+
+        speed=
+            1.8+
+            (
+                level-1
+            )*.35;
+
+
+        document.getElementById(
+            "message"
+        ).textContent=
+            "⚡ LEVEL "+
+            level+
+            "!";
+
+    }
+
 }
 
-function draw(dt=0){
-  drawBackground(dt);
 
-  asteroids.forEach(drawAsteroid);
-  rockets.forEach(drawBullet);
+/* =========================
+   EXPLOSION
+========================= */
 
-  drawRocket();
+function createExplosion(
+    x,
+    y
+){
+
+    const effect=
+        document.createElement(
+            "div"
+        );
+
+
+    effect.className=
+        "explosion";
+
+
+    effect.style.left=
+        (
+            x-22
+        )+
+        "px";
+
+
+    effect.style.top=
+        (
+            y-22
+        )+
+        "px";
+
+
+    gameBox.appendChild(
+        effect
+    );
+
+
+    setTimeout(
+        function(){
+
+            effect.remove();
+
+        },
+        320
+    );
+
 }
+
+
+/* =========================
+   REMOVE
+========================= */
+
+function removeBullet(
+    index
+){
+
+    if(
+        !bullets[index]
+    ){
+
+        return;
+
+    }
+
+
+    bullets[index]
+        .element
+        .remove();
+
+
+    bullets.splice(
+        index,
+        1
+    );
+
+}
+
+
+function removeMeteor(
+    index
+){
+
+    if(
+        !meteors[index]
+    ){
+
+        return;
+
+    }
+
+
+    meteors[index]
+        .element
+        .remove();
+
+
+    meteors.splice(
+        index,
+        1
+    );
+
+}
+
+
+function removeObjects(){
+
+    meteors.forEach(
+        m=>
+            m.element.remove()
+    );
+
+
+    bullets.forEach(
+        b=>
+            b.element.remove()
+    );
+
+
+    meteors=[];
+
+    bullets=[];
+
+}
+
+
+/* =========================
+   GAME OVER
+========================= */
 
 function gameOver(){
-  running=false;
 
-  if(animationId){
-    cancelAnimationFrame(animationId);
-  }
+    running=false;
 
-  if(score>best){
-    best=score;
-    localStorage.setItem("ebadRocketBest",best);
-    document.getElementById("best").textContent=best;
 
-    document.getElementById("message").textContent=
-      "🏆 NEW HIGH SCORE: "+score+"!";
-  }else{
-    document.getElementById("message").textContent=
-      "💀 GAME OVER! Score: "+score;
-  }
+    clearTimers();
+
+
+    if(
+        score>best
+    ){
+
+        best=
+            score;
+
+
+        bestPlayer=
+            "Player";
+
+
+        localStorage.setItem(
+            "ebadRocketBest",
+            best
+        );
+
+
+        localStorage.setItem(
+            "ebadRocketBestPlayer",
+            bestPlayer
+        );
+
+
+        updateBest();
+
+
+        document.getElementById(
+            "message"
+        ).textContent=
+            "🏆 NEW HIGH SCORE! "+
+            score;
+
+    }else{
+
+        document.getElementById(
+            "message"
+        ).textContent=
+            "💥 GAME OVER! Score: "+
+            score;
+
+    }
+
 }
 
+
+/* =========================
+   RESTART
+========================= */
+
+function restartGame(){
+
+    running=false;
+
+
+    clearTimers();
+
+
+    score=0;
+
+    lives=3;
+
+    level=1;
+
+    speed=1.8;
+
+    rocketX=180;
+
+
+    removeObjects();
+
+
+    updateRocket();
+
+    updateStats();
+
+
+    document.getElementById(
+        "message"
+    ).textContent=
+        "Press START GAME to begin!";
+
+}
+
+
+/* =========================
+   TIMERS
+========================= */
+
+function clearTimers(){
+
+    clearInterval(
+        timer
+    );
+
+    clearInterval(
+        spawnTimer
+    );
+
+}
+
+
+/* =========================
+   MOBILE SWIPE
+========================= */
+
+gameBox.addEventListener(
+    "touchstart",
+    function(e){
+
+        if(!running){
+            return;
+        }
+
+
+        const touch=
+            e.touches[0];
+
+
+        touchStartX=
+            touch.clientX;
+
+
+        touchStartY=
+            touch.clientY;
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+gameBox.addEventListener(
+    "touchend",
+    function(e){
+
+        if(!running){
+            return;
+        }
+
+
+        const touch=
+            e.changedTouches[0];
+
+
+        const dx=
+            touch.clientX-
+            touchStartX;
+
+
+        const dy=
+            touch.clientY-
+            touchStartY;
+
+
+        /* SWIPE */
+
+        if(
+            Math.abs(dx)>35 &&
+            Math.abs(dx)>Math.abs(dy)
+        ){
+
+            if(
+                dx<0
+            ){
+
+                moveLeft();
+
+            }else{
+
+                moveRight();
+
+            }
+
+
+            return;
+
+        }
+
+
+        /* TAP */
+
+        if(
+            Math.abs(dx)<20 &&
+            Math.abs(dy)<20
+        ){
+
+            fire();
+
+        }
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+/* =========================
+   PC CONTROLS
+========================= */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        const typing=
+            document.activeElement &&
+            (
+                document.activeElement.tagName===
+                "INPUT" ||
+
+                document.activeElement.tagName===
+                "TEXTAREA"
+            );
+
+
+        if(
+            typing
+        ){
+
+            return;
+
+        }
+
+
+        if(
+            e.key===
+            "ArrowLeft"
+        ){
+
+            e.preventDefault();
+
+            moveLeft();
+
+        }
+
+
+        if(
+            e.key===
+            "ArrowRight"
+        ){
+
+            e.preventDefault();
+
+            moveRight();
+
+        }
+
+
+        if(
+            e.code===
+            "Space"
+        ){
+
+            e.preventDefault();
+
+            fire();
+
+        }
+
+    }
+);
+
+
+/* INITIAL */
+
+updateRocket();
+
 updateStats();
-draw(0);
+
+updateBest();
+
 </script>
 
 </body>
