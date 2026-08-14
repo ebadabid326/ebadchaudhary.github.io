@@ -1,22 +1,741 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Ebad Gaming - Admin</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ebad Gaming - Admin</title>
+
 <style>
-*{box-sizing:border-box}body{font-family:Arial,sans-serif;background:#080812;color:#fff;margin:0;padding:20px}.container{max-width:900px;margin:35px auto}.box{background:#11111d;border:1px solid #29293d;border-radius:18px;padding:28px}h1{text-align:center;margin-bottom:22px}input,select{width:100%;padding:12px;margin:7px 0 16px;background:#0c0c15;color:#fff;border:1px solid #3a3a50;border-radius:8px}button,a{display:inline-block;background:#ff3030;color:#fff;border:0;border-radius:9px;padding:12px 20px;font-weight:bold;text-decoration:none;cursor:pointer}.message{text-align:center;min-height:28px;color:#72f3a1;margin:12px}#panel{display:none}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.full{grid-column:1/-1}.note{color:#aaa;font-size:14px;margin-bottom:18px}@media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}
-</style></head>
-<body><div class="container">
-<div class="box" id="loginBox"><h1>🔐 Ebad Gaming Admin</h1><p class="note">Enter the admin password to open the control panel.</p><input id="password" type="password" placeholder="Admin Password"><button onclick="login()">Login</button><a href="index.html" style="margin-left:8px">← Website</a><div class="message" id="loginMsg"></div></div>
-<div class="box" id="panel"><h1>⚙️ Control Panel</h1><div class="grid">
-<div class="full"><label>Website Name</label><input id="siteInput"></div><div class="full"><label>Hero Description</label><input id="heroInput"></div>
-<div><label>Game 1 Name</label><input id="g1nInput"></div><div><label>Game 1 Description</label><input id="g1dInput"></div>
-<div><label>Game 2 Name</label><input id="g2nInput"></div><div><label>Game 2 Description</label><input id="g2dInput"></div>
-<div><label>Game 3 Name</label><input id="g3nInput"></div><div><label>Game 3 Description</label><input id="g3dInput"></div>
-<div><label>Game 4 Name</label><input id="g4nInput"></div><div><label>Game 4 Description</label><input id="g4dInput"></div>
-<div class="full"><label>Main Color</label><select id="colorInput"><option value="#ff3030">Red</option><option value="#00aaff">Blue</option><option value="#00cc77">Green</option><option value="#aa55ff">Purple</option><option value="#ff8800">Orange</option><option value="#ff33aa">Pink</option></select></div>
-</div><button onclick="save()">💾 Save Changes</button><a href="index.html" style="margin-left:8px">← Back to Website</a><div class="message" id="saveMsg"></div></div></div>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#080812;
+    color:#fff;
+    min-height:100vh;
+    padding:20px;
+}
+
+.container{
+    max-width:950px;
+    margin:35px auto;
+}
+
+.box{
+    background:#11111d;
+    border:1px solid #29293d;
+    border-radius:18px;
+    padding:28px;
+    box-shadow:
+        0 18px 45px rgba(0,0,0,.3);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:22px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#999;
+    margin-bottom:20px;
+}
+
+input,
+select{
+    width:100%;
+    padding:13px 14px;
+    margin:7px 0 16px;
+
+    background:#0c0c15;
+    color:#fff;
+
+    border:1px solid #3a3a50;
+    border-radius:8px;
+
+    outline:none;
+
+    font-size:16px;
+}
+
+input:focus,
+select:focus{
+    border-color:#ff3030;
+}
+
+button,
+a{
+    display:inline-block;
+
+    background:#ff3030;
+    color:#fff;
+
+    border:0;
+    border-radius:9px;
+
+    padding:12px 20px;
+
+    font-weight:bold;
+    text-decoration:none;
+
+    cursor:pointer;
+}
+
+button:hover,
+a:hover{
+    filter:brightness(1.08);
+}
+
+.message{
+    text-align:center;
+    min-height:28px;
+    color:#72f3a1;
+    margin:12px;
+}
+
+.error{
+    color:#ff7777;
+}
+
+#panel{
+    display:none;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.section-title{
+    font-size:20px;
+    margin:
+        5px
+        0
+        15px;
+    color:#ff6a6a;
+}
+
+.note{
+    color:#aaa;
+    font-size:14px;
+    margin-bottom:18px;
+}
+
+.actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:8px;
+}
+
+.logout{
+    background:#292c36;
+    border:1px solid #464a59;
+}
+
+@media(max-width:650px){
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .container{
+        margin:10px auto;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+
+<!-- LOGIN -->
+
+<div class="box" id="loginBox">
+
+<h1>
+🔐 Ebad Gaming Admin
+</h1>
+
+<p class="subtitle">
+Enter your admin password to open the control panel.
+</p>
+
+<label for="password">
+Admin Password
+</label>
+
+<input
+id="password"
+type="password"
+placeholder="Enter password"
+autocomplete="current-password"
+>
+
+<div class="actions">
+
+<button
+type="button"
+onclick="login()"
+>
+Login
+</button>
+
+<a href="index.html">
+← Website
+</a>
+
+</div>
+
+<div
+class="message"
+id="loginMsg"
+>
+</div>
+
+</div>
+
+
+<!-- ADMIN PANEL -->
+
+<div class="box" id="panel">
+
+<h1>
+⚙️ Ebad Gaming Control Panel
+</h1>
+
+<p class="subtitle">
+Website settings
+</p>
+
+
+<div class="section-title">
+🌐 Website
+</div>
+
+
+<div class="grid">
+
+
+<div class="full">
+
+<label>
+Website Name
+</label>
+
+<input
+id="siteInput"
+type="text"
+>
+
+</div>
+
+
+<div class="full">
+
+<label>
+Hero Description
+</label>
+
+<input
+id="heroInput"
+type="text"
+>
+
+</div>
+
+
+</div>
+
+
+<div class="section-title">
+🎮 Game Settings
+</div>
+
+
+<div class="grid">
+
+
+<div>
+
+<label>
+Space Rocket Name
+</label>
+
+<input
+id="g1nInput"
+type="text"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Space Rocket Description
+</label>
+
+<input
+id="g1dInput"
+type="text"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Speed Racer Name
+</label>
+
+<input
+id="g2nInput"
+type="text"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Speed Racer Description
+</label>
+
+<input
+id="g2dInput"
+type="text"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Zombie Attack Name
+</label>
+
+<input
+id="g3nInput"
+type="text"
+>
+
+</div>
+
+
+<div>
+
+<label>
+Zombie Attack Description
+</label>
+
+<input
+id="g3dInput"
+type="text"
+>
+
+</div>
+
+
+</div>
+
+
+<div class="section-title">
+🎨 Website Color
+</div>
+
+
+<div class="grid">
+
+<div class="full">
+
+<label>
+Main Color
+</label>
+
+<select id="colorInput">
+
+<option value="#ff3030">
+Red
+</option>
+
+<option value="#00aaff">
+Blue
+</option>
+
+<option value="#00cc77">
+Green
+</option>
+
+<option value="#aa55ff">
+Purple
+</option>
+
+<option value="#ff8800">
+Orange
+</option>
+
+<option value="#ff33aa">
+Pink
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+type="button"
+onclick="save()"
+>
+💾 Save Changes
+</button>
+
+<a href="index.html">
+← Back to Website
+</a>
+
+<button
+type="button"
+class="logout"
+onclick="logout()"
+>
+🚪 Logout
+</button>
+
+</div>
+
+
+<div
+class="message"
+id="saveMsg"
+>
+</div>
+
+</div>
+
+</div>
+
+
 <script>
-const PASSWORD="12345",defaults={site:"Ebad Gaming",hero:"Play exciting games, beat your high scores, and become the ultimate gamer.",g1n:"Space Rocket",g1d:"Fly your rocket and beat your score.",g2n:"Speed Racer",g2d:"Drive fast and avoid enemy cars.",g3n:"Zombie Attack",g3d:"Survive the zombie attack.",g4n:"Sword Battle",g4d:"Become the ultimate warrior.",color:"#ff3030"};
-function get(k){return localStorage.getItem("ebad_"+k)||defaults[k]}
-function login(){const p=document.getElementById("password").value;if(p===PASSWORD){document.getElementById("loginBox").style.display="none";document.getElementById("panel").style.display="block";load()}else document.getElementById("loginMsg").textContent="❌ Wrong password"}
-function load(){document.getElementById("siteInput").value=get("site");document.getElementById("heroInput").value=get("hero");["g1n","g1d","g2n","g2d","g3n","g3d","g4n","g4d"].forEach(k=>document.getElementById(k+"Input").value=get(k));document.getElementById("colorInput").value=get("color")}
-function save(){["site","hero","g1n","g1d","g2n","g2d","g3n","g3d","g4n","g4d"].forEach(k=>localStorage.setItem("ebad_"+k,document.getElementById(k+"Input").value.trim()||defaults[k]));localStorage.setItem("ebad_color",document.getElementById("colorInput").value);document.getElementById("saveMsg").textContent="✅ Changes saved on this browser"}
-</script></body></html>
+
+/* =========================
+   ADMIN PASSWORD
+========================= */
+
+const PASSWORD =
+"09876";
+
+
+/* =========================
+   DEFAULT SETTINGS
+========================= */
+
+const defaults={
+
+site:
+"Ebad Gaming",
+
+hero:
+"Play exciting games, beat your high scores, and become the ultimate gamer.",
+
+g1n:
+"Space Rocket",
+
+g1d:
+"Fly your rocket and beat your score.",
+
+g2n:
+"Speed Racer",
+
+g2d:
+"Avoid enemy cars and beat your best score.",
+
+g3n:
+"Zombie Attack",
+
+g3d:
+"Survive the zombie attack.",
+
+color:
+"#ff3030"
+
+};
+
+
+/* =========================
+   GET SETTING
+========================= */
+
+function getSetting(key){
+
+    return (
+        localStorage.getItem(
+            "ebad_"+key
+        )
+        ||
+        defaults[key]
+    );
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function login(){
+
+    const password =
+        document.getElementById(
+            "password"
+        ).value;
+
+
+    if(
+        password === PASSWORD
+    ){
+
+        document.getElementById(
+            "loginBox"
+        ).style.display=
+            "none";
+
+
+        document.getElementById(
+            "panel"
+        ).style.display=
+            "block";
+
+
+        loadSettings();
+
+
+    }else{
+
+        const msg =
+            document.getElementById(
+                "loginMsg"
+            );
+
+
+        msg.className =
+            "message error";
+
+
+        msg.textContent =
+            "❌ Wrong password.";
+
+    }
+
+}
+
+
+/* =========================
+   LOAD SETTINGS
+========================= */
+
+function loadSettings(){
+
+    document.getElementById(
+        "siteInput"
+    ).value =
+        getSetting("site");
+
+
+    document.getElementById(
+        "heroInput"
+    ).value =
+        getSetting("hero");
+
+
+    document.getElementById(
+        "g1nInput"
+    ).value =
+        getSetting("g1n");
+
+
+    document.getElementById(
+        "g1dInput"
+    ).value =
+        getSetting("g1d");
+
+
+    document.getElementById(
+        "g2nInput"
+    ).value =
+        getSetting("g2n");
+
+
+    document.getElementById(
+        "g2dInput"
+    ).value =
+        getSetting("g2d");
+
+
+    document.getElementById(
+        "g3nInput"
+    ).value =
+        getSetting("g3n");
+
+
+    document.getElementById(
+        "g3dInput"
+    ).value =
+        getSetting("g3d");
+
+
+    document.getElementById(
+        "colorInput"
+    ).value =
+        getSetting("color");
+
+}
+
+
+/* =========================
+   SAVE
+========================= */
+
+function save(){
+
+    const settings = {
+
+        site:
+            document.getElementById(
+                "siteInput"
+            ).value.trim(),
+
+        hero:
+            document.getElementById(
+                "heroInput"
+            ).value.trim(),
+
+        g1n:
+            document.getElementById(
+                "g1nInput"
+            ).value.trim(),
+
+        g1d:
+            document.getElementById(
+                "g1dInput"
+            ).value.trim(),
+
+        g2n:
+            document.getElementById(
+                "g2nInput"
+            ).value.trim(),
+
+        g2d:
+            document.getElementById(
+                "g2dInput"
+            ).value.trim(),
+
+        g3n:
+            document.getElementById(
+                "g3nInput"
+            ).value.trim(),
+
+        g3d:
+            document.getElementById(
+                "g3dInput"
+            ).value.trim(),
+
+        color:
+            document.getElementById(
+                "colorInput"
+            ).value
+
+    };
+
+
+    Object.keys(
+        settings
+    ).forEach(
+        key => {
+
+            localStorage.setItem(
+                "ebad_"+key,
+                settings[key] ||
+                defaults[key]
+            );
+
+        }
+    );
+
+
+    const msg =
+        document.getElementById(
+            "saveMsg"
+        );
+
+
+    msg.className =
+        "message";
+
+
+    msg.textContent =
+        "✅ Changes saved successfully.";
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout(){
+
+    document.getElementById(
+        "panel"
+    ).style.display=
+        "none";
+
+
+    document.getElementById(
+        "loginBox"
+    ).style.display=
+        "block";
+
+
+    document.getElementById(
+        "password"
+    ).value="";
+
+
+    document.getElementById(
+        "loginMsg"
+    ).textContent="";
+
+}
+
+</script>
+
+</body>
+</html>
