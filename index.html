@@ -6,61 +6,349 @@
 <title>Ebad Gaming</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-:root{--main:#ff3030}
-body{font-family:Arial,Helvetica,sans-serif;background:#07070d;color:#fff;line-height:1.6}
-header{position:sticky;top:0;z-index:50;background:rgba(10,10,18,.97);border-bottom:2px solid var(--main);padding:15px 20px}
-.nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:20px}
-.logo{font-size:26px;font-weight:900;color:var(--main)}
-.logo span{color:#fff}
-nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-nav a{color:#ddd;text-decoration:none;font-weight:700;padding:8px 12px;border-radius:8px}
-nav a:hover{background:#1c1c2a;color:#fff}
-.hero{min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;padding:70px 20px;background:radial-gradient(circle at 50% 20%,#342253 0,#19152e 35%,#090912 75%)}
-.hero-inner{max-width:900px}
-.badge{display:inline-block;background:#141420;border:1px solid #44445c;border-radius:999px;padding:7px 14px;color:#ff9292;font-weight:800;font-size:13px;margin-bottom:18px}
-.hero h1{font-size:clamp(46px,8vw,86px);line-height:1.03;margin-bottom:16px}
-.hero h1 span{color:var(--main)}
-.hero p{font-size:20px;color:#c8c8d4;max-width:720px;margin:0 auto 26px}
-.buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-.btn{display:inline-block;border:0;border-radius:10px;background:var(--main);color:#fff;padding:12px 22px;font-size:16px;font-weight:800;text-decoration:none;cursor:pointer}
-.btn:hover{filter:brightness(1.1)}
-.btn-secondary{background:#181825;border:1px solid #3b3b52}
-.stats{max-width:1000px;margin:-40px auto 0;position:relative;z-index:5;display:grid;grid-template-columns:repeat(3,1fr);gap:15px;padding:0 20px}
-.stat{background:#11111b;border:1px solid #2b2b40;border-radius:16px;padding:20px;text-align:center}
-.stat .icon{font-size:30px}
-.stat p{color:#9999aa;font-size:14px}
-section{max-width:1200px;margin:auto;padding:78px 20px}
-.head{text-align:center;margin-bottom:35px}
-.head .small{color:var(--main);font-size:13px;font-weight:900;letter-spacing:1.5px}
-.head h2{font-size:40px;margin-top:5px}
-.head h2 span{color:var(--main)}
-.head p{color:#9f9fad;max-width:680px;margin:8px auto 0}
-.featured{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
-.feature,.side{border:1px solid #2b2b40;border-radius:20px;padding:32px}
-.feature{background:radial-gradient(circle at top right,#3a214c,#171722 48%,#11111b)}
-.feature .big{font-size:70px}
-.feature h3{font-size:34px;margin:8px 0}
-.feature p{color:#b2b2bf;margin-bottom:18px}
-.side{background:#11111b}
-.side h3{font-size:24px}
-.item{display:flex;gap:12px;padding:13px;border-radius:12px;background:#181824;border:1px solid #29293b;margin-top:11px}
-.item span{color:#9696a6;font-size:13px;display:block}
-.cta{max-width:1050px;margin:0 auto 70px;padding:40px 22px;text-align:center;border-radius:22px;background:linear-gradient(135deg,#27183a,#141424);border:1px solid #36364d}
-.cta h2{font-size:34px}
-.cta p{color:#aaa;margin:6px 0 18px}
-footer{padding:32px 20px;text-align:center;color:#777;background:#050509;border-top:1px solid #20202e}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+:root{
+  --main:#ff3030;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#07070d;
+  color:#fff;
+  line-height:1.6;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(10,10,18,.97);
+  border-bottom:2px solid var(--main);
+  padding:15px 20px;
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.logo{
+  font-size:26px;
+  font-weight:900;
+  color:var(--main);
+}
+
+.logo span{
+  color:#fff;
+}
+
+nav{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+nav a{
+  color:#ddd;
+  text-decoration:none;
+  font-weight:700;
+  padding:8px 12px;
+  border-radius:8px;
+}
+
+nav a:hover{
+  background:#1c1c2a;
+  color:#fff;
+}
+
+.hero{
+  min-height:600px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:70px 20px;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      #342253 0,
+      #19152e 35%,
+      #090912 75%
+    );
+}
+
+.hero-inner{
+  max-width:900px;
+}
+
+.badge{
+  display:inline-block;
+  background:#141420;
+  border:1px solid #44445c;
+  border-radius:999px;
+  padding:7px 14px;
+  color:#ff9292;
+  font-weight:800;
+  font-size:13px;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:clamp(46px,8vw,86px);
+  line-height:1.03;
+  margin-bottom:16px;
+}
+
+.hero h1 span{
+  color:var(--main);
+}
+
+.hero p{
+  font-size:20px;
+  color:#c8c8d4;
+  max-width:720px;
+  margin:0 auto 26px;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-block;
+  border:0;
+  border-radius:10px;
+  background:var(--main);
+  color:#fff;
+  padding:12px 22px;
+  font-size:16px;
+  font-weight:800;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.btn:hover{
+  filter:brightness(1.1);
+}
+
+.btn-secondary{
+  background:#181825;
+  border:1px solid #3b3b52;
+}
+
+.stats{
+  max-width:1000px;
+  margin:-40px auto 0;
+  position:relative;
+  z-index:5;
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+
+  gap:15px;
+
+  padding:0 20px;
+}
+
+.stat{
+  background:#11111b;
+  border:1px solid #2b2b40;
+  border-radius:16px;
+  padding:20px;
+  text-align:center;
+}
+
+.stat .icon{
+  font-size:30px;
+}
+
+.stat p{
+  color:#9999aa;
+  font-size:14px;
+}
+
+section{
+  max-width:1200px;
+  margin:auto;
+  padding:78px 20px;
+}
+
+.head{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.head .small{
+  color:var(--main);
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:1.5px;
+}
+
+.head h2{
+  font-size:40px;
+  margin-top:5px;
+}
+
+.head h2 span{
+  color:var(--main);
+}
+
+.head p{
+  color:#9f9fad;
+  max-width:680px;
+  margin:8px auto 0;
+}
+
+.featured{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:24px;
+}
+
+.feature,
+.side{
+  border:1px solid #2b2b40;
+  border-radius:20px;
+  padding:32px;
+}
+
+.feature{
+  background:
+    radial-gradient(
+      circle at top right,
+      #3a214c,
+      #171722 48%,
+      #11111b
+    );
+}
+
+.feature .big{
+  font-size:70px;
+}
+
+.feature h3{
+  font-size:34px;
+  margin:8px 0;
+}
+
+.feature p{
+  color:#b2b2bf;
+  margin-bottom:18px;
+}
+
+.side{
+  background:#11111b;
+}
+
+.side h3{
+  font-size:24px;
+}
+
+.item{
+  display:flex;
+  gap:12px;
+
+  padding:13px;
+
+  border-radius:12px;
+
+  background:#181824;
+
+  border:1px solid #29293b;
+
+  margin-top:11px;
+}
+
+.item span{
+  color:#9696a6;
+  font-size:13px;
+  display:block;
+}
+
+.cta{
+  max-width:1050px;
+  margin:0 auto 70px;
+  padding:40px 22px;
+  text-align:center;
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #27183a,
+      #141424
+    );
+
+  border:1px solid #36364d;
+}
+
+.cta h2{
+  font-size:34px;
+}
+
+.cta p{
+  color:#aaa;
+  margin:6px 0 18px;
+}
+
+footer{
+  padding:32px 20px;
+  text-align:center;
+  color:#777;
+  background:#050509;
+  border-top:1px solid #20202e;
+}
 
 @media(max-width:900px){
-  .featured{grid-template-columns:1fr}
+
+  .featured{
+    grid-template-columns:1fr;
+  }
+
 }
+
 @media(max-width:650px){
-  .nav{flex-direction:column}
-  .stats{grid-template-columns:1fr;margin-top:-25px}
-  .hero{min-height:520px}
-  .hero p{font-size:17px}
-  .head h2{font-size:32px}
+
+  .nav{
+    flex-direction:column;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+    margin-top:-25px;
+  }
+
+  .hero{
+    min-height:520px;
+  }
+
+  .hero p{
+    font-size:17px;
+  }
+
+  .head h2{
+    font-size:32px;
+  }
+
 }
 </style>
 </head>
@@ -68,155 +356,294 @@ footer{padding:32px 20px;text-align:center;color:#777;background:#050509;border-
 <body>
 
 <header>
-<div class="nav">
-  <div class="logo">🎮 <span id="logoText">Ebad</span> Gaming</div>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="games.html">Games</a>
-    <a href="admin.html">🔐 Admin</a>
-  </nav>
+<div class="nav">
+
+<div class="logo">
+🎮 <span id="logoText">Ebad</span> Gaming
 </div>
+
+<nav>
+
+<a href="index.html">
+Home
+</a>
+
+<a href="games.html">
+Games
+</a>
+
+</nav>
+
+</div>
+
 </header>
 
+
 <section class="hero">
+
 <div class="hero-inner">
-  <div class="badge">🎮 THE GAMING ZONE</div>
 
-  <h1>
-    Welcome to <span id="siteText">Ebad Gaming</span>
-  </h1>
-
-  <p id="heroText">
-    Play exciting games, beat your high scores,
-    and become the ultimate gamer.
-  </p>
-
-  <div class="buttons">
-    <a class="btn" href="games.html">🎮 Explore Games</a>
-    <a class="btn btn-secondary" href="admin.html">🔐 Admin</a>
-  </div>
+<div class="badge">
+🎮 THE GAMING ZONE
 </div>
+
+<h1>
+Welcome to
+<span id="siteText">
+Ebad Gaming
+</span>
+</h1>
+
+<p id="heroText">
+Play exciting games, beat your high scores,
+and become the ultimate gamer.
+</p>
+
+<div class="buttons">
+
+<a
+class="btn"
+href="games.html"
+>
+🎮 Explore Games
+</a>
+
+</div>
+
+</div>
+
 </section>
 
+
 <div class="stats">
-  <div class="stat">
-    <div class="icon">🎮</div>
-    <h3>Fun Games</h3>
-    <p>Play and enjoy</p>
-  </div>
 
-  <div class="stat">
-    <div class="icon">🏆</div>
-    <h3>High Scores</h3>
-    <p>Beat your record</p>
-  </div>
-
-  <div class="stat">
-    <div class="icon">⚡</div>
-    <h3>Fast Action</h3>
-    <p>Non-stop gaming</p>
-  </div>
+<div class="stat">
+<div class="icon">🎮</div>
+<h3>Fun Games</h3>
+<p>Play and enjoy</p>
 </div>
+
+<div class="stat">
+<div class="icon">🏆</div>
+<h3>High Scores</h3>
+<p>Beat your record</p>
+</div>
+
+<div class="stat">
+<div class="icon">⚡</div>
+<h3>Fast Action</h3>
+<p>Non-stop gaming</p>
+</div>
+
+</div>
+
 
 <section>
+
 <div class="head">
-  <div class="small">WELCOME</div>
-  <h2>Enter the <span>Gaming Zone</span></h2>
-  <p>
-    Your games are all in one place.
-    Click Games above to see the full game library.
-  </p>
+
+<div class="small">
+WELCOME
 </div>
+
+<h2>
+Enter the
+<span>Gaming Zone</span>
+</h2>
+
+<p>
+Your games are all in one place.
+Click Games above to see the full game library.
+</p>
+
+</div>
+
 
 <div class="featured">
 
-  <div class="feature">
-    <div class="big">🎮</div>
-    <h3>Ready to Play?</h3>
-    <p>
-      Choose from racing, zombie, rocket and
-      more games from the Games page.
-    </p>
-    <a class="btn" href="games.html">Open Games</a>
-  </div>
+<div class="feature">
 
-  <div class="side">
-    <h3>What you can do</h3>
+<div class="big">
+🎮
+</div>
 
-    <div class="item">
-      🎯
-      <div>
-        <strong>Play Games</strong>
-        <span>Start a game with one click.</span>
-      </div>
-    </div>
+<h3>
+Ready to Play?
+</h3>
 
-    <div class="item">
-      🏆
-      <div>
-        <strong>Beat Scores</strong>
-        <span>Try to improve your records.</span>
-      </div>
-    </div>
+<p>
+Choose from racing, zombie, rocket and more
+games from the Games page.
+</p>
 
-    <div class="item">
-      ⚙️
-      <div>
-        <strong>Admin Controls</strong>
-        <span>Manage your website from Admin.</span>
-      </div>
-    </div>
-  </div>
+<a
+class="btn"
+href="games.html"
+>
+Open Games
+</a>
 
 </div>
+
+
+<div class="side">
+
+<h3>
+What you can do
+</h3>
+
+<div class="item">
+
+🎯
+
+<div>
+<strong>Play Games</strong>
+<span>Start a game with one click.</span>
+</div>
+
+</div>
+
+<div class="item">
+
+🏆
+
+<div>
+<strong>Beat Scores</strong>
+<span>Try to improve your records.</span>
+</div>
+
+</div>
+
+<div class="item">
+
+🔥
+
+<div>
+<strong>More Games Coming</strong>
+<span>New games can be added later.</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
+
 <div class="cta">
-  <h2>🎮 Let's Play</h2>
-  <p>Open the Games page and choose your game.</p>
-  <a class="btn" href="games.html">View All Games</a>
+
+<h2>
+🎮 Let's Play
+</h2>
+
+<p>
+Open the Games page and choose your game.
+</p>
+
+<a
+class="btn"
+href="games.html"
+>
+View All Games
+</a>
+
 </div>
 
+
 <footer>
-  <div style="color:#fff;font-weight:800">
-    🎮 <span id="footText">Ebad Gaming</span>
-  </div>
-  <div>Made for gamers ❤️</div>
-  <div style="margin-top:8px;font-size:13px">© 2026 Ebad Gaming</div>
+
+<div style="color:#fff;font-weight:800">
+
+🎮
+<span id="footText">
+Ebad Gaming
+</span>
+
+</div>
+
+<div>
+Made for gamers ❤️
+</div>
+
+<div style="margin-top:8px;font-size:13px">
+© 2026 Ebad Gaming
+</div>
+
 </footer>
 
+
 <script>
+
 const defaults={
-  site:"Ebad Gaming",
-  hero:"Play exciting games, beat your high scores, and become the ultimate gamer.",
-  color:"#ff3030"
+
+site:
+"Ebad Gaming",
+
+hero:
+"Play exciting games, beat your high scores, and become the ultimate gamer.",
+
+color:
+"#ff3030"
+
 };
 
-function setting(k){
-  return localStorage.getItem("ebad_"+k)||defaults[k];
+
+function setting(key){
+
+return (
+localStorage.getItem(
+"ebad_"+key
+)
+||
+defaults[key]
+);
+
 }
+
 
 function loadSettings(){
-  document.getElementById("logoText").textContent =
-    setting("site").replace(/\s+Gaming$/i,"");
 
-  document.getElementById("siteText").textContent =
-    setting("site");
+document.getElementById(
+"logoText"
+).textContent=
 
-  document.getElementById("footText").textContent =
-    setting("site");
+setting("site").replace(
+/\s+Gaming$/i,
+""
+);
 
-  document.getElementById("heroText").textContent =
-    setting("hero");
 
-  document.documentElement.style.setProperty(
-    "--main",
-    setting("color")
-  );
+document.getElementById(
+"siteText"
+).textContent=
+setting("site");
+
+
+document.getElementById(
+"footText"
+).textContent=
+setting("site");
+
+
+document.getElementById(
+"heroText"
+).textContent=
+setting("hero");
+
+
+document.documentElement.style.setProperty(
+"--main",
+setting("color")
+);
+
 }
 
+
 loadSettings();
+
 </script>
 
 </body>
